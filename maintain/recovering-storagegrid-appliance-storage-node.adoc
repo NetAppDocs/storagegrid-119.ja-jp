@@ -1,0 +1,29 @@
+---
+permalink: maintain/recovering-storagegrid-appliance-storage-node.html 
+sidebar: sidebar 
+keywords: recover, appliance storage node failure, workflow 
+summary: 障害が発生したStorageGRIDアプライアンス ストレージ ノードを回復する手順は、システム ドライブの損失から回復する場合でも、ストレージ ボリュームのみの損失から回復する場合でも同じです。 
+---
+= アプライアンス ストレージ ノードの回復に関する警告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+障害が発生したStorageGRIDアプライアンス ストレージ ノードを回復する手順は、システム ドライブの損失から回復する場合でも、ストレージ ボリュームのみの損失から回復する場合でも同じです。
+
+
+CAUTION: 複数のストレージ ノードに障害が発生した場合 (またはオフラインの場合) は、テクニカル サポートにお問い合わせください。次の回復手順を実行しないでください。データが失われる可能性があります。
+
+
+CAUTION: ストレージ ノードの障害または回復後 15 日以内に 2 回目のストレージ ノード障害が発生した場合は、テクニカル サポートに連絡してください。  15 日以内に 2 つ以上のストレージ ノードで Cassandra を再構築すると、データが失われる可能性があります。
+
+
+NOTE: サイトの複数のストレージ ノードに障害が発生した場合は、サイトの回復手順が必要になることがあります。見るlink:how-site-recovery-is-performed-by-technical-support.html["テクニカルサポートがサイトを復旧する方法"] 。
+
+
+CAUTION: ILM ルールが複製されたコピーを 1 つだけ保存するように設定されていて、そのコピーが障害が発生したストレージ ボリューム上に存在する場合、オブジェクトを回復することはできません。
+
+
+NOTE: コントローラの交換やSANtricity OSの再インストールなどのハードウェアメンテナンス手順については、 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["ストレージアプライアンスのメンテナンス手順"^] 。

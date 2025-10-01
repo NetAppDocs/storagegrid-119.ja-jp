@@ -1,0 +1,42 @@
+---
+permalink: rhel/specifying-network-time-protocol-server-information.html 
+sidebar: sidebar 
+keywords: how to specify network time protocol ntp 
+summary: '別々のサーバーで実行される操作の同期を維持できるように、 StorageGRIDシステムのネットワーク タイム プロトコル (NTP) 構成情報を指定する必要があります。' 
+---
+= ネットワークタイムプロトコルサーバー情報を指定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+別々のサーバーで実行される操作の同期を維持できるように、 StorageGRIDシステムのネットワーク タイム プロトコル (NTP) 構成情報を指定する必要があります。
+
+.タスク概要
+NTP サーバーの IPv4 アドレスを指定する必要があります。
+
+外部 NTP サーバーを指定する必要があります。指定された NTP サーバーは NTP プロトコルを使用する必要があります。
+
+時間のずれの問題を防ぐには、Stratum 3 以上の NTP サーバー参照を 4 つ指定する必要があります。
+
+[NOTE]
+====
+運用レベルのStorageGRIDインストールに外部 NTP ソースを指定する場合は、Windows Server 2016 より前のバージョンの Windows で Windows Time (W32Time) サービスを使用しないでください。以前のバージョンの Windows のタイム サービスは精度が十分でないため、 StorageGRIDなどの高精度環境で使用することは Microsoft によってサポートされていません。
+
+https://support.microsoft.com/en-us/help/939322/support-boundary-to-configure-the-windows-time-service-for-high-accura["高精度環境向けに Windows Time サービスを構成するためのサポート境界"^]
+
+====
+外部 NTP サーバーは、以前にプライマリ NTP ロールを割り当てたノードによって使用されます。
+
+
+NOTE: 各サイトの少なくとも 2 つのノードが少なくとも 4 つの外部 NTP ソースにアクセスできることを確認します。サイト内の 1 つのノードだけが NTP ソースに到達できる場合、そのノードがダウンするとタイミングの問題が発生します。さらに、サイトごとに 2 つのノードをプライマリ NTP ソースとして指定すると、サイトがグリッドの残りの部分から分離されている場合でも正確なタイミングが保証されます。
+
+.手順
+. *サーバー 1* ～ *サーバー 4* のテキスト ボックスに、少なくとも 4 つの NTP サーバーの IPv4 アドレスを指定します。
+. 必要に応じて、最後のエントリの横にあるプラス記号を選択して、追加のサーバー エントリを追加します。
++
+image::../media/8_gmi_installer_ntp_page.gif[この図には説明が付随しています。]
+
+. *次へ*を選択します。
+

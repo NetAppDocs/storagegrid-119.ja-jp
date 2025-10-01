@@ -1,0 +1,16 @@
+---
+permalink: s3/conflicting-client-requests.html 
+sidebar: sidebar 
+keywords: conflicting client requests 
+summary: 2 つのクライアントが同じキーに書き込むなど、競合するクライアント要求は、「最新のものを優先」して解決されます。 
+---
+= 競合するクライアント要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+2 つのクライアントが同じキーに書き込むなど、競合するクライアント要求は、「最新のものを優先」して解決されます。
+
+「最新のもの優先」評価のタイミングは、S3 クライアントが操作を開始した時点ではなく、 StorageGRIDシステムが特定のリクエストを完了した時点に基づきます。

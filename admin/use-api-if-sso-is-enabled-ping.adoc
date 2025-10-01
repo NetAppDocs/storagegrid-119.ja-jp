@@ -1,0 +1,280 @@
+---
+permalink: admin/use-api-if-sso-is-enabled-ping.html 
+sidebar: sidebar 
+keywords: how to access storagegrid API if SSO is enabled with PingFederate 
+summary: 'シングル サインオン (SSO) を構成して有効にし、PingFederate を SSO プロバイダーとして使用する場合は、一連の API 要求を発行して、グリッド管理 API またはテナント管理 API に有効な認証トークンを取得する必要があります。' 
+---
+= シングル サインオンが有効になっている場合は API を使用する (PingFederate)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+もしあなたがlink:../admin/configuring-sso.html["シングル サインオン (SSO) を設定して有効にする"]PingFederate を SSO プロバイダーとして使用する場合は、一連の API 要求を発行して、Grid Management API または Tenant Management API に有効な認証トークンを取得する必要があります。
+
+
+
+== シングル サインオンが有効になっている場合は、API にSign in。
+
+これらの手順は、PingFederateをSSO IDプロバイダーとして使用している場合に適用されます。
+
+.開始する前に
+* StorageGRIDユーザー グループに属するフェデレーション ユーザーの SSO ユーザー名とパスワードがわかっています。
+* テナント管理 API にアクセスする場合は、テナント アカウント ID がわかっている必要があります。
+
+
+.タスク概要
+認証トークンを取得するには、次のいずれかの例を使用できます。
+
+* その `storagegrid-ssoauth.py`StorageGRIDインストール ファイル ディレクトリにある Python スクリプト(`./rpms`Red Hat Enterprise Linuxの場合、 `./debs` UbuntuまたはDebianの場合、 `./vsphere` VMware の場合)。
+* curl リクエストのワークフローの例。
++
+curl ワークフローは、実行速度が遅すぎるとタイムアウトする可能性があります。次のエラーが表示される場合があります: `A valid SubjectConfirmation was not found on this Response` 。
+
++
+
+NOTE: サンプルの curl ワークフローでは、パスワードが他のユーザーから見られないように保護されません。
+
++
+URL エンコードの問題がある場合は、次のエラーが表示されることがあります。 `Unsupported SAML version` 。
+
+
+
+.手順
+. 認証トークンを取得するには、次のいずれかの方法を選択します。
++
+** 使用 `storagegrid-ssoauth.py`Python スクリプト。ステップ 2 に進みます。
+** curl リクエストを使用します。ステップ 3 に進みます。
+
+
+. 使用したい場合は `storagegrid-ssoauth.py`スクリプトの場合は、スクリプトを Python インタープリターに渡してスクリプトを実行します。
++
+プロンプトが表示されたら、次の引数の値を入力します。
+
++
+** SSO 方式。  「pingfederate」の任意のバリエーション（PINGFEDERATE、pingfederate など）を入力できます。
+** SSOユーザ名
+** StorageGRIDがインストールされているドメイン。このフィールドは PingFederate では使用されません。空白のままにすることも、任意の値を入力することもできます。
+** StorageGRIDのアドレス
+** テナント管理 API にアクセスする場合のテナント アカウント ID。
++
+image::../media/sso_auth_python_script_ping.png[Ping Federate の SSO 認証スクリプト]
+
++
+StorageGRID認証トークンが出力に提供されます。  SSO が使用されていない場合に API を使用するのと同様に、他のリクエストにもトークンを使用できるようになりました。
+
+
+
+. curl リクエストを使用する場合は、次の手順に従います。
++
+.. サインインに必要な変数を宣言します。
++
+[source, bash]
+----
+export SAMLUSER='my-sso-username'
+export SAMLPASSWORD='my-password'
+export TENANTACCOUNTID='12345'
+export STORAGEGRID_ADDRESS='storagegrid.example.com'
+----
++
+
+NOTE: グリッド管理APIにアクセスするには、0を次のように使用します。 `TENANTACCOUNTID` 。
+
+.. 署名された認証URLを受け取るには、POSTリクエストを発行します。 `/api/v3/authorize-saml` 、レスポンスから追加の JSON エンコーディングを削除します。
++
+この例は、TENANTACCOUNTID の署名付き認証 URL に対する POST リクエストを示しています。結果は python -m json.tool に渡され、JSON エンコーディングが削除されます。
+
++
+[source, bash]
+----
+curl -X POST "https://$STORAGEGRID_ADDRESS/api/v3/authorize-saml" \
+  -H "accept: application/json" -H  "Content-Type: application/json" \
+  --data "{\"accountId\": \"$TENANTACCOUNTID\"}" | python -m json.tool
+----
++
+この例の応答には、URL エンコードされた署名付き URL が含まれますが、追加の JSON エンコード レイヤーは含まれません。
+
++
+[listing]
+----
+{
+    "apiVersion": "3.0",
+    "data": "https://my-pf-baseurl/idp/SSO.saml2?...",
+    "responseTime": "2018-11-06T16:30:23.355Z",
+    "status": "success"
+}
+----
+.. 保存する `SAMLRequest`後続のコマンドで使用するために応答から取得します。
++
+[listing]
+----
+export SAMLREQUEST="https://my-pf-baseurl/idp/SSO.saml2?..."
+----
+.. 応答と Cookie をエクスポートし、応答をエコーします。
++
+[source, bash]
+----
+RESPONSE=$(curl -c - "$SAMLREQUEST")
+----
++
+[source, bash]
+----
+echo "$RESPONSE" | grep 'input type="hidden" name="pf.adapterId" id="pf.adapterId"'
+----
+.. 'pf.adapterId' の値をエクスポートし、応答をエコーします。
++
+[listing]
+----
+export ADAPTER='myAdapter'
+----
++
+[source, bash]
+----
+echo "$RESPONSE" | grep 'base'
+----
+.. 'href' 値をエクスポートし (末尾のスラッシュ / を削除)、応答をエコーします。
++
+[listing]
+----
+export BASEURL='https://my-pf-baseurl'
+----
++
+[source, bash]
+----
+echo "$RESPONSE" | grep 'form method="POST"'
+----
+.. 「アクション」値をエクスポートします。
++
+[listing]
+----
+export SSOPING='/idp/.../resumeSAML20/idp/SSO.ping'
+----
+.. 資格情報とともに Cookie を送信します。
++
+[source, bash]
+----
+curl -b <(echo "$RESPONSE") -X POST "$BASEURL$SSOPING" \
+--data "pf.username=$SAMLUSER&pf.pass=$SAMLPASSWORD&pf.ok=clicked&pf.cancel=&pf.adapterId=$ADAPTER" --include
+----
+.. 保存する `SAMLResponse`隠しフィールドから:
++
+[source, bash]
+----
+export SAMLResponse='PHNhbWxwOlJlc3BvbnN...1scDpSZXNwb25zZT4='
+----
+.. 保存した `SAMLResponse`、 StorageGRIDを作成する``/api/saml-response``StorageGRID認証トークンを生成するためのリクエスト。
++
+のために `RelayState`、テナント アカウント ID を使用するか、Grid Management API にサインインする場合は 0 を使用します。
+
++
+[source, bash]
+----
+curl -X POST "https://$STORAGEGRID_ADDRESS:443/api/saml-response" \
+  -H "accept: application/json" \
+  --data-urlencode "SAMLResponse=$SAMLResponse" \
+  --data-urlencode "RelayState=$TENANTACCOUNTID" \
+  | python -m json.tool
+----
++
+応答には認証トークンが含まれます。
+
++
+[listing]
+----
+{
+    "apiVersion": "3.0",
+    "data": "56eb07bf-21f6-40b7-af0b-5c6cacfb25e7",
+    "responseTime": "2018-11-07T21:32:53.486Z",
+    "status": "success"
+}
+----
+.. レスポンス内の認証トークンを次のように保存します。 `MYTOKEN` 。
++
+[source, bash]
+----
+export MYTOKEN="56eb07bf-21f6-40b7-af0b-5c6cacfb25e7"
+----
++
+使用できるようになりました `MYTOKEN`その他のリクエストについては、SSO が使用されていない場合に API を使用する方法と同様です。
+
+
+
+
+
+
+
+== シングル サインオンが有効になっている場合は、API からサインアウトします。
+
+シングル サインオン (SSO) が有効になっている場合は、グリッド管理 API またはテナント管理 API からサインアウトするための一連の API 要求を発行する必要があります。これらの手順は、PingFederateをSSO IDプロバイダーとして使用している場合に適用されます。
+
+.タスク概要
+必要に応じて、組織のシングル ログアウト ページからログアウトすることで、 StorageGRID API からサインアウトできます。または、有効なStorageGRIDベアラー トークンを必要とするStorageGRIDからシングル ログアウト (SLO) をトリガーすることもできます。
+
+.手順
+. 署名付きログアウト リクエストを生成するには、`cookie "sso=true" を SLO API に渡します。
++
+[source, bash]
+----
+curl -k -X DELETE "https://$STORAGEGRID_ADDRESS/api/v3/authorize" \
+-H "accept: application/json" \
+-H "Authorization: Bearer $MYTOKEN" \
+--cookie "sso=true" \
+| python -m json.tool
+----
++
+ログアウト URL が返されます:
+
++
+[listing]
+----
+{
+    "apiVersion": "3.0",
+    "data": "https://my-ping-url/idp/SLO.saml2?SAMLRequest=fZDNboMwEIRfhZ...HcQ%3D%3D",
+    "responseTime": "2021-10-12T22:20:30.839Z",
+    "status": "success"
+}
+----
+. ログアウト URL を保存します。
++
+[source, bash]
+----
+export LOGOUT_REQUEST='https://my-ping-url/idp/SLO.saml2?SAMLRequest=fZDNboMwEIRfhZ...HcQ%3D%3D'
+----
+. ログアウト URL にリクエストを送信して、SLO をトリガーし、 StorageGRIDにリダイレクトします。
++
+[source, bash]
+----
+curl --include "$LOGOUT_REQUEST"
+----
++
+302 応答が返されます。リダイレクト場所は、API のみのログアウトには適用されません。
+
++
+[listing]
+----
+HTTP/1.1 302 Found
+Location: https://$STORAGEGRID_ADDRESS:443/api/saml-logout?SAMLResponse=fVLLasMwEPwVo7ss%...%23rsa-sha256
+Set-Cookie: PF=QoKs...SgCC; Path=/; Secure; HttpOnly; SameSite=None
+----
+. StorageGRIDベアラー トークンを削除します。
++
+StorageGRIDベアラー トークンの削除は、SSO がない場合と同じように機能します。  `cookie "sso=true" が提供されない場合、ユーザーは SSO 状態に影響を与えずにStorageGRIDからログアウトされます。
+
++
+[source, bash]
+----
+curl -X DELETE "https://$STORAGEGRID_ADDRESS/api/v3/authorize" \
+-H "accept: application/json" \
+-H "Authorization: Bearer $MYTOKEN" \
+--include
+----
++
+あ `204 No Content`この応答は、ユーザーが現在サインアウトしていることを示します。
+
++
+[listing]
+----
+HTTP/1.1 204 No Content
+----
+

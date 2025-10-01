@@ -1,0 +1,42 @@
+---
+section: troubleshoot
+title: StorageGRIDシステムのトラブルシューティング
+entries:
+- title: トラブルシューティングのガイドライン
+  pdf-filename: StorageGRIDシステムのトラブルシューティング
+  url: "/troubleshoot/index.html"
+- title: オブジェクトとストレージの問題のトラブルシューティング
+  entries:
+  - title: オブジェクトデータの場所を確認する
+    url: "/troubleshoot/confirming-object-data-locations.html"
+  - title: オブジェクトストアの障害
+    url: "/troubleshoot/object-store-storage-volume-failures.html"
+  - title: オブジェクトの整合性を検証する
+    url: "/troubleshoot/verifying-object-integrity.html"
+  - title: S3 PUT オブジェクトサイズが大きすぎるというアラートのトラブルシューティング
+    url: "/troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html"
+  - title: 失われたオブジェクトデータのトラブルシューティング
+    entries:
+    - title: オブジェクトを取得するための方法
+      pdf-filename: 失われたオブジェクトデータのトラブルシューティング
+      url: "/troubleshoot/troubleshooting-lost-and-missing-object-data.html"
+    - title: 紛失物の調査
+      url: "/troubleshoot/investigating-lost-objects.html"
+    - title: 紛失した可能性のあるオブジェクトを検索して復元する
+      url: "/troubleshoot/searching-for-and-restoring-potentially-lost-objects.html"
+    - title: 紛失した物や行方不明の物の数をリセットする
+      url: "/troubleshoot/resetting-lost-and-missing-object-counts.html"
+  - title: 低オブジェクトデータストレージアラートのトラブルシューティング
+    url: "/troubleshoot/troubleshooting-low-object-data-storage-alert.html"
+  - title: 低読み取り専用ウォーターマーク上書きアラートのトラブルシューティング
+    url: "/troubleshoot/troubleshoot-low-watermark-alert.html"
+- title: メタデータの問題のトラブルシューティング
+  url: "/troubleshoot/troubleshooting-metadata-issues.html"
+- title: 証明書エラーのトラブルシューティング
+  url: "/troubleshoot/troubleshooting-certificate-errors.html"
+- title: 管理ノードとユーザーインターフェースの問題のトラブルシューティング
+  url: "/troubleshoot/troubleshooting-admin-node-and-user-interface-issues.html"
+- title: ネットワーク、ハードウェア、プラットフォームの問題のトラブルシューティング
+  url: "/troubleshoot/troubleshooting-network-hardware-and-platform-issues.html"
+- title: 外部 syslog サーバーのトラブルシューティング
+  url: "/troubleshoot/troubleshooting-syslog-server.html"

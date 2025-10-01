@@ -1,0 +1,85 @@
+---
+permalink: monitor/running-diagnostics.html 
+sidebar: sidebar 
+keywords: how to run diagnostics 
+summary: 問題のトラブルシューティングを行う場合、テクニカル サポートと連携してStorageGRIDシステムの診断を実行し、結果を確認することができます。 
+---
+= 診断を実行する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+問題のトラブルシューティングを行う場合、テクニカル サポートと連携してStorageGRIDシステムの診断を実行し、結果を確認することができます。
+
+* link:reviewing-support-metrics.html["サポート指標を確認する"]
+* link:commonly-used-prometheus-metrics.html["よく使われるPrometheusメトリクス"]
+
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたが持っているlink:../admin/admin-group-permissions.html["特定のアクセス権限"]。
+
+
+.タスク概要
+診断ページでは、グリッドの現在の状態に関する一連の診断チェックを実行します。各診断チェックには、次の 3 つのステータスのいずれかがあります。
+
+* image:../media/icon_alert_green_checkmark.png["アイコンアラート緑のチェックマーク"]*正常*: すべての値が正常範囲内です。
+* image:../media/icon_alert_yellow_minor.png["アイコンアラート 黄色 マイナー"]*注意*: 1 つ以上の値が正常範囲外です。
+* image:../media/icon_alert_red_critical.png["アイコンアラート 赤 重大"]*注意*: 1 つ以上の値が正常範囲から大幅に外れています。
+
+
+診断ステータスは現在のアラートとは無関係であり、グリッドの運用上の問題を示すものではない可能性があります。たとえば、アラートがトリガーされていない場合でも、診断チェックで注意ステータスが表示される場合があります。
+
+.手順
+. *サポート* > *ツール* > *診断*を選択します。
++
+「診断」ページが表示され、各診断チェックの結果がリストされます。結果は重大度順（注意、注目、正常）にソートされます。各重大度内で、結果はアルファベット順に並べられます。
+
++
+この例では、すべての診断のステータスは正常です。
+
++
+image::../media/support_diagnostics_page.png[サポート診断ページ]
+
+. 特定の診断の詳細を確認するには、行内の任意の場所をクリックします。
++
+診断の詳細と現在の結果が表示されます。以下の詳細がリストされます:
+
++
+** *ステータス*: この診断の現在のステータス: 正常、注意、または注意。
+** *Prometheus クエリ*: 診断に使用する場合、ステータス値を生成するために使用された Prometheus 式。  (Prometheus 式はすべての診断に使用されるわけではありません。)
+** *しきい値*: 診断で使用可能な場合、各異常診断ステータスのシステム定義のしきい値。  (しきい値はすべての診断に使用されるわけではありません。)
++
+
+NOTE: これらのしきい値を変更することはできません。
+
+** *ステータス値*: StorageGRIDシステム全体の診断のステータスと値を示す表。この例では、 StorageGRIDシステム内の各ノードの現在の CPU 使用率が表示されます。すべてのノード値が「注意」および「警告」のしきい値を下回っているため、診断の全体的なステータスは「正常」です。
+
+
++
+image::../media/support_diagnostics_cpu_utilization.png[サポート診断CPU使用率]
+
+. *オプション*: この診断に関連する Grafana チャートを表示するには、*Grafana ダッシュボード* リンクをクリックします。
++
+このリンクはすべての診断で表示されるわけではありません。
+
++
+関連する Grafana ダッシュボードが表示されます。この例では、ノード ダッシュボードが表示され、このノードの CPU 使用率の推移と、ノードのその他の Grafana チャートが表示されます。
+
++
+
+NOTE: *サポート* > *ツール* > *メトリック* ページの Grafana セクションから、事前に構築された Grafana ダッシュボードにアクセスすることもできます。
+
++
+image::../media/grafana_dashboard_nodes.png[Grafanaダッシュボードノード]
+
+. *オプション*: Prometheus 式のグラフを時間経過に沿って表示するには、[*Prometheus で表示*] をクリックします。
++
+診断で使用される式の Prometheus グラフが表示されます。
+
++
+image::../media/support_diagnostics_prometheus_png.png[サポート診断 Prometheus ページ]
+
+

@@ -1,0 +1,28 @@
+---
+permalink: audit/management-audit-message.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, management, user request, user requests 
+summary: 管理カテゴリは、管理 API へのユーザー リクエストを記録します。 
+---
+= 経営監査メッセージ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理カテゴリは、管理 API へのユーザー リクエストを記録します。
+
+[cols="1a,3a,1a"]
+|===
+| コード | メッセージのタイトルと説明 | 詳細については、 
+
+
+ a| 
+MGAU
+ a| 
+管理 API 監査メッセージ: ユーザー リクエストのログ。
+ a| 
+link:mgau-management-audit-message.html["MGAU: 経営監査メッセージ"]
+
+|===

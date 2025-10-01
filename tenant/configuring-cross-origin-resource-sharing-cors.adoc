@@ -1,0 +1,87 @@
+---
+permalink: tenant/configuring-cross-origin-resource-sharing-cors.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors 
+summary: 'S3 バケットとそのバケット内のオブジェクトを他のドメインの Web アプリケーションからアクセスできるようにするには、S3 バケットに対してクロスオリジン リソース共有 (CORS) を設定できます。' 
+---
+= クロスオリジンリソース共有（CORS）を構成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+S3 バケットとそのバケット内のオブジェクトを他のドメインの Web アプリケーションからアクセスできるようにする場合は、S3 バケットに対してクロスオリジン リソース共有 (CORS) を設定できます。
+
+.開始する前に
+* テナントマネージャーにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* GET CORS設定リクエストの場合、あなたは以下の権限を持つユーザーグループに属しています。link:tenant-management-permissions.html["すべてのバケットの管理またはすべてのバケットの表示権限"] 。これらの権限は、グループまたはバケット ポリシーの権限設定をオーバーライドします。
+* PUT CORS設定リクエストの場合、あなたは以下の権限を持つユーザーグループに属しています。link:tenant-management-permissions.html["すべてのバケットの権限を管理する"] 。この権限は、グループまたはバケット ポリシーの権限設定をオーバーライドします。
+* そのlink:tenant-management-permissions.html["ルートアクセス権限"]すべての CORS 構成リクエストへのアクセスを提供します。
+
+
+.タスク概要
+クロスオリジン リソース共有 (CORS) は、あるドメイン内のクライアント Web アプリケーションが別のドメイン内のリソースにアクセスできるようにするセキュリティ メカニズムです。たとえば、S3バケットの名前が `Images`グラフィックを保存します。  CORSを設定することで、 `Images`バケット内の画像をウェブサイトに表示できるようにすることができます `+http://www.example.com+`。
+
+
+
+== バケットのCORSを有効にする
+
+.手順
+. テキスト エディターを使用して必要な XML を作成します。この例では、S3 バケットの CORS を有効にするために使用される XML を示しています。具体的な制限事項は次のとおりです。
++
+** 任意のドメインがバケットにGETリクエストを送信できるようにします
+** のみ許可します `+http://www.example.com+`GET、POST、DELETEリクエストを送信するドメイン
+** すべてのリクエストヘッダーが許可されます
++
+[listing]
+----
+<CORSConfiguration
+    xmlns="http://s3.amazonaws.com/doc/2020-10-22/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+    <CORSRule>
+        <AllowedOrigin>http://www.example.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+----
++
+CORS構成XMLの詳細については、以下を参照してください。 http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Amazon Web Services (AWS) ドキュメント: Amazon Simple Storage Service ユーザーガイド"^] 。
+
+
+
+. ダッシュボードから*バケットの表示*を選択するか、*ストレージ (S3)* > *バケット*を選択します。
+. テーブルからバケット名を選択します。
++
+バケットの詳細ページが表示されます。
+
+. *バケット アクセス* タブから、*クロスオリジン リソース共有 (CORS)* アコーディオンを選択します。
+. *CORS を有効にする* チェックボックスを選択します。
+. CORS 構成 XML をテキスト ボックスに貼り付けます。
+. *変更を保存*を選択します。
+
+
+
+
+== CORS設定を変更する
+
+.手順
+. テキスト ボックス内の CORS 構成 XML を更新するか、[クリア] を選択して最初からやり直します。
+. *変更を保存*を選択します。
+
+
+
+
+== CORS設定を無効にする
+
+.手順
+. *CORS を有効にする* チェックボックスをオフにします。
+. *変更を保存*を選択します。
+

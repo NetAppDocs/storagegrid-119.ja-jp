@@ -1,0 +1,78 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| パスとファイル名 | 説明 
+
+
+| ./rpms/README  a| 
+StorageGRIDダウンロード ファイルに含まれるすべてのファイルについて説明するテキスト ファイル。
+
+
+
+| ./rpms/NLF000000.txt  a| 
+製品に対するサポート権限を一切提供しない無料ライセンス。
+
+
+
+| ./rpms/ StorageGRID-Webscale-Images-_version_-SHA.rpm  a| 
+RHEL ホストにStorageGRIDノード イメージをインストールするための RPM パッケージ。
+
+
+
+| ./rpms/ StorageGRID-Webscale-Service-_version_-SHA.rpm  a| 
+RHEL ホストにStorageGRIDホスト サービスをインストールするための RPM パッケージ。
+
+
+
+| デプロイメントスクリプトツール | 説明 
+
+
+| ./rpms/configure-storagegrid.py  a| 
+StorageGRIDシステムの構成を自動化するために使用される Python スクリプト。
+
+
+
+| ./rpms/configure-sga.py  a| 
+StorageGRIDアプライアンスの構成を自動化するために使用される Python スクリプト。
+
+
+
+| ./rpms/configure-storagegrid.sample.json  a| 
+で使用するための設定ファイルの例 `configure-storagegrid.py`スクリプト。
+
+
+
+| ./rpms/storagegrid-ssoauth.py  a| 
+シングル サインオンが有効な場合に Grid Management API にサインインするために使用できる Python スクリプトの例。このスクリプトは、Ping Federate の統合にも使用できます。
+
+
+
+| ./rpms/configure-storagegrid.blank.json  a| 
+で使用するための空の設定ファイル `configure-storagegrid.py`スクリプト。
+
+
+
+| ./rpms/エクストラ/ansible  a| 
+StorageGRIDコンテナのデプロイメント用に RHEL ホストを構成するための Ansible ロールとプレイブックの例。必要に応じてロールまたはプレイブックをカスタマイズできます。
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.py  a| 
+Active Directory または Ping Federate を使用してシングル サインオン (SSO) が有効になっている場合に、Grid Management API にサインインするために使用できるサンプル Python スクリプト。
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.js  a| 
+コンパニオンによって呼び出されるヘルパースクリプト `storagegrid-ssoauth-azure.py`Azure との SSO 対話を実行する Python スクリプト。
+
+
+
+| ./rpms/エクストラ/api-schemas  a| 
+StorageGRIDの API スキーマ。
+
+*注*: アップグレードを実行する前に、アップグレード互換性テスト用の非本番環境のStorageGRID環境がない場合は、これらのスキーマを使用して、 StorageGRID管理 API を使用するために作成したコードが新しいStorageGRIDリリースと互換性があることを確認できます。
+
+|===

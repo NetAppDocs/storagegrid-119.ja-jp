@@ -1,0 +1,58 @@
+---
+permalink: maintain/starting-or-restarting-service.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, service, start service, restart service 
+summary: 停止されたサービスを開始したり、サービスを停止して再起動したりする必要がある場合があります。 
+---
+= サービスを開始または再起動する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+停止されたサービスを開始したり、サービスを停止して再起動したりする必要がある場合があります。
+
+.開始する前に
+あなたは `Passwords.txt`ファイル。
+
+.手順
+. グリッド ノードにログインします。
++
+.. 次のコマンドを入力します。 `ssh admin@_grid_node_IP_`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+.. ルートに切り替えるには、次のコマンドを入力します。 `su -`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+
+
++
+ルートとしてログインすると、プロンプトは `$`に `#`。
+
+. サービスが現在実行中か停止中かに基づいて、発行するコマンドを決定します。
++
+** サービスが現在停止している場合は、 `start`サービスを手動で開始するコマンド: `service _servicename_ start`
++
+例えば：
+
++
+[listing]
+----
+service ldr start
+----
+** サービスが現在実行中の場合は、 `restart`サービスを停止してから再起動するコマンド: `service _servicename_ restart`
++
+例えば：
+
++
+[listing]
+----
+service ldr restart
+----
++
+
+NOTE: 使用して `restart`コマンドは、 `stop`コマンドに続いて `start`指示。発行できます `restart`サービスが現在停止している場合でも同様です。
+
+
+
+. コマンド シェルからログアウトします。 `exit`
+

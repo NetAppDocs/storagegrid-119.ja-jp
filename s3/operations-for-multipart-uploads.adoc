@@ -1,0 +1,92 @@
+---
+permalink: s3/operations-for-multipart-uploads.html 
+sidebar: sidebar 
+keywords: operations, multipart uploads, uploads, rest API 
+summary: このセクションでは、 StorageGRID がマルチパートアップロードの操作をサポートする方法について説明します。 
+---
+= マルチパートアップロードの操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このセクションでは、 StorageGRID がマルチパートアップロードの操作をサポートする方法について説明します。
+
+すべてのマルチパートアップロード操作には、次の条件と注意事項が適用されます。
+
+* バケットに対する ListMultipartUploads クエリの結果が不完全な結果を返す可能性があるため、1 つのバケットへの同時マルチパートアップロードは 1,000 件を超えないようにしてください。
+* StorageGRID は、マルチパートパーツに対して AWS サイズ制限を適用します。  S3 クライアントは次のガイドラインに従う必要があります。
++
+** マルチパートアップロードの各パートは、5 MiB (5,242,880 バイト) 〜 5 GiB (5,368,709,120 バイト) の範囲にする必要があります。
+** 最後の部分は 5 MiB (5,242,880 バイト) より小さくても構いません。
+** 一般に、部品のサイズは可能な限り大きくする必要があります。たとえば、100 GiB のオブジェクトには 5 GiB のパーツ サイズを使用します。各パーツは一意のオブジェクトと見なされるため、大きなパーツ サイズを使用するとStorageGRIDメタデータのオーバーヘッドが削減されます。
+** 5 GiB 未満のオブジェクトの場合は、代わりに非マルチパートアップロードの使用を検討してください。
+
+
+* ILMルールがバランス型または厳密型を使用している場合、ILMは、マルチパートオブジェクトの各部分が取り込まれる際に評価され、マルチパートアップロードが完了するとオブジェクト全体に対して評価されます。link:../ilm/data-protection-options-for-ingest.html["取り込みオプション"] 。これがオブジェクトとパーツの配置にどのように影響するかに注意する必要があります。
++
+** S3 マルチパートアップロードの進行中に ILM が変更されると、マルチパートアップロードが完了したときにオブジェクトの一部が現在の ILM 要件を満たさなくなる可能性があります。正しく配置されていないパーツは ILM 再評価のキューに入れられ、後で正しい場所に移動されます。
+** パーツの ILM を評価する際、 StorageGRID はオブジェクトのサイズではなくパーツのサイズに基づいてフィルタリングします。つまり、オブジェクトの一部は、オブジェクト全体の ILM 要件を満たさない場所に保存される可能性があります。たとえば、10 GB 以上のすべてのオブジェクトを DC1 に保存し、それより小さいすべてのオブジェクトを DC2 に保存するようにルールで指定すると、10 パートのマルチパートアップロードの各 1 GB の部分は、取り込み時に DC2 に保存されます。ただし、オブジェクト全体に対して ILM が評価されると、オブジェクトのすべての部分が DC1 に移動されます。
+
+
+* すべてのマルチパートアップロード操作はStorageGRIDをサポートしていますlink:consistency-controls.html["一貫性値"]。
+* マルチパートアップロードを使用してオブジェクトを取り込む場合、link:../admin/what-object-segmentation-is.html["オブジェクトセグメンテーションしきい値（1 GiB）"]適用されません。
+* 必要に応じて、link:using-server-side-encryption.html["サーバー側の暗号化"]マルチパートアップロードを使用します。  SSE（ StorageGRID管理キーによるサーバー側暗号化）を使用するには、 `x-amz-server-side-encryption` CreateMultipartUpload リクエスト内のリクエスト ヘッダーのみ。  SSE-C (顧客提供のキーを使用したサーバー側暗号化) を使用するには、CreateMultipartUpload リクエストと後続の各 UploadPart リクエストで同じ 3 つの暗号化キー リクエスト ヘッダーを指定します。
+
+
+[cols="2a,3a"]
+|===
+| 処理 | 導入 
+
+
+ a| 
+AbortMultipartUpload
+ a| 
+すべての Amazon S3 REST API 動作が実装されています。予告なく変更されることがあります。
+
+
+
+ a| 
+CompleteMultipartUpload
+ a| 
+見るlink:complete-multipart-upload.html["CompleteMultipartUpload"]
+
+
+
+ a| 
+CreateMultipartUpload
+
+(以前の名称は「マルチパートアップロードの開始」)
+ a| 
+見るlink:initiate-multipart-upload.html["CreateMultipartUpload"]
+
+
+
+ a| 
+リストマルチパートアップロード
+ a| 
+見るlink:list-multipart-uploads.html["リストマルチパートアップロード"]
+
+
+
+ a| 
+ListParts
+ a| 
+すべての Amazon S3 REST API 動作が実装されています。予告なく変更されることがあります。
+
+
+
+ a| 
+UploadPart
+ a| 
+見るlink:upload-part.html["UploadPart"]
+
+
+
+ a| 
+UploadPartCopy
+ a| 
+見るlink:upload-part-copy.html["UploadPartCopy"]
+
+|===

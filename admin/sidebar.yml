@@ -1,0 +1,295 @@
+---
+section: admin
+title: StorageGRIDの管理
+entries:
+- title: 管理タスク
+  pdf-filename: StorageGRIDシステムの管理
+  url: "/admin/index.html"
+- title: グリッドマネージャーを使い始める
+  entries:
+  - title: Webブラウザの要件
+    url: "/admin/web-browser-requirements.html"
+  - title: グリッドマネージャーにSign in
+    url: "/admin/signing-in-to-grid-manager.html"
+  - title: グリッドマネージャーからサインアウトする
+    url: "/admin/signing-out-of-grid-manager.html"
+  - title: パスワードを変更する
+    url: "/admin/changing-your-password.html"
+  - title: StorageGRIDライセンス情報を表示する
+    url: "/admin/viewing-storagegrid-license-information.html"
+  - title: StorageGRIDライセンス情報を更新する
+    url: "/admin/updating-storagegrid-license-information.html"
+  - title: APIを使用する
+    entries:
+    - title: グリッド管理APIを使用する
+      pdf-filename: グリッド管理API
+      url: "/admin/using-grid-management-api.html"
+    - title: グリッド管理API操作
+      url: "/admin/grid-management-api-operations.html"
+    - title: グリッド管理 API のバージョン管理
+      url: "/admin/grid-management-api-versioning.html"
+    - title: クロスサイトリクエストフォージェリ（CSRF）から保護する
+      url: "/admin/protecting-against-cross-site-request-forgery-csrf.html"
+    - title: シングルサインオンが有効になっている場合はAPIを使用する
+      entries:
+      - title: Active Directory
+        url: "/admin/use-api-if-sso-is-enabled-adfs.html"
+      - title: Azure
+        url: "/admin/use-api-if-sso-is-enabled-azure.html"
+      - title: PingFederate
+        url: "/admin/use-api-if-sso-is-enabled-ping.html"
+    - title: APIを使用して機能を無効にする
+      url: "/admin/deactivate-features-from-api.html"
+- title: StorageGRIDへのアクセスを制御する
+  entries:
+  - title: StorageGRIDアクセス
+    pdf-filename: StorageGRIDへのアクセスを制御する
+    url: "/admin/controlling-storagegrid-access.html"
+  - title: プロビジョニングパスフレーズを変更する
+    url: "/admin/changing-provisioning-passphrase.html"
+  - title: ノードコンソールのパスワードを変更する
+    url: "/admin/change-node-console-password.html"
+  - title: SSHアクセスパスワードを変更する
+    url: "/admin/change-ssh-access-passwords.html"
+  - title: アイデンティティフェデレーションを使用する
+    url: "/admin/using-identity-federation.html"
+  - title: 管理者グループの管理
+    url: "/admin/managing-admin-groups.html"
+  - title: 管理者グループの権限
+    url: "/admin/admin-group-permissions.html"
+  - title: ユーザの管理
+    url: "/admin/managing-users.html"
+  - title: シングルサインオン（SSO）を使用する
+    entries:
+    - title: シングルサインオンを構成する
+      url: "/admin/configuring-sso.html"
+    - title: シングルサインオンの要件
+      url: "/admin/requirements-for-sso.html"
+    - title: フェデレーションユーザーがサインインできることを確認する
+      url: "/admin/confirming-federated-users-can-sign-in.html"
+    - title: サンドボックスモードを使用する
+      url: "/admin/using-sandbox-mode.html"
+    - title: AD FS で証明書利用者信頼を作成する
+      url: "/admin/creating-relying-party-trusts-in-ad-fs.html"
+    - title: Azure でエンタープライズ アプリケーションを作成する
+      url: "/admin/creating-enterprise-application-azure.html"
+    - title: PingFederateでSP接続を作成する
+      url: "/admin/creating-sp-connection-ping.html"
+    - title: シングルサインオンを無効にする
+      url: "/admin/disabling-single-sign-on.html"
+    - title: 1つの管理ノードのシングルサインオンを一時的に無効にし、再度有効にする
+      url: "/admin/temporarily-disabling-and-reenabling-sso-for-admin-node.html"
+- title: グリッドフェデレーションを使用する
+  entries:
+  - title: グリッドフェデレーションとは
+    pdf-filename: グリッドフェデレーションを使用する
+    url: "/admin/grid-federation-overview.html"
+  - title: アカウントクローンとは
+    url: "/admin/grid-federation-what-is-account-clone.html"
+  - title: クロスグリッドレプリケーションとは
+    url: "/admin/grid-federation-what-is-cross-grid-replication.html"
+  - title: クロスグリッドレプリケーションとCloudMirrorレプリケーションを比較する
+    url: "/admin/grid-federation-compare-cgr-to-cloudmirror.html"
+  - title: グリッドフェデレーション接続を作成する
+    url: "/admin/grid-federation-create-connection.html"
+  - title: グリッドフェデレーション接続を管理する
+    url: "/admin/grid-federation-manage-connection.html"
+  - title: 許可されたテナントを管理する
+    url: "/admin/grid-federation-manage-tenants.html"
+  - title: グリッドフェデレーションエラーのトラブルシューティング
+    url: "/admin/grid-federation-troubleshoot.html"
+  - title: 失敗したレプリケーション操作を識別して再試行する
+    url: "/admin/grid-federation-retry-failed-replication.html"
+- title: セキュリティを管理する
+  entries:
+  - title: セキュリティコンポーネント
+    pdf-filename: セキュリティを管理する
+    url: "/admin/manage-security.html"
+  - title: StorageGRIDの暗号化方式を確認する
+    url: "/admin/reviewing-storagegrid-encryption-methods.html"
+  - title: 証明書の管理
+    entries:
+    - title: セキュリティ証明書を管理する
+      pdf-filename: セキュリティ証明書を管理する
+      url: "/admin/using-storagegrid-security-certificates.html"
+    - title: サポートされているサーバー証明書の種類
+      url: "/admin/global-certificate-types.html"
+    - title: 管理インターフェース証明書を構成する
+      url: "/admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html"
+    - title: S3 API証明書を設定する
+      url: "/admin/configuring-custom-server-certificate-for-storage-node.html"
+    - title: グリッドCA証明書をコピーまたはダウンロードする
+      url: "/admin/copying-storagegrid-system-ca-certificate.html"
+    - title: FabricPoolのStorageGRID証明書を構成する
+      url: "/admin/configuring-storagegrid-certificates-for-fabricpool.html"
+    - title: クライアント証明書を構成する
+      url: "/admin/configuring-administrator-client-certificates.html"
+  - title: セキュリティ設定を構成する
+    entries:
+    - title: TLSおよびSSHポリシーを管理する
+      url: "/admin/manage-tls-ssh-policy.html"
+    - title: ネットワークとオブジェクトのセキュリティを構成する
+      url: "/admin/changing-network-options-object-encryption.html"
+    - title: インターフェースのセキュリティ設定を変更する
+      url: "/admin/changing-browser-session-timeout-interface.html"
+  - title: キー管理サーバーを構成する
+    entries:
+    - title: キー管理サーバーとは
+      pdf-filename: キー管理サーバーを構成する
+      url: "/admin/kms-configuring.html"
+    - title: KMSとアプライアンスの構成
+      url: "/admin/kms-overview-of-kms-and-appliance-configuration.html"
+    - title: 鍵管理サーバーの使用に関する考慮事項と要件
+      url: "/admin/kms-considerations-and-requirements.html"
+    - title: サイトのKMSを変更する際の考慮事項
+      url: "/admin/kms-considerations-for-changing-for-site.html"
+    - title: StorageGRIDをKMSのクライアントとして設定する
+      url: "/admin/kms-configuring-storagegrid-as-client.html"
+    - title: キー管理サーバー（KMS）を追加する
+      url: "/admin/kms-adding.html"
+    - title: KMSを管理する
+      url: "/admin/kms-managing.html"
+  - title: プロキシ設定を管理する
+    entries:
+    - title: ストレージプロキシを構成する
+      url: "/admin/configuring-storage-proxy-settings.html"
+    - title: 管理プロキシを構成する
+      url: "/admin/configuring-admin-proxy-settings.html"
+  - title: ファイアウォールを制御する
+    entries:
+    - title: 外部ファイアウォールでアクセスを制御する
+      url: "/admin/controlling-access-through-firewalls.html"
+    - title: 内部ファイアウォールの管理
+      url: "/admin/manage-firewall-controls.html"
+    - title: 内部ファイアウォールを構成する
+      url: "/admin/configure-firewall-controls.html"
+- title: テナントの管理
+  entries:
+  - title: テナントアカウントとは
+    url: "/admin/managing-tenants.html"
+    pdf-filename: テナントの管理
+  - title: テナントアカウントを作成する
+    url: "/admin/creating-tenant-account.html"
+  - title: テナントアカウントの編集
+    url: "/admin/editing-tenant-account.html"
+  - title: テナントのローカルルートユーザーのパスワードを変更する
+    url: "/admin/changing-password-for-tenant-local-root-user.html"
+  - title: テナントアカウントを削除する
+    url: "/admin/deleting-tenant-account.html"
+  - title: プラットフォームサービスの管理
+    entries:
+    - title: プラットフォームサービスとは何か
+      pdf-filename: S3テナントアカウントのプラットフォームサービスを管理する
+      url: "/admin/manage-platform-services-for-tenants.html"
+    - title: プラットフォームサービス用のネットワークとポート
+      url: "/admin/networking-and-ports-for-platform-services.html"
+    - title: プラットフォームサービスメッセージのサイトごとの配信
+      url: "/admin/per-site-delivery-of-platform-services-messages.html"
+    - title: プラットフォームサービスのトラブルシューティング
+      url: "/admin/troubleshooting-platform-services.html"
+  - title: テナントアカウントのS3 Selectを管理する
+    url: "/admin/manage-s3-select-for-tenant-accounts.html"
+- title: クライアント接続を構成する
+  entries:
+  - title: 構成タスク
+    pdf-filename: S3クライアント接続を構成する
+    url: "/admin/configuring-client-connections.html"
+  - title: S3 クライアントのセキュリティ
+    url: "/admin/security-for-clients.html"
+  - title: S3セットアップウィザードを使用する
+    entries:
+    - title: S3 セットアップウィザードの考慮事項と要件
+      url: "/admin/use-s3-setup-wizard.html"
+    - title: S3 アプリケーション セットアップ ウィザードにアクセスして完了します
+      url: "/admin/use-s3-setup-wizard-steps.html"
+  - title: HAグループの管理
+    entries:
+    - title: HAグループとは
+      pdf-filename: 高可用性（HA）グループの管理
+      url: "/admin/managing-high-availability-groups.html"
+    - title: HAグループはどのように使用されるか
+      url: "/admin/how-ha-groups-are-used.html"
+    - title: HAグループの構成オプション
+      url: "/admin/configuration-options-for-ha-groups.html"
+    - title: HAグループを構成する
+      url: "/admin/configure-high-availability-group.html"
+  - title: 負荷分散を管理する
+    entries:
+    - title: 負荷分散に関する考慮事項
+      url: "/admin/managing-load-balancing.html"
+    - title: ロードバランサのエンドポイントを構成する
+      url: "/admin/configuring-load-balancer-endpoints.html"
+  - title: S3エンドポイントのドメイン名を設定する
+    url: "/admin/configuring-s3-api-endpoint-domain-names.html"
+  - title: '概要: クライアント接続の IP アドレスとポート'
+    url: "/admin/summary-ip-addresses-and-ports-for-client-connections.html"
+- title: ネットワークと接続を管理する
+  entries:
+  - title: ネットワークの設定
+    url: "/admin/configuring-network-settings.html"
+    pdf-filename: ネットワークと接続を管理する
+  - title: StorageGRIDネットワークのガイドライン
+    url: "/admin/guidelines-for-storagegrid-networks.html"
+  - title: IPアドレスを表示
+    url: "/admin/viewing-ip-addresses.html"
+  - title: VLANインターフェースを構成する
+    url: "/admin/configure-vlan-interfaces.html"
+  - title: トラフィック分類ポリシーを管理する
+    entries:
+    - title: トラフィック分類ポリシーとは
+      pdf-filename: トラフィック分類ポリシーを管理する
+      url: "/admin/managing-traffic-classification-policies.html"
+    - title: トラフィック分類ポリシーを作成する
+      url: "/admin/creating-traffic-classification-policies.html"
+    - title: トラフィック分類ポリシーを編集する
+      url: "/admin/editing-traffic-classification-policy.html"
+    - title: トラフィック分類ポリシーを削除する
+      url: "/admin/deleting-traffic-classification-policy.html"
+    - title: ネットワークトラフィックのメトリックを表示する
+      url: "/admin/viewing-network-traffic-metrics.html"
+  - title: 送信 TLS 接続でサポートされている暗号
+    url: "/admin/supported-ciphers-for-outgoing-tls-connections.html"
+  - title: アクティブ、アイドル、同時HTTP接続の利点
+    url: "/admin/benefits-of-active-idle-and-concurrent-http-connections.html"
+  - title: リンクコストを管理する
+    url: "/admin/manage-link-costs.html"
+- title: AutoSupportを使用する
+  entries:
+  - title: AutoSupportとは
+    pdf-filename: AutoSupportを使用する
+    url: "/admin/what-is-autosupport.html"
+  - title: AutoSupportを構成する
+    url: "/admin/configure-autosupport-grid-manager.html"
+  - title: AutoSupportパッケージを手動でトリガーする
+    url: "/admin/manually-triggering-autosupport-message.html"
+  - title: AutoSupportパッケージのトラブルシューティング
+    url: "/admin/troubleshooting-autosupport-messages.html"
+  - title: EシリーズAutoSupportパッケージをStorageGRID経由で送信する
+    url: "/admin/sending-eseries-autosupport-messages-through-storagegrid.html"
+- title: ストレージノードの管理
+  entries:
+  - title: ストレージノード管理
+    pdf-filename: ストレージノードの管理
+    url: "/admin/managing-storage-nodes.html"
+  - title: ストレージオプションを使用する
+    entries:
+    - title: オブジェクトセグメンテーションとは何か
+      url: "/admin/what-object-segmentation-is.html"
+    - title: ストレージボリュームウォーターマークとは
+      url: "/admin/what-storage-volume-watermarks-are.html"
+  - title: オブジェクトメタデータストレージの管理
+    url: "/admin/managing-object-metadata-storage.html"
+  - title: メタデータ予約領域設定を増やす
+    url: "/admin/increasing-metadata-reserved-space-setting.html"
+  - title: 保存されたオブジェクトを圧縮する
+    url: "/admin/configuring-stored-object-compression.html"
+  - title: 完全なストレージノードを管理する
+    url: "/admin/managing-full-storage-nodes.html"
+- title: 管理ノードの管理
+  entries:
+  - title: 複数の管理ノードを使用する
+    url: "/admin/using-multiple-admin-nodes.html"
+  - title: プライマリ管理ノードを特定する
+    url: "/admin/identifying-primary-admin-node.html"
+  - title: 通知ステータスとキューを表示する
+    url: "/admin/viewing-notification-status-and-queues.html"

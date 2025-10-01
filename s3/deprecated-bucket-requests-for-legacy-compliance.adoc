@@ -1,0 +1,43 @@
+---
+permalink: s3/deprecated-bucket-requests-for-legacy-compliance.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, deprecated bucket requests 
+summary: 従来のコンプライアンス機能を使用して作成されたバケットを管理するには、 StorageGRID S3 REST API を使用する必要がある場合があります。 
+---
+= 従来のコンプライアンスに対するバケット リクエストのサポート終了
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+従来のコンプライアンス機能を使用して作成されたバケットを管理するには、 StorageGRID S3 REST API を使用する必要がある場合があります。
+
+
+
+== コンプライアンス機能は廃止されました
+
+以前のStorageGRIDバージョンで利用可能だったStorageGRIDコンプライアンス機能は廃止され、S3 オブジェクト ロックに置き換えられました。
+
+以前にグローバルコンプライアンス設定を有効にしていた場合、 StorageGRID 11.6 ではグローバル S3 オブジェクトロック設定が有効になっています。コンプライアンスを有効にした新しいバケットを作成することはできなくなりました。ただし、必要に応じて、 StorageGRID S3 REST API を使用して、既存のレガシー コンプライアンス バケットを管理することができます。
+
+* link:use-s3-api-for-s3-object-lock.html["S3 REST API を使用して S3 オブジェクトロックを設定する"]
+* link:../ilm/index.html["ILMでオブジェクトを管理する"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetAppナレッジベース: StorageGRID 11.5 でレガシー準拠バケットを管理する方法"^]
+
+
+非推奨のコンプライアンス リクエスト:
+
+* link:../s3/deprecated-put-bucket-request-modifications-for-compliance.html["非推奨 - コンプライアンスのためのPUT Bucketリクエストの変更"]
++
+SGCompliance XML 要素は非推奨です。以前は、PUT Bucket リクエストのオプションの XML リクエスト本文にこのStorageGRIDカスタム要素を含めることで、準拠バケットを作成できました。
+
+* link:../s3/deprecated-get-bucket-compliance-request.html["非推奨 - GET バケットコンプライアンス"]
++
+GET Bucket コンプライアンス リクエストは非推奨です。ただし、このリクエストを引き続き使用して、既存のレガシー コンプライアンス バケットに現在有効なコンプライアンス設定を確認することはできます。
+
+* link:../s3/deprecated-put-bucket-compliance-request.html["非推奨 - PUT バケットのコンプライアンス"]
++
+PUT Bucket コンプライアンス リクエストは非推奨です。ただし、このリクエストを引き続き使用して、既存のレガシー コンプライアンス バケットのコンプライアンス設定を変更することはできます。たとえば、既存のバケットを法的保留状態にしたり、保持期間を延長したりできます。
+
+

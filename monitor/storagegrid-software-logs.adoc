@@ -1,0 +1,416 @@
+---
+permalink: monitor/storagegrid-software-logs.html 
+sidebar: sidebar 
+keywords: logs 
+summary: StorageGRIDログを使用して問題をトラブルシューティングできます。 
+---
+= StorageGRIDソフトウェアログ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDログを使用して問題をトラブルシューティングできます。
+
+
+NOTE: ログを外部のSyslogサーバーに送信したり、監査情報の送信先を変更したりする場合は、 `bycast.log`そして `nms.log`、 見るlink:../monitor/configure-audit-messages.html#["監査メッセージとログの保存先を構成する"]。
+
+
+
+== 一般的なStorageGRIDログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/bycast.log  a| 
+主要なStorageGRIDトラブルシューティング ファイル。*サポート* > *ツール* > *グリッド トポロジ* を選択します。次に、*_Site_* > *_Node_* > *SSM* > *イベント*を選択します。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/bycast-err.log  a| 
+のサブセットが含まれています `bycast.log`(重大度が ERROR および CRITICAL のメッセージ)。CRITICAL メッセージもシステムに表示されます。*サポート* > *ツール* > *グリッド トポロジ* を選択します。次に、*_Site_* > *_Node_* > *SSM* > *イベント*を選択します。
+ a| 
+すべてのノード
+
+
+
+| /var/local/core/  a| 
+プログラムが異常終了した場合に作成されるコア ダンプ ファイルが含まれます。考えられる原因としては、アサーションの失敗、違反、スレッドのタイムアウトなどがあります。
+
+*注*: ファイル ``/var/local/core/kexec_cmd`通常はアプライアンス ノードに存在し、エラーを示すものではありません。
+ a| 
+すべてのノード
+
+|===
+
+
+== 暗号関連のログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/ssh-config-generation.log  a| 
+SSH 構成の生成と SSH サービスの再読み込みに関連するログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/nginx/config-generation.log  a| 
+nginx 構成の生成と nginx サービスの再読み込みに関連するログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/nginx-gw/config-generation.log  a| 
+nginx-gw 構成の生成 (および nginx-gw サービスの再読み込み) に関連するログが含まれます。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/update-cipher-configurations.log  a| 
+TLS および SSH ポリシーの構成に関連するログが含まれます。
+ a| 
+すべてのノード
+
+|===
+
+
+== グリッドフェデレーションログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/update_grid_federation_config.log  a| 
+グリッド フェデレーション接続用の nginx および nginx-gw 構成の生成に関連するログが含まれます。
+ a| 
+すべてのノード
+
+|===
+
+
+== NMSログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/nms.log  a| 
+* グリッド マネージャーとテナント マネージャーからの通知をキャプチャします。
+* NMS サービスの操作に関連するイベントをキャプチャします。たとえば、電子メール通知や構成の変更などです。
+* システムで行われた構成の変更の結果として生じた XML バンドルの更新が含まれます。
+* 1 日に 1 回実行される属性のダウンサンプリングに関連するエラー メッセージが含まれます。
+* ページ生成エラーや HTTP ステータス 500 エラーなどの Java Web サーバー エラー メッセージが含まれます。
+
+ a| 
+管理ノード
+
+
+
+| /var/local/log/nms.errlog  a| 
+MySQL データベースのアップグレードに関連するエラー メッセージが含まれています。
+
+対応するサービスの標準エラー (stderr) ストリームが含まれます。サービスごとに 1 つのログ ファイルがあります。サービスに問題がない限り、これらのファイルは通常空です。
+ a| 
+管理ノード
+
+
+
+| /var/local/log/nms.requestlog  a| 
+管理 API から内部StorageGRIDサービスへの送信接続に関する情報が含まれます。
+ a| 
+管理ノード
+
+|===
+
+
+== サーバーマネージャーのログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/servermanager.log  a| 
+サーバー上で実行されている Server Manager アプリケーションのログ ファイル。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/GridstatBackend.errlog  a| 
+Server Manager GUI バックエンド アプリケーションのログ ファイル。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/gridstat.errlog  a| 
+サーバー マネージャー GUI のログ ファイル。
+ a| 
+すべてのノード
+
+|===
+
+
+== StorageGRIDサービスログ
+
+[cols="3a,3a,2a"]
+|===
+| ファイル名 | 注記 | 見つかった場所 
+
+
+| /var/local/log/acct.errlog  a| 
+ a| 
+ADC サービスを実行しているストレージノード
+
+
+
+| /var/local/log/adc.errlog  a| 
+対応するサービスの標準エラー (stderr) ストリームが含まれます。サービスごとに 1 つのログ ファイルがあります。サービスに問題がない限り、これらのファイルは通常空です。
+ a| 
+ADC サービスを実行しているストレージノード
+
+
+
+| /var/local/log/ams.errlog  a| 
+ a| 
+管理ノード
+
+
+
+| /var/local/log/cassandra/system.log  a| 
+新しいストレージ ノードを追加するときに問題が発生した場合、または nodetool repair タスクが停止した場合に使用できるメタデータ ストア (Cassandra データベース) の情報。
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/cassandra-reaper.log  a| 
+Cassandra データベース内のデータの修復を実行する Cassandra Reaper サービスの情報。
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/cassandra-reaper.errlog  a| 
+Cassandra Reaper サービスのエラー情報。
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/chunk.errlog  a| 
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/cmn.errlog  a| 
+ a| 
+管理ノード
+
+
+
+| /var/local/log/cms.errlog  a| 
+このログ ファイルは、 StorageGRIDの古いバージョンからアップグレードされたシステムに存在する可能性があります。レガシー情報が含まれています。
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/dds.errlog  a| 
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/dmv.errlog  a| 
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/dynip*  a| 
+グリッドの動的 IP 変更を監視し、ローカル構成を更新する dynip サービスに関連するログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/grafana.log  a| 
+グリッド マネージャーでのメトリックの視覚化に使用される、Grafana サービスに関連付けられたログ。
+ a| 
+管理ノード
+
+
+
+| /var/local/log/hagroups.log  a| 
+高可用性グループに関連付けられたログ。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/hagroups_events.log  a| 
+BACKUP から MASTER または FAULT への移行などの状態の変化を追跡します。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/idnt.errlog  a| 
+ a| 
+ADC サービスを実行しているストレージノード
+
+
+
+| /var/local/log/jaeger.log  a| 
+トレース収集に使用される、Jaeger サービスに関連付けられたログ。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/kstn.errlog  a| 
+ a| 
+ADC サービスを実行しているストレージノード
+
+
+
+| /var/local/log/lambda*  a| 
+S3 Select サービスのログが含まれます。
+ a| 
+管理ノードとゲートウェイノード
+
+このログは特定の管理ノードとゲートウェイ ノードにのみ含まれます。参照link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select の管理ノードとゲートウェイノードの要件と制限"]。
+
+
+
+| /var/local/log/ldr.errlog  a| 
+ a| 
+ストレージ ノード
+
+
+
+| /var/local/log/miscd/*.log  a| 
+他のノード上のサービスのクエリと管理、および他のノードで実行されているサービスの状態のクエリなど、ノード上の環境構成の管理のためのインターフェイスを提供する MISCd サービス (Information Service Control Daemon) のログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/nginx/*.log  a| 
+nginx サービスのログが含まれます。nginx サービスは、さまざまなグリッド サービス (Prometheus や Dynip など) が HTTPS API を介して他のノード上のサービスと通信できるようにするための認証および安全な通信メカニズムとして機能します。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/nginx-gw/*.log  a| 
+エラー ログや管理ノード上の制限された管理ポートのログなど、nginx-gw サービスに関連する一般的なログが含まれます。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/nginx-gw/cgr-access.log.gz  a| 
+クロスグリッド レプリケーション トラフィックに関連するアクセス ログが含まれます。
+ a| 
+グリッド フェデレーション構成に基づいて、管理ノード、ゲートウェイ ノード、またはその両方。クロスグリッド レプリケーションの宛先グリッドにのみ存在します。
+
+
+
+| /var/local/log/nginx-gw/エンドポイントアクセス.log.gz  a| 
+クライアントからストレージ ノードへの S3 トラフィックの負荷分散を提供するロード バランサ サービスのアクセス ログが含まれます。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/persistence*  a| 
+再起動後も保持する必要があるルート ディスク上のファイルを管理する Persistence サービスのログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/プロメテウス.log  a| 
+すべてのノードについて、ノード エクスポータ サービス ログと ade-exporter メトリック サービス ログが含まれます。
+
+管理ノードの場合、Prometheus および Alert Manager サービスのログも含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/raft.log  a| 
+Raft プロトコルの RSM サービスで使用されるライブラリの出力が含まれます。
+ a| 
+RSM サービスを備えたストレージノード
+
+
+
+| /var/local/log/rms.errlog  a| 
+S3 プラットフォーム サービスに使用される Replicated State Machine Service (RSM) サービスのログが含まれます。
+ a| 
+RSM サービスを備えたストレージノード
+
+
+
+| /var/local/log/ssm.errlog  a| 
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/update-s3vs-domains.log  a| 
+S3 仮想ホスト ドメイン名設定の更新処理に関連するログが含まれます。S3 クライアント アプリケーションの実装手順を参照してください。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/update-snmp-firewall.*  a| 
+SNMP 用に管理されているファイアウォール ポートに関連するログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/update-sysl.log  a| 
+システムの syslog 構成に加えられた変更に関連するログが含まれます。
+ a| 
+すべてのノード
+
+
+
+| /var/local/log/update-traffic-classes.log  a| 
+トラフィック分類子の構成の変更に関連するログが含まれます。
+ a| 
+管理ノードとゲートウェイノード
+
+
+
+| /var/local/log/update-utcn.log  a| 
+このノード上の信頼されていないクライアント ネットワーク モードに関連するログが含まれます。
+ a| 
+すべてのノード
+
+|===
+.関連情報
+* link:about-bycast-log.html["bycast.logについて"]
+* link:../s3/index.html["S3 REST APIを使用する"]
+

@@ -1,0 +1,32 @@
+---
+permalink: s3/authenticating-requests.html 
+sidebar: sidebar 
+keywords: authenticate requests, authenticating, requests 
+summary: StorageGRIDシステムは、S3 API を使用したオブジェクトへの認証アクセスと匿名アクセスの両方をサポートします。 
+---
+= リクエストを認証する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムは、S3 API を使用したオブジェクトへの認証アクセスと匿名アクセスの両方をサポートします。
+
+S3 API は、S3 API リクエストの認証に署名バージョン 2 と署名バージョン 4 をサポートしています。
+
+認証されたリクエストは、アクセス キー ID とシークレット アクセス キーを使用して署名する必要があります。
+
+StorageGRIDシステムは、HTTPとHTTPSの2つの認証方法をサポートしています。 `Authorization`ヘッダーとクエリパラメータを使用します。
+
+
+
+== HTTP認証ヘッダーを使用する
+
+HTTP `Authorization`ヘッダーは、バケット ポリシーで許可されている匿名リクエストを除くすべての S3 API 操作で使用されます。その `Authorization`ヘッダーには、リクエストを認証するために必要な署名情報がすべて含まれています。
+
+
+
+== クエリパラメータを使用する
+
+クエリ パラメータを使用して、URL に認証情報を追加できます。これは URL の事前署名と呼ばれ、特定のリソースへの一時的なアクセスを許可するために使用できます。署名済み URL を持つユーザーは、リソースにアクセスするために秘密アクセス キーを知る必要がないため、リソースへのサードパーティの制限付きアクセスを提供できます。

@@ -1,0 +1,101 @@
+---
+permalink: admin/grid-management-api-versioning.html 
+sidebar: sidebar 
+keywords: grid management api, api versioning 
+summary: グリッド管理 API は、バージョン管理を使用して、中断のないアップグレードをサポートします。 
+---
+= グリッド管理 API のバージョン管理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+グリッド管理 API は、バージョン管理を使用して、中断のないアップグレードをサポートします。
+
+たとえば、このリクエスト URL は API バージョン 4 を指定します。
+
+`https://_hostname_or_ip_address_/api/v4/authorize`
+
+古いバージョンと互換性のない変更が行われた場合には、API のメジャー バージョンが引き上げられます。古いバージョンと互換性のある変更が行われた場合に、API のマイナー バージョンが引き上げられます。互換性のある変更には、新しいエンドポイントまたは新しいプロパティの追加が含まれます。
+
+次の例は、行われた変更の種類に基づいて API バージョンがどのように変更されるかを示しています。
+
+[cols="1a,1a,1a"]
+|===
+| APIの変更の種類 | 旧バージョン | 新バージョン 
+
+
+ a| 
+旧バージョンとの互換性あり
+ a| 
+2.1
+ a| 
+2.2
+
+
+
+ a| 
+旧バージョンとは互換性がありません
+ a| 
+2.1
+ a| 
+3.0
+
+
+
+ a| 
+3.0
+ a| 
+4.0
+
+|===
+StorageGRIDソフトウェアを初めてインストールすると、最新バージョンの API のみが有効になります。ただし、 StorageGRIDの新しい機能リリースにアップグレードすると、少なくとも 1 つのStorageGRID機能リリースについては引き続き古い API バージョンにアクセスできます。
+
+
+NOTE: サポートされるバージョンを設定できます。 Swagger APIドキュメントの*config*セクションを参照してください。link:../admin/using-grid-management-api.html["グリッド管理API"]詳細についてはこちらをご覧ください。すべての API クライアントを更新して新しいバージョンを使用するようにした後、古いバージョンのサポートを無効にする必要があります。
+
+古くなったリクエストは、次の方法で非推奨としてマークされます。
+
+* レスポンスヘッダーは「Deprecated: true」です
+* JSONレスポンス本文に「deprecated」が含まれています: true
+* 非推奨の警告が nms.log に追加されます。例えば：
++
+[listing]
+----
+Received call to deprecated v2 API at POST "/api/v2/authorize"
+----
+
+
+
+
+== 現在のリリースでサポートされている API バージョンを確認する
+
+使用 `GET /versions`サポートされている API メジャー バージョンのリストを返す API リクエスト。このリクエストは、Swagger API ドキュメントの *config* セクションにあります。
+
+[listing]
+----
+GET https://{{IP-Address}}/api/versions
+{
+  "responseTime": "2023-06-27T22:13:50.750Z",
+  "status": "success",
+  "apiVersion": "4.0",
+  "data": [
+    2,
+    3,
+    4
+  ]
+}
+----
+
+
+== リクエストのAPIバージョンを指定する
+
+パスパラメータを使用してAPIバージョンを指定できます(`/api/v4`）またはヘッダー(`Api-Version: 4`）。両方の値を指定した場合、ヘッダー値がパス値を上書きします。
+
+[listing]
+----
+curl https://[IP-Address]/api/v4/grid/accounts
+
+curl -H "Api-Version: 4" https://[IP-Address]/api/grid/accounts
+----

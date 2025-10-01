@@ -1,0 +1,37 @@
+---
+section: upgrade
+title: StorageGRIDソフトウェアのアップグレード
+entries:
+- title: 開始する前に
+  pdf-filename: StorageGRIDソフトウェアのアップグレード
+  url: "/upgrade/index.html"
+- title: StorageGRID 11.9の新機能
+  url: "/upgrade/whats-new.html"
+- title: 削除または非推奨の機能
+  url: "/upgrade/removed-or-deprecated-features.html"
+- title: グリッド管理APIの変更
+  url: "/upgrade/changes-to-grid-management-api.html"
+- title: テナント管理APIの変更
+  url: "/upgrade/changes-to-tenant-management-api.html"
+- title: アップグレードの計画と準備
+  entries:
+  - title: アップグレード完了までの所要時間を見積もる
+    url: "/upgrade/estimating-time-to-complete-upgrade.html"
+  - title: アップグレード中にシステムが受ける影響
+    url: "/upgrade/how-your-system-is-affected-during-upgrade.html"
+  - title: インストールされているStorageGRIDのバージョンを確認する
+    url: "/upgrade/verifying-installed-version-of-storagegrid.html"
+  - title: 必要な材料を入手する
+    url: "/upgrade/obtaining-required-materials-for-software-upgrade.html"
+  - title: チェックシステム
+    url: "/upgrade/checking-systems-condition-before-upgrading-software.html"
+- title: ソフトウェアのアップグレード
+  entries:
+  - title: アップグレードクイックスタート
+    url: "/upgrade/upgrade-workflow.html"
+  - title: 'Linux: RPMまたはDEBパッケージをダウンロードしてインストールする'
+    url: "/upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html"
+  - title: アップグレードを実行する
+    url: "/upgrade/performing-upgrade.html"
+- title: アップグレードの問題のトラブルシューティング
+  url: "/upgrade/troubleshooting-upgrade-issues.html"

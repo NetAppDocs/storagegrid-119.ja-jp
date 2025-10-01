@@ -1,0 +1,23 @@
+---
+permalink: maintain/consolidating-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage node, consolidate storage node, consolidating storage node 
+summary: ストレージ ノードを統合すると、サイトまたはデプロイメントのストレージ ノードの数を減らしながら、ストレージ容量を増やすことができます。 
+---
+= ストレージノードの統合
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージ ノードを統合すると、サイトまたはデプロイメントのストレージ ノードの数を減らしながら、ストレージ容量を増やすことができます。
+
+ストレージノードを統合すると、link:../expand/index.html["StorageGRIDシステムを拡張する"]新しい、より大容量のストレージ ノードを追加し、古い、より容量の小さいストレージ ノードを廃止します。廃止手順中に、オブジェクトは古いストレージ ノードから新しいストレージ ノードに移行されます。
+
+
+NOTE: 古くて小型のアプライアンスを新しいモデルや大容量のアプライアンスと統合する場合は、次の点を考慮してください。 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["アプライアンスノードのクローン作成"^] (または、1 対 1 の置き換えを行っていない場合は、アプライアンス ノードの複製と廃止手順を使用します)。
+
+たとえば、3 つの古いストレージ ノードを置き換えるために、2 つの新しい、より大容量のストレージ ノードを追加する場合があります。まず、拡張手順を使用して 2 つの新しい大容量ストレージ ノードを追加し、次に廃止手順を使用して 3 つの古い容量の小さいストレージ ノードを削除します。
+
+既存のストレージ ノードを削除する前に新しい容量を追加することで、 StorageGRIDシステム全体でよりバランスの取れたデータ分散が保証されます。また、既存のストレージ ノードがストレージ ウォーターマーク レベルを超えてプッシュされる可能性も低減します。

@@ -1,0 +1,21 @@
+---
+permalink: monitor/using-task-tab-to-reboot-grid-node.html 
+sidebar: sidebar 
+keywords: Tasks tab, rename node, reboot node, maintenance mode 
+summary: 'すべてのノードに対して [タスク] タブが表示されます。このタブを使用して、ノードの名前を変更したり、ノードを再起動したり、アプライアンス ノードをメンテナンス モードにしたりできます。' 
+---
+= タスクタブを使用する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+すべてのノードに対して [タスク] タブが表示されます。このタブを使用して、ノードの名前を変更したり、ノードを再起動したり、アプライアンス ノードをメンテナンス モードにしたりできます。
+
+このタブの各オプションの完全な要件と手順については、以下を参照してください。
+
+* link:../maintain/rename-grid-site-node-overview.html["グリッド、サイト、ノードの名前を変更する"]
+* link:../maintain/rebooting-grid-node-from-grid-manager.html["グリッドノードを再起動する"]
+* https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/placing-appliance-into-maintenance-mode.html["アプライアンスをメンテナンスモードにする"^]
+

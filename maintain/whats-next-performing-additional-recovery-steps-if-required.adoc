@@ -1,0 +1,78 @@
+---
+permalink: maintain/whats-next-performing-additional-recovery-steps-if-required.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, corrective action, additional recovery 
+summary: 交換ホストでStorageGRIDノードを実行するために実行した特定のアクションに応じて、各ノードに対して追加のリカバリ手順を実行する必要がある場合があります。 
+---
+= 次のステップ: 必要に応じて追加の回復手順を実行します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+交換ホストでStorageGRIDノードを実行するために実行した特定のアクションに応じて、各ノードに対して追加のリカバリ手順を実行する必要がある場合があります。
+
+Linux ホストを交換したり、障害が発生したグリッド ノードを新しいホストに復元したりする際に、修正アクションを実行する必要がなかった場合、ノードのリカバリは完了です。
+
+
+
+== 是正措置と次のステップ
+
+ノードの交換中に、次のいずれかの修正アクションを実行する必要がある場合があります。
+
+* あなたは `--force`ノードをインポートするためのフラグ。
+* いかなる `<PURPOSE>`、の価値 `BLOCK_DEVICE_<PURPOSE>`構成ファイル変数は、ホスト障害前と同じデータが含まれていないブロック デバイスを参照します。
+* 発行しました `storagegrid node force-recovery _node-name_`ノード用。
+* 新しいブロックデバイスを追加しました。
+
+
+これらの修正アクションのいずれかを実行した場合は、追加の回復手順を実行する必要があります。
+
+[cols="2a,1a"]
+|===
+| 回復の種類 | 次のステップ 
+
+
+ a| 
+プライマリ管理ノード
+ a| 
+link:configuring-replacement-primary-admin-node.html["代替プライマリ管理ノードを構成する"]
+
+
+
+ a| 
+非プライマリ管理ノード
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["非プライマリ管理ノードを構成するには、「リカバリの開始」を選択します"]
+
+
+
+ a| 
+ゲートウェイ ノード
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["ゲートウェイノードを構成するには、「リカバリの開始」を選択します。"]
+
+
+
+ a| 
+ストレージノード（ソフトウェアベース）:
+
+* もしあなたが `--force`フラグを使用してノードをインポートするか、 `storagegrid node force-recovery _node-name_`
+* ノード全体を再インストールする必要がある場合、または/var/localを復元する必要がある場合
+
+ a| 
+link:selecting-start-recovery-to-configure-storage-node.html["ストレージノードを構成するには、「リカバリの開始」を選択します。"]
+
+
+
+ a| 
+ストレージノード（ソフトウェアベース）:
+
+* 新しいブロックデバイスを追加した場合。
+* もし、どんな `<PURPOSE>`、の価値 `BLOCK_DEVICE_<PURPOSE>`構成ファイル変数は、ホスト障害前と同じデータが含まれていないブロック デバイスを参照します。
+
+ a| 
+link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["システムドライブが損傷していないストレージボリュームの障害から回復する"]
+
+|===

@@ -1,0 +1,169 @@
+---
+permalink: s3/get-object.html 
+sidebar: sidebar 
+keywords: get object 
+summary: S3 GET Object リクエストを使用して、S3 バケットからオブジェクトを取得できます。 
+---
+= GetObject
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+S3 GetObject リクエストを使用して、S3 バケットからオブジェクトを取得できます。
+
+
+
+== GetObjectとマルチパートオブジェクト
+
+使用することができます `partNumber`マルチパートまたはセグメント化されたオブジェクトの特定の部分を取得するためのリクエスト パラメータ。その `x-amz-mp-parts-count`レスポンス要素は、オブジェクトに含まれるパーツの数を示します。
+
+設定できます `partNumber`セグメント化/マルチパートオブジェクトと非セグメント化/非マルチパートオブジェクトの両方で1になりますが、 `x-amz-mp-parts-count`応答要素は、セグメント化されたオブジェクトまたはマルチパート オブジェクトに対してのみ返されます。
+
+
+
+== ユーザーメタデータの UTF-8 文字
+
+StorageGRID は、ユーザー定義のメタデータ内のエスケープされた UTF-8 文字を解析または解釈しません。ユーザー定義のメタデータにエスケープされたUTF-8文字を含むオブジェクトに対するGETリクエストは、 `x-amz-missing-meta`キー名または値に印刷できない文字が含まれている場合は、ヘッダーを作成します。
+
+
+
+== サポートされているリクエストヘッダー
+
+次のリクエスト ヘッダーがサポートされています。
+
+* `x-amz-checksum-mode`： 特定 `ENABLED`
++
+その `Range`ヘッダーはサポートされていません `x-amz-checksum-mode`GetObject 用。含める場合 `Range`リクエストに `x-amz-checksum-mode`有効にすると、 StorageGRID は応答でチェックサム値を返しません。
+
+
+
+
+
+== サポートされていないリクエストヘッダー
+
+次のリクエストヘッダーはサポートされていないため、 `XNotImplemented` :
+
+* `x-amz-website-redirect-location`
+
+
+
+
+== バージョン管理
+
+もし `versionId`サブリソースが指定されていない場合、この操作ではバージョン管理されたバケット内のオブジェクトの最新バージョンが取得されます。オブジェクトの現在のバージョンが削除マーカーである場合、「見つかりません」ステータスが返されます。 `x-amz-delete-marker`レスポンスヘッダーを `true`。
+
+
+
+== 顧客提供の暗号化キーを使用したサーバー側暗号化のリクエスト ヘッダー (SSE-C)
+
+オブジェクトが指定した一意のキーで暗号化されている場合は、3 つのヘッダーすべてを使用します。
+
+* `x-amz-server-side-encryption-customer-algorithm`： 特定 `AES256`。
+* `x-amz-server-side-encryption-customer-key`: オブジェクトの暗号化キーを指定します。
+* `x-amz-server-side-encryption-customer-key-MD5`: オブジェクトの暗号化キーの MD5 ダイジェストを指定します。
+
+
+
+CAUTION: 提供された暗号化キーは保存されません。暗号化キーを紛失すると、対応するオブジェクトも失われます。顧客提供のキーを使用してオブジェクトデータを保護する前に、以下の考慮事項を確認してください。link:using-server-side-encryption.html["サーバー側の暗号化を使用する"] 。
+
+
+
+== Cloud Storage Pool オブジェクトに対する GetObject の動作
+
+オブジェクトがlink:../ilm/what-cloud-storage-pool-is.html["クラウド ストレージ プール"]GetObject 要求の動作はオブジェクトの状態によって異なります。見るlink:head-object.html["HeadObject"]詳細についてはこちらをご覧ください。
+
+
+NOTE: オブジェクトがクラウド ストレージ プールに格納され、そのオブジェクトの 1 つ以上のコピーがグリッド上にも存在する場合、GetObject リクエストは、クラウド ストレージ プールからデータを取得する前に、グリッドからデータを取得しようとします。
+
+[cols="1a,1a"]
+|===
+| オブジェクトの状態 | GetObjectの動作 
+
+
+ a| 
+StorageGRIDに取り込まれたが ILM によってまだ評価されていないオブジェクト、または従来のストレージ プールに保存されているか消去コーディングを使用しているオブジェクト
+ a| 
+`200 OK`
+
+オブジェクトのコピーが取得されます。
+
+
+
+ a| 
+Cloud Storage Pool 内のオブジェクトですが、まだ取得不可の状態に移行していません
+ a| 
+`200 OK`
+
+オブジェクトのコピーが取得されます。
+
+
+
+ a| 
+オブジェクトは取得不可能な状態に移行しました
+ a| 
+`403 Forbidden` 、  `InvalidObjectState`
+
+使用link:post-object-restore.html["オブジェクトの復元"]オブジェクトを取得可能な状態に復元するよう要求します。
+
+
+
+ a| 
+回復不可能な状態から復元中のオブジェクト
+ a| 
+`403 Forbidden` 、  `InvalidObjectState`
+
+RestoreObject 要求が完了するまで待ちます。
+
+
+
+ a| 
+オブジェクトがクラウド ストレージ プールに完全に復元されました
+ a| 
+`200 OK`
+
+オブジェクトのコピーが取得されます。
+
+|===
+
+
+=== クラウド ストレージ プール内のマルチパートまたはセグメント化されたオブジェクト
+
+マルチパート オブジェクトをアップロードした場合、またはStorageGRID が大きなオブジェクトをセグメントに分割した場合、 StorageGRID はオブジェクトのパートまたはセグメントのサブセットをサンプリングして、オブジェクトが Cloud Storage Pool で使用可能かどうかを判断します。場合によっては、GetObjectリクエストが誤って返されることがあります。 `200 OK`オブジェクトの一部がすでに回復不可能な状態に移行している場合、またはオブジェクトの一部がまだ復元されていない場合。
+
+このような場合:
+
+* GetObject 要求はデータを返す可能性がありますが、転送の途中で停止することがあります。
+* 後続のGetObjectリクエストは、 `403 Forbidden` 。
+
+
+
+
+== GetObjectとクロスグリッドレプリケーション
+
+使用している場合link:../admin/grid-federation-overview.html["グリッドフェデレーション"]そしてlink:../tenant/grid-federation-manage-cross-grid-replication.html["クロスグリッドレプリケーション"]バケットに対して有効になっている場合、S3 クライアントは GetObject リクエストを発行してオブジェクトのレプリケーション ステータスを確認できます。応答にはStorageGRID固有の `x-ntap-sg-cgr-replication-status`レスポンス ヘッダーは次のいずれかの値を持ちます。
+
+[cols="1a,2a"]
+|===
+| Grid | レプリケーションステータス 
+
+
+ a| 
+ソース
+ a| 
+* *完了*: レプリケーションは成功しました。
+* *保留中*: オブジェクトはまだ複製されていません。
+* *失敗*: レプリケーションは永続的な障害により失敗しました。ユーザーはエラーを解決する必要があります。
+
+
+
+
+ a| 
+デスティネーション
+ a| 
+*REPLICA*: オブジェクトはソース グリッドから複製されました。
+
+|===
+
+NOTE: StorageGRIDはサポートしていません `x-amz-replication-status`ヘッダ。

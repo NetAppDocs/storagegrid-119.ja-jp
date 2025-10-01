@@ -1,0 +1,134 @@
+---
+permalink: audit/mgau-management-audit-message.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, MGAU, Management audit message 
+summary: 管理カテゴリは、管理 API へのユーザー リクエストを記録します。  API への GET または HEAD リクエスト以外のすべてのリクエストでは、ユーザー名、IP、および API へのリクエストの種類を含む応答がログに記録されます。 
+---
+= MGAU: 経営監査メッセージ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理カテゴリは、管理 API へのユーザー リクエストを記録します。有効な API URI への GET または HEAD リクエストではないすべての HTTP リクエストでは、ユーザー名、IP、および API へのリクエストの種類を含む応答がログに記録されます。無効な API URI (/api/v3-authorize など) および有効な API URI への無効なリクエストはログに記録されません。
+
+[cols="1a,1a,4a"]
+|===
+| コード | フィールド | 説明 
+
+
+ a| 
+MDIP
+ a| 
+宛先IPアドレス
+ a| 
+サーバー（宛先）の IP アドレス。
+
+
+
+ a| 
+遺伝子組み換えDNA
+ a| 
+ドメイン名
+ a| 
+ホストドメイン名。
+
+
+
+ a| 
+MPAT
+ a| 
+Request PATH
+ a| 
+リクエストパス。
+
+
+
+ a| 
+MPQP
+ a| 
+リクエストクエリパラメータ
+ a| 
+リクエストのクエリ パラメータ。
+
+
+
+ a| 
+MRBD
+ a| 
+リクエスト本文
+ a| 
+リクエスト本体の内容。デフォルトではレスポンス本文がログに記録されますが、レスポンス本文が空の場合、特定のケースではリクエスト本文がログに記録されます。次の情報はレスポンス本文では取得できないため、次の POST メソッドのリクエスト本文から取得されます。
+
+* *POST authorize* のユーザー名とアカウント ID
+* *POST /grid/grid-networks/update* での新しいサブネット構成
+* *POST /grid/ntp-servers/update* の新しい NTP サーバー
+* *POST /grid/servers/decommission* 内の廃止されたサーバー ID
+
+
+*注:* 機密情報は削除されるか (S3 アクセス キーなど)、アスタリスクでマスクされます (パスワードなど)。
+
+
+
+ a| 
+MRMD
+ a| 
+リクエスト方法
+ a| 
+HTTP リクエストメソッド:
+
+* POST
+* PUT
+* DELETE
+* PATCH
+
+
+
+
+ a| 
+MRSC
+ a| 
+応答コード
+ a| 
+応答コード。
+
+
+
+ a| 
+MRSP
+ a| 
+応答の本文
+ a| 
+応答の内容 (応答本体) はデフォルトでログに記録されます。
+
+*注:* 機密情報は削除されるか (S3 アクセス キーなど)、アスタリスクでマスクされます (パスワードなど)。
+
+
+
+ a| 
+MSIP
+ a| 
+送信元IPアドレス
+ a| 
+クライアント (送信元) IP アドレス。
+
+
+
+ a| 
+ムーン
+ a| 
+ユーザーURN
+ a| 
+リクエストを送信したユーザーの URN (Uniform Resource Name)。
+
+
+
+ a| 
+RSLT
+ a| 
+結果
+ a| 
+成功 (SUCS) またはバックエンドによって報告されたエラーを返します。
+
+|===

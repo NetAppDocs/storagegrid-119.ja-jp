@@ -1,0 +1,31 @@
+---
+permalink: ubuntu/troubleshooting-installation-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot ubuntu or debian installation 
+summary: StorageGRIDシステムのインストール中に問題が発生した場合は、インストール ログ ファイルにアクセスできます。問題を解決するために、テクニカル サポートでもインストール ログ ファイルを使用する必要がある場合があります。 
+---
+= インストールの問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムのインストール中に問題が発生した場合は、インストール ログ ファイルにアクセスできます。問題を解決するために、テクニカル サポートでもインストール ログ ファイルを使用する必要がある場合があります。
+
+各ノードを実行しているコンテナから、次のインストール ログ ファイルを入手できます。
+
+* `/var/local/log/install.log`（すべてのグリッドノードで見つかります）
+* `/var/local/log/gdu-server.log`（プライマリ管理ノードにあります）
+
+
+ホストからは、次のインストール ログ ファイルを入手できます。
+
+* `/var/log/storagegrid/daemon.log`
+* `/var/log/storagegrid/nodes/<node-name>.log`
+
+
+ログファイルにアクセスする方法については、link:../monitor/collecting-log-files-and-system-data.html["ログファイルとシステムデータを収集する"] 。
+
+.関連情報
+link:../troubleshoot/index.html["StorageGRIDシステムのトラブルシューティング"]

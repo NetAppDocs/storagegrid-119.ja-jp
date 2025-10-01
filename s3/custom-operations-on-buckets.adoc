@@ -1,0 +1,98 @@
+---
+permalink: s3/custom-operations-on-buckets.html 
+sidebar: sidebar 
+keywords: operations, buckets, custom, storagegrid bucket operations 
+summary: StorageGRIDシステムは、S3 REST API に追加されたカスタム操作をサポートします。 
+---
+= StorageGRIDカスタム操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムは、S3 REST API に追加されたカスタム操作をサポートします。
+
+次の表は、 StorageGRIDでサポートされているカスタム操作を示しています。
+
+[cols="1a,2a"]
+|===
+| 処理 | 説明 
+
+
+ a| 
+link:get-bucket-consistency-request.html["GETバケットの一貫性"]
+ a| 
+特定のバケットに適用されている一貫性を返します。
+
+
+
+ a| 
+link:put-bucket-consistency-request.html["PUT バケットの一貫性"]
+ a| 
+特定のバケットに適用される一貫性を設定します。
+
+
+
+ a| 
+link:get-bucket-last-access-time-request.html["GET バケットの最終アクセス時刻"]
+ a| 
+特定のバケットの最終アクセス時間の更新が有効になっているか無効になっているかを返します。
+
+
+
+ a| 
+link:put-bucket-last-access-time-request.html["バケットの最終アクセス時刻をPUTする"]
+ a| 
+特定のバケットの最終アクセス時間の更新を有効または無効にすることができます。
+
+
+
+ a| 
+link:delete-bucket-metadata-notification-configuration-request.html["バケットメタデータ通知設定の削除"]
+ a| 
+特定のバケットに関連付けられたメタデータ通知構成 XML を削除します。
+
+
+
+ a| 
+link:get-bucket-metadata-notification-configuration-request.html["バケットメタデータ通知設定の取得"]
+ a| 
+特定のバケットに関連付けられたメタデータ通知構成 XML を返します。
+
+
+
+ a| 
+link:put-bucket-metadata-notification-configuration-request.html["PUT バケットメタデータ通知設定"]
+ a| 
+バケットのメタデータ通知サービスを設定します。
+
+
+
+ a| 
+link:get-storage-usage-request.html["ストレージ使用量の取得"]
+ a| 
+アカウントと、アカウントに関連付けられている各バケットで使用されているストレージの合計量を示します。
+
+
+
+ a| 
+link:deprecated-put-bucket-request-modifications-for-compliance.html["非推奨: コンプライアンス設定による CreateBucket"]
+ a| 
+非推奨およびサポートされていません: コンプライアンスを有効にして新しいバケットを作成することはできなくなりました。
+
+
+
+ a| 
+link:deprecated-get-bucket-compliance-request.html["非推奨: GET バケットコンプライアンス"]
+ a| 
+非推奨ですがサポートされています: 既存のレガシー コンプライアンス バケットに対して現在有効なコンプライアンス設定を返します。
+
+
+
+ a| 
+link:deprecated-put-bucket-compliance-request.html["非推奨: PUT バケットのコンプライアンス"]
+ a| 
+非推奨ですがサポートされています: 既存のレガシー コンプライアンス バケットのコンプライアンス設定を変更できます。
+
+|===

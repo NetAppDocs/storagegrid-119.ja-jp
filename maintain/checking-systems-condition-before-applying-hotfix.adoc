@@ -1,0 +1,33 @@
+---
+permalink: maintain/checking-systems-condition-before-applying-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix 
+summary: システムが修正プログラムに対応する準備ができていることを確認する必要があります。 
+---
+= 修正プログラムを適用する前にシステムの状態を確認してください
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+システムが修正プログラムに対応する準備ができていることを確認する必要があります。
+
+. グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+. 可能であれば、システムが正常に動作していること、およびすべてのグリッド ノードがグリッドに接続されていることを確認します。
++
+接続されたノードには緑のチェックマークが表示されますimage:../media/icon_alert_green_checkmark.png["アイコンアラート緑のチェックマーク"]ノード ページで。
+
+. 可能であれば、現在のアラートをチェックして解決してください。
+. アップグレード、リカバリ、拡張、廃止手順など、他のメンテナンス手順が進行中でないことを確認します。
++
+修正プログラムを適用する前に、アクティブなメンテナンス手順が完了するまで待つ必要があります。
+
++
+別のメンテナンス手順が実行されている場合は、 StorageGRIDホットフィックスを適用できません。たとえば、廃止、拡張、または回復手順の実行中は、修正プログラムを適用できません。
+
++
+
+NOTE: ノードまたはサイトがlink:pausing-and-resuming-decommission-process-for-storage-nodes.html["廃止手続きは一時停止中"]、修正プログラムを安全に適用できます。さらに、 StorageGRIDアップグレード手順の最終段階で修正プログラムを適用できる場合もあります。説明書をご覧くださいlink:../upgrade/index.html["StorageGRIDソフトウェアのアップグレード"]。
+
+

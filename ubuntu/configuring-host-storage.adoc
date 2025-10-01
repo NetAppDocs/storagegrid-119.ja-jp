@@ -1,0 +1,105 @@
+---
+permalink: ubuntu/configuring-host-storage.html 
+sidebar: sidebar 
+keywords: how to configure host storage 
+summary: 各ホストにブロック ストレージ ボリュームを割り当てる必要があります。 
+---
+= ホストストレージを構成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+各ホストにブロック ストレージ ボリュームを割り当てる必要があります。
+
+.開始する前に
+このタスクを実行するために必要な情報を提供する次のトピックを確認しました。
+
+* link:storage-and-performance-requirements.html["ストレージとパフォーマンスの要件"]
+* link:node-container-migration-requirements.html["ノードコンテナの移行要件"]
+
+
+.タスク概要
+ブロック ストレージ ボリューム (LUN) をホストに割り当てるときは、「ストレージ要件」の表を使用して、次の事項を決定します。
+
+* 各ホストに必要なボリュームの数（そのホストに展開されるノードの数とタイプに基づく）
+* 各ボリュームのストレージ カテゴリ (システム データまたはオブジェクト データ)
+* 各巻のサイズ
+
+
+ホストにStorageGRIDノードを展開するときに、この情報と、Linux によって各物理ボリュームに割り当てられた永続的な名前を使用します。
+
+
+NOTE: これらのボリュームをパーティション分割したり、フォーマットしたり、マウントしたりする必要はありません。ホストから見えるようにするだけです。
+
+
+NOTE: メタデータのみのストレージ ノードには、オブジェクト データ LUN が 1 つだけ必要です。
+
+「raw」特殊デバイスファイルの使用を避ける(`/dev/sdb`ボリューム名のリストを作成するときに、たとえば、これらのファイルはホストの再起動によって変更される可能性があり、システムの適切な動作に影響を与えます。 iSCSI LUNとデバイスマッパーマルチパスを使用している場合は、 `/dev/mapper`特に SAN トポロジに共有ストレージへの冗長ネットワーク パスが含まれている場合は、ディレクトリにこの情報を格納する必要があります。あるいは、システムによって作成されたソフトリンクを使用することもできます。 `/dev/disk/by-path/`永続的なデバイス名用。
+
+例えば：
+
+[listing]
+----
+ls -l
+$ ls -l /dev/disk/by-path/
+total 0
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:00:07.1-ata-2 -> ../../sr0
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0 -> ../../sda
+lrwxrwxrwx 1 root root 10 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:1:0 -> ../../sdb
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:2:0 -> ../../sdc
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:3:0 -> ../../sdd
+----
+結果はインストールごとに異なります。
+
+これらの各ブロック ストレージ ボリュームにわかりやすい名前を割り当てると、 StorageGRID の初期インストールと将来のメンテナンス手順が簡素化されます。共有ストレージボリュームへの冗長アクセスにデバイスマッパーマルチパスドライバを使用している場合は、 `alias`あなたのフィールド `/etc/multipath.conf`ファイル。
+
+例えば：
+
+[listing]
+----
+multipaths {
+     multipath {
+          wwid 3600a09800059d6df00005df2573c2c30
+          alias docker-storage-volume-hostA
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df3573c2c30
+          alias sgws-adm1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df4573c2c30
+          alias sgws-adm1-audit-logs
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df5573c2c30
+          alias sgws-adm1-tables
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df6573c2c30
+          alias sgws-gw1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df7573c2c30
+          alias sgws-sn1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df7573c2c30
+          alias sgws-sn1-rangedb-0
+     }
+     …
+----
+このようにエイリアスフィールドを使用すると、エイリアスはブロックデバイスとして表示されます。 `/dev/mapper`ホスト上のディレクトリに保存され、構成またはメンテナンス操作でブロック ストレージ ボリュームの指定が必要なときに、わかりやすく簡単に検証できる名前を指定できます。
+
+StorageGRIDノードの移行をサポートするために共有ストレージを設定し、デバイスマッパーマルチパスを使用している場合は、共通の `/etc/multipath.conf`同じ場所にあるすべてのホストで。各ホストで異なる Docker ストレージ ボリュームを使用するようにしてください。エイリアスを使用し、各 Docker ストレージ ボリューム LUN のエイリアスにターゲット ホスト名を含めると、覚えやすくなるため、推奨されます。
+
+
+NOTE: ソフトウェアのみのデプロイメント用のコンテナ エンジンとしての Docker のサポートは非推奨になりました。Docker は将来のリリースで別のコンテナ エンジンに置き換えられる予定です。
+
+.関連情報
+* link:storage-and-performance-requirements.html["ストレージとパフォーマンスの要件"]
+* link:node-container-migration-requirements.html["ノードコンテナの移行要件"]
+

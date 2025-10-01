@@ -1,0 +1,53 @@
+---
+permalink: s3/s3-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: audit log, auditing bucket and object operations, S3 audit messages 
+summary: 監査メッセージはStorageGRIDサービスによって生成され、テキスト ログ ファイルに保存されます。監査ログで S3 固有の監査メッセージを確認して、バケットおよびオブジェクトの操作に関する詳細を取得できます。 
+---
+= 監査ログで追跡されるS3操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+監査メッセージはStorageGRIDサービスによって生成され、テキスト ログ ファイルに保存されます。監査ログで S3 固有の監査メッセージを確認して、バケットおよびオブジェクトの操作に関する詳細を取得できます。
+
+
+
+== 監査ログで追跡されるバケット操作
+
+* CreateBucket
+* DeleteBucket
+* バケットタグの削除
+* DeleteObjects
+* GetBucketTagging
+* HeadBucket
+* ListObjects
+* ListObjectVersions
+* PUTバケットコンプライアンス
+* PutBucketTagging
+* PutBucketVersioning
+
+
+
+
+== 監査ログで追跡されるオブジェクト操作
+
+* CompleteMultipartUpload
+* CopyObject
+* DeleteObject
+* GetObject
+* HeadObject
+* PutObject
+* オブジェクトの復元
+* オブジェクトを選択
+* UploadPart (ILM ルールが Balanced または Strict の取り込みを使用する場合)
+* UploadPartCopy (ILM ルールが Balanced または Strict の取り込みを使用する場合)
+
+
+.関連情報
+* link:../audit/accessing-audit-log-file.html["アクセス監査ログファイル"]
+* link:../audit/client-write-audit-messages.html["クライアント書き込み監査メッセージ"]
+* link:../audit/client-read-audit-messages.html["クライアント読み取り監査メッセージ"]
+

@@ -1,0 +1,33 @@
+---
+permalink: vmware/specifying-domain-name-system-server-information.html 
+sidebar: sidebar 
+keywords: how to specify domain name system server information 
+summary: IP アドレスではなくホスト名を使用して外部サーバーにアクセスできるように、 StorageGRIDシステムの DNS 情報を指定する必要があります。 
+---
+= DNSサーバー情報を指定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+IP アドレスではなくホスト名を使用して外部サーバーにアクセスできるように、 StorageGRIDシステムの DNS 情報を指定する必要があります。
+
+.タスク概要
+指定 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/checking-dns-server-configuration.html["DNSサーバの情報"^]電子メール通知やAutoSupportに IP アドレスではなく完全修飾ドメイン名 (FQDN) ホスト名を使用できるようになります。
+
+適切な動作を確保するには、2 つまたは 3 つの DNS サーバーを指定します。 3 つ以上指定した場合、一部のプラットフォームでの既知の OS 制限により、3 つしか使用されない可能性があります。環境にルーティング制限がある場合は、link:../maintain/modifying-dns-configuration-for-single-grid-node.html["DNSサーバーリストをカスタマイズする"]個々のノード (通常はサイト内のすべてのノード) が最大 3 台の DNS サーバーの異なるセットを使用するようにします。
+
+可能であれば、各サイトがローカルにアクセスできる DNS サーバーを使用して、孤立したサイトが外部の宛先の FQDN を解決できるようにします。
+
+.手順
+. *サーバー 1* テキスト ボックスに少なくとも 1 つの DNS サーバーの IPv4 アドレスを指定します。
+. 必要に応じて、最後のエントリの横にあるプラス記号を選択して、追加のサーバー エントリを追加します。
++
+image::../media/9_gmi_installer_dns_page.gif[この図には説明が付随しています。]
+
++
+ベストプラクティスとしては、少なくとも 2 つの DNS サーバーを指定することです。最大 6 台の DNS サーバーを指定できます。
+
+. *次へ*を選択します。
+

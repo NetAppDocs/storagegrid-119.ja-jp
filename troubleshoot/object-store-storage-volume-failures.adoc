@@ -1,0 +1,28 @@
+---
+permalink: troubleshoot/object-store-storage-volume-failures.html 
+sidebar: sidebar 
+keywords: how to confirm object location, object metadata lookup 
+summary: ストレージ ノード上の基盤となるストレージは、オブジェクト ストアに分割されます。オブジェクト ストアは、ストレージ ボリュームとも呼ばれます。 
+---
+= オブジェクトストア（ストレージボリューム）の障害
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージ ノード上の基盤となるストレージは、オブジェクト ストアに分割されます。オブジェクト ストアは、ストレージ ボリュームとも呼ばれます。
+
+各ストレージ ノードのオブジェクト ストア情報を表示できます。オブジェクト ストアは、*NODES* > *_Storage Node_* > *Storage* ページの下部に表示されます。
+
+image::../media/nodes_page_storage_nodes_storage_tables.png[ノードページストレージノードストレージテーブル]
+
+もっと見るlink:../monitor/viewing-grid-topology-tree.html["各ストレージノードの詳細"]、次の手順に従ってください。
+
+. *サポート* > *ツール* > *グリッド トポロジ* を選択します。
+. *_site_* > *_Storage Node_* > *LDR* > *Storage* > *概要* > *メイン* を選択します。
+
+
+image::../media/storage_node_object_stores.png[ストレージノードオブジェクトストア]
+
+障害の性質に応じて、ストレージボリュームの障害は、link:../monitor/alerts-reference.html["ストレージボリュームアラート"] 。ストレージ ボリュームに障害が発生した場合は、障害の発生したストレージ ボリュームを修復して、ストレージ ノードの完全な機能をできるだけ早く復元する必要があります。必要に応じて、[設定]タブに移動してlink:../maintain/checking-storage-state-after-recovering-storage-volumes.html["ストレージノードを読み取り専用状態にする"]サーバーの完全復旧を準備する間に、 StorageGRIDシステムがデータ取得に使用できるようにします。

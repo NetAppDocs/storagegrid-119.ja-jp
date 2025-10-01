@@ -1,0 +1,24 @@
+---
+permalink: admin/per-site-delivery-of-platform-services-messages.html 
+sidebar: sidebar 
+keywords: platform services message delivery 
+summary: すべてのプラットフォーム サービス操作はサイトごとに実行されます。 
+---
+= プラットフォームサービスメッセージのサイトごとの配信
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+すべてのプラットフォーム サービス操作はサイトごとに実行されます。
+
+つまり、テナントがクライアントを使用してデータセンター サイト 1 のゲートウェイ ノードに接続し、オブジェクトに対して S3 API 作成操作を実行すると、そのアクションに関する通知がトリガーされ、データセンター サイト 1 から送信されます。
+
+image::../media/notification_multiple_sites.gif[サイト 1 のオブジェクトに対するアクションがサイト 1 からの通知をトリガーすることを示す図]
+
+その後、クライアントがデータセンター サイト 2 から同じオブジェクトに対して S3 API 削除操作を実行すると、削除アクションに関する通知がトリガーされ、データセンター サイト 2 から送信されます。
+
+image::../media/notifications_site_2.gif[サイト 2 のオブジェクトに対するアクションがサイト 2 からの通知をトリガーすることを示す図]
+
+各サイトのネットワークが、プラットフォーム サービス メッセージが宛先に配信されるように構成されていることを確認します。

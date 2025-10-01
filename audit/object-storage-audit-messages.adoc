@@ -1,0 +1,94 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: audit, object storage, object management, object retrieval, node transfer, verification, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
+summary: オブジェクト ストレージ監査カテゴリに属する​​監査メッセージについて理解しておく必要があります。これらは、 StorageGRIDシステム内のオブジェクトの保存と管理に関連するイベントです。これらには、オブジェクトの保存と取得、グリッド ノード間の転送、検証が含まれます。 
+---
+= オブジェクトストレージ監査メッセージ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+オブジェクト ストレージ監査カテゴリに属する​​監査メッセージは、 StorageGRIDシステム内のオブジェクトの保存と管理に関連するイベントに使用されます。これらには、オブジェクトの保存と取得、グリッド ノード間の転送、検証が含まれます。
+
+
+NOTE: 機能が廃止されると、監査コードは製品およびドキュメントから削除されます。ここに記載されていない監査コードが発生した場合は、このトピックの以前のバージョンで古い SG リリースを確認してください。例：  https://docs.netapp.com/us-en/storagegrid-118/audit/object-storage-audit-messages.html["StorageGRID 11.8 オブジェクトストレージ監査メッセージ"^] 。
+
+[cols="1a,2a,1a"]
+|===
+| コード | 説明 | 詳細については、 
+
+
+ a| 
+ブロル
+ a| 
+バケット読み取り専用要求: バケットが読み取り専用モードになったか、読み取り専用モードを終了しました。
+ a| 
+link:bror-bucket-read-only-request.html["BROR: バケット読み取り専用リクエスト"]
+
+
+
+ a| 
+CBSE
+ a| 
+オブジェクト送信終了: ソース エンティティがグリッド ノード間のデータ転送操作を完了しました。
+ a| 
+link:cbse-object-send-end.html["CBSE: オブジェクト送信終了"]
+
+
+
+ a| 
+CBRE
+ a| 
+オブジェクト受信終了: 宛先エンティティがグリッド ノード間のデータ転送操作を完了しました。
+ a| 
+link:cbre-object-receive-end.html["CBRE: オブジェクト受信終了"]
+
+
+
+ a| 
+CGRR
+ a| 
+クロスグリッド レプリケーション要求: StorageGRID は、グリッド フェデレーション接続内のバケット間でオブジェクトを複製するために、クロスグリッド レプリケーション操作を試行しました。
+ a| 
+link:cgrr-cross-grid-replication-request.html["CGRR: クロスグリッドレプリケーション要求"]
+
+
+
+ a| 
+EBDL
+ a| 
+空のバケットの削除: ILM スキャナーは、すべてのオブジェクトを削除するバケット内のオブジェクトを削除しました (空のバケット操作を実行しています)。
+ a| 
+link:ebdl-empty-bucket-delete.html["EBDL: 空のバケットの削除"]
+
+
+
+ a| 
+EBKR
+ a| 
+空のバケットのリクエスト: ユーザーが空のバケットをオンまたはオフにするリクエスト (つまり、バケット オブジェクトを削除するか、オブジェクトの削除を停止するリクエスト) を送信しました。
+ a| 
+link:ebkr-empty-bucket-request.html["EBKR: 空のバケットリクエスト"]
+
+
+
+ a| 
+SCMT
+ a| 
+オブジェクト ストア コミット: コンテンツ ブロックが完全に保存され、検証されたため、要求できるようになりました。
+ a| 
+link:scmt-object-store-commit.html["SCMT: オブジェクトストアコミット要求"]
+
+
+
+ a| 
+SREM
+ a| 
+オブジェクト ストアの削除: コンテンツ ブロックがグリッド ノードから削除されたため、直接要求できなくなりました。
+ a| 
+link:srem-object-store-remove.html["SREM: オブジェクトストアの削除"]
+
+|===

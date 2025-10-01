@@ -1,0 +1,76 @@
+---
+permalink: admin/manage-s3-select-for-tenant-accounts.html 
+sidebar: sidebar 
+keywords: s3 select, selectobjectcontent, best practices, object format, s3 select requirements 
+summary: 特定の S3 テナントが S3 Select を使用して個々のオブジェクトに対して SelectObjectContent リクエストを発行できるようにすることができます。 
+---
+= テナントアカウントのS3 Selectを管理する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+特定の S3 テナントが S3 Select を使用して個々のオブジェクトに対して SelectObjectContent リクエストを発行できるようにすることができます。
+
+S3 Select は、検索を可能にするためにデータベースや関連リソースをデプロイすることなく、大量のデータを効率的に検索する方法を提供します。また、データ取得のコストと待ち時間も削減されます。
+
+
+
+== S3 Select とは何ですか?
+
+S3 Select を使用すると、S3 クライアントは SelectObjectContent リクエストを使用して、オブジェクトから必要なデータのみをフィルタリングして取得できます。  S3 Select のStorageGRID実装には、S3 Select コマンドと機能のサブセットが含まれています。
+
+
+
+== S3 Select の使用に関する考慮事項と要件
+
+
+
+=== グリッド管理要件
+
+グリッド管理者はテナントに S3 Select 機能を付与する必要があります。  *S3選択を許可する*を選択する場合link:creating-tenant-account.html["テナントの作成"]またはlink:editing-tenant-account.html["テナントの編集"]。
+
+
+
+=== オブジェクト形式の要件
+
+クエリするオブジェクトは、次のいずれかの形式である必要があります。
+
+* *CSV*。そのまま使用することも、GZIP または BZIP2 アーカイブに圧縮することもできます。
+* *寄木細工*。  Parquet オブジェクトの追加要件:
++
+** S3 Select は、GZIP または Snappy を使用した列指向の圧縮のみをサポートします。  S3 Select は、Parquet オブジェクトのオブジェクト全体の圧縮をサポートしていません。
+** S3 Select は Parquet 出力をサポートしていません。出力形式を CSV または JSON として指定する必要があります。
+** 圧縮されていない行グループの最大サイズは 512 MB です。
+** オブジェクトのスキーマで指定されたデータ型を使用する必要があります。
+** INTERVAL、JSON、LIST、TIME、または UUID 論理型は使用できません。
+
+
+
+
+
+
+=== エンドポイント要件
+
+SelectObjectContentリクエストは、link:configuring-load-balancer-endpoints.html["StorageGRIDロードバランサエンドポイント"] 。
+
+エンドポイントで使用される管理ノードとゲートウェイ ノードは、次のいずれかである必要があります。
+
+* サービスアプライアンスノード
+* VMwareベースのソフトウェアノード
+* cgroup v2 が有効になっているカーネルを実行しているベアメタルノード
+
+
+
+
+=== 一般的な考慮事項
+
+クエリをストレージ ノードに直接送信することはできません。
+
+
+CAUTION: SelectObjectContent リクエストにより、すべての S3 クライアントとすべてのテナントのロードバランサーのパフォーマンスが低下する可能性があります。この機能は、必要な場合にのみ、信頼できるテナントに対してのみ有効にしてください。
+
+参照link:../s3/use-s3-select.html["S3 Selectの使用手順"]。
+
+表示するにはlink:../monitor/reviewing-support-metrics.html["Grafanaチャート"]S3 Select の操作を時間経過と共に表示するには、グリッド マネージャーで *サポート* > *ツール* > *メトリクス* を選択します。

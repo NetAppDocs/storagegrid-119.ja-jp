@@ -1,0 +1,53 @@
+---
+permalink: fabricpool/remove-fabricpool-data.html 
+sidebar: sidebar 
+keywords: fabricPool, ontap, remove data from storagegrid 
+summary: 現在StorageGRIDに保存されているFabricPoolデータを削除する必要がある場合は、次の手順に従います。 
+---
+= StorageGRIDからFabricPoolデータを削除する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+現在StorageGRIDに保存されているFabricPoolデータを削除する必要がある場合は、 ONTAPを使用してFabricPoolボリュームのすべてのデータを取得し、パフォーマンス層に昇格する必要があります。
+
+.開始する前に
+* 指示と考慮事項を確認しました https://docs.netapp.com/us-en/ontap/fabricpool/promote-data-performance-tier-task.html["高パフォーマンス階層へのデータの昇格"^]。
+* ONTAP 9.8以降を使用している。
+* 使用していますlink:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"]。
+* FabricPoolテナントアカウントのStorageGRIDユーザーグループに属しており、link:../tenant/tenant-management-permissions.html["すべてのバケットまたはルートアクセス権限を管理する"] 。
+
+
+.タスク概要
+これらの手順では、 StorageGRIDからFabricPoolにデータを戻す方法について説明します。この手順は、 ONTAPとStorageGRID Tenant Manager を使用して実行します。
+
+.手順
+. ONTAPから、 `volume modify`指示。
++
+セット `tiering-policy`に `none`新しい階層化を停止して設定する `cloud-retrieval-policy`に `promote`以前に階​​層化されたすべてのデータをStorageGRIDに返します。
+
++
+見る https://docs.netapp.com/us-en/ontap/fabricpool/promote-all-data-performance-tier-task.html["高パフォーマンス階層へのFabricPoolボリュームの全データの昇格"^]。
+
+. 操作が完了するまでお待ちください。
++
+使用することができます `volume object-store`コマンドを `tiering`オプション https://docs.netapp.com/us-en/ontap/fabricpool/check-status-performance-tier-promotion-task.html["パフォーマンス層の昇格のステータスを確認する"^]。
+
+. 昇格操作が完了したら、 FabricPoolテナント アカウントのStorageGRID Tenant Manager にサインインします。
+. ダッシュボードから*バケットの表示*を選択するか、*ストレージ (S3)* > *バケット*を選択します。
+. FabricPoolバケットが空になっていることを確認します。
+. バケツが空の場合は、link:../tenant/deleting-s3-bucket.html["バケットを削除する"] 。
+
+
+.終了後の操作
+バケットを削除すると、 FabricPoolからStorageGRIDへの階層化は続行できなくなります。ただし、ローカル層はまだStorageGRIDクラウド層に接続されているため、 ONTAP System Manager はバケットにアクセスできないことを示すエラー メッセージを返します。
+
+これらのエラー メッセージを防ぐには、次のいずれかを実行します。
+
+* FabricPool Mirror を使用して、別のクラウド層をアグリゲートに接続します。
+* FabricPoolアグリゲートからFabricPool以外のアグリゲートにデータを移動し、未使用のアグリゲートを削除します。
+
+
+参照 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPoolのONTAPドキュメント"^]手順についてはこちらをご覧ください。

@@ -1,0 +1,85 @@
+---
+section: ubuntu
+title: UbuntuまたはDebianにStorageGRIDをインストールする
+entries:
+- title: クイック スタート
+  pdf-filename: UbuntuまたはDebianにStorageGRIDをインストールする
+  url: "/ubuntu/index.html"
+- title: UbuntuまたはDebianへのインストールの計画と準備
+  entries:
+  - title: 必要な情報と資料
+    url: "/ubuntu/required-materials.html"
+  - title: StorageGRIDインストールファイルをダウンロードして解凍します
+    url: "/ubuntu/downloading-and-extracting-storagegrid-installation-files.html"
+  - title: インストールファイルを手動で検証する
+    url: "/ubuntu/download-files-verify.html"
+  - title: ソフトウェア要件
+    url: "/ubuntu/software-requirements.html"
+  - title: CPUとRAMの要件
+    url: "/ubuntu/cpu-and-ram-requirements.html"
+  - title: ストレージとパフォーマンスの要件
+    url: "/ubuntu/storage-and-performance-requirements.html"
+  - title: ノードコンテナの移行要件
+    url: "/ubuntu/node-container-migration-requirements.html"
+  - title: ホスト（UbuntuまたはDebian）を準備する
+    entries:
+    - title: ホスト全体の設定の変更方法
+      url: "/ubuntu/how-host-wide-settings-change.html"
+    - title: Linuxをインストールする
+      url: "/ubuntu/installing-linux.html"
+    - title: AppArmorプロファイルのインストール
+      url: "/ubuntu/understanding-apparmor-profile-installation.html"
+    - title: ホストネットワークを構成する（UbuntuまたはDebian）
+      url: "/ubuntu/configuring-host-network.html"
+    - title: ホストストレージを構成する
+      url: "/ubuntu/configuring-host-storage.html"
+    - title: Dockerストレージボリュームを構成する
+      url: "/ubuntu/configuring-docker-storage-volume.html"
+    - title: Dockerをインストールする
+      url: "/ubuntu/installing-docker.html"
+    - title: StorageGRIDホストサービスをインストールする
+      url: "/ubuntu/installing-storagegrid-webscale-host-services.html"
+- title: インストールを自動化する（UbuntuまたはDebian）
+  url: "/ubuntu/automating-installation.html"
+- title: 仮想グリッドノードを展開する（Ubuntu または Debian）
+  entries:
+  - title: Ubuntu または Debian デプロイメント用のノード構成ファイルを作成する
+    url: "/ubuntu/creating-node-configuration-files.html"
+  - title: グリッドノードがプライマリ管理ノードを検出する方法
+    url: "/ubuntu/how-grid-nodes-discover-primary-admin-node.html"
+  - title: ノード構成ファイルの例
+    url: "/ubuntu/example-node-configuration-files.html"
+  - title: StorageGRID構成を検証する
+    url: "/ubuntu/validating-storagegrid-configuration.html"
+  - title: StorageGRIDホストサービスを開始する
+    url: "/ubuntu/starting-storagegrid-host-service.html"
+- title: グリッドを構成してインストールを完了する（Ubuntu または Debian）
+  entries:
+  - title: グリッドマネージャーに移動する
+    url: "/ubuntu/navigating-to-grid-manager.html"
+  - title: ライセンス情報を指定する
+    url: "/ubuntu/specifying-storagegrid-license-information.html"
+  - title: サイトを追加
+    url: "/ubuntu/adding-sites.html"
+  - title: グリッドネットワークサブネットを指定する
+    url: "/ubuntu/specifying-grid-network-subnets.html"
+  - title: 保留中のグリッドノードを承認する
+    url: "/ubuntu/approving-pending-grid-nodes.html"
+  - title: NTPサーバー情報を指定する
+    url: "/ubuntu/specifying-network-time-protocol-server-information.html"
+  - title: DNSサーバー情報を指定する
+    url: "/ubuntu/specifying-domain-name-system-server-information.html"
+  - title: システムパスワードを指定する
+    url: "/ubuntu/specifying-storagegrid-system-passwords.html"
+  - title: 設定を確認してインストールを完了する
+    url: "/ubuntu/reviewing-your-configuration-and-completing-installation.html"
+  - title: インストール後のガイドライン
+    url: "/ubuntu/post-installation-guidelines.html"
+- title: インストールREST API
+  url: "/ubuntu/overview-of-installation-rest-api.html"
+- title: 次はどこへ行くか
+  url: "/ubuntu/where-to-go-next.html"
+- title: インストールの問題のトラブルシューティング
+  url: "/ubuntu/troubleshooting-installation-issues.html"
+- title: "/etc/network/interfacesの例"
+  url: "/ubuntu/example-etc-network-interfaces.html"

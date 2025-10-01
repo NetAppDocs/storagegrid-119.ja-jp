@@ -1,0 +1,97 @@
+---
+permalink: fabricpool/information-needed-to-attach-storagegrid-as-cloud-tier.html 
+sidebar: sidebar 
+keywords: StorageGRID, fabricPool, ONTAP System Manager, ONTAP CLI, port, FQDN, object store name 
+summary: StorageGRID をFabricPoolのクラウド層として接続する前に、 StorageGRIDで構成手順を実行し、特定の値を取得する必要があります。 
+---
+= StorageGRIDをクラウド層として接続するために必要な情報
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID をFabricPoolのクラウド層として接続する前に、 StorageGRIDで設定手順を実行し、 ONTAPで使用するための特定の値を取得する必要があります。
+
+
+
+== どのような値が必要ですか?
+
+次の表は、 StorageGRIDで設定する必要がある値と、それらの値がONTAPおよび DNS サーバーによってどのように使用されるかを示しています。
+
+[cols="1a,1a,1a"]
+|===
+| Value | 値が設定される場所 | 価値が使われる場所 
+
+
+ a| 
+仮想IP（VIP）アドレス
+ a| 
+StorageGRID > HAグループ
+ a| 
+DNSエントリ
+
+
+
+ a| 
+ポート
+ a| 
+StorageGRID > ロードバランサエンドポイント
+ a| 
+ONTAPシステムマネージャ > クラウド層の追加
+
+
+
+ a| 
+SSL証明書
+ a| 
+StorageGRID > ロードバランサエンドポイント
+ a| 
+ONTAPシステムマネージャ > クラウド層の追加
+
+
+
+ a| 
+サーバー名（FQDN）
+ a| 
+StorageGRID > ロードバランサエンドポイント
+ a| 
+DNSエントリ
+
+
+
+ a| 
+アクセスキーIDとシークレットアクセスキー
+ a| 
+StorageGRID > テナントとバケット
+ a| 
+ONTAPシステムマネージャ > クラウド層の追加
+
+
+
+ a| 
+バケット/コンテナ名
+ a| 
+StorageGRID > テナントとバケット
+ a| 
+ONTAPシステムマネージャ > クラウド層の追加
+
+|===
+
+
+== これらの値を取得するにはどうすればいいでしょうか?
+
+要件に応じて、次のいずれかの方法で必要な情報を取得できます。
+
+* 使用link:use-fabricpool-setup-wizard.html["FabricPoolセットアップ ウィザード"]。 FabricPoolセットアップ ウィザードを使用すると、 StorageGRIDで必要な値を簡単に設定し、 ONTAP System Manager の設定に使用できるファイルを出力できます。ウィザードは必要な手順をガイドし、設定がStorageGRIDおよびFabricPool のベスト プラクティスに準拠していることを確認できるようにします。
+* 各項目を手動で設定します。次に、 ONTAP System Manager またはONTAP CLI に値を入力します。次の手順を実行します。
++
+.. link:creating-ha-group-for-fabricpool.html["FabricPoolの高可用性 (HA) グループを構成する"] 。
+.. link:creating-load-balancer-endpoint-for-fabricpool.html["FabricPoolのロードバランサエンドポイントを作成する"] 。
+.. link:creating-tenant-account-for-fabricpool.html["FabricPoolのテナントアカウントを作成する"] 。
+.. テナントアカウントにSign in、link:creating-s3-bucket-and-access-key.html["ルートユーザーのバケットとアクセスキーを作成する"] 。
+.. FabricPoolデータの ILM ルールを作成し、アクティブな ILM ポリシーに追加します。見るlink:using-storagegrid-ilm-with-fabricpool-data.html["FabricPoolデータ用のILMを構成する"] 。
+.. オプションとして、link:creating-traffic-classification-policy-for-fabricpool.html["FabricPoolのトラフィック分類ポリシーを作成する"] 。
+
+
+

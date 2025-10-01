@@ -1,0 +1,182 @@
+---
+permalink: s3/get-bucket-metadata-notification-configuration-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET bucket metadata notification configuration 
+summary: GET バケット メタデータ通知構成リクエストを使用すると、個々のバケットの検索統合を構成するために使用される構成 XML を取得できます。 
+---
+= バケットメタデータ通知設定の取得
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+GET バケット メタデータ通知構成リクエストを使用すると、個々のバケットの検索統合を構成するために使用される構成 XML を取得できます。
+
+この操作を完了するには、s3:GetBucketMetadataNotification 権限を持っているか、アカウント ルートである必要があります。
+
+
+
+== リクエスト例
+
+このリクエストは、バケットのメタデータ通知設定を取得します。 `bucket` 。
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?x-ntap-sg-metadata-notification HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== 応答
+
+レスポンス本文には、バケットのメタデータ通知構成が含まれます。メタデータ通知構成では、検索統合用にバケットを構成する方法を決定できます。つまり、どのオブジェクトがインデックスされているか、またそのオブジェクト メタデータがどのエンドポイントに送信されているかを判別できます。
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:_region:account-ID_:domain/_mydomain/myindex/mytype_</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+各メタデータ通知構成には、1 つ以上のルールが含まれます。各ルールは、適用されるオブジェクトと、 StorageGRIDがオブジェクト メタデータを送信する宛先を指定します。宛先は、 StorageGRIDエンドポイントの URN を使用して指定する必要があります。
+
+[cols="1a,2a,1a"]
+|===
+| Name | 説明 | 必須 
+
+
+ a| 
+メタデータ通知構成
+ a| 
+メタデータ通知のオブジェクトと宛先を指定するために使用されるルールのコンテナ タグ。
+
+1 つ以上の Rule 要素が含まれます。
+ a| 
+はい
+
+
+
+ a| 
+Rule
+ a| 
+指定されたインデックスにメタデータを追加するオブジェクトを識別するルールのコンテナ タグ。
+
+プレフィックスが重複するルールは拒否されます。
+
+MetadataNotificationConfiguration 要素に含まれます。
+ a| 
+はい
+
+
+
+ a| 
+ID
+ a| 
+ルールの一意の識別子。
+
+ルール要素に含まれます。
+ a| 
+いいえ
+
+
+
+ a| 
+ステータス
+ a| 
+ステータスは「有効」または「無効」になります。無効にされているルールに対してはアクションは実行されません。
+
+ルール要素に含まれます。
+ a| 
+はい
+
+
+
+ a| 
+接頭辞
+ a| 
+プレフィックスに一致するオブジェクトはルールの影響を受け、そのメタデータは指定された宛先に送信されます。
+
+すべてのオブジェクトを一致させるには、空のプレフィックスを指定します。
+
+ルール要素に含まれます。
+ a| 
+はい
+
+
+
+ a| 
+デスティネーション
+ a| 
+ルールの宛先のコンテナ タグ。
+
+ルール要素に含まれます。
+ a| 
+はい
+
+
+
+ a| 
+壷
+ a| 
+オブジェクト メタデータが送信される宛先の URN。次のプロパティを持つStorageGRIDエンドポイントの URN である必要があります。
+
+* `es`3 番目の要素である必要があります。
+* URNは、メタデータが格納されているインデックスとタイプで終わる必要があります。形式は次のようになります。 `domain-name/myindex/mytype` 。
+
+
+エンドポイントは、テナント マネージャーまたはテナント管理 API を使用して構成されます。それらは次の形式をとります:
+
+* `arn:aws:es:_region:account-ID_:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+構成 XML を送信する前にエンドポイントを構成する必要があります。そうしないと、404 エラーが発生して構成が失敗します。
+
+Urn は Destination 要素に含まれます。
+ a| 
+はい
+
+|===
+
+
+== 応答例
+
+XMLは、 `<MetadataNotificationConfiguration></MetadataNotificationConfiguration>` tags は、バケットの検索統合エンドポイントとの統合がどのように構成されているかを示します。この例では、オブジェクトメタデータはElasticsearchインデックスに送信されています。 `current`と名付けられたタイプ `2017`AWSドメインでホストされている `records`。
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Thu, 20 Jul 2017 18:24:05 GMT
+Connection: KEEP-ALIVE
+Server: StorageGRID/11.0.0
+x-amz-request-id: 3832973499
+Content-Length: 264
+Content-Type: application/xml
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix>2017</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/records/current/2017</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.関連情報
+link:../tenant/index.html["テナントアカウントを使用する"]

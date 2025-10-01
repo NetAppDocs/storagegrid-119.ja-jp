@@ -1,0 +1,22 @@
+---
+permalink: monitor/creating-custom-monitoring-applications.html 
+sidebar: sidebar 
+keywords: custom monitoring, monitoring, dashboard 
+summary: Grid Management API から利用できるStorageGRIDメトリックを使用して、カスタム監視アプリケーションとダッシュボードを構築できます。 
+---
+= カスタム監視アプリケーションを作成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Management API から利用できるStorageGRIDメトリックを使用して、カスタム監視アプリケーションとダッシュボードを構築できます。
+
+Grid Manager の既存のページに表示されないメトリックを監視する場合、またはStorageGRIDのカスタム ダッシュボードを作成する場合は、Grid Management API を使用してStorageGRIDメトリックを照会できます。
+
+Grafana などの外部監視ツールを使用して Prometheus メトリックに直接アクセスすることもできます。外部ツールを使用するには、セキュリティのためにStorageGRID がツールを認証できるように、管理クライアント証明書をアップロードまたは生成する必要があります。参照link:../admin/index.html["StorageGRIDの管理手順"]。
+
+使用可能なメトリックの完全なリストを含むメトリック API 操作を表示するには、グリッド マネージャーに移動します。ページの上部からヘルプ アイコンを選択し、*API ドキュメント* > *メトリック* を選択します。image:../media/help_api_docs_metrics.png["ヘルプ API ドキュメント メトリクス セクション"]
+
+カスタム監視アプリケーションの実装方法の詳細については、このドキュメントの範囲外です。

@@ -1,0 +1,47 @@
+---
+permalink: monitor/viewing-santricity-system-manager-tab.html 
+sidebar: sidebar 
+keywords: SANtricity System Manager tab, hardware diagnostics 
+summary: SANtricity System Manager タブを使用すると、ストレージ アプライアンスの管理ポートを構成または接続しなくても、 SANtricity System Manager にアクセスできます。このタブを使用すると、ハードウェア診断および環境情報や、ドライブに関連する問題を確認できます。 
+---
+= SANtricity System Manager タブを表示する (E シリーズのみ)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SANtricity System Manager タブを使用すると、ストレージ アプライアンスの管理ポートを構成または接続しなくても、 SANtricity System Manager にアクセスできます。このタブを使用すると、ハードウェア診断および環境情報や、ドライブに関連する問題を確認できます。
+
+
+CAUTION: Grid Manager からSANtricity System Manager にアクセスするのは、通常、アプライアンスのハードウェアを監視し、E シリーズAutoSupportを構成するためだけに行われます。ファームウェアのアップグレードなど、 SANtricity System Manager 内の多くの機能と操作は、 StorageGRIDアプライアンスの監視には適用されません。問題を回避するには、必ずアプライアンスのハードウェア メンテナンス手順に従ってください。  SANtricityファームウェアをアップグレードするには、 https://docs.netapp.com/us-en/storagegrid-appliances/landing-maintain-hdwr/index.html["メンテナンス構成手順"^]ストレージアプライアンス用。
+
+
+NOTE: SANtricity System Manager タブは、E シリーズ ハードウェアを使用するストレージ アプライアンス ノードに対してのみ表示されます。
+
+SANtricity System Manager を使用すると、次のことができます。
+
+* ストレージ アレイ レベルのパフォーマンス、I/O レイテンシ、ストレージ コントローラーの CPU 使用率、スループットなどのパフォーマンス データを表示します。
+* ハードウェア コンポーネントのステータスを確認します。
+* 診断データの表示や E シリーズAutoSupportの構成などのサポート機能を実行します。
++
+
+NOTE: SANtricity System Managerを使用してEシリーズAutoSupportのプロキシを設定するには、link:../admin/sending-eseries-autosupport-messages-through-storagegrid.html["EシリーズAutoSupportパッケージをStorageGRID経由で送信する"] 。
+
+
+
+グリッドマネージャを通じてSANtricity System Managerにアクセスするには、link:../admin/admin-group-permissions.html["ストレージアプライアンス管理者またはルートアクセス権限"] 。
+
+
+NOTE: Grid Manager を使用してSANtricity System Manager にアクセスするには、 SANtricityファームウェア 8.70 以上が必要です。
+
+タブには、 SANtricity System Manager のホームページが表示されます。
+
+image::../media/nodes_page_santricity_tab.png[ノードページのSANtricityタブ]
+
+
+NOTE: SANtricity System Manager リンクを使用すると、 SANtricity System Manager を新しいブラウザ ウィンドウで開き、簡単に表示することができます。
+
+ストレージ アレイ レベルのパフォーマンスと容量使用率の詳細を表示するには、各グラフの上にカーソルを置きます。
+
+SANtricity System Managerタブからアクセスできる情報の表示の詳細については、以下を参照してください。 https://docs.netapp.com/us-en/e-series-family/index.html["NetApp EシリーズおよびSANtricityのドキュメント"^] 。

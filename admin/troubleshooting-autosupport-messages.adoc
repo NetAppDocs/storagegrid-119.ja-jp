@@ -1,0 +1,54 @@
+---
+permalink: admin/troubleshooting-autosupport-messages.html 
+sidebar: sidebar 
+keywords: troubleshoot autosupport, asup package 
+summary: 'AutoSupportパッケージの送信に失敗した場合、 StorageGRIDシステムはAutoSupportパッケージの種類に応じて異なるアクションを実行します。AutoSupportパッケージのステータスを確認するには、[サポート] > [ツール] > [AutoSupport] > [結果] を選択します。' 
+---
+= AutoSupportパッケージのトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AutoSupportパッケージの送信に失敗した場合、 StorageGRIDシステムはAutoSupportパッケージの種類に応じて異なるアクションを実行します。*SUPPORT* > *Tools* > * AutoSupport * > *Results* を選択すると、 AutoSupportパッケージのステータスを確認できます。
+
+AutoSupportパッケージの送信に失敗した場合、* AutoSupport* ページの * 結果 * タブに「失敗」と表示されます。
+
+
+NOTE: AutoSupportパッケージをNetAppに転送するようにプロキシサーバーを設定した場合は、link:configuring-admin-proxy-settings.html["プロキシサーバーの構成設定が正しいことを確認する"] 。
+
+
+
+== 毎週のAutoSupportパッケージの失敗
+
+毎週のAutoSupportパッケージの送信に失敗した場合、 StorageGRIDシステムは次のアクションを実行します。
+
+. 「最新の結果」属性を「再試行」に更新します。
+. 1 時間にわたって 4 分ごとに 15 回、 AutoSupportパッケージの再送信を試行します。
+. 送信失敗が 1 時間続くと、最新の結果属性が失敗に更新されます。
+. 次回のスケジュールされた時間にAutoSupportパッケージを再度送信しようとします。
+. NMS サービスが利用できないためにパッケージが失敗した場合、および 7 日が経過する前にパッケージが送信された場合は、通常のAutoSupportスケジュールを維持します。
+. NMS サービスが再び利用可能になったときに、パッケージが 7 日以上送信されていない場合は、 AutoSupportパッケージを直ちに送信します。
+
+
+
+
+== ユーザーまたはイベントによってトリガーされたAutoSupportパッケージの障害
+
+ユーザーがトリガーした、またはイベントがトリガーしたAutoSupportパッケージの送信に失敗した場合、 StorageGRIDシステムは次のアクションを実行します。
+
+. エラーが既知の場合はエラー メッセージが表示されます。たとえば、ユーザーが正しい電子メール構成設定を指定せずに SMTP プロトコルを選択した場合、次のエラーが表示されます。 `AutoSupport packages cannot be sent using SMTP protocol due to incorrect settings on the E-mail Server page.`
+. パッケージの再送信を試行しません。
+. エラーを記録する `nms.log`。
+
+
+障害が発生し、選択されたプロトコルとして SMTP が使用されている場合は、 StorageGRIDシステムの電子メール サーバーが正しく設定されており、電子メール サーバーが実行中であることを確認します (*SUPPORT* > *アラーム (レガシー)* > *レガシー電子メール セットアップ*)。AutoSupportページに次のエラー メッセージが表示される場合があります。 `AutoSupport packages cannot be sent using SMTP protocol due to incorrect settings on the E-mail Server page.`
+
+。 link:../monitor/email-alert-notifications.html["メールサーバーの設定を構成する"] 。
+
+
+
+== AutoSupportパッケージの障害を修正する
+
+障害が発生し、選択されたプロトコルが SMTP である場合は、 StorageGRIDシステムの電子メール サーバーが正しく構成され、電子メール サーバーが実行中であることを確認してください。AutoSupportページに次のエラー メッセージが表示される場合があります。 `AutoSupport packages cannot be sent using SMTP protocol due to incorrect settings on the E-mail Server page.`

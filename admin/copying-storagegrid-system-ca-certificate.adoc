@@ -1,0 +1,56 @@
+---
+permalink: admin/copying-storagegrid-system-ca-certificate.html 
+sidebar: sidebar 
+keywords: grid ca certificate, copy certificate 
+summary: 'StorageGRID は、内部トラフィックを保護するために内部証明機関 (CA) を使用します。独自の証明書をアップロードした場合、この証明書は変更されません。' 
+---
+= グリッドCA証明書をコピーする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID は、内部証明機関 (CA) を使用して内部トラフィックを保護します。独自の証明書をアップロードした場合、この証明書は変更されません。
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたが持っているlink:admin-group-permissions.html["特定のアクセス権限"]。
+
+
+.タスク概要
+カスタム サーバー証明書が構成されている場合、クライアント アプリケーションはカスタム サーバー証明書を使用してサーバーを検証する必要があります。  StorageGRIDシステムから CA 証明書をコピーしないでください。
+
+.手順
+. *構成* > *セキュリティ* > *証明書* を選択し、*グリッド CA* タブを選択します。
+. *証明書 PEM* セクションで、証明書をダウンロードまたはコピーします。
++
+[role="tabbed-block"]
+====
+.証明書ファイルをダウンロード
+--
+証明書をダウンロードする `.pem`ファイル。
+
+.. *証明書のダウンロード*を選択します。
+.. 証明書ファイル名とダウンロード場所を指定します。拡張子を付けてファイルを保存する `.pem`。
++
+例：  `storagegrid_certificate.pem`
+
+
+
+--
+.証明書PEMのコピー
+--
+証明書のテキストをコピーして他の場所に貼り付けます。
+
+.. *証明書PEMのコピー*を選択します。
+.. コピーした証明書をテキスト エディターに貼り付けます。
+.. 拡張子をつけてテキストファイルを保存する `.pem`。
++
+例：  `storagegrid_certificate.pem`
+
+
+
+--
+====
+

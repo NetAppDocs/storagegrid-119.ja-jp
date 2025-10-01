@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: storagegrid-enable.html 
+keywords: storagegrid, how to enable, third-party solutions, tools, applications, examples 
+summary: StorageGRID環境でアプリケーションをテストおよび有効化する方法を学びます。 
+---
+= 環境でStorageGRIDを有効にする方法
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+へ移動 https://docs.netapp.com/us-en/storagegrid-enable/index.html["StorageGRIDを有効にする方法"^]StorageGRID環境でアプリケーションをテストおよび有効化する方法を学習します。

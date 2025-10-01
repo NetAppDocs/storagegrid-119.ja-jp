@@ -1,0 +1,47 @@
+---
+permalink: admin/manage-security.html 
+sidebar: sidebar 
+keywords: how to manage security 
+summary: Grid Manager からさまざまなセキュリティ設定を構成して、 StorageGRIDシステムのセキュリティを強化できます。 
+---
+= セキュリティを管理する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Manager からさまざまなセキュリティ設定を構成して、 StorageGRIDシステムのセキュリティを強化できます。
+
+
+
+== 暗号化を管理する
+
+StorageGRID は、データを暗号化するためのいくつかのオプションを提供します。あなたがすべきlink:reviewing-storagegrid-encryption-methods.html["利用可能な暗号化方式を確認する"]どれがデータ保護要件を満たしているかを判断します。
+
+
+
+== 証明書の管理
+
+あなたはできるlink:using-storagegrid-security-certificates.html["サーバー証明書の設定と管理"]HTTP 接続に使用され、またはサーバーに対してクライアントまたはユーザーの ID を認証するために使用されるクライアント証明書です。
+
+
+
+== キー管理サーバーを構成する
+
+使用してlink:kms-configuring.html["鍵管理サーバー"]アプライアンスがデータセンターから削除された場合でも、 StorageGRIDデータを保護できます。アプライアンス ボリュームが暗号化された後は、ノードが KMS と通信できない限り、アプライアンス上のデータにアクセスできなくなります。
+
+
+NOTE: 暗号化キー管理を使用するには、アプライアンスをグリッドに追加する前に、インストール中に各アプライアンスの *ノード暗号化* 設定を有効にする必要があります。
+
+
+
+== プロキシ設定を管理する
+
+S3プラットフォームサービスまたはクラウドストレージプールを使用している場合は、link:configuring-storage-proxy-settings.html["ストレージプロキシサーバー"]ストレージノードと外部 S3 エンドポイント間。  HTTPSまたはHTTPを使用してAutoSupportパッケージを送信する場合は、link:configuring-admin-proxy-settings.html["管理プロキシサーバー"]管理ノードとテクニカル サポート間。
+
+
+
+== ファイアウォールを制御する
+
+システムのセキュリティを強化するために、特定のポートを開いたり閉じたりすることで、 StorageGRID管理ノードへのアクセスを制御できます。link:controlling-access-through-firewalls.html["外部ファイアウォール"] 。各ノードのネットワークアクセスを制御するには、link:manage-firewall-controls.html["内部ファイアウォール"] 。展開に必要なポートを除くすべてのポートへのアクセスを禁止できます。

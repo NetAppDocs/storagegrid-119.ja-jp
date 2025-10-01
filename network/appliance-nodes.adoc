@@ -1,0 +1,29 @@
+---
+permalink: network/appliance-nodes.html 
+sidebar: sidebar 
+keywords: networking for appliance, port bond mode 
+summary: スループット、冗長性、フェイルオーバーの要件を満たすポート ボンド モードを使用するように、 StorageGRIDアプライアンス上のネットワーク ポートを構成できます。 
+---
+= アプライアンスノード
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スループット、冗長性、フェイルオーバーの要件を満たすポート ボンド モードを使用するように、 StorageGRIDアプライアンス上のネットワーク ポートを構成できます。
+
+StorageGRIDアプライアンスの 10/25 GbE ポートは、グリッド ネットワークおよびクライアント ネットワークへの接続用に、固定または集約ボンド モードで構成できます。
+
+1 GbE 管理ネットワーク ポートは、管理ネットワークへの接続用に独立モードまたはアクティブ バックアップ モードで構成できます。
+
+アプライアンスのポート ボンド モードに関する情報を参照してください。
+
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["ポートボンドモード（SG6160）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["ポートボンドモード（SGF6112）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6000.html#port-bond-modes["ポートボンドモード（SG6000-CNコントローラ）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg5800.html#port-bond-modes["ポートボンドモード（SG5800コントローラ）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg5700.html#port-bond-modes["ポートボンドモード（E5700SGコントローラ）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg110-and-sg1100.html#port-bond-modes["ポートボンドモード（SG110およびSG1100）"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg100-and-sg1000.html#port-bond-modes["ポートボンドモード（SG100およびSG1000）"^]
+

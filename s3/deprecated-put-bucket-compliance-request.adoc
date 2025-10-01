@@ -1,0 +1,111 @@
+---
+permalink: s3/deprecated-put-bucket-compliance-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, PUT deprecated compliance requests 
+summary: PUT Bucket コンプライアンス リクエストは非推奨です。ただし、このリクエストを引き続き使用して、既存のレガシー コンプライアンス バケットのコンプライアンス設定を変更することはできます。 
+---
+= 非推奨: PUT バケットコンプライアンスリクエスト
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+PUT Bucket コンプライアンス リクエストは非推奨です。ただし、このリクエストを引き続き使用して、既存のレガシー コンプライアンス バケットのコンプライアンス設定を変更することはできます。たとえば、既存のバケットを法的保留状態にしたり、保持期間を延長したりできます。
+
+[NOTE]
+====
+以前のStorageGRIDバージョンで利用可能だったStorageGRIDコンプライアンス機能は廃止され、S3 オブジェクト ロックに置き換えられました。詳細については、以下を参照してください。
+
+* link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API を使用して S3 オブジェクトロックを設定する"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetAppナレッジベース: StorageGRID 11.5 でレガシー準拠バケットを管理する方法"^]
+
+
+====
+この操作を完了するには、s3:PutBucketCompliance 権限を持っているか、アカウント ルートである必要があります。
+
+PUT Bucket コンプライアンス リクエストを発行するときは、コンプライアンス設定のすべてのフィールドに値を指定する必要があります。
+
+
+
+== リクエスト例
+
+この例のリクエストは、バケットのコンプライアンス設定を変更します。 `mybucket` 。この例では、 `mybucket`オブジェクトがグリッドに取り込まれた時点から、1 年間ではなく 2 年間 (1,051,200 分) 保持されるようになりました。このバケットには法的拘束力はありません。各オブジェクトは 2 年後に自動的に削除されます。
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /mybucket/?x-ntap-sg-compliance HTTP/1.1
+Date: _date_
+Authorization: _authorization name_
+Host: _host_
+Content-Length: 152
+
+<SGCompliance>
+  <RetentionPeriodMinutes>1051200</RetentionPeriodMinutes>
+  <LegalHold>false</LegalHold>
+  <AutoDelete>true</AutoDelete>
+</SGCompliance>
+----
+[cols="1a,2a"]
+|===
+| Name | 説明 
+
+
+ a| 
+保持期間（分）
+ a| 
+このバケットに追加されたオブジェクトの保持期間の長さ（分）。保持期間は、オブジェクトがグリッドに取り込まれた時点で開始されます。
+
+*重要* RetentionPeriodMinutes に新しい値を指定する場合は、バケットの現在の保持期間以上の値を指定する必要があります。バケットの保持期間が設定されると、その値を減らすことはできず、増やすことしかできなくなります。
+
+
+
+ a| 
+法的保留
+ a| 
+* True: このバケットは現在、法的保留中です。このバケット内のオブジェクトは、保持期間が終了していても、法的保留が解除されるまで削除できません。
+* False: このバケットは現在、法的保留の対象ではありません。このバケット内のオブジェクトは、保持期間が終了すると削除できます。
+
+
+
+
+ a| 
+自動削除
+ a| 
+* True: バケットが法的保留中でない限り、このバケット内のオブジェクトは、保持期間が終了すると自動的に削除されます。
+* False: 保持期間が終了しても、このバケット内のオブジェクトは自動的に削除されません。これらのオブジェクトを削除する必要がある場合は、手動で削除する必要があります。
+
+
+|===
+
+
+== コンプライアンス設定の一貫性
+
+PUT Bucket コンプライアンス リクエストを使用して S3 バケットのコンプライアンス設定を更新すると、 StorageGRID はグリッド全体でバケットのメタデータを更新しようとします。デフォルトでは、 StorageGRIDは *強力なグローバル* 整合性を使用して、バケット メタデータを含むすべてのデータ センター サイトとすべてのストレージ ノードで、変更されたコンプライアンス設定に対する書き込み後の読み取り整合性が確保されることを保証します。
+
+データセンターサイトまたはサイト内の複数のストレージノードが利用できないためにStorageGRIDが*強力なグローバル*一貫性を実現できない場合、応答のHTTPステータスコードは次のようになります。 `503 Service Unavailable.`
+
+この応答を受け取った場合は、グリッド管理者に連絡して、必要なストレージ サービスができるだけ早く利用できるようにする必要があります。グリッド管理者が各サイトで十分なストレージ ノードを用意できない場合、テクニカル サポートは、*強力なサイト*の一貫性を強制して失敗した要求を再試行するように指示することがあります。
+
+
+CAUTION: テクニカル サポートから指示された場合、またはこのレベルを使用した場合の潜在的な結果を理解していない限り、PUT バケット コンプライアンスに対して *Strong-site* の一貫性を強制しないでください。
+
+一貫性が *Strong-site* に低下すると、 StorageGRID は、更新されたコンプライアンス設定がサイト内のクライアント要求に対してのみ書き込み後の読み取り一貫性を持つことを保証します。つまり、すべてのサイトとストレージ ノードが利用可能になるまで、 StorageGRIDシステムではこのバケットに対して一時的に複数の矛盾した設定が存在する可能性があります。設定に一貫性がないと、予期しない望ましくない動作が発生する可能性があります。たとえば、バケットをリーガルホールドの対象とし、一貫性を低く強制した場合、一部のデータセンター サイトではバケットの以前のコンプライアンス設定 (つまり、リーガルホールドの解除) が引き続き有効になる可能性があります。その結果、法的保留中であると思われるオブジェクトは、保持期間の期限が切れると、ユーザーまたは AutoDelete (有効になっている場合) によって削除される可能性があります。
+
+*Strong-site*一貫性の使用を強制するには、PUT Bucketコンプライアンスリクエストを再発行し、 `Consistency-Control` HTTP リクエスト ヘッダーは次のとおりです。
+
+[listing]
+----
+PUT /mybucket/?x-ntap-sg-compliance HTTP/1.1
+Consistency-Control: strong-site
+----
+
+
+== エラー応答
+
+* バケットが準拠して作成されていない場合、レスポンスのHTTPステータスコードは次のようになります。 `404 Not Found` 。
+* もし `RetentionPeriodMinutes`リクエスト内の値がバケットの現在の保存期間より短い場合、HTTPステータスコードは `400 Bad Request`。
+
+
+.関連情報
+link:deprecated-put-bucket-request-modifications-for-compliance.html["非推奨: コンプライアンスのための PUT Bucket リクエストの変更"]

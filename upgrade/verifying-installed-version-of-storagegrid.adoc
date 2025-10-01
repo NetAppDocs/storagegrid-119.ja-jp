@@ -1,0 +1,57 @@
+---
+permalink: upgrade/verifying-installed-version-of-storagegrid.html 
+sidebar: sidebar 
+keywords: storagegrid, version, current version, previous version 
+summary: アップグレードを開始する前に、 StorageGRIDの以前のバージョンが現在インストールされており、最新の修正プログラムが適用されていることを確認してください。 
+---
+= インストールされているStorageGRIDのバージョンを確認する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アップグレードを開始する前に、 StorageGRIDの以前のバージョンが現在インストールされており、最新の修正プログラムが適用されていることを確認してください。
+
+.タスク概要
+StorageGRID 11.9 にアップグレードする前に、グリッドにStorageGRID 11.8 がインストールされている必要があります。現在、以前のバージョンのStorageGRIDを使用している場合は、グリッドの現在のバージョンがStorageGRID 11.8._x.y_ になるまで、以前のすべてのアップグレード ファイルと最新のホットフィックスをインストールする必要があります (強く推奨)。
+
+アップグレードの可能性のあるパスの1つは、<<example-upgrade-path,例>> 。
+
+
+CAUTION: NetApp、次のバージョンにアップグレードする前に、各StorageGRIDバージョンに最新の修正プログラムを適用し、インストールする新しいバージョンごとに最新の修正プログラムを適用することを強くお勧めします。場合によっては、データ損失のリスクを回避するために修正プログラムを適用する必要があります。見る https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["NetAppのダウンロード：StorageGRID"^]詳細については、各修正プログラムのリリース ノートを参照してください。
+
+.手順
+. グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+. グリッド マネージャーの上部から、[ヘルプ] > [バージョン情報] を選択します。
+. *バージョン*が11.8._x.y_であることを確認します。
++
+StorageGRID 11.8._x.y_ バージョン番号の場合:
+
++
+** *メジャー リリース* の _x_ 値は 0 (11.8.0) です。
+** *ホットフィックス* が適用されている場合は、_y_ 値 (例: 11.8.0.1) が設定されます。
+
+
+. *バージョン*が11.8._x.y_でない場合は、 https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["NetAppのダウンロード：StorageGRID"^]各リリースの最新の修正プログラムを含む、以前のリリースのファイルをダウンロードします。
+. ダウンロードしたリリースごとにアップグレード手順を入手します。次に、そのリリースのソフトウェア アップグレード手順を実行し、そのリリースの最新の修正プログラムを適用します (強く推奨)。
++
+参照link:../maintain/storagegrid-hotfix-procedure.html["StorageGRIDホットフィックス手順"]。
+
+
+
+
+
+== [[example-upgrade-path]]例: StorageGRIDバージョン 11.6 から 11.9 にアップグレード
+
+次の例は、 StorageGRID 11.9 へのアップグレードの準備として、 StorageGRIDバージョン 11.6 からバージョン 11.8 にアップグレードする手順を示しています。
+
+システムのアップグレードを準備するには、次の順序でソフトウェアをダウンロードしてインストールします。
+
+. StorageGRID 11.6.0 メジャー リリースにアップグレードします。
+. 最新のStorageGRID 11.6.0._y_ 修正プログラムを適用します。
+. StorageGRID 11.7.0 メジャー リリースにアップグレードします。
+. 最新のStorageGRID 11.7.0._y_ 修正プログラムを適用します。
+. StorageGRID 11.8.0 メジャー リリースにアップグレードします。
+. 最新のStorageGRID 11.8.0._y_ 修正プログラムを適用します。
+

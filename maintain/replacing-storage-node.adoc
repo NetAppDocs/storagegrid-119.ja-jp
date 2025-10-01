@@ -1,0 +1,47 @@
+---
+permalink: maintain/replacing-storage-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace storage node, replacing storage node 
+summary: システム ドライブに障害が発生した場合は、まずストレージ ノードを交換する必要があります。 
+---
+= ストレージノードを交換する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+システム ドライブに障害が発生した場合は、まずストレージ ノードを交換する必要があります。
+
+プラットフォームに応じたノード置換手順を選択する必要があります。ノードを置き換える手順は、すべてのタイプのグリッド ノードで同じです。
+
+
+NOTE: この手順は、ソフトウェア ベースのストレージ ノードにのみ適用されます。別の手順に従う必要がありますlink:recovering-storagegrid-appliance-storage-node.html["アプライアンスストレージノードを回復する"]。
+
+*Linux:* システム ドライブに障害が発生しているかどうかわからない場合は、手順に従ってノードを交換し、必要な回復手順を確認してください。
+
+[cols="1a,2a"]
+|===
+| プラットフォーム | 手順 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["VMwareノードを置き換える"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Linuxノードを置き換える"]
+
+
+
+ a| 
+OpenStack
+ a| 
+NetAppが提供する OpenStack 用の仮想マシン ディスク ファイルとスクリプトは、リカバリ操作ではサポートされなくなりました。 OpenStack デプロイメントで実行されているノードを回復する必要がある場合は、Linux オペレーティング システム用のファイルをダウンロードします。次に、以下の手順に従ってください。link:all-node-types-replacing-linux-node.html["Linuxノードの置き換え"] 。
+
+|===

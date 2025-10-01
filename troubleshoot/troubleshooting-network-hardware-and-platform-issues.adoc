@@ -1,0 +1,409 @@
+---
+permalink: troubleshoot/troubleshooting-network-hardware-and-platform-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot network, how to troubleshoot hardware, how to troubleshoot platform 
+summary: StorageGRIDネットワーク、ハードウェア、およびプラットフォームの問題に関連する問題の原因を特定するために実行できるタスクがいくつかあります。 
+---
+= ネットワーク、ハードウェア、プラットフォームの問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDネットワーク、ハードウェア、およびプラットフォームの問題に関連する問題の原因を特定するために実行できるタスクがいくつかあります。
+
+
+
+== 「422: 処理できないエンティティ」エラー
+
+エラー 422: 処理できないエンティティはさまざまな理由で発生する可能性があります。エラー メッセージを確認して、問題の原因を特定します。
+
+リストされているエラー メッセージのいずれかが表示された場合には、推奨されるアクションを実行してください。
+
+[cols="2a,3a"]
+|===
+| エラー メッセージ | 根本原因と是正措置 
+
+
+ a| 
+[listing]
+----
+422: Unprocessable Entity
+
+Validation failed. Please check
+the values you entered for
+errors. Test connection failed.
+Please verify your
+configuration. Unable to
+authenticate, please verify
+your username and password:
+LDAP Result Code 8 "Strong
+Auth Required": 00002028:
+LdapErr: DSID-0C090256,
+comment: The server requires
+binds to turn on integrity
+checking if SSL\TLS are not
+already active on the
+connection, data 0, v3839
+---- a| 
+このメッセージは、Windows Active Directory (AD) を使用して ID フェデレーションを構成するときに、トランスポート層セキュリティ (TLS) に対して *TLS を使用しない* オプションを選択した場合に表示されることがあります。
+
+LDAP 署名を強制する AD サーバーでは、「TLS を使用しない」オプションの使用はサポートされていません。  TLS の場合は、*STARTTLS を使用する* オプションまたは *LDAPS を使用する* オプションのいずれかを選択する必要があります。
+
+
+
+ a| 
+[listing]
+----
+422: Unprocessable Entity
+
+Validation failed. Please check
+the values you entered for
+errors. Test connection failed.
+Please verify your
+configuration.Unable to
+begin TLS, verify your
+certificate and TLS
+configuration: LDAP Result
+Code 200 "Network Error":
+TLS handshake failed
+    (EOF)
+---- a| 
+このメッセージは、サポートされていない暗号を使用して、 StorageGRIDから ID フェデレーションまたはクラウド ストレージ プールに使用される外部システムへのトランスポート層セキュリティ (TLS) 接続を確立しようとした場合に表示されます。
+
+外部システムによって提供される暗号を確認します。システムは、次のいずれかを使用する必要があります。link:../admin/supported-ciphers-for-outgoing-tls-connections.html["StorageGRIDでサポートされている暗号"] StorageGRID の管理手順に示されているように、送信 TLS 接続用です。
+
+|===
+
+
+== [[troubleshoot_MTU_alert]]グリッド ネットワーク MTU 不一致アラート
+
+*グリッド ネットワーク MTU 不一致* アラートは、グリッド ネットワーク インターフェイス (eth0) の最大転送単位 (MTU) 設定がグリッド内のノード間で大幅に異なる場合にトリガーされます。
+
+.タスク概要
+MTU 設定の違いは、eth0 ネットワークのすべてではなく一部がジャンボ フレーム用に設定されていることを示している可能性があります。  MTU サイズの不一致が 1000 を超えると、ネットワーク パフォーマンスの問題が発生する可能性があります。
+
+.手順
+. すべてのノード上の eth0 の MTU 設定を一覧表示します。
++
+** グリッド マネージャーで提供されるクエリを使用します。
+** 移動先 `_primary Admin Node IP address_/metrics/graph`次のクエリを入力します。 `node_network_mtu_bytes{device="eth0"}`
+
+
+. https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["MTU設定の変更"^]必要に応じて、すべてのノードのグリッド ネットワーク インターフェイス (eth0) で同じになるようにします。
++
+** Linux および VMware ベースのノードの場合は、次のコマンドを使用します。 `+/usr/sbin/change-ip.py [-h] [-n node] mtu network [network...]+`
++
+*例*： `change-ip.py -n node 1500 grid admin`
+
++
+*注意*: Linuxベースのノードでは、コンテナ内のネットワークの必要なMTU値がホストインターフェースで既に設定されている値を超える場合、まずホストインターフェースに必要なMTU値を設定し、その後 `change-ip.py`コンテナ内のネットワークの MTU 値を変更するスクリプト。
+
++
+Linux または VMware ベースのノードで MTU を変更するには、次の引数を使用します。
+
++
+[cols="1a,2a"]
+|===
+| 位置引数 | 説明 
+
+
+ a| 
+`mtu`
+ a| 
+設定する MTU。  1280 ～ 9216 の範囲でなければなりません。
+
+
+
+ a| 
+`network`
+ a| 
+MTU を適用するネットワーク。次のネットワーク タイプを 1 つ以上含めます。
+
+*** グリッド
+*** admin
+*** client（クライアント）
+
+
+|===
++
+[cols="2a,2a"]
+|===
+| Optional arguments | 説明 
+
+
+ a| 
+`-h, – help`
+ a| 
+ヘルプ メッセージを表示して終了します。
+
+
+
+ a| 
+`-n node, --node node`
+ a| 
+ノード。デフォルトはローカルノードです。
+
+|===
+
+
+
+
+
+
+== ノードネットワーク受信フレームエラーアラート
+
+*ノード ネットワーク受信フレーム エラー* アラートは、 StorageGRIDとネットワーク ハードウェア間の接続の問題によって発生する可能性があります。根本的な問題が解決されると、このアラートは自動的にクリアされます。
+
+.タスク概要
+*ノード ネットワーク受信フレーム エラー* アラートは、 StorageGRIDに接続するネットワーク ハードウェアの次の問題によって発生する可能性があります。
+
+* 前方誤り訂正（FEC）は必須だが使用されていない
+* スイッチポートとNIC MTUの不一致
+* 高いリンクエラー率
+* NICリングバッファオーバーラン
+
+
+.手順
+. ネットワーク構成に応じて、このアラートの考えられるすべての原因に対するトラブルシューティング手順に従ってください。
+. エラーの原因に応じて次の手順を実行します。
++
+[role="tabbed-block"]
+====
+.FEC の不一致
+--
+
+NOTE: これらの手順は、 StorageGRIDアプライアンスの FEC 不一致によって発生する *ノード ネットワーク受信フレーム エラー* アラートにのみ適用されます。
+
+.. StorageGRIDアプライアンスに接続されているスイッチのポートの FEC ステータスを確認します。
+.. アプライアンスからスイッチまでのケーブルの物理的な整合性を確認します。
+.. FEC設定を変更してアラートを解決する場合は、まずStorageGRIDアプライアンスインストーラの[リンク構成]ページでアプライアンスが*自動*モードに設定されていることを確認してください（アプライアンスの手順を参照してください）。
++
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SG6160"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SGF6112"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/changing-link-configuration-of-sg6000-cn-controller.html["SG6000"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/changing-link-configuration-of-sg5800-controller.html["SG5800"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/changing-link-configuration-of-e5700sg-controller.html["SG5700"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/changing-link-configuration-of-sg110-and-sg1100-appliance.html["SG110とSG1100"^]
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/changing-link-configuration-of-services-appliance.html["SG100とSG1000"^]
+
+
+.. スイッチ ポートの FEC 設定を変更します。  StorageGRIDアプライアンス ポートは、可能な場合は FEC 設定を一致するように調整します。
++
+StorageGRIDアプライアンスでは FEC 設定を構成できません。代わりに、アプライアンスは接続されているスイッチ ポート上の FEC 設定を検出し、ミラーリングしようとします。リンクが 25 GbE または 100 GbE のネットワーク速度に強制されると、スイッチと NIC が共通の FEC 設定をネゴシエートできない可能性があります。共通の FEC 設定がない場合、ネットワークは「FEC なし」モードに戻ります。  FEC が有効になっていない場合、接続は電気ノイズによるエラーの影響を受けやすくなります。
+
++
+
+NOTE: StorageGRIDアプライアンスは、Firecode (FC) および Reed Solomon (RS) FEC をサポートしますが、FEC なしもサポートします。
+
+
+
+--
+.スイッチポートとNIC MTUの不一致
+--
+アラートの原因がスイッチ ポートと NIC MTU の不一致である場合は、ノードに設定されている MTU サイズがスイッチ ポートの MTU 設定と同じであることを確認します。
+
+ノードに設定されている MTU サイズは、ノードが接続されているスイッチ ポートの設定よりも小さい可能性があります。この構成ではStorageGRIDノードが MTU よりも大きいイーサネット フレームを受信する可能性がありますが、その場合、「ノード ネットワーク受信フレーム エラー」アラートが報告される可能性があります。このような状況になっていると思われる場合は、エンドツーエンドの MTU の目標または要件に応じて、スイッチ ポートの MTU をStorageGRIDネットワーク インターフェイスの MTU と一致するように変更するか、 StorageGRIDネットワーク インターフェイスの MTU をスイッチ ポートと一致するように変更します。
+
+
+NOTE: 最適なネットワーク パフォーマンスを得るには、すべてのノードのグリッド ネットワーク インターフェイスで同様の MTU 値を構成する必要があります。個々のノード上のグリッド ネットワークの MTU 設定に大きな違いがある場合、*グリッド ネットワーク MTU 不一致* アラートがトリガーされます。 MTU 値はすべてのネットワーク タイプで同じである必要はありません。見る<<troubleshoot_MTU_alert,グリッドネットワークMTU不一致アラートのトラブルシューティング>>詳細についてはこちらをご覧ください。
+
+
+NOTE: こちらもご覧ください https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["MTU設定を変更する"^]。
+
+--
+.高いリンクエラー率
+--
+.. FEC がまだ有効になっていない場合は有効にします。
+.. ネットワーク ケーブルの品質が良好であり、破損や不適切な接続がないことを確認します。
+.. ケーブルに問題がないようであれば、テクニカル サポートにお問い合わせください。
++
+
+NOTE: 電気ノイズが多い環境では、エラー率が高くなる可能性があります。
+
+
+
+--
+.NICリングバッファオーバーラン
+--
+エラーが NIC リング バッファ オーバーランである場合は、テクニカル サポートにお問い合わせください。
+
+StorageGRIDシステムが過負荷になり、ネットワーク イベントをタイムリーに処理できなくなると、リング バッファがオーバーランする可能性があります。
+
+--
+====
+. 問題を監視し、アラートが解決されない場合はテクニカル サポートに連絡してください。
+
+
+
+
+== 時刻同期エラー
+
+グリッド内の時間同期に問題が発生する可能性があります。
+
+時刻同期の問題が発生した場合は、それぞれ Stratum 3 以上の参照を提供する少なくとも 4 つの外部 NTP ソースが指定されていること、およびすべての外部 NTP ソースが正常に動作しており、 StorageGRIDノードからアクセスできることを確認してください。
+
+
+NOTE: いつlink:../maintain/configuring-ntp-servers.html["外部NTPソースの指定"]運用レベルのStorageGRIDインストールでは、Windows Server 2016 より前のバージョンの Windows で Windows Time (W32Time) サービスを使用しないでください。以前のバージョンの Windows のタイム サービスは精度が十分でないため、 StorageGRIDなどの高精度環境で使用することは Microsoft によってサポートされていません。
+
+
+
+== Linux: ネットワーク接続の問題
+
+Linux ホストでホストされているStorageGRIDノードのネットワーク接続に問題が発生する可能性があります。
+
+
+
+=== MACアドレスの複製
+
+場合によっては、MAC アドレスの複製を使用することでネットワークの問題を解決できます。仮想ホストを使用している場合は、ノード構成ファイルで各ネットワークの MAC アドレス複製キーの値を「true」に設定します。この設定により、 StorageGRIDコンテナの MAC アドレスはホストの MAC アドレスを使用するようになります。ノード構成ファイルを作成するには、link:../rhel/creating-node-configuration-files.html["Red Hat Enterprise Linux"]またはlink:../ubuntu/creating-node-configuration-files.html["UbuntuまたはDebian"]。
+
+
+NOTE: Linux ホスト OS で使用するための個別の仮想ネットワーク インターフェイスを作成します。  Linux ホスト OS とStorageGRIDコンテナに同じネットワーク インターフェイスを使用すると、ハイパーバイザーでプロミスキャス モードが有効になっていない場合に、ホスト OS にアクセスできなくなる可能性があります。
+
+MACクローンを有効にする方法の詳細については、link:../rhel/configuring-host-network.html["Red Hat Enterprise Linux"]またはlink:../ubuntu/configuring-host-network.html["UbuntuまたはDebian"]。
+
+
+
+=== プロミスキャスモード
+
+MAC アドレスの複製を使用せず、ハイパーバイザーによって割り当てられたもの以外の MAC アドレスのデータをすべてのインターフェイスで受信および送信できるようにする場合は、仮想スイッチおよびポート グループ レベルのセキュリティ プロパティが、無差別モード、MAC アドレスの変更、および偽造送信に対して *承認* に設定されていることを確認します。仮想スイッチに設定された値はポート グループ レベルの値によって上書きされる可能性があるため、両方の場所で設定が同じであることを確認してください。
+
+プロミスキャスモードの使用に関する詳細は、link:../rhel/configuring-host-network.html["Red Hat Enterprise Linux"]またはlink:../ubuntu/configuring-host-network.html["UbuntuまたはDebian"]。
+
+
+
+== Linux: ノードのステータスが「孤立」です
+
+孤立状態の Linux ノードは通常、ノードのコンテナを制御するストレージ グリッド サービスまたはStorageGRIDノード デーモンのいずれかが予期せず停止したことを示します。
+
+.タスク概要
+Linux ノードが孤立状態にあると報告された場合は、次の対応を行う必要があります。
+
+* ログでエラーとメッセージを確認します。
+* ノードを再度起動してみます。
+* 必要に応じて、コンテナ エンジン コマンドを使用して既存のノード コンテナを停止します。
+* ノードを再起動します。
+
+
+.手順
+. サービス デーモンと孤立ノードの両方のログをチェックして、明らかなエラーや予期しない終了に関するメッセージがないか確認します。
+. root として、または sudo 権限を持つアカウントを使用してホストにログインします。
+. 次のコマンドを実行して、ノードを再度起動してみます。 `$ sudo storagegrid node start node-name`
++
+ $ sudo storagegrid node start DC1-S1-172-16-1-172
++
+ノードが孤立している場合、応答は次のようになります。
+
++
+[listing]
+----
+Not starting ORPHANED node DC1-S1-172-16-1-172
+----
+. Linux から、コンテナ エンジンと制御する storagegrid-node プロセスを停止します。例： ``sudo docker stop --time secondscontainer-name``
++
+のために `seconds`コンテナが停止するまで待機する秒数を入力します (通常は 15 分以内)。例えば：
+
++
+[listing]
+----
+sudo docker stop --time 900 storagegrid-DC1-S1-172-16-1-172
+----
+. ノードを再起動します。 `storagegrid node start node-name`
++
+[listing]
+----
+storagegrid node start DC1-S1-172-16-1-172
+----
+
+
+
+
+== Linux: IPv6 サポートのトラブルシューティング
+
+Linux ホストにStorageGRIDノードをインストールし、IPv6 アドレスがノード コンテナに期待どおりに割り当てられていないことに気付いた場合は、カーネルで IPv6 サポートを有効にする必要がある場合があります。
+
+.タスク概要
+グリッド ノードに割り当てられている IPv6 アドレスを確認するには、次の手順を実行します。
+
+. *NODES* を選択し、ノードを選択します。
+. [概要] タブの [IP アドレス] の横にある [追加の IP アドレスを表示] を選択します。
+
+
+IPv6 アドレスが表示されず、ノードが Linux ホストにインストールされている場合は、次の手順に従ってカーネルで IPv6 サポートを有効にします。
+
+.手順
+. root として、または sudo 権限を持つアカウントを使用してホストにログインします。
+. 次のコマンドを実行します。 `sysctl net.ipv6.conf.all.disable_ipv6`
++
+[listing]
+----
+root@SG:~ # sysctl net.ipv6.conf.all.disable_ipv6
+----
++
+結果は0になるはずです。
+
++
+[listing]
+----
+net.ipv6.conf.all.disable_ipv6 = 0
+----
++
+
+NOTE: 結果が0でない場合は、オペレーティングシステムのドキュメントを参照して変更してください。 `sysctl`設定。次に、続行する前に値を 0 に変更します。
+
+. StorageGRIDノード コンテナを入力します。 `storagegrid node enter node-name`
+. 次のコマンドを実行します。 `sysctl net.ipv6.conf.all.disable_ipv6`
++
+[listing]
+----
+root@DC1-S1:~ # sysctl net.ipv6.conf.all.disable_ipv6
+----
++
+結果は 1 になるはずです。
+
++
+[listing]
+----
+net.ipv6.conf.all.disable_ipv6 = 1
+----
++
+
+NOTE: 結果が 1 以外の場合、この手順は適用されません。テクニカル サポートにお問い合わせください。
+
+. コンテナを終了します。 `exit`
++
+[listing]
+----
+root@DC1-S1:~ # exit
+----
+. root として、次のファイルを編集します。 `/var/lib/storagegrid/settings/sysctl.d/net.conf` 。
++
+[listing]
+----
+sudo vi /var/lib/storagegrid/settings/sysctl.d/net.conf
+----
+. 次の 2 行を見つけて、コメント タグを削除します。次に、ファイルを保存して閉じます。
++
+[listing]
+----
+net.ipv6.conf.all.disable_ipv6 = 0
+----
++
+[listing]
+----
+net.ipv6.conf.default.disable_ipv6 = 0
+----
+. 次のコマンドを実行して、 StorageGRIDコンテナを再起動します。
++
+[listing]
+----
+storagegrid node stop node-name
+----
++
+[listing]
+----
+storagegrid node start node-name
+----
+

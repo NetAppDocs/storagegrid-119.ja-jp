@@ -1,0 +1,67 @@
+---
+permalink: vmware/required-materials.html 
+sidebar: sidebar 
+keywords: installation materials vmware 
+summary: StorageGRIDをインストールする前に、必要な情報と資料を収集して準備してください。 
+---
+= 必要な情報と資料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDをインストールする前に、必要な情報と資料を収集して準備してください。
+
+
+
+== 必要な情報
+
+ネットワーク計画:: 各StorageGRIDノードに接続する予定のネットワーク。  StorageGRID は、トラフィックの分離、セキュリティ、管理の利便性のために複数のネットワークをサポートします。
++
+--
+StorageGRIDをご覧くださいlink:../network/index.html["ネットワークガイドライン"]。
+
+--
+ネットワーク情報:: 各グリッド ノードに割り当てる IP アドレスと、DNS サーバーおよび NTP サーバーの IP アドレス。
+グリッドノード用のサーバー:: 展開を計画しているStorageGRIDノードの数とタイプをサポートするのに十分なリソースを総合的に提供するサーバー セット (物理、仮想、またはその両方) を特定します。
++
+--
+
+NOTE: StorageGRIDインストールでStorageGRIDアプライアンス (ハードウェア) ストレージ ノードを使用しない場合は、バッテリ バックアップ書き込みキャッシュ (BBWC) を備えたハードウェア RAID ストレージを使用する必要があります。  StorageGRID は、仮想ストレージ エリア ネットワーク (vSAN)、ソフトウェア RAID、または RAID 保護なしの使用をサポートしていません。
+
+--
+関連情報:: https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool"^]
+
+
+
+
+== 必要な材料
+
+NetApp StorageGRIDライセンス:: デジタル署名された有効なNetAppライセンスが必要です。
+
+
+
+NOTE: テストおよび概念実証グリッドに使用できる非本番環境ライセンスは、 StorageGRIDインストール アーカイブに含まれています。
+
+StorageGRIDインストール アーカイブ:: link:downloading-and-extracting-storagegrid-installation-files.html["StorageGRIDインストールアーカイブをダウンロードし、ファイルを抽出します。"] 。
+サービスラップトップ:: StorageGRIDシステムは、サービス ラップトップを通じてインストールされます。
++
+--
+サービス ラップトップには次のものが必要です。
+
+* ネットワークポート
+* SSHクライアント（例：PuTTY）
+* link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"]
+
+
+--
+StorageGRIDドキュメント::
++
+--
+* link:../release-notes/index.html["リリース ノート"]
+* link:../admin/index.html["StorageGRIDの管理手順"]
+
+
+--
+

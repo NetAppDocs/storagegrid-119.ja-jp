@@ -1,0 +1,36 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, decommission gateway node 
+summary: 管理ノードまたはゲートウェイ ノードを廃止する場合の考慮事項を確認します。 
+---
+= 管理ノードまたはゲートウェイノードの廃止に関する考慮事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理ノードまたはゲートウェイ ノードを廃止する場合の考慮事項を確認します。
+
+
+
+== 管理ノードに関する考慮事項
+
+* プライマリ管理ノードを廃止することはできません。
+* 管理ノードのネットワーク インターフェースの 1 つが高可用性 (HA) グループの一部である場合、管理ノードを廃止することはできません。まず、HA グループからネットワーク インターフェイスを削除する必要があります。説明書をご覧くださいlink:../admin/managing-high-availability-groups.html["HAグループの管理"]。
+* 必要に応じて、管理ノードを廃止するときに ILM ポリシーを安全に変更できます。
+* 管理ノードを廃止し、 StorageGRIDシステムでシングル サインオン (SSO) が有効になっている場合は、Active Directory フェデレーション サービス (AD FS) からノードの証明書利用者信頼を忘れずに削除する必要があります。
+* 使用する場合link:../admin/grid-federation-overview.html["グリッドフェデレーション"]廃止するノードの IP アドレスがグリッド フェデレーション接続に指定されていないことを確認してください。
+* 切断された管理ノードを廃止すると、そのノードからの監査ログは失われますが、これらのログはプライマリ管理ノードにも存在するはずです。
+
+
+
+
+== ゲートウェイノードに関する考慮事項
+
+* ネットワーク インターフェイスの 1 つが高可用性 (HA) グループの一部である場合、ゲートウェイ ノードを廃止することはできません。まず、HA グループからネットワーク インターフェイスを削除する必要があります。説明書をご覧くださいlink:../admin/managing-high-availability-groups.html["HAグループの管理"]。
+* 必要に応じて、ゲートウェイ ノードを廃止するときに ILM ポリシーを安全に変更できます。
+* 使用する場合link:../admin/grid-federation-overview.html["グリッドフェデレーション"]廃止するノードの IP アドレスがグリッド フェデレーション接続に指定されていないことを確認してください。
+* ゲートウェイ ノードは、切断されている間は安全に廃止できます。
+

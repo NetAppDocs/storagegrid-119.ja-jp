@@ -1,0 +1,21 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| パスとファイル名 | 説明 
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
+アプライアンスにStorageGRIDノード イメージをインストールするための DEB パッケージ。
+
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+ファイルのMD5チェックサム `/debs/storagegridwebscale-
+images-version-SHA.deb`。
+
+|===
+
+NOTE: アプライアンスのインストールでは、ネットワーク トラフィックを回避する必要がある場合にのみこれらのファイルが必要です。アプライアンスは、プライマリ管理ノードから必要なファイルをダウンロードできます。

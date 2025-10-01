@@ -1,0 +1,145 @@
+---
+permalink: rhel/automating-installation.html 
+sidebar: sidebar 
+keywords: how to automate red hat linux installation 
+summary: StorageGRIDホスト サービスのインストールとグリッド ノードの構成を自動化できます。 
+---
+= Red Hat Enterprise Linux へのStorageGRID のインストールを自動化する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDホスト サービスのインストールとグリッド ノードの構成を自動化できます。
+
+デプロイメントの自動化は、次のような場合に役立つ可能性があります。
+
+* 物理ホストまたは仮想ホストをデプロイおよび構成するには、Ansible、Puppet、Chef などの標準オーケストレーション フレームワークを既に使用しています。
+* 複数のStorageGRIDインスタンスを展開する予定です。
+* 大規模で複雑なStorageGRIDインスタンスを展開しています。
+
+
+StorageGRIDホスト サービスはパッケージによってインストールされ、構成ファイルによって駆動されます。次のいずれかの方法で構成ファイルを作成できます。
+
+* link:creating-node-configuration-files.html["設定ファイルを作成する"]手動インストール中に対話的に実行します。
+* この記事で説明されているように、標準のオーケストレーション フレームワークを使用して自動インストールを有効にするには、事前に (またはプログラムで) 構成ファイルを準備します。
++
+StorageGRID は、 StorageGRIDアプライアンスおよびStorageGRIDシステム全体 (「グリッド」) の構成を自動化するためのオプションの Python スクリプトを提供します。これらのスクリプトを直接使用することも、スクリプトを調べて使用方法を学ぶこともできます。link:overview-of-installation-rest-api.html["StorageGRIDインストール REST API"]グリッドの展開および構成ツールを独自に開発します。
+
+
+
+
+
+== StorageGRIDホストサービスのインストールと構成を自動化する
+
+Ansible、Puppet、Chef、Fabric、SaltStack などの標準オーケストレーション フレームワークを使用して、 StorageGRIDホスト サービスのインストールを自動化できます。
+
+StorageGRIDホスト サービスは RPM にパッケージ化されており、自動インストールを有効にするために事前に (またはプログラムで) 準備できる構成ファイルによって駆動されます。すでに標準のオーケストレーション フレームワークを使用して RHEL をインストールおよび構成している場合は、プレイブックまたはレシピにStorageGRIDを追加するのは簡単です。
+
+Ansibleのロールとプレイブックの例については、 `/extras`インストール アーカイブに付属のフォルダー。 Ansibleプレイブックでは、 `storagegrid`役割はホストを準備し、 StorageGRID をターゲット サーバーにインストールします。必要に応じてロールまたはプレイブックをカスタマイズできます。
+
+
+NOTE: サンプル プレイブックには、 StorageGRIDホスト サービスを開始する前にネットワーク デバイスを作成するために必要な手順は含まれていません。プレイブックを完成させて使用する前に、これらの手順を追加します。
+
+ホストの準備と仮想グリッド ノードの展開のすべての手順を自動化できます。
+
+
+
+=== Ansible ロールとプレイブックの例
+
+Ansibleのロールとプレイブックの例は、インストールアーカイブに含まれています。 `/extras`フォルダ。 Ansibleプレイブックでは、 `storagegrid`役割はホストを準備し、 StorageGRID をターゲット サーバーにインストールします。必要に応じてロールまたはプレイブックをカスタマイズできます。
+
+提供されているインストールタスク `storagegrid`役割の例を使用する `ansible.builtin.dnf`ローカル RPM ファイルまたはリモート Yum リポジトリからインストールを実行するモジュール。モジュールが利用できないかサポートされていない場合は、次のファイル内の適切なAnsibleタスクを編集して、 `yum`または `ansible.builtin.yum`モジュール:
+
+* `roles/storagegrid/tasks/rhel_install_from_repo.yml`
+* `roles/storagegrid/tasks/rhel_install_from_local.yml`
+
+
+
+
+== StorageGRIDの構成を自動化する
+
+グリッド ノードを展開した後、 StorageGRIDシステムの構成を自動化できます。
+
+.開始する前に
+* インストール アーカイブから次のファイルの場所がわかっています。
++
+[cols="1a,1a"]
+|===
+| ファイル名 | 説明 
+
+
+| ストレージグリッドを構成する.py  a| 
+構成を自動化するために使用されるPythonスクリプト
+
+
+
+| ストレージグリッドの設定.サンプル.json  a| 
+スクリプトで使用するサンプル設定ファイル
+
+
+
+| ストレージグリッドを構成する.blank.json  a| 
+スクリプトで使用するための空の設定ファイル
+
+|===
+* 作成しました `configure-storagegrid.json`設定ファイル。このファイルを作成するには、サンプル構成ファイルを変更します。(`configure-storagegrid.sample.json` ）または空の設定ファイル(`configure-storagegrid.blank.json`）。
+
+
+.タスク概要
+使用することができます `configure-storagegrid.py`Pythonスクリプトと `configure-storagegrid.json`StorageGRIDシステムの構成を自動化するための構成ファイル。
+
+
+NOTE: グリッド マネージャーまたはインストール API を使用してシステムを構成することもできます。
+
+.手順
+. Python スクリプトを実行するために使用している Linux マシンにログインします。
+. インストール アーカイブを抽出したディレクトリに移動します。
++
+例えば：
+
++
+[listing]
+----
+cd StorageGRID-Webscale-version/platform
+----
++
+どこ `platform`は `debs`、 `rpms` 、 または `vsphere`。
+
+. Python スクリプトを実行し、作成した構成ファイルを使用します。
++
+例えば：
+
++
+[listing]
+----
+./configure-storagegrid.py ./configure-storagegrid.json --start-install
+----
+
+
+.結果
+回復パッケージ `.zip`ファイルは構成プロセス中に生成され、インストールおよび構成プロセスを実行しているディレクトリにダウンロードされます。 1 つ以上のグリッド ノードに障害が発生した場合にStorageGRIDシステムを回復できるように、リカバリ パッケージ ファイルをバックアップする必要があります。たとえば、安全なバックアップされたネットワークの場所と安全なクラウド ストレージの場所にコピーします。
+
+
+CAUTION: リカバリ パッケージ ファイルには、 StorageGRIDシステムからデータを取得するために使用できる暗号化キーとパスワードが含まれているため、セキュリティ保護する必要があります。
+
+ランダムパスワードを生成するように指定した場合は、 `Passwords.txt`ファイルを開いて、 StorageGRIDシステムにアクセスするために必要なパスワードを探します。
+
+[listing]
+----
+######################################################################
+##### The StorageGRID "Recovery Package" has been downloaded as: #####
+#####           ./sgws-recovery-package-994078-rev1.zip          #####
+#####   Safeguard this file as it will be needed in case of a    #####
+#####                 StorageGRID node recovery.                 #####
+######################################################################
+----
+確認メッセージが表示されたら、 StorageGRIDシステムがインストールされ、構成されています。
+
+[listing]
+----
+StorageGRID has been configured and installed.
+----
+.関連情報
+link:overview-of-installation-rest-api.html["インストールREST API"]

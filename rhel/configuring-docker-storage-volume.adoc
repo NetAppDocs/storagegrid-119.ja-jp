@@ -1,0 +1,127 @@
+---
+permalink: rhel/configuring-docker-storage-volume.html 
+sidebar: sidebar 
+keywords: how to configure container engine storage volume, Docker, Podman 
+summary: 'コンテナ エンジン (Docker または Podman) をインストールする前に、ストレージ ボリュームをフォーマットしてマウントする必要がある場合があります。' 
+---
+= コンテナエンジンのストレージボリュームを構成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コンテナ エンジン (Docker または Podman) をインストールする前に、ストレージ ボリュームをフォーマットしてマウントする必要がある場合があります。
+
+
+NOTE: ソフトウェアのみのデプロイメント用のコンテナ エンジンとしての Docker のサポートは非推奨になりました。Docker は将来のリリースで別のコンテナ エンジンに置き換えられる予定です。
+
+.タスク概要
+DockerまたはPodmanストレージボリュームにローカルストレージを使用する予定で、ホストパーティションに十分な空き容量がある場合は、これらの手順をスキップできます。 `/var/lib/docker` Dockerと `/var/lib/containers`ポッドマンのために。
+
+
+NOTE: Podman は Red Hat Enterprise Linux (RHEL) でのみサポートされます。
+
+.手順
+. コンテナ エンジン ストレージ ボリュームにファイル システムを作成します。
++
+[listing]
+----
+sudo mkfs.ext4 container-engine-storage-volume-device
+----
+. コンテナ エンジン ストレージ ボリュームをマウントします。
++
+** Dockerの場合:
++
+[listing]
+----
+sudo mkdir -p /var/lib/docker
+sudo mount container-storage-volume-device /var/lib/docker
+----
+** Podmanの場合:
++
+[listing]
+----
+sudo mkdir -p /var/lib/containers
+sudo mount container-storage-volume-device /var/lib/containers
+----
+
+
+. /etc/fstab に container-storage-volume-device のエントリを追加します。
++
+この手順により、ホストの再起動後にストレージ ボリュームが自動的に再マウントされるようになります。
+
+
+
+
+
+== Dockerをインストールする
+
+StorageGRIDシステムは、コンテナのコレクションとして Red Hat Enterprise Linux 上で実行されます。Docker コンテナ エンジンを使用することを選択した場合は、次の手順に従って Docker をインストールします。さもないと、<<Podmanをインストールする,Podmanをインストールする>> 。
+
+.手順
+. Linux ディストリビューションの手順に従って Docker をインストールします。
++
+
+NOTE: Linux ディストリビューションに Docker が含まれていない場合は、Docker Web サイトからダウンロードできます。
+
+. 次の 2 つのコマンドを実行して、Docker が有効になっていて起動していることを確認します。
++
+[listing]
+----
+sudo systemctl enable docker
+----
++
+[listing]
+----
+sudo systemctl start docker
+----
+. 次のように入力して、必要なバージョンの Docker がインストールされていることを確認します。
++
+[listing]
+----
+sudo docker version
+----
++
+クライアントとサーバーのバージョンは 1.11.0 以降である必要があります。
+
+
+
+
+
+== Podmanをインストールする
+
+StorageGRIDシステムは、コンテナのコレクションとして Red Hat Enterprise Linux 上で実行されます。Podman コンテナ エンジンを使用することを選択した場合は、次の手順に従って Podman をインストールします。さもないと、<<Dockerをインストールする,Dockerをインストールする>> 。
+
+
+NOTE: Podman は Red Hat Enterprise Linux (RHEL) でのみサポートされます。
+
+.手順
+. Linux ディストリビューションの手順に従って、Podman と Podman-Docker をインストールします。
++
+
+NOTE: Podman をインストールするときに、Podman-Docker パッケージもインストールする必要があります。
+
+. 次のように入力して、必要なバージョンの Podman と Podman-Docker がインストールされていることを確認します。
++
+[listing]
+----
+sudo docker version
+----
++
+
+NOTE: Podman-Docker パッケージを使用すると、Docker コマンドを使用できます。
+
++
+クライアントとサーバーのバージョンは 3.2.3 以降である必要があります。
+
++
+[listing]
+----
+Version: 3.2.3
+API Version: 3.2.3
+Go Version: go1.15.7
+Built: Tue Jul 27 03:29:39 2021
+OS/Arch: linux/amd64
+----
+

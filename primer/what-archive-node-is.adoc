@@ -1,0 +1,16 @@
+---
+permalink: primer/what-archive-node-is.html 
+sidebar: sidebar 
+keywords: archive node 
+summary: アーカイブ ノードのサポートは削除されました。 
+---
+= アーカイブノードとは何ですか?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アーカイブ ノードのサポートは削除されました。
+
+アーカイブノードの詳細については、 https://docs.netapp.com/us-en/storagegrid-118/primer/what-archive-node-is.html["アーカイブノードとは（StorageGRID 11.8 ドキュメントサイト）"^] 。

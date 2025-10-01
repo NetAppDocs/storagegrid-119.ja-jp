@@ -1,0 +1,104 @@
+---
+permalink: tenant/signing-in-to-tenant-manager.html 
+sidebar: sidebar 
+keywords: how to sign in to tenant manager 
+summary: サポートされている Web ブラウザのアドレス バーにテナントの URL を入力して、テナント マネージャにアクセスします。 
+---
+= テナントマネージャーにSign in
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+テナントマネージャにアクセスするには、テナントのURLをブラウザのアドレスバーに入力します。link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+
+.開始する前に
+* ログイン資格情報をお持ちです。
+* グリッド管理者から提供された、テナント マネージャーにアクセスするための URL があります。  URL は次のいずれかの例のようになります。
++
+`\https://FQDN_or_Admin_Node_IP/`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/`
+
++
+`\https://FQDN_or_Admin_Node_IP/?accountId=20-digit-account-id`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/?accountId=20-digit-account-id`
+
++
+URL には、完全修飾ドメイン名 (FQDN)、管理ノードの IP アドレス、または管理ノードの HA グループの仮想 IP アドレスが常に含まれます。ポート番号、20 桁のテナント アカウント ID、またはその両方が含まれる場合もあります。
+
+* URL にテナントの 20 桁のアカウント ID が含まれていない場合は、このアカウント ID が存在します。
+* 使用していますlink:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"]。
+* Web ブラウザで Cookie が有効になっています。
+* あなたは以下のユーザーグループに属していますlink:tenant-management-permissions.html["特定のアクセス権限"]。
+
+
+.手順
+. 起動するlink:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"]。
+. ブラウザのアドレスバーに、Tenant Manager にアクセスするための URL を入力します。
+. セキュリティ警告が表示された場合は、ブラウザのインストール ウィザードを使用して証明書をインストールします。
+. テナント マネージャーにSign in。
++
+表示されるサインイン画面は、入力した URL と、 StorageGRIDに対してシングル サインオン (SSO) が設定されているかどうかによって異なります。
+
++
+[role="tabbed-block"]
+====
+.SSOを使用していない
+--
+StorageGRIDが SSO を使用していない場合は、次のいずれかの画面が表示されます。
+
+** Grid Manager のサインイン ページ。  *テナント サインイン* リンクを選択します。
++
+image::../media/tenant_login_link.png[グリッド マネージャーのサインイン ページのテナント サインイン リンク]
+
+** テナント マネージャーのサインイン ページ。以下に示すように、*アカウント* フィールドはすでに入力されている可能性があります。
++
+image::../media/tenant_user_sign_in.png[テナントマネージャーのサインインページ]
+
++
+... テナントの 20 桁のアカウント ID が表示されない場合は、最近のアカウントの一覧にテナント アカウントの名前が表示されている場合はそれを選択するか、アカウント ID を入力します。
+... ユーザー名とパスワードを入力してください。
+... *Sign in*を選択します。
++
+テナント マネージャー ダッシュボードが表示されます。
+
+... 他の人から初期パスワードを受け取った場合は、*_username_* > *パスワードの変更* を選択してアカウントを保護します。
+
+
+
+
+--
+.SSOの使用
+--
+StorageGRIDが SSO を使用している場合は、次のいずれかの画面が表示されます。
+
+** 組織の SSO ページ。例えば：
++
+image::../media/sso_organization_page.gif[SSO の組織サインイン ページの例]
+
++
+標準の SSO 資格情報を入力し、[*Sign in*] を選択します。
+
+** テナント マネージャー SSO サインイン ページ。
++
+image::../media/sign_in_sso.png[SSO が有効な場合のテナント アカウントへのサインイン]
+
++
+... テナントの 20 桁のアカウント ID が表示されない場合は、最近のアカウントの一覧にテナント アカウントの名前が表示されている場合はそれを選択するか、アカウント ID を入力します。
+... *Sign in*を選択します。
+... 組織の SSO サインイン ページで標準の SSO 資格情報を使用してSign in。
++
+テナント マネージャー ダッシュボードが表示されます。
+
+
+
+
+
+--
+====
+

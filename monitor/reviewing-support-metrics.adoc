@@ -1,0 +1,50 @@
+---
+permalink: monitor/reviewing-support-metrics.html 
+sidebar: sidebar 
+keywords: how to view support metrics, how to review support metrics 
+summary: 問題のトラブルシューティングを行うときは、テクニカル サポートと協力して、 StorageGRIDシステムの詳細なメトリックとグラフを確認できます。 
+---
+= サポート指標を確認する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+問題のトラブルシューティングを行うときは、テクニカル サポートと協力して、 StorageGRIDシステムの詳細なメトリックとグラフを確認できます。
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたが持っているlink:../admin/admin-group-permissions.html["特定のアクセス権限"]。
+
+
+.タスク概要
+メトリクス ページでは、Prometheus および Grafana ユーザー インターフェースにアクセスできます。  Prometheus はメトリックを収集するためのオープンソース ソフトウェアです。  Grafana は、メトリックの視覚化のためのオープンソース ソフトウェアです。
+
+
+NOTE: メトリクス ページで利用できるツールは、テクニカル サポートが使用することを目的としています。これらのツール内の一部の機能とメニュー項目は意図的に機能せず、変更される可能性があります。リストを見るlink:commonly-used-prometheus-metrics.html["よく使われるPrometheusメトリクス"]。
+
+.手順
+. テクニカル サポートの指示に従って、[*サポート*] > [*ツール*] > [*メトリック*] を選択します。
++
+メトリック ページの例を以下に示します。
+
++
+image::../media/metrics_page.png[メトリクスページ]
+
+. StorageGRIDメトリックの現在の値を照会し、時間の経過に伴う値のグラフを表示するには、Prometheus セクションのリンクをクリックします。
++
+Prometheus インターフェースが表示されます。このインターフェースを使用して、利用可能なStorageGRIDメトリックに対してクエリを実行し、時間の経過に伴うStorageGRIDメトリックのグラフを作成できます。
+
++
+
+NOTE: 名前に _private_ が含まれるメトリックは内部使用のみを目的としており、 StorageGRIDリリース間で予告なく変更されることがあります。
+
+. StorageGRIDメトリックの経時的なグラフを含む事前構築されたダッシュボードにアクセスするには、Grafana セクションのリンクをクリックします。
++
+選択したリンクの Grafana インターフェースが表示されます。
+
++
+image::../media/metrics_page_grafana.png[メトリクスページ Grafana]
+
+

@@ -1,0 +1,268 @@
+---
+permalink: s3/use-s3-api-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: how to configure S3 object lock, object lock, default bucket retention, governance, compliance, retain-until-date, legal hold 
+summary: StorageGRIDシステムでグローバル S3 オブジェクト ロック設定が有効になっている場合は、S3 オブジェクト ロックが有効になっているバケットを作成できます。各バケットのデフォルトの保持期間、または各オブジェクト バージョンの保持期間設定を指定できます。 
+---
+= S3 REST API を使用して S3 オブジェクトロックを設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムでグローバル S3 オブジェクト ロック設定が有効になっている場合は、S3 オブジェクト ロックが有効になっているバケットを作成できます。各バケットのデフォルトの保持期間、または各オブジェクト バージョンの保持期間設定を指定できます。
+
+
+
+== バケットのS3オブジェクトロックを有効にする方法
+
+StorageGRIDシステムでグローバル S3 オブジェクト ロック設定が有効になっている場合は、各バケットを作成するときにオプションで S3 オブジェクト ロックを有効にできます。
+
+S3 オブジェクト ロックは、バケットを作成するときにのみ有効にできる永続的な設定です。バケットの作成後に S3 オブジェクトロックを追加または無効にすることはできません。
+
+バケットに対して S3 オブジェクトロックを有効にするには、次のいずれかの方法を使用します。
+
+* テナント マネージャーを使用してバケットを作成します。見るlink:../tenant/creating-s3-bucket.html["S3バケットを作成する"] 。
+* CreateBucketリクエストを使用してバケットを作成します。 `x-amz-bucket-object-lock-enabled`リクエスト ヘッダー。見るlink:operations-on-buckets.html["バケットの操作"] 。
+
+
+S3 オブジェクト ロックにはバケットのバージョン管理が必要です。これはバケットの作成時に自動的に有効になります。バケットのバージョン管理を一時停止することはできません。見るlink:object-versioning.html["オブジェクトのバージョン管理"] 。
+
+
+
+== バケットのデフォルトの保持設定
+
+バケットに対して S3 オブジェクトロックが有効になっている場合は、オプションでバケットのデフォルトの保存を有効にし、デフォルトの保存モードとデフォルトの保存期間を指定できます。
+
+
+
+=== デフォルトの保持モード
+
+* コンプライアンスモードの場合:
++
+** オブジェクトは、保持期限に達するまで削除できません。
+** オブジェクトの保持期限を増やすことはできますが、減らすことはできません。
+** オブジェクトの保持期限は、その日付に達するまで削除できません。
+
+
+* ガバナンスモードの場合:
++
+** ユーザーは `s3:BypassGovernanceRetention`許可は `x-amz-bypass-governance-retention: true`保持設定をバイパスするためのリクエスト ヘッダー。
+** これらのユーザーは、オブジェクト バージョンを、その保持期限に達する前に削除できます。
+** これらのユーザーは、オブジェクトの保持期限を増減または削除できます。
+
+
+
+
+
+
+=== デフォルト保持期間
+
+各バケットには、年または日数で指定されたデフォルトの保持期間を設定できます。
+
+
+
+== バケットのデフォルトの保持期間を設定する方法
+
+バケットのデフォルトの保持期間を設定するには、次のいずれかの方法を使用します。
+
+* テナント マネージャーからバケット設定を管理します。見るlink:../tenant/creating-s3-bucket.html["S3バケットを作成する"]そしてlink:../tenant/update-default-retention-settings.html["S3 オブジェクトロックのデフォルト保持を更新"]。
+* バケットに対して PutObjectLockConfiguration リクエストを発行し、デフォルトのモードとデフォルトの日数または年数を指定します。
+
+
+
+
+=== PutObjectLockConfiguration
+
+PutObjectLockConfiguration リクエストを使用すると、S3 オブジェクトロックが有効になっているバケットのデフォルトの保持モードとデフォルトの保持期間を設定および変更できます。以前に構成したデフォルトの保持設定を削除することもできます。
+
+新しいオブジェクトバージョンがバケットに取り込まれると、次の場合、デフォルトの保持モードが適用されます。 `x-amz-object-lock-mode`そして `x-amz-object-lock-retain-until-date`指定されていません。デフォルトの保存期間は、次の場合に保存期限日を計算するために使用されます。 `x-amz-object-lock-retain-until-date`指定されていません。
+
+オブジェクト バージョンの取り込み後にデフォルトの保持期間が変更された場合、オブジェクト バージョンの保持期限は同じままとなり、新しいデフォルトの保持期間を使用して再計算されることはありません。
+
+あなたは `s3:PutBucketObjectLockConfiguration`この操作を完了するには、権限を持っているか、アカウントの root である必要があります。
+
+その `Content-MD5`PUT リクエストではリクエスト ヘッダーを指定する必要があります。
+
+
+
+==== リクエスト例
+
+この例では、バケットの S3 オブジェクトロックを有効にし、デフォルトの保持モードを COMPLIANCE に、デフォルトの保持期間を 6 年に設定します。
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?object-lock HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 308
+Host: _host_
+Content-MD5: _request header_
+User-Agent: s3sign/1.0.0 requests/2.24.0 python/3.8.2
+X-Amz-Date: _date_
+X-Amz-Content-SHA256: _authorization-string_
+Authorization: _authorization-string_
+
+<ObjectLockConfiguration>
+    <ObjectLockEnabled>Enabled</ObjectLockEnabled>
+    <Rule>
+        <DefaultRetention>
+            <Mode>COMPLIANCE</Mode>
+            <Years>6</Years>
+        </DefaultRetention>
+    </Rule>
+</ObjectLockConfiguration>
+----
+
+
+== バケットのデフォルトの保持期間を決定する方法
+
+バケットに対して S3 オブジェクト ロックが有効になっているかどうかを確認し、デフォルトの保持モードと保持期間を確認するには、次のいずれかの方法を使用します。
+
+* テナント マネージャーでバケットを表示します。見るlink:../tenant/viewing-s3-bucket-details.html["S3バケットを表示"] 。
+* GetObjectLockConfiguration 要求を発行します。
+
+
+
+
+=== GetObjectLockConfiguration
+
+GetObjectLockConfiguration リクエストを使用すると、バケットに対して S3 オブジェクト ロックが有効になっているかどうかを確認し、有効になっている場合は、バケットにデフォルトの保持モードと保持期間が設定されているかどうかを確認できます。
+
+新しいオブジェクトバージョンがバケットに取り込まれると、次の場合、デフォルトの保持モードが適用されます。 `x-amz-object-lock-mode`指定されていません。デフォルトの保存期間は、次の場合に保存期限日を計算するために使用されます。 `x-amz-object-lock-retain-until-date`指定されていません。
+
+あなたは `s3:GetBucketObjectLockConfiguration`この操作を完了するには、権限を持っているか、アカウントの root である必要があります。
+
+
+
+==== リクエスト例
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?object-lock HTTP/1.1
+Host: _host_
+Accept-Encoding: identity
+User-Agent: aws-cli/1.18.106 Python/3.8.2 Linux/4.4.0-18362-Microsoft botocore/1.17.29
+x-amz-date: _date_
+x-amz-content-sha256: _authorization-string_
+Authorization: _authorization-string_
+----
+
+
+==== 応答例
+
+[listing]
+----
+HTTP/1.1 200 OK
+x-amz-id-2: iVmcB7OXXJRkRH1FiVq1151/T24gRfpwpuZrEG11Bb9ImOMAAe98oxSpXlknabA0LTvBYJpSIXk=
+x-amz-request-id: B34E94CACB2CEF6D
+Date: Fri, 04 Sep 2020 22:47:09 GMT
+Transfer-Encoding: chunked
+Server: AmazonS3
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ObjectLockConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <ObjectLockEnabled>Enabled</ObjectLockEnabled>
+    <Rule>
+        <DefaultRetention>
+            <Mode>COMPLIANCE</Mode>
+            <Years>6</Years>
+        </DefaultRetention>
+    </Rule>
+</ObjectLockConfiguration>
+----
+
+
+== オブジェクトの保持設定を指定する方法
+
+S3 オブジェクトロックが有効になっているバケットには、S3 オブジェクトロックの保持設定があるオブジェクトとないオブジェクトの組み合わせを含めることができます。
+
+オブジェクト レベルの保持設定は、S3 REST API を使用して指定されます。オブジェクトの保持設定は、バケットのデフォルトの保持設定よりも優先されます。
+
+各オブジェクトに対して次の設定を指定できます。
+
+* *保持モード*: コンプライアンスまたはガバナンスのいずれか。
+* *Retain-until-date*: オブジェクト バージョンをStorageGRIDで保持する必要がある期間を指定する日付。
++
+** COMPLIANCE モードでは、保持期限が将来の日付である場合、オブジェクトを取得することはできますが、変更または削除することはできません。保持期限を増やすことはできますが、この日付を減らしたり削除したりすることはできません。
+** GOVERNANCE モードでは、特別な権限を持つユーザーは、retain-until-date 設定をバイパスできます。保持期間が経過する前にオブジェクト バージョンを削除できます。また、保持期限を延長、短縮、または削除することもできます。
+
+
+* *法的保留*: オブジェクト バージョンに法的保留を適用すると、そのオブジェクトは直ちにロックされます。たとえば、調査や法的紛争に関連するオブジェクトに対して法的保留を設定する必要がある場合があります。法的保留には有効期限はありませんが、明示的に削除されるまで有効のままになります。
++
+オブジェクトの法的保留設定は、保持モードおよび保持期限とは無関係です。オブジェクト バージョンが法的保留中の場合、そのバージョンを削除することは誰にもできません。
+
+
+
+バケットにオブジェクトバージョンを追加するときにS3オブジェクトロック設定を指定するには、link:put-object.html["PutObject"] 、link:put-object-copy.html["CopyObject"] 、 またはlink:initiate-multipart-upload.html["CreateMultipartUpload"]リクエスト。
+
+以下を使用できます。
+
+* `x-amz-object-lock-mode`COMPLIANCE または GOVERNANCE (大文字と小文字が区別されます) のいずれかになります。
++
+
+NOTE: 指定する場合 `x-amz-object-lock-mode`、また指定する必要があります `x-amz-object-lock-retain-until-date`。
+
+* `x-amz-object-lock-retain-until-date`
++
+** 保持期限の値は、次の形式でなければなりません。 `2020-08-10T21:46:00Z` 。小数秒は許可されますが、保持されるのは小数点第 3 位のみです (ミリ秒の精度)。その他の ISO 8601 形式は許可されません。
+** 保持期限は将来の日付にする必要があります。
+
+
+* `x-amz-object-lock-legal-hold`
++
+法的保留がオンの場合 (大文字と小文字が区別されます)、オブジェクトは法的保留の対象となります。法的保留がオフの場合、法的保留は設定されません。その他の値を指定すると、400 Bad Request (InvalidArgument) エラーが発生します。
+
+
+
+これらのリクエスト ヘッダーのいずれかを使用する場合は、次の制限に注意してください。
+
+* その `Content-MD5`リクエストヘッダーは必須です `x-amz-object-lock-*`リクエスト ヘッダーは PutObject リクエストに存在します。 `Content-MD5` CopyObject または CreateMultipartUpload には必要ありません。
+* バケットにS3オブジェクトロックが有効になっていない場合、 `x-amz-object-lock-*`リクエスト ヘッダーが存在する場合、400 Bad Request (InvalidRequest) エラーが返されます。
+* PutObjectリクエストは、 `x-amz-storage-class: REDUCED_REDUNDANCY` AWS の動作と一致させるためです。ただし、S3 オブジェクト ロックが有効になっているバケットにオブジェクトが取り込まれると、 StorageGRID は常にデュアルコミット取り込みを実行します。
+* 後続のGETまたはHeadObjectバージョンのレスポンスにはヘッダーが含まれます `x-amz-object-lock-mode`、 `x-amz-object-lock-retain-until-date` 、 そして `x-amz-object-lock-legal-hold`設定されていて、リクエスト送信者が正しい `s3:Get*`権限。
+
+
+使用することができます `s3:object-lock-remaining-retention-days`オブジェクトの許容される最小および最大保持期間を制限するポリシー条件キー。
+
+
+
+== オブジェクトの保持設定を更新する方法
+
+既存のオブジェクト バージョンの法的保留または保持設定を更新する必要がある場合は、次のオブジェクト サブリソース操作を実行できます。
+
+* `PutObjectLegalHold`
++
+新しい法的保留値がオンの場合、オブジェクトは法的保留下に置かれます。法的保留値が OFF の場合、法的保留は解除されます。
+
+* `PutObjectRetention`
++
+** モード値は、COMPLIANCE または GOVERNANCE (大文字と小文字が区別されます) になります。
+** 保持期限の値は、次の形式でなければなりません。 `2020-08-10T21:46:00Z` 。小数秒は許可されますが、保持されるのは小数点第 3 位のみです (ミリ秒の精度)。その他の ISO 8601 形式は許可されません。
+** オブジェクト バージョンに既存の保持期限がある場合は、それを増やすことしかできません。新しい値は将来のものである必要があります。
+
+
+
+
+
+
+== ガバナンスモードの使い方
+
+ユーザーは `s3:BypassGovernanceRetention`権限により、GOVERNANCE モードを使用するオブジェクトのアクティブな保持設定がバイパスされる可能性があります。 DELETEまたはPutObjectRetention操作には、 `x-amz-bypass-governance-retention:true`リクエスト ヘッダー。これらのユーザーは次の追加操作を実行できます。
+
+* 保持期間が経過する前にオブジェクト バージョンを削除するには、DeleteObject または DeleteObjects 操作を実行します。
++
+法的保留中のオブジェクトは削除できません。法的保留はオフにする必要があります。
+
+* オブジェクトの保持期間が経過する前に、オブジェクト バージョンのモードを GOVERNANCE から COMPLIANCE に変更する PutObjectRetention 操作を実行します。
++
+モードを COMPLIANCE から GOVERNANCE に変更することは許可されません。
+
+* オブジェクト バージョンの保持期間を増加、減少、または削除するには、PutObjectRetention 操作を実行します。
+
+
+.関連情報
+* link:../ilm/managing-objects-with-s3-object-lock.html["S3 オブジェクトロックでオブジェクトを管理する"]
+* link:../tenant/using-s3-object-lock.html["S3 オブジェクトロックを使用してオブジェクトを保持する"]
+* https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html["Amazon Simple Storage Service ユーザーガイド: オブジェクトのロック"^]
+

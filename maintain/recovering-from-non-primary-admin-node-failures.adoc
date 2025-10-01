@@ -1,0 +1,24 @@
+---
+permalink: maintain/recovering-from-non-primary-admin-node-failures.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, non-primary admin node failure 
+summary: 'プライマリ以外の管理ノードの障害から回復するには、次のタスクを完了する必要があります。 1 つの管理ノードは構成管理ノード (CMN) サービスをホストし、プライマリ管理ノードと呼ばれます。複数の管理ノードを持つことができますが、各StorageGRIDシステムにはプライマリ管理ノードが 1 つだけ含まれます。その他すべての管理ノードは非プライマリ管理ノードです。' 
+---
+= プライマリ以外の管理ノードの障害からの回復
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プライマリ以外の管理ノードの障害から回復するには、次のタスクを完了する必要があります。 1 つの管理ノードは構成管理ノード (CMN) サービスをホストし、プライマリ管理ノードと呼ばれます。複数の管理ノードを持つことができますが、各StorageGRIDシステムにはプライマリ管理ノードが 1 つだけ含まれます。その他すべての管理ノードは非プライマリ管理ノードです。
+
+プライマリ以外の管理ノードを回復するには、次の大まかな手順に従います。
+
+. link:copying-audit-logs-from-failed-non-primary-admin-node.html["障害が発生した非プライマリ管理ノードから監査ログをコピーする"]
+. link:replacing-non-primary-admin-node.html["非プライマリ管理ノードを置き換える"]
+. link:selecting-start-recovery-to-configure-non-primary-admin-node.html["非プライマリ管理ノードを構成するには、「リカバリの開始」を選択します。"]
+. link:restoring-audit-log-on-recovered-non-primary-admin-node.html["回復した非プライマリ管理ノードで監査ログを復元する"]
+. link:restoring-admin-node-database-non-primary-admin-node.html["非プライマリ管理ノードを回復するときに管理ノードデータベースを復元します"]
+. link:restoring-prometheus-metrics-non-primary-admin-node.html["非プライマリ管理ノードを復旧するときに Prometheus メトリックを復元する"]
+

@@ -1,0 +1,28 @@
+---
+permalink: upgrade/index.html 
+sidebar: sidebar 
+keywords: storagegrid software upgrade 
+summary: StorageGRIDシステムを新しいリリースにアップグレードするには、次の手順に従います。 
+---
+= StorageGRIDソフトウェアのアップグレード
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムを新しいリリースにアップグレードするには、次の手順に従います。
+
+アップグレードを実行すると、 StorageGRIDシステム内のすべてのノードがアップグレードされます。
+
+
+
+== 開始する前に
+
+これらのトピックを確認して、 StorageGRID 11.9 の新機能と拡張機能について学習し、廃止または削除された機能があるかどうかを確認し、 StorageGRID API の変更点を確認してください。
+
+* link:whats-new.html["StorageGRID 11.9の新機能"]
+* link:removed-or-deprecated-features.html["削除または非推奨の機能"]
+* link:changes-to-grid-management-api.html["グリッド管理APIの変更"]
+* link:changes-to-tenant-management-api.html["テナント管理APIの変更"]
+

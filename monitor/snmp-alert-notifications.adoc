@@ -1,0 +1,28 @@
+---
+permalink: monitor/snmp-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to use snmp notifications for alerts 
+summary: アラートが発生したときにStorageGRID がSNMP 通知を送信するようにするには、 StorageGRID SNMP エージェントを有効にし、1 つ以上のトラップ送信先を設定する必要があります。 
+---
+= アラート用のSNMP通知を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アラートが発生したときにStorageGRID がSNMP 通知を送信するようにするには、 StorageGRID SNMP エージェントを有効にし、1 つ以上のトラップ送信先を設定する必要があります。
+
+グリッド マネージャの *CONFIGURATION* > *Monitoring* > *SNMP agent* オプションまたはグリッド管理 API の SNMP エンドポイントを使用して、 StorageGRID SNMP エージェントを有効にして構成できます。SNMP エージェントは、SNMP プロトコルの 3 つのバージョンすべてをサポートします。
+
+SNMPエージェントの設定方法については、link:using-snmp-monitoring.html["SNMP監視を使用する"] 。
+
+StorageGRID SNMP エージェントを構成すると、次の 2 種類のイベント駆動型通知を送信できるようになります。
+
+* トラップは、管理システムによる確認を必要としない、SNMP エージェントによって送信される通知です。トラップは、アラートがトリガーされるなど、 StorageGRID内で何かが発生したことを管理システムに通知するために使用されます。トラップは、SNMP の 3 つのバージョンすべてでサポートされています。
+* インフォームはトラップに似ていますが、管理システムによる確認が必要です。 SNMP エージェントが一定時間内に確認応答を受信しない場合、確認応答を受信するか最大再試行値に達するまで、通知を再送信します。インフォームは、SNMPv2c および SNMPv3 でサポートされています。
+
+
+デフォルトまたはカスタムアラートが任意の重大度レベルでトリガーされると、トラップ通知とインフォーム通知が送信されます。アラートの SNMP 通知を抑制するには、アラートのサイレンスを設定する必要があります。見るlink:silencing-alert-notifications.html["サイレントアラート通知"] 。
+
+StorageGRID の展開に複数の管理ノードが含まれている場合、プライマリ管理ノードがアラート通知、 AutoSupportパッケージ、SNMP トラップおよびインフォームの優先送信元になります。プライマリ管理ノードが利用できなくなった場合、通知は他の管理ノードによって一時的に送信されます。見るlink:../primer/what-admin-node-is.html["管理ノードとは何ですか?"] 。

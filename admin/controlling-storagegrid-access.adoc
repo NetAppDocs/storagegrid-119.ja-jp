@@ -1,0 +1,47 @@
+---
+permalink: admin/controlling-storagegrid-access.html 
+sidebar: sidebar 
+keywords: administrator access, single sign on, sso, users, groups, client certificates, passwords, passphrase 
+summary: 'グループとユーザーを作成またはインポートし、各グループに権限を割り当てることで、 StorageGRID にアクセスできるユーザーとユーザーが実行できるタスクを制御できます。オプションで、シングル サインオン (SSO) を有効にしたり、クライアント証明書を作成したり、グリッド パスワードを変更したりすることもできます。' 
+---
+= StorageGRIDアクセスを制御する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+グループとユーザーを作成またはインポートし、各グループに権限を割り当てることで、 StorageGRID にアクセスできるユーザーとユーザーが実行できるタスクを制御できます。オプションで、シングル サインオン (SSO) を有効にしたり、クライアント証明書を作成したり、グリッド パスワードを変更したりすることもできます。
+
+
+
+== グリッドマネージャーへのアクセスを制御する
+
+アイデンティティ フェデレーション サービスからグループとユーザーをインポートするか、ローカル グループとローカル ユーザーを設定することで、Grid Manager と Grid Management API にアクセスできるユーザーを決定します。
+
+使用link:using-identity-federation.html["アイデンティティフェデレーション"]セットアップが容易link:managing-admin-groups.html["グループ"]そしてlink:managing-users.html["ユーザ"]より高速になり、ユーザーは使い慣れた資格情報を使用してStorageGRIDにサインインできるようになります。  Active Directory、OpenLDAP、または Oracle Directory Server を使用する場合は、ID フェデレーションを構成できます。
+
+
+NOTE: 別の LDAP v3 サービスを使用する場合は、テクニカル サポートにお問い合わせください。
+
+各ユーザーが実行できるタスクを決定するには、異なるlink:admin-group-permissions.html["権限"]各グループに。たとえば、あるグループのユーザーに ILM ルールを管理させ、別のグループのユーザーにメンテナンス タスクを実行させたい場合があります。ユーザーがシステムにアクセスするには、少なくとも 1 つのグループに属している必要があります。
+
+必要に応じて、グループを読み取り専用に設定できます。読み取り専用グループのユーザーは、設定と機能の表示のみが可能です。  Grid Manager または Grid Management API で変更を加えたり、操作を実行したりすることはできません。
+
+
+
+== シングルサインオンを有効にする
+
+StorageGRIDシステムは、Security Assertion Markup Language 2.0 (SAML 2.0) 標準を使用したシングル サインオン (SSO) をサポートしています。お先にどうぞlink:configuring-sso.html["SSOを設定して有効にする"]すべてのユーザーは、グリッド マネージャー、テナント マネージャー、グリッド管理 API、またはテナント管理 API にアクセスする前に、外部 ID プロバイダーによって認証される必要があります。ローカル ユーザーはStorageGRIDにサインインできません。
+
+
+
+== プロビジョニングパスフレーズを変更する
+
+プロビジョニング パスフレーズは、多くのインストールおよびメンテナンス手順、およびStorageGRIDリカバリ パッケージのダウンロードに必要です。パスフレーズは、 StorageGRIDシステムのグリッド トポロジ情報と暗号化キーのバックアップをダウンロードする場合にも必要です。あなたはできるlink:changing-provisioning-passphrase.html["パスフレーズを変更する"]必要に応じて。
+
+
+
+== ノードコンソールのパスワードを変更する
+
+グリッド内の各ノードには一意のノード コンソール パスワードがあり、SSH を使用して「admin」としてノードにログインするか、VM/物理コンソール接続で root ユーザーとしてログインする必要があります。必要に応じて、link:change-node-console-password.html["ノードコンソールのパスワードを変更する"]各ノードに対して。

@@ -1,0 +1,17 @@
+---
+section: harden
+title: システムの強化
+entries:
+- title: 一般的な考慮事項
+  pdf-filename: StorageGRIDシステムの強化
+  url: "/harden/index.html"
+- title: アップグレードのための強化ガイドライン
+  url: "/harden/hardening-guidelines-for-software-upgrades.html"
+- title: ネットワーク強化ガイドライン
+  url: "/harden/hardening-guidelines-for-storagegrid-networks.html"
+- title: ノードの強化ガイドライン
+  url: "/harden/hardening-guidelines-for-storagegrid-nodes.html"
+- title: TLSとSSHの強化ガイドライン
+  url: "/harden/hardening-guideline-for-server-certificates.html"
+- title: その他の強化ガイドライン
+  url: "/harden/other-hardening-guidelines.html"

@@ -1,0 +1,31 @@
+---
+permalink: s3/deprecated-put-bucket-request-modifications-for-compliance.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, deprecated bucket requests for compliance 
+summary: SGCompliance XML 要素は非推奨です。以前は、このStorageGRIDカスタム要素を CreateBucket リクエストのオプションの XML リクエスト本文に含めることで、準拠バケットを作成できました。 
+---
+= 非推奨: コンプライアンスのための CreateBucket リクエストの変更
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SGCompliance XML 要素は非推奨です。以前は、このStorageGRIDカスタム要素を CreateBucket リクエストのオプションの XML リクエスト本文に含めることで、準拠バケットを作成できました。
+
+[NOTE]
+====
+以前のStorageGRIDバージョンで利用可能だったStorageGRIDコンプライアンス機能は廃止され、S3 オブジェクト ロックに置き換えられました。詳細については、以下を参照してください。
+
+* link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API を使用して S3 オブジェクトロックを設定する"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetAppナレッジベース: StorageGRID 11.5 でレガシー準拠バケットを管理する方法"^]
+
+
+====
+コンプライアンスを有効にした新しいバケットを作成することはできなくなりました。コンプライアンスのための CreateBucket リクエストの変更を使用して新しいコンプライアンス バケットを作成しようとすると、次のエラー メッセージが返されます。
+
+[listing]
+----
+The Compliance feature is deprecated.
+Contact your StorageGRID administrator if you need to create new Compliant buckets.
+----

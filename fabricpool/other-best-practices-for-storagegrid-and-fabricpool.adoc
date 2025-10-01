@@ -1,0 +1,51 @@
+---
+permalink: fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, best practices, audit log, encryption, compressions, tiering, ontap, consistency 
+summary: FabricPoolで使用するためにStorageGRIDシステムを構成する場合、他のStorageGRIDオプションを変更する必要がある場合があります。グローバル設定を変更する前に、その変更が他の S3 アプリケーションにどのような影響を与えるかを検討してください。 
+---
+= StorageGRIDとFabricPoolのその他のベストプラクティス
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FabricPoolで使用するためにStorageGRIDシステムを構成する場合、他のStorageGRIDオプションを変更する必要がある場合があります。グローバル設定を変更する前に、その変更が他の S3 アプリケーションにどのような影響を与えるかを検討してください。
+
+
+
+== 監査メッセージとログの送信先
+
+FabricPoolワークロードでは読み取り操作の頻度が高くなることが多く、大量の監査メッセージが生成される可能性があります。
+
+* FabricPoolまたはその他の S3 アプリケーションのクライアント読み取り操作の記録が不要な場合は、オプションで *構成* > *監視* > *監査および syslog サーバー* に移動します。監査ログに記録される監査メッセージの数を減らすには、*クライアント読み取り*設定を*エラー*に変更します。見るlink:../monitor/configure-audit-messages.html["監査メッセージとログの保存先を構成する"]詳細については。
+* 大規模なグリッドがある場合、複数の種類の S3 アプリケーションを使用する場合、またはすべての監査データを保持する場合は、外部 syslog サーバーを構成して、監査情報をリモートで保存します。外部サーバーを使用すると、監査データの完全性を低下させることなく、監査メッセージのログ記録によるパフォーマンスへの影響を最小限に抑えることができます。見るlink:../monitor/considerations-for-external-syslog-server.html["外部Syslogサーバに関する考慮事項"]詳細については。
+
+
+
+
+== オブジェクトの暗号化
+
+StorageGRIDを構成する際に、オプションでlink:../admin/changing-network-options-object-encryption.html["保存されたオブジェクトの暗号化のグローバルオプション"]他のStorageGRIDクライアントにデータ暗号化が必要な場合。 FabricPoolからStorageGRIDに階層化されるデータは既に暗号化されているため、 StorageGRID設定を有効にする必要はありません。クライアント側の暗号化キーはONTAPが所有します。
+
+
+
+== オブジェクトの圧縮
+
+StorageGRIDを構成するときは、link:../admin/configuring-stored-object-compression.html["保存されたオブジェクトを圧縮するグローバルオプション"] 。  FabricPoolからStorageGRIDに階層化されているデータは既に圧縮されています。  StorageGRIDオプションを使用しても、オブジェクトのサイズはさらに縮小されません。
+
+
+
+== バケットの一貫性
+
+FabricPoolバケットの場合、推奨されるバケットの一貫性は *Read-after-new-write* です。これは、新しいバケットのデフォルトの一貫性です。  *Available* または *Strong-site* を使用するようにFabricPoolバケットを編集しないでください。
+
+
+
+== FabricPool の階層化
+
+StorageGRIDノードがNetApp ONTAPシステムから割り当てられたストレージを使用する場合は、ボリュームでFabricPool階層化ポリシーが有効になっていないことを確認してください。たとえば、 StorageGRIDノードが VMware ホスト上で実行されている場合は、 StorageGRIDノードのデータストアをバックアップするボリュームでFabricPool階層化ポリシーが有効になっていないことを確認します。StorageGRIDノードで使用するボリュームでFabricPoolによる階層化を無効にすることで、トラブルシューティングとストレージの処理がシンプルになります。
+
+
+CAUTION: FabricPoolを使用してStorageGRIDに関連するデータをStorageGRID自体に階層化することは絶対にしないでください。StorageGRIDにStorageGRIDデータを階層化すると、トラブルシューティングと運用がより複雑になります。

@@ -1,0 +1,25 @@
+---
+permalink: admin/supported-ciphers-for-outgoing-tls-connections.html 
+sidebar: sidebar 
+keywords: tls cipher suites, transport layer security connections 
+summary: 'StorageGRIDシステムは、ID フェデレーションおよびクラウド ストレージ プールに使用される外部システムへのトランスポート層セキュリティ (TLS) 接続用の限定された暗号スイートのセットをサポートしています。' 
+---
+= 送信 TLS 接続でサポートされている暗号
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムは、ID フェデレーションおよびクラウド ストレージ プールに使用される外部システムへのトランスポート層セキュリティ (TLS) 接続用の限定された暗号スイートのセットをサポートしています。
+
+
+
+== サポートされているTLSのバージョン
+
+StorageGRID は、ID フェデレーションおよびクラウド ストレージ プールに使用される外部システムへの接続に TLS 1.2 および TLS 1.3 をサポートしています。
+
+外部システムでの使用がサポートされている TLS 暗号は、さまざまな外部システムとの互換性を確保するように選択されています。このリストは、S3 クライアント アプリケーションでの使用がサポートされている暗号のリストよりも大きくなります。暗号を構成するには、*構成* > *セキュリティ* > *セキュリティ設定* に移動し、*TLS および SSH ポリシー* を選択します。
+
+
+NOTE: プロトコル バージョン、暗号、キー交換アルゴリズム、MAC アルゴリズムなどの TLS 構成オプションは、 StorageGRIDでは構成できません。これらの設定について具体的なリクエストがある場合は、 NetAppアカウント担当者にお問い合わせください。

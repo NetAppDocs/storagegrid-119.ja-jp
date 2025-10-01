@@ -1,0 +1,76 @@
+---
+permalink: audit/client-read-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, client read, S3SL, SGET, SHEA, WGET, WHEA, S3, swift 
+summary: S3 クライアント アプリケーションがオブジェクトの取得を要求すると、クライアント読み取り監査メッセージが記録されます。 
+---
+= クライアント読み取り監査メッセージ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+S3 クライアント アプリケーションがオブジェクトの取得を要求すると、クライアント読み取り監査メッセージが記録されます。
+
+[cols="1a,3a,1a,1a"]
+|===
+| コード | 説明 | 使用者 | 詳細については、 
+
+
+ a| 
+S3SL
+ a| 
+S3 Select リクエスト: S3 Select リクエストがクライアントに返された後の完了をログに記録します。 S3SL メッセージには、エラー メッセージとエラー コードの詳細が含まれる場合があります。リクエストが成功しなかった可能性があります。
+ a| 
+S3クライアント
+ a| 
+link:s3-select-request.html["S3SL: S3 選択リクエスト"]
+
+
+
+ a| 
+SGET
+ a| 
+S3 GET: オブジェクトを取得したり、バケット内のオブジェクトを一覧表示したりするための成功したトランザクションをログに記録します。
+
+*注:* トランザクションがサブリソースに対して実行される場合、監査メッセージにはフィールド S3SR が含まれます。
+ a| 
+S3クライアント
+ a| 
+link:sget-s3-get.html["SGET: S3 ゲット"]
+
+
+
+ a| 
+シア
+ a| 
+S3 HEAD: オブジェクトまたはバケットの存在を確認するために成功したトランザクションをログに記録します。
+ a| 
+S3クライアント
+ a| 
+link:shea-s3-head.html["シア：S3ヘッド"]
+
+
+
+ a| 
+WGET
+ a| 
+Swift GET: オブジェクトを取得したり、コンテナー内のオブジェクトを一覧表示したりするための成功したトランザクションをログに記録します。
+ a| 
+Swiftクライアント
+ a| 
+link:wget-swift-get.html["WGET: Swift GET"]
+
+
+
+ a| 
+ウィー
+ a| 
+Swift HEAD: オブジェクトまたはコンテナの存在を確認するために成功したトランザクションをログに記録します。
+ a| 
+Swiftクライアント
+ a| 
+link:whea-swift-head.html["WHEA: Swift HEAD"]
+
+|===

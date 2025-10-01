@@ -1,0 +1,33 @@
+---
+permalink: fabricpool/configure-dns-server.html 
+sidebar: sidebar 
+keywords: dns, vip, virtual ip, fqdn, server name 
+summary: 高可用性グループ、ロードバランサエンドポイント、および S3 ドメイン名を構成した後、DNS にStorageGRIDに必要なエントリが含まれていることを確認する必要があります。 
+---
+= DNSサーバーを構成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+高可用性グループ、ロードバランサエンドポイント、および S3 エンドポイントドメイン名を構成した後、DNS にStorageGRIDに必要なエントリが含まれていることを確認する必要があります。セキュリティ証明書内の各名前と、使用する可能性のある各 IP アドレスごとに DNS エントリを含める必要があります。
+
+見るlink:../admin/managing-load-balancing.html["負荷分散に関する考慮事項"] 。
+
+
+
+== StorageGRIDサーバー名の DNS エントリ
+
+DNS エントリを追加して、使用する各StorageGRID IP アドレスにStorageGRIDサーバー名 (完全修飾ドメイン名) を関連付けます。  DNS に入力する IP アドレスは、負荷分散ノードの HA グループを使用しているかどうかによって異なります。
+
+* HA グループを設定している場合、 ONTAP はその HA グループの仮想 IP アドレスに接続します。
+* HA グループを使用していない場合には、 ONTAP は任意のゲートウェイ ノードまたは管理ノードの IP アドレスを使用してStorageGRIDロード バランサ サービスに接続できます。
+* サーバ名が複数の IP アドレスに解決される場合、 ONTAP はすべての IP アドレス（最大 16 個の IP アドレス）とのクライアント接続を確立します。接続が確立されると、IPアドレスはラウンドロビン方式で選択されます。
+
+
+
+
+== 仮想ホスト形式のリクエストのDNSエントリ
+
+定義した場合link:../admin/configuring-s3-api-endpoint-domain-names.html["S3エンドポイントのドメイン名"]仮想ホスト形式のリクエストを使用する場合は、ワイルドカード名を含むすべての必要な S3 エンドポイント ドメイン名の DNS エントリを追加します。

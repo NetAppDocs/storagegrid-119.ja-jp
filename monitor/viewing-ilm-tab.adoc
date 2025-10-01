@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-ilm-tab.html 
+sidebar: sidebar 
+keywords: ilm tab 
+summary: 'ILM タブには、情報ライフサイクル管理 (ILM) 操作に関する情報が表示されます。' 
+---
+= ILMタブを表示
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ILM タブには、情報ライフサイクル管理 (ILM) 操作に関する情報が表示されます。
+
+ILM タブは、各ストレージ ノード、各サイト、およびグリッド全体に対して表示されます。各サイトおよびグリッドについて、ILM タブには時間の経過に伴う ILM キューのグラフが表示されます。グリッドの場合、このタブには、すべてのオブジェクトの完全な ILM スキャンを完了するのにかかる推定時間も表示されます。
+
+ストレージ ノードの場合、ILM タブには、消去コード化されたオブジェクトの ILM 評価とバックグラウンド検証に関する詳細が表示されます。
+
+image::../media/nodes_page_ilm_tab.png[ノードページのILMタブ]
+
+.関連情報
+* link:monitoring-information-lifecycle-management.html["情報ライフサイクル管理を監視する"]
+* link:../admin/index.html["StorageGRIDの管理"]
+

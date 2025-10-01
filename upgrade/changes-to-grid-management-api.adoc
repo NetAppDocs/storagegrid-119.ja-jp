@@ -1,0 +1,52 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api, usageCacheDuration 
+summary: StorageGRID 11.9 は、Grid Management API バージョン 4 を使用します。バージョン 4 ではバージョン 3 は廃止されますが、バージョン 1、2、および 3 は引き続きサポートされます。 
+---
+= グリッド管理APIの変更
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.9 は、Grid Management API バージョン 4 を使用します。バージョン 4 ではバージョン 3 は廃止されますが、バージョン 1、2、および 3 は引き続きサポートされます。
+
+
+NOTE: StorageGRID 11.9 では管理 API の廃止バージョンを引き続き使用できますが、これらのバージョンの API のサポートはStorageGRIDの将来のリリースでは削除されます。StorageGRID 11.9にアップグレードした後、廃止されたAPIを非アクティブ化するには、 `PUT /grid/config/management` API。
+
+詳細については、link:../admin/using-grid-management-api.html["グリッド管理APIを使用する"] 。
+
+
+
+== グローバル S3 オブジェクトロックを有効にした後、コンプライアンス設定を確認します。
+
+グローバル S3 オブジェクトロック設定を有効にした後、既存のテナントのコンプライアンス設定を確認します。この設定を有効にすると、テナントごとの S3 オブジェクト ロック設定は、テナントが作成された時点のStorageGRIDリリースによって異なります。
+
+
+
+== レガシー mgmt-api リクエストが削除されました
+
+以下のレガシー リクエストは削除されました:
+
+`/grid/server-types`
+
+`/grid/ntp-roles`
+
+
+
+== 変更点 `GET /private/storage-usage`API
+
+* 新しい物件、 `usageCacheDuration`がレスポンス本文に追加されました。このプロパティは、使用状況検索キャッシュの有効期間 (秒単位) を指定します。この値は、テナント ストレージ クォータとバケット容量制限に対する使用状況をチェックするときに適用されます。
+* その `GET /api/v4/private/storage-usage`動作はスキーマからのネストに合わせて修正されました。
+* これらの変更はプライベート API にのみ適用されます。
+
+
+
+
+== 変更点 `GET cross-grid-replication`API
+
+*/org/containers/:name/cross-grid-replication* GET APIはルートアクセスを必要としなくなりました(`rootAccess`）権限が必要ですが、すべてのバケットの管理権限を持つユーザーグループに属している必要があります。(`manageAllContainers` ）またはすべてのバケットを表示(`viewAllContainers`） 許可。
+
+*/org/containers/:name/cross-grid-replication* PUT APIは変更されておらず、引き続きルートアクセスが必要です。(`rootAccess` ） 許可。

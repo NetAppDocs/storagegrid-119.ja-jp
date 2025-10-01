@@ -1,0 +1,51 @@
+---
+permalink: maintain/replacing-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace primary admin node, replacing primary admin node, primary admin node 
+summary: プライマリ管理ノードを回復するには、まず物理ハードウェアまたは仮想ハードウェアを交換する必要があります。 
+---
+= プライマリ管理ノードを置き換える
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プライマリ管理ノードを回復するには、まず物理ハードウェアまたは仮想ハードウェアを交換する必要があります。
+
+障害が発生したプライマリ管理ノードを同じプラットフォーム上で実行されているプライマリ管理ノードに置き換えたり、VMware または Linux ホスト上で実行されているプライマリ管理ノードをサービス アプライアンス上でホストされているプライマリ管理ノードに置き換えたりすることができます。
+
+ノードに選択した置換プラットフォームに一致する手順を使用します。ノード交換手順 (すべてのノード タイプに適しています) を完了すると、その手順によってプライマリ管理ノードの回復の次の手順に進みます。
+
+[cols="1a,2a"]
+|===
+| 交換用プラットフォーム | 手順 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["VMwareノードを置き換える"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Linuxノードを置き換える"]
+
+
+
+ a| 
+サービスアプライアンス
+ a| 
+link:replacing-failed-node-with-services-appliance.html["サービスアプライアンスを交換する"]
+
+
+
+ a| 
+OpenStack
+ a| 
+NetAppが提供する OpenStack 用の仮想マシン ディスク ファイルとスクリプトは、リカバリ操作ではサポートされなくなりました。 OpenStack デプロイメントで実行されているノードを回復する必要がある場合は、Linux オペレーティング システム用のファイルをダウンロードします。次に、以下の手順に従ってください。link:all-node-types-replacing-linux-node.html["Linuxノードの置き換え"] 。
+
+|===

@@ -1,0 +1,186 @@
+---
+permalink: expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html 
+sidebar: sidebar 
+keywords: expansion, Linux, add storage volumes 
+summary: ストレージ ノードに含まれるストレージ ボリュームが 48 個未満の場合は、新しいブロック ストレージ デバイスを追加し、それらを Linux ホストに表示して、ストレージ ノードに使用されるStorageGRID構成ファイルに新しいブロック デバイス マッピングを追加することで、容量を増やすことができます。 
+---
+= Linux: ストレージノードに直接接続されたボリュームまたはSANボリュームを追加する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージ ノードに含まれるストレージ ボリュームが 48 個未満の場合は、新しいブロック ストレージ デバイスを追加し、それらを Linux ホストに表示して、ストレージ ノードに使用されるStorageGRID構成ファイルに新しいブロック デバイス マッピングを追加することで、容量を増やすことができます。
+
+.開始する前に
+* Linux プラットフォームにStorageGRIDをインストールするための手順にアクセスできます。
++
+** link:../rhel/index.html["Red Hat Enterprise LinuxにStorageGRIDをインストールする"]
+** link:../ubuntu/index.html["UbuntuまたはDebianにStorageGRIDをインストールする"]
+
+
+* あなたは `Passwords.txt`ファイル。
+* あなたが持っているlink:../admin/admin-group-permissions.html["特定のアクセス権限"]。
+
+
+
+CAUTION: ソフトウェアのアップグレード、リカバリ手順、またはその他の拡張手順がアクティブな間は、ストレージ ノードにストレージ ボリュームを追加しないでください。
+
+.タスク概要
+ストレージ ボリュームを追加すると、ストレージ ノードは一時的に使用できなくなります。クライアント側のグリッド サービスに影響を与えないように、この手順は一度に 1 つのストレージ ノードで実行する必要があります。
+
+.手順
+. 新しいストレージ ハードウェアをインストールします。
++
+詳細については、ハードウェア ベンダーが提供するドキュメントを参照してください。
+
+. 必要なサイズの新しいブロック ストレージ ボリュームを作成します。
++
+** 新しいドライブを接続し、必要に応じて RAID コントローラ構成を更新するか、共有ストレージ アレイに新しい SAN LUN を割り当てて、Linux ホストがそれらにアクセスできるようにします。
+** 既存のストレージ ノード上のストレージ ボリュームに使用したのと同じ永続的な命名スキームを使用します。
+** StorageGRIDノード移行機能を使用する場合は、このストレージ ノードの移行先である他の Linux ホストに新しいボリュームが表示されるようにします。詳細については、Linux プラットフォームにStorageGRIDをインストールするための手順を参照してください。
+
+
+. ストレージ ノードをサポートする Linux ホストに、root として、または sudo 権限を持つアカウントでログインします。
+. 新しいストレージ ボリュームが Linux ホスト上で表示されていることを確認します。
++
+デバイスを再スキャンする必要がある可能性があります。
+
+. ストレージ ノードを一時的に無効にするには、次のコマンドを実行します。
++
+`sudo storagegrid node stop <node-name>`
+
+. vimやpicoなどのテキストエディタを使用して、ストレージノードのノード構成ファイルを編集します。このファイルは、 `/etc/storagegrid/nodes/<node-name>.conf` 。
+. 既存のオブジェクト ストレージ ブロック デバイス マッピングが含まれているノード構成ファイルのセクションを見つけます。
++
+この例では、 `BLOCK_DEVICE_RANGEDB_00`に `BLOCK_DEVICE_RANGEDB_03`既存のオブジェクト ストレージ ブロック デバイス マッピングです。
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NODE_TYPE = VM_Storage_Node
+ADMIN_IP = 10.1.0.2
+BLOCK_DEVICE_VAR_LOCAL = /dev/mapper/sgws-sn1-var-local
+*BLOCK_DEVICE_RANGEDB_00 = /dev/mapper/sgws-sn1-rangedb-0*
+*BLOCK_DEVICE_RANGEDB_01 = /dev/mapper/sgws-sn1-rangedb-1*
+*BLOCK_DEVICE_RANGEDB_02 = /dev/mapper/sgws-sn1-rangedb-2*
+*BLOCK_DEVICE_RANGEDB_03 = /dev/mapper/sgws-sn1-rangedb-3*
+GRID_NETWORK_TARGET = bond0.1001
+ADMIN_NETWORK_TARGET = bond0.1002
+CLIENT_NETWORK_TARGET = bond0.1003
+GRID_NETWORK_IP = 10.1.0.3
+GRID_NETWORK_MASK = 255.255.255.0
+GRID_NETWORK_GATEWAY = 10.1.0.1
+----
+. このストレージ ノードに追加したブロック ストレージ ボリュームに対応する新しいオブジェクト ストレージ ブロック デバイス マッピングを追加します。
++
+必ず次の `BLOCK_DEVICE_RANGEDB_nn`。隙間を作らないでください。
+
++
+** 上記の例に基づいて、 `BLOCK_DEVICE_RANGEDB_04` 。
+** 以下の例では、4 つの新しいブロック ストレージ ボリュームがノードに追加されています。 `BLOCK_DEVICE_RANGEDB_04`に `BLOCK_DEVICE_RANGEDB_07`。
+
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NODE_TYPE = VM_Storage_Node
+ADMIN_IP = 10.1.0.2
+BLOCK_DEVICE_VAR_LOCAL = /dev/mapper/sgws-sn1-var-local
+BLOCK_DEVICE_RANGEDB_00 = /dev/mapper/sgws-sn1-rangedb-0
+BLOCK_DEVICE_RANGEDB_01 = /dev/mapper/sgws-sn1-rangedb-1
+BLOCK_DEVICE_RANGEDB_02 = /dev/mapper/sgws-sn1-rangedb-2
+BLOCK_DEVICE_RANGEDB_03 = /dev/mapper/sgws-sn1-rangedb-3
+*BLOCK_DEVICE_RANGEDB_04 = /dev/mapper/sgws-sn1-rangedb-4*
+*BLOCK_DEVICE_RANGEDB_05 = /dev/mapper/sgws-sn1-rangedb-5*
+*BLOCK_DEVICE_RANGEDB_06 = /dev/mapper/sgws-sn1-rangedb-6*
+*BLOCK_DEVICE_RANGEDB_07 = /dev/mapper/sgws-sn1-rangedb-7*
+GRID_NETWORK_TARGET = bond0.1001
+ADMIN_NETWORK_TARGET = bond0.1002
+CLIENT_NETWORK_TARGET = bond0.1003
+GRID_NETWORK_IP = 10.1.0.3
+GRID_NETWORK_MASK = 255.255.255.0
+GRID_NETWORK_GATEWAY = 10.1.0.1
+----
+. ストレージ ノードのノード構成ファイルへの変更を検証するには、次のコマンドを実行します。
++
+`sudo storagegrid node validate <node-name>`
+
++
+次のステップに進む前に、エラーや警告に対処してください。
+
++
+[NOTE]
+====
+次のようなエラーが表示された場合は、ノード構成ファイルが、 `<node-name>`のために `<PURPOSE>`与えられたものに `<path-name>`Linux ファイル システム内に存在しますが、その場所に有効なブロック デバイス特殊ファイル (またはブロック デバイス特殊ファイルへのソフトリンク) が存在しません。
+
+[listing]
+----
+Checking configuration file for node <node-name>…
+ERROR: BLOCK_DEVICE_<PURPOSE> = <path-name>
+<path-name> is not a valid block device
+----
+正しい入力をしたか確認してください `<path-name>`。
+
+====
+. 新しいブロック デバイス マッピングを適用した状態でノードを再起動するには、次のコマンドを実行します。
++
+`sudo storagegrid node start <node-name>`
+
+. ストレージノードに管理者としてログインし、 `Passwords.txt`ファイル。
+. サービスが正しく開始されていることを確認します。
++
+.. サーバー上のすべてのサービスのステータスのリストを表示します: +
+`sudo storagegrid-status`
++
+ステータスは自動的に更新されます。
+
+.. すべてのサービスが実行中または検証済みになるまで待機します。
+.. ステータス画面を終了します。
++
+`Ctrl+C`
+
+
+
+. ストレージ ノードで使用するために新しいストレージを構成します。
++
+.. 新しいストレージ ボリュームを構成します。
++
+`sudo add_rangedbs.rb`
+
++
+このスクリプトは、新しいストレージ ボリュームを検出し、それらをフォーマットするように要求します。
+
+.. ストレージボリュームをフォーマットするには、「*y*」と入力します。
+.. ボリュームのいずれかが以前にフォーマットされている場合は、再フォーマットするかどうかを決定します。
++
+*** 再フォーマットするには *y* と入力します。
+*** 再フォーマットをスキップするには *n* と入力します。
+
+
+
+
++
+その `setup_rangedbs.sh`スクリプトは自動的に実行されます。
+
+. ストレージ ノードのストレージ状態がオンラインであることを確認します。
++
+.. グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+.. *サポート* > *ツール* > *グリッド トポロジ* を選択します。
+.. *_site_* > *_Storage Node_* > *LDR* > *Storage* を選択します。
+.. *構成*タブを選択し、次に*メイン*タブを選択します。
+.. *ストレージ状態 - 必要*ドロップダウン リストが読み取り専用またはオフラインに設定されている場合は、*オンライン*を選択します。
+.. *変更を適用*をクリックします。
+
+
+. 新しいオブジェクト ストアを表示するには:
++
+.. *NODES* > *_site_* > *_Storage Node_* > *Storage* を選択します。
+.. *オブジェクト ストア* テーブルで詳細を表示します。
+
+
+
+
+.結果
+ストレージ ノードの拡張容量を使用してオブジェクト データを保存できるようになりました。

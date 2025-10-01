@@ -1,0 +1,47 @@
+---
+permalink: ubuntu/where-to-go-next.html 
+sidebar: sidebar 
+keywords: what to do after ubuntu installation 
+summary: インストールが完了したら、必要な統合および構成タスクを実行します。必要に応じてオプションのタスクを実行できます。 
+---
+= 次はどこへ行くか
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+インストールが完了したら、必要な統合および構成タスクを実行します。必要に応じてオプションのタスクを実行できます。
+
+
+
+== 必要なタスク
+
+* link:../admin/managing-tenants.html["テナントアカウントを作成する"]StorageGRIDシステムにオブジェクトを保存するために使用される S3 クライアント プロトコルです。
+* link:../admin/controlling-storagegrid-access.html["制御システムへのアクセス"]グループとユーザー アカウントを構成します。オプションとして、link:../admin/using-identity-federation.html["フェデレーションIDソースを構成する"] (Active Directory や OpenLDAP など) をサポートしているため、管理グループとユーザーをインポートできます。あるいは、link:../admin/managing-users.html#create-a-local-user["ローカルグループとユーザーを作成する"] 。
+* 統合してテストするlink:../s3/configuring-tenant-accounts-and-connections.html["S3 API"]StorageGRIDシステムにオブジェクトをアップロードするために使用するクライアント アプリケーション。
+* link:../ilm/index.html["情報ライフサイクル管理（ILM）ルールとILMポリシーを構成する"]オブジェクト データを保護するために使用します。
+* インストールにアプライアンス ストレージ ノードが含まれている場合は、 SANtricity OS を使用して次のタスクを実行します。
++
+** 各StorageGRIDアプライアンスに接続します。
+** AutoSupportデータの受信を確認します。
++
+見る https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["ハードウェアのセットアップ"^]。
+
+
+
+* 確認して従ってくださいlink:../harden/index.html["StorageGRIDシステム強化ガイドライン"]セキュリティリスクを排除するため。
+* link:../monitor/email-alert-notifications.html["システムアラートの電子メール通知を構成する"] 。
+
+
+
+
+== オプションタスク
+
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["グリッドノードのIPアドレスを更新する"]展開を計画して回復パッケージを生成してから変更があった場合。
+* link:../admin/changing-network-options-object-encryption.html["ストレージ暗号化を構成する"]必要に応じて。
+* link:../admin/configuring-stored-object-compression.html["ストレージ圧縮を構成する"]必要に応じて、保存されたオブジェクトのサイズを縮小します。
+* link:../admin/configure-vlan-interfaces.html["VLANインターフェースを構成する"]必要に応じて、ネットワーク トラフィックを分離および分割します。
+* link:../admin/configure-high-availability-group.html["高可用性グループを構成する"]必要に応じて、グリッド マネージャー、テナント マネージャー、および S3 クライアントの接続可用性を向上させます。
+* link:../admin/configuring-load-balancer-endpoints.html["ロードバランサのエンドポイントを構成する"]必要に応じて、S3 クライアント接続用。
+

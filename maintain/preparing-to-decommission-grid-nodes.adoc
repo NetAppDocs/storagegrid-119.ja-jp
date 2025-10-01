@@ -1,0 +1,14 @@
+---
+permalink: maintain/preparing-to-decommission-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission 
+summary: グリッド ノードの削除に関する考慮事項を確認し、消失訂正符号化データの修復ジョブがアクティブになっていないことを確認する必要があります。 
+---
+= グリッドノードの廃止の準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+グリッド ノードの削除に関する考慮事項を確認し、消失訂正符号化データの修復ジョブがアクティブになっていないことを確認する必要があります。

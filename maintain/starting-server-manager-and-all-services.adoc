@@ -1,0 +1,36 @@
+---
+permalink: maintain/starting-server-manager-and-all-services.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, server manager, start server manager, start services, start all services 
+summary: 場合によっては、グリッド ノード上のすべてのサービスも開始する Server Manager を起動する必要があります。 
+---
+= サーバーマネージャーとすべてのサービスを起動します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+場合によっては、グリッド ノード上のすべてのサービスも開始する Server Manager を起動する必要があります。
+
+.開始する前に
+あなたは `Passwords.txt`ファイル。
+
+.タスク概要
+すでに実行されているグリッド ノードで Server Manager を起動すると、Server Manager とグリッド ノード上のすべてのサービスが再起動されます。
+
+.手順
+. グリッド ノードにログインします。
++
+.. 次のコマンドを入力します。 `ssh admin@_grid_node_IP_`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+.. ルートに切り替えるには、次のコマンドを入力します。 `su -`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+
+
++
+ルートとしてログインすると、プロンプトは `$`に `#`。
+
+. サーバー マネージャーを起動します。 `service servermanager start`
+. コマンド シェルからログアウトします。 `exit`
+

@@ -1,0 +1,61 @@
+---
+permalink: admin/kms-configuring-storagegrid-as-client.html 
+sidebar: sidebar 
+keywords: configure kms, key management server 
+summary: KMS をStorageGRIDに追加するには、まず各外部キー管理サーバーまたは KMS クラスターのクライアントとしてStorageGRID を構成する必要があります。 
+---
+= StorageGRIDをKMSのクライアントとして設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+KMS をStorageGRIDに追加するには、まず各外部キー管理サーバーまたは KMS クラスターのクライアントとしてStorageGRID を構成する必要があります。
+
+
+NOTE: これらの手順は、Thales CipherTrust Manager および Hashicorp Vault に適用されます。サポートされている製品とバージョンのリストについては、 https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool（IMT）"^] 。
+
+.手順
+. KMS ソフトウェアから、使用する予定の KMS または KMS クラスターごとにStorageGRIDクライアントを作成します。
++
+各 KMS は、単一のサイトまたはサイト グループにあるStorageGRIDアプライアンス ノードの単一の暗号化キーを管理します。
+
+. [[create-key-with-kms-product]]次の 2 つの方法のいずれかを使用してキーを作成します。
++
+** KMS 製品のキー管理ページを使用します。各 KMS または KMS クラスターに対して AES 暗号化キーを作成します。
++
+暗号化キーは 2,048 ビット以上で、エクスポート可能である必要があります。
+
+** StorageGRIDにキーを作成させます。テストして保存するとプロンプトが表示されますlink:kms-adding.html#sg-create-key["クライアント証明書のアップロード"]。
+
+
+. 各 KMS または KMS クラスターについて次の情報を記録します。
++
+KMS をStorageGRIDに追加するときに、次の情報が必要になります。
+
++
+** 各サーバーのホスト名または IP アドレス。
+** KMS で使用される KMIP ポート。
+** KMS 内の暗号化キーのキーエイリアス。
+
+
+. 各 KMS または KMS クラスターごとに、証明機関 (CA) によって署名されたサーバー証明書、または証明書チェーンの順序で連結された各 PEM エンコードされた CA 証明書ファイルを含む証明書バンドルを取得します。
++
+サーバー証明書により、外部 KMS はStorageGRIDに対して自身を認証できるようになります。
+
++
+** 証明書には、Privacy Enhanced Mail (PEM) Base-64 エンコード X.509 形式を使用する必要があります。
+** 各サーバー証明書のサブジェクト別名 (SAN) フィールドには、 StorageGRIDが接続する完全修飾ドメイン名 (FQDN) または IP アドレスが含まれている必要があります。
++
+
+NOTE: StorageGRIDで KMS を構成する場合は、*ホスト名* フィールドに同じ FQDN または IP アドレスを入力する必要があります。
+
+** サーバー証明書は、通常ポート 5696 を使用する KMS の KMIP インターフェイスで使用される証明書と一致する必要があります。
+
+
+. 外部 KMS によってStorageGRIDに発行された公開クライアント証明書と、クライアント証明書の秘密キーを取得します。
++
+クライアント証明書により、 StorageGRID はKMS に対して自身を認証できるようになります。
+
+

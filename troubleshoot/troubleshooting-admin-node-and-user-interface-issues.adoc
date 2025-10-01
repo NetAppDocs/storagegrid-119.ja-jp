@@ -1,0 +1,178 @@
+---
+permalink: troubleshoot/troubleshooting-admin-node-and-user-interface-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot admin node issues, how to troubleshoot user interface issues 
+summary: 管理ノードおよびStorageGRIDユーザー インターフェイスに関連する問題の原因を特定するために、いくつかのタスクを実行できます。 
+---
+= 管理ノードとユーザーインターフェースの問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理ノードおよびStorageGRIDユーザー インターフェイスに関連する問題の原因を特定するために、いくつかのタスクを実行できます。
+
+
+
+== 管理ノードのサインインエラー
+
+StorageGRID管理ノードにサインインする際にエラーが発生した場合は、システムに問題がある可能性があります。link:../troubleshoot/troubleshooting-network-hardware-and-platform-issues.html["ネットワーク"]または https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/troubleshooting-hardware-installation-sg100-and-sg1000.html["ハードウェア"^]問題、問題link:../primer/what-admin-node-is.html["管理ノードサービス"]、またはlink:../maintain/recovering-failed-storage-volumes-and-rebuilding-cassandra-database.html["Cassandraデータベースの問題"]接続されたストレージノード上。
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたは `Passwords.txt`ファイル。
+* あなたが持っているlink:../admin/admin-group-permissions.html["特定のアクセス権限"]。
+
+
+.タスク概要
+管理ノードにサインインしようとしたときに次のいずれかのエラー メッセージが表示される場合は、次のトラブルシューティング ガイドラインを使用してください。
+
+* `Your credentials for this account were invalid. Please try again.`
+* `Waiting for services to start...`
+* `Internal server error. The server encountered an error and could not complete your request. Please try again. If the problem persists, contact Technical Support.`
+* `Unable to communicate with server. Reloading page...`
+
+
+.手順
+. 10 分待ってから、もう一度サインインしてください。
++
+エラーが自動的に解決されない場合は、次の手順に進みます。
+
+. StorageGRIDシステムに複数の管理ノードがある場合は、別の管理ノードから Grid Manager にサインインして、使用できない管理ノードのステータスを確認してください。
++
+** サインインできる場合は、*ダッシュボード*、*ノード*、*アラート*、および*サポート*オプションを使用して、エラーの原因を特定できます。
+** 管理ノードが 1 つしかない場合、またはまだサインインできない場合は、次の手順に進みます。
+
+
+. ノードのハードウェアがオフラインかどうかを判断します。
+. StorageGRIDシステムでシングルサインオン（SSO）が有効になっている場合は、link:../admin/configuring-sso.html["シングルサインオンの設定"] 。
++
+問題を解決するには、単一の管理ノードに対して SSO を一時的に無効にしてから再度有効にする必要がある場合があります。
+
++
+
+NOTE: SSO が有効になっている場合、制限されたポートを使用してサインオンすることはできません。ポート443を使用する必要があります。
+
+. 使用しているアカウントがフェデレーション ユーザーに属しているかどうかを確認します。
++
+フェデレーション ユーザー アカウントが機能しない場合は、root などのローカル ユーザーとして Grid Manager にサインインしてみてください。
+
++
+** ローカル ユーザーがサインインできる場合:
++
+... アラートを確認します。
+... *構成* > *アクセス制御* > *アイデンティティ連携*を選択します。
+... LDAP サーバーの接続設定を検証するには、「*テスト接続*」をクリックします。
+... テストが失敗した場合は、構成エラーを解決してください。
+
+
+** ローカル ユーザーがサインインできない場合、資格情報が正しいと確信できる場合は、次の手順に進みます。
+
+
+. セキュア シェル (ssh) を使用して管理ノードにログインします。
++
+.. 次のコマンドを入力します。 `ssh admin@Admin_Node_IP`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+.. ルートに切り替えるには、次のコマンドを入力します。 `su -`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
++
+ルートとしてログインすると、プロンプトは `$`に `#`。
+
+
+
+. グリッド ノードで実行されているすべてのサービスのステータスを表示します。 `storagegrid-status`
++
+nms、mi、nginx、mgmt api サービスがすべて実行されていることを確認します。
+
++
+サービスのステータスが変更されると、出力はすぐに更新されます。
+
++
+....
+$ storagegrid-status
+Host Name                      99-211
+IP Address                     10.96.99.211
+Operating System Kernel        4.19.0         Verified
+Operating System Environment   Debian 10.1    Verified
+StorageGRID Webscale Release   11.4.0         Verified
+Networking                                    Verified
+Storage Subsystem                             Verified
+Database Engine                5.5.9999+default Running
+Network Monitoring             11.4.0         Running
+Time Synchronization           1:4.2.8p10+dfsg Running
+ams                            11.4.0         Running
+cmn                            11.4.0         Running
+nms                            11.4.0         Running
+ssm                            11.4.0         Running
+mi                             11.4.0         Running
+dynip                          11.4.0         Running
+nginx                          1.10.3         Running
+tomcat                         9.0.27         Running
+grafana                        6.4.3          Running
+mgmt api                       11.4.0         Running
+prometheus                     11.4.0         Running
+persistence                    11.4.0         Running
+ade exporter                   11.4.0         Running
+alertmanager                   11.4.0         Running
+attrDownPurge                  11.4.0         Running
+attrDownSamp1                  11.4.0         Running
+attrDownSamp2                  11.4.0         Running
+node exporter                  0.17.0+ds      Running
+sg snmp agent                  11.4.0         Running
+....
+. nginx-gwサービスが実行中であることを確認する `# service nginx-gw status`
+. [[use_Lumberjack_to_collect_logs]]Lumberjack を使用して丸太を収集します。 `# /usr/local/sbin/lumberjack.rb`
++
+過去に認証に失敗した場合は、Lumberjack スクリプトの --start および --end オプションを使用して適切な時間範囲を指定できます。これらのオプションの詳細については、lumberjack -h を使用してください。
+
++
+端末への出力には、ログ アーカイブがコピーされた場所が示されます。
+
+. [[review_logs, start=10]]次のログを確認します。
++
+** `/var/local/log/bycast.log`
+** `/var/local/log/bycast-err.log`
+** `/var/local/log/nms.log`
+** `**/*commands.txt`
+
+
+. 管理ノードに問題が見つからない場合、次のいずれかのコマンドを発行して、サイトで ADC サービスを実行する 3 つのストレージ ノードの IP アドレスを確認します。通常、これらはサイトにインストールされた最初の 3 つのストレージ ノードです。
++
+[listing]
+----
+# cat /etc/hosts
+----
++
+[listing]
+----
+# gpt-list-services adc
+----
++
+管理ノードは認証プロセス中に ADC サービスを使用します。
+
+. 管理ノードから、識別した IP アドレスを使用して、ssh を使用して各 ADC ストレージ ノードにログインします。
+. グリッド ノードで実行されているすべてのサービスのステータスを表示します。 `storagegrid-status`
++
+idnt、acct、nginx、cassandra サービスがすべて実行されていることを確認します。
+
+. 手順を繰り返す<<use_Lumberjack_to_collect_logs,木こりを使って丸太を集める>>そして<<review_logs,ログを確認する>>ストレージ ノードのログを確認します。
+. 問題を解決できない場合は、テクニカル サポートにお問い合わせください。
++
+収集したログをテクニカル サポートに提供します。参照link:../monitor/logs-files-reference.html["ログファイルリファレンス"] 。
+
+
+
+
+
+== ユーザ インターフェイスに関する問題
+
+StorageGRIDソフトウェアをアップグレードすると、Grid Manager または Tenant Manager のユーザー インターフェイスが期待どおりに応答しない場合があります。
+
+.手順
+. 必ずlink:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"]。
+. Web ブラウザのキャッシュをクリアします。
++
+キャッシュをクリアすると、以前のバージョンのStorageGRIDソフトウェアで使用されていた古いリソースが削除され、ユーザー インターフェイスが再び正しく動作するようになります。手順については、Web ブラウザのドキュメントを参照してください。
+
+

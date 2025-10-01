@@ -1,0 +1,52 @@
+---
+permalink: network/networking-and-ports-for-platform-services-and-cloud-storage-pools.html 
+sidebar: sidebar 
+keywords: networking for platform services, networking for cloud storage pools 
+summary: StorageGRIDプラットフォーム サービスまたは Cloud Storage Pools を使用する予定の場合は、宛先エンドポイントに到達できるようにグリッド ネットワークとファイアウォールを構成する必要があります。 
+---
+= プラットフォーム サービスとクラウド ストレージ プールのネットワークとポート
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDプラットフォーム サービスまたは Cloud Storage Pools を使用する予定の場合は、宛先エンドポイントに到達できるようにグリッド ネットワークとファイアウォールを構成する必要があります。
+
+
+
+== プラットフォームサービスのためのネットワーキング
+
+記載の通りlink:../admin/manage-platform-services-for-tenants.html["テナント向けプラットフォームサービスの管理"]そしてlink:../tenant/considerations-for-platform-services.html["プラットフォームサービスの管理"]プラットフォーム サービスには、検索統合、イベント通知、CloudMirror レプリケーションを提供する外部サービスが含まれます。
+
+プラットフォーム サービスでは、 StorageGRID ADC サービスをホストするストレージ ノードから外部サービス エンドポイントへのアクセスが必要です。アクセスを提供する例は次のとおりです:
+
+* ADC サービスを備えたストレージ ノードで、ターゲット エンドポイントにルーティングする AESL エントリを使用して一意の管理ネットワークを構成します。
+* クライアント ネットワークによって提供されるデフォルト ルートに依存します。デフォルトルートを使用する場合は、link:../admin/manage-firewall-controls.html["信頼できないクライアントネットワーク機能"]着信接続を制限します。
+
+
+
+
+== クラウド ストレージ プールのネットワーク
+
+クラウド ストレージ プールでは、ストレージ ノードから、Amazon S3 Glacier や Microsoft Azure Blob ストレージなどの使用される外部サービスによって提供されるエンドポイントへのアクセスも必要です。詳細については、link:../ilm/what-cloud-storage-pool-is.html["クラウドストレージプールとは"] 。
+
+
+
+== プラットフォーム サービスとクラウド ストレージ プールのポート
+
+デフォルトでは、プラットフォーム サービスと Cloud Storage Pool の通信では次のポートが使用されます。
+
+* *80*: で始まるエンドポイントURIの場合 `http`
+* *443*: エンドポイントURIが `https`
+
+
+エンドポイントを作成または編集するときに、別のポートを指定できます。見るlink:internal-grid-node-communications.html["ネットワークポートリファレンス"] 。
+
+非透過プロキシサーバーを使用する場合は、link:../admin/configuring-storage-proxy-settings.html["ストレージプロキシ設定を構成する"]インターネット上のエンドポイントなどの外部エンドポイントにメッセージを送信できるようにします。
+
+
+
+== VLANとプラットフォームサービスとクラウドストレージプール
+
+プラットフォーム サービスまたはクラウド ストレージ プールには VLAN ネットワークは使用できません。宛先エンドポイントは、グリッド、管理、またはクライアント ネットワーク経由で到達可能である必要があります。

@@ -1,0 +1,49 @@
+---
+permalink: vmware/index.html 
+sidebar: sidebar 
+keywords: vmware 
+summary: VMware StorageGRIDノードをインストールするには、次の大まかな手順に従います。 
+---
+= VMware にStorageGRIDをインストールするためのクイック スタート
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+VMware StorageGRIDノードをインストールするには、次の大まかな手順に従います。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"]準備
+[role="quick-margin-list"]
+* 学ぶlink:../primer/storagegrid-architecture-and-network-topology.html["StorageGRIDアーキテクチャとネットワークトポロジ"]。
+* 詳細について学ぶlink:../network/index.html["StorageGRIDネットワーク"]。
+* 集めて準備するlink:required-materials.html["必要な情報と資料"]。
+* インストールと設定link:software-requirements.html["VMware vSphere Hypervisor、vCenter、および ESX ホスト"]。
+* 必要なものを準備するlink:cpu-and-ram-requirements.html["CPUおよびRAM"]。
+* 提供するlink:storage-and-performance-requirements.html["ストレージとパフォーマンスの要件"]。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2"]展開
+[role="quick-margin-para"]
+グリッド ノードを展開します。グリッド ノードを展開すると、グリッド ノードはStorageGRIDシステムの一部として作成され、1 つ以上のネットワークに接続されます。
+
+[role="quick-margin-list"]
+* VMware vSphere Web Client、.vmdkファイル、および.ovfファイルテンプレートのセットを使用して、link:collecting-information-about-your-deployment-environment.html["ソフトウェアベースのノードを仮想マシン (VM) として展開する"]手順 1 で準備したサーバー上で。
+* StorageGRIDアプライアンスノードを展開するには、 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["ハードウェアインストールのクイックスタート"^] 。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三つ"]構成
+[role="quick-margin-para"]
+すべてのノードがデプロイされたら、グリッドマネージャを使用してlink:navigating-to-grid-manager.html["グリッドを構成してインストールを完了する"]。
+
+
+
+== インストールを自動化する
+
+時間を節約し、一貫性を確保するために、グリッド ノードの展開と構成、およびStorageGRIDシステムの構成を自動化できます。
+
+* link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-grid-node-deployment["VMware vSphere を使用してグリッド ノードの展開を自動化する"] 。
+* グリッドノードを展開した後、link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-the-configuration-of-storagegrid["StorageGRIDシステムの構成を自動化する"]インストール アーカイブに提供されている Python 構成スクリプトを使用します。
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["アプライアンス グリッド ノードのインストールと構成を自動化します"^]
+* StorageGRIDデプロイメントの上級開発者であれば、link:overview-of-installation-rest-api.html["インストールREST API"] 。
+

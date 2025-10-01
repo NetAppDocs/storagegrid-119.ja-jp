@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: storagegrid-hardware.html 
+keywords: storagegrid, software, grid 
+summary: StorageGRIDアプライアンス ハードウェアのインストール、構成、および使用方法を学習します。 
+---
+= StorageGRIDアプライアンス
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+へ移動 https://docs.netapp.com/us-en/storagegrid-appliances/index.html["StorageGRIDアプライアンスのドキュメント"^]StorageGRIDストレージおよびサービス アプライアンスをインストール、構成、および保守する方法を学習します。

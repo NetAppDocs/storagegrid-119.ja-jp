@@ -1,0 +1,66 @@
+---
+permalink: admin/controlling-access-through-firewalls.html 
+sidebar: sidebar 
+keywords: firewall access, firewall ports, external firewall 
+summary: 外部ファイアウォールで特定のポートを開いたり閉じたりすることができます。 
+---
+= 外部ファイアウォールでアクセスを制御する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部ファイアウォールで特定のポートを開いたり閉じたりすることができます。
+
+外部ファイアウォールで特定のポートを開いたり閉じたりすることで、 StorageGRID管理ノード上のユーザー インターフェイスと API へのアクセスを制御できます。たとえば、他の方法を使用してシステム アクセスを制御するだけでなく、ファイアウォールでテナントが Grid Manager に接続できないようにすることもできます。
+
+StorageGRID内部ファイアウォールを設定する場合は、link:../admin/configure-firewall-controls.html["内部ファイアウォールを構成する"] 。
+
+[cols="1a,1a,2a"]
+|===
+| ポート | 説明 | ポートが開いている場合... 
+
+
+ a| 
+443
+ a| 
+管理ノードのデフォルトの HTTPS ポート
+ a| 
+Web ブラウザおよび管理 API クライアントは、グリッド マネージャ、グリッド管理 API、テナント マネージャ、およびテナント管理 API にアクセスできます。
+
+*注:* ポート 443 は一部の内部トラフィックにも使用されます。
+
+
+
+ a| 
+8443
+ a| 
+管理ノード上の制限されたグリッド マネージャー ポート
+ a| 
+* Web ブラウザおよび管理 API クライアントは、HTTPS を使用して Grid Manager および Grid Management API にアクセスできます。
+* Web ブラウザおよび管理 API クライアントは、テナント マネージャまたはテナント管理 API にアクセスできません。
+* 内部コンテンツのリクエストは拒否されます。
+
+
+
+
+ a| 
+9443
+ a| 
+管理ノード上の制限されたテナント マネージャー ポート
+ a| 
+* Web ブラウザと管理 API クライアントは、HTTPS を使用してテナント マネージャとテナント管理 API にアクセスできます。
+* Web ブラウザおよび管理 API クライアントは、グリッド マネージャーまたはグリッド管理 API にアクセスできません。
+* 内部コンテンツのリクエストは拒否されます。
+
+
+|===
+
+TIP: シングル サインオン (SSO) は、制限された Grid Manager ポートまたは Tenant Manager ポートでは使用できません。ユーザーをシングル サインオンで認証する場合は、デフォルトの HTTPS ポート (443) を使用する必要があります。
+
+.関連情報
+* link:signing-in-to-grid-manager.html["グリッドマネージャーにSign in"]
+* link:creating-tenant-account.html["テナントアカウントを作成する"]
+* link:../network/external-communications.html["外部コミュニケーション"]
+

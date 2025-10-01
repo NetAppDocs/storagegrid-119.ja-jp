@@ -1,0 +1,185 @@
+---
+permalink: s3/put-object-copy.html 
+sidebar: sidebar 
+keywords: put object copy, CopyObject 
+summary: S3 CopyObject リクエストを使用して、S3 にすでに保存されているオブジェクトのコピーを作成できます。  CopyObject 操作は、GET を実行してから PUT を実行するのと同じです。 
+---
+= CopyObject
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+S3 CopyObject リクエストを使用して、S3 にすでに保存されているオブジェクトのコピーを作成できます。  CopyObject 操作は、GetObject に続いて PutObject を実行するのと同じです。
+
+
+
+== 紛争を解決する
+
+2 つのクライアントが同じキーに書き込むなど、競合するクライアント要求は、「最新のものを優先」して解決されます。  「最新のもの優先」評価のタイミングは、S3 クライアントが操作を開始した時点ではなく、 StorageGRIDシステムが特定のリクエストを完了した時点に基づきます。
+
+
+
+== オブジェクトのサイズ
+
+1 回の PutObject 操作の最大 _推奨_ サイズは 5 GiB (5,368,709,120 バイト) です。  5GiBを超えるオブジェクトがある場合は、link:operations-for-multipart-uploads.html["マルチパートアップロード"]その代わり。
+
+1 回の PutObject 操作でサポートされる最大サイズは 5 TiB (5,497,558,138,880 バイト) です。
+
+
+NOTE: StorageGRID 11.6 以前からアップグレードした場合、5 GiB を超えるオブジェクトをアップロードしようとすると、S3 PUT オブジェクトのサイズが大きすぎるというアラートがトリガーされます。 StorageGRID 11.7 または 11.8 を新規にインストールした場合、この場合アラートはトリガーされません。ただし、AWS S3 標準に準拠するため、 StorageGRIDの将来のリリースでは 5 GiB を超えるオブジェクトのアップロードはサポートされません。
+
+
+
+== ユーザーメタデータの UTF-8 文字
+
+リクエストに、キー名またはユーザー定義メタデータの値に (エスケープされていない) UTF-8 値が含まれている場合、 StorageGRID の動作は未定義になります。
+
+StorageGRID は、ユーザー定義メタデータのキー名または値に含まれるエスケープされた UTF-8 文字を解析または解釈しません。エスケープされた UTF-8 文字は ASCII 文字として扱われます。
+
+* ユーザー定義のメタデータにエスケープされた UTF-8 文字が含まれている場合、リクエストは成功します。
+* StorageGRIDは `x-amz-missing-meta`キー名または値の解釈された値に印刷できない文字が含まれている場合は、ヘッダーにエラーが発生します。
+
+
+
+
+== サポートされているリクエストヘッダー
+
+次のリクエスト ヘッダーがサポートされています。
+
+* `Content-Type`
+* `x-amz-copy-source`
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-if-modified-since`
+* `x-amz-meta-`、その後にユーザー定義のメタデータを含む名前と値のペアが続く
+* `x-amz-metadata-directive`: デフォルト値は `COPY`これにより、オブジェクトと関連メタデータをコピーできるようになります。
++
+指定できます `REPLACE`オブジェクトをコピーするときに既存のメタデータを上書きするか、オブジェクトのメタデータを更新します。
+
+* `x-amz-storage-class`
+* `x-amz-tagging-directive`: デフォルト値は `COPY`これにより、オブジェクトとすべてのタグをコピーできるようになります。
++
+指定できます `REPLACE`オブジェクトをコピーするときに既存のタグを上書きしたり、タグを更新したりします。
+
+* S3 オブジェクトロックリクエストヘッダー:
++
+** `x-amz-object-lock-mode`
+** `x-amz-object-lock-retain-until-date`
+** `x-amz-object-lock-legal-hold`
++
+これらのヘッダーなしでリクエストが行われた場合、バケットのデフォルトの保持設定を使用して、オブジェクト バージョン モードと保持期限が計算されます。見るlink:use-s3-api-for-s3-object-lock.html["S3 REST API を使用して S3 オブジェクトロックを設定する"] 。
+
+
+
+* SSE リクエスト ヘッダー:
++
+** `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`
+** `x-amz-copy-source​-server-side-encryption-customer-key`
+** `x-amz-copy-source​-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption`
+** `x-amz-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption-customer-key`
+** `x-amz-server-side-encryption-customer-algorithm`
++
+見る<<サーバー側暗号化のリクエストヘッダー>>
+
+
+
+
+
+
+
+== サポートされていないリクエストヘッダー
+
+次のリクエスト ヘッダーはサポートされていません。
+
+* `Cache-Control`
+* `Content-Disposition`
+* `Content-Encoding`
+* `Content-Language`
+* `Expires`
+* `x-amz-checksum-algorithm`
++
+オブジェクトをコピーするときに、ソース オブジェクトにチェックサムがある場合、 StorageGRID はそのチェックサム値を新しいオブジェクトにコピーしません。この動作は、使用しようとしたかどうかに関係なく適用されます。 `x-amz-checksum-algorithm`オブジェクト要求内。
+
+* `x-amz-website-redirect-location`
+
+
+
+
+== ストレージクラスのオプション
+
+その `x-amz-storage-class`リクエストヘッダーがサポートされており、一致するILMルールがデュアルコミットまたはバランスコミットを使用している場合にStorageGRIDが作成するオブジェクトコピーの数に影響します。link:../ilm/data-protection-options-for-ingest.html["取り込みオプション"] 。
+
+* `STANDARD`
++
+(デフォルト) ILM ルールがデュアル コミット オプションを使用する場合、またはバランス オプションが中間コピーの作成にフォールバックする場合に、デュアル コミット インジェスト操作を指定します。
+
+* `REDUCED_REDUNDANCY`
++
+ILM ルールがデュアル コミット オプションを使用する場合、またはバランス オプションが中間コピーの作成にフォールバックする場合に、単一コミットの取り込み操作を指定します。
+
++
+
+NOTE: S3オブジェクトロックが有効になっているバケットにオブジェクトを取り込む場合、 `REDUCED_REDUNDANCY`オプションは無視されます。レガシーコンプライアンスバケットにオブジェクトを取り込む場合、 `REDUCED_REDUNDANCY`オプションはエラーを返します。  StorageGRID は、コンプライアンス要件が満たされていることを確認するために、常にデュアルコミット取り込みを実行します。
+
+
+
+
+
+== CopyObject で x-amz-copy-source を使用する
+
+ソースバケットとキーが `x-amz-copy-source`ヘッダー、値、およびキーが宛先バケットとキーと異なる場合、ソース オブジェクト データのコピーが宛先に書き込まれます。
+
+送信元と送信先が一致し、 `x-amz-metadata-directive`ヘッダーは次のように指定されます `REPLACE`オブジェクトのメタデータは、リクエストで提供されたメタデータ値で更新されます。この場合、 StorageGRID はオブジェクトを再取り込みしません。これには 2 つの重要な結果があります。
+
+* CopyObject を使用して、既存のオブジェクトをその場で暗号化したり、既存のオブジェクトの暗号化を変更したりすることはできません。あなたが `x-amz-server-side-encryption`ヘッダーまたは `x-amz-server-side-encryption-customer-algorithm`ヘッダー、 StorageGRIDはリクエストを拒否し、 `XNotImplemented` 。
+* 一致する ILM ルールで指定された取り込み動作のオプションは使用されません。更新によってトリガーされるオブジェクト配置の変更は、通常のバックグラウンド ILM プロセスによって ILM が再評価されるときに行われます。
++
+つまり、ILM ルールが取り込み動作に厳密オプションを使用する場合、必要なオブジェクトを配置できない場合 (たとえば、新しく必要な場所が利用できないなど)、アクションは実行されません。更新されたオブジェクトは、必要な配置が可能になるまで現在の配置を保持します。
+
+
+
+
+
+== サーバー側暗号化のリクエストヘッダー
+
+もしあなたがlink:using-server-side-encryption.html["サーバー側の暗号化を使用する"]指定するリクエスト ヘッダーは、ソース オブジェクトが暗号化されているかどうか、およびターゲット オブジェクトを暗号化する予定があるかどうかによって異なります。
+
+* ソース オブジェクトが顧客提供のキー (SSE-C) を使用して暗号化されている場合は、オブジェクトを復号化してコピーできるように、CopyObject 要求に次の 3 つのヘッダーを含める必要があります。
++
+** `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`： 特定 `AES256`。
+** `x-amz-copy-source​-server-side-encryption-customer-key`: ソース オブジェクトの作成時に指定した暗号化キーを指定します。
+** `x-amz-copy-source​-server-side-encryption-customer-key-MD5`: ソース オブジェクトの作成時に指定した MD5 ダイジェストを指定します。
+
+
+* 提供および管理する一意のキーを使用してターゲット オブジェクト (コピー) を暗号化する場合は、次の 3 つのヘッダーを含めます。
++
+** `x-amz-server-side-encryption-customer-algorithm`： 特定 `AES256`。
+** `x-amz-server-side-encryption-customer-key`: 対象オブジェクトの新しい暗号化キーを指定します。
+** `x-amz-server-side-encryption-customer-key-MD5`: 新しい暗号化キーの MD5 ダイジェストを指定します。
+
+
++
+
+CAUTION: 提供された暗号化キーは保存されません。暗号化キーを紛失すると、対応するオブジェクトも失われます。顧客提供のキーを使用してオブジェクトデータを保護する前に、以下の考慮事項を確認してください。link:using-server-side-encryption.html["サーバー側暗号化を使用する"] 。
+
+* StorageGRID (SSE) によって管理される一意のキーを使用してターゲット オブジェクト (コピー) を暗号化する場合は、CopyObject 要求に次のヘッダーを含めます。
++
+** `x-amz-server-side-encryption`
++
+
+NOTE: その `server-side-encryption`オブジェクトの値を更新できません。代わりに、新しいコピーを作成してください `server-side-encryption`値を使用する `x-amz-metadata-directive`: `REPLACE` 。
+
+
+
+
+
+
+
+== バージョン管理
+
+ソースバケットがバージョン管理されている場合は、 `x-amz-copy-source`オブジェクトの最新バージョンをコピーするためのヘッダー。オブジェクトの特定のバージョンをコピーするには、 `versionId`サブリソース。宛先バケットがバージョン管理されている場合、生成されたバージョンは `x-amz-version-id`レスポンス ヘッダー。ターゲットバケットのバージョン管理が停止されている場合は、 `x-amz-version-id` 「null」値を返します。

@@ -1,0 +1,250 @@
+---
+permalink: troubleshoot/searching-for-and-restoring-potentially-lost-objects.html 
+sidebar: sidebar 
+keywords: how to search lost object, how to restore lost object, how to find lost object 
+summary: '*オブジェクト紛失*アラートと従来の紛失オブジェクト (LOST) アラームをトリガーし、紛失の可能性があると特定されたオブジェクトを見つけて復元できる可能性があります。' 
+---
+= 紛失した可能性のあるオブジェクトを検索して復元する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+*オブジェクト紛失*アラートと従来の紛失オブジェクト (LOST) アラームをトリガーし、紛失の可能性があると特定されたオブジェクトを見つけて復元できる可能性があります。
+
+.開始する前に
+* 紛失したオブジェクトのUUIDは、link:../troubleshoot/investigating-lost-objects.html["紛失物の調査"] 。
+* あなたは `Passwords.txt`ファイル。
+
+
+.タスク概要
+この手順に従って、グリッド内の他の場所で失われたオブジェクトの複製されたコピーを探すことができます。ほとんどの場合、紛失した物は見つかりません。ただし、場合によっては、迅速な対応を行えば、失われた複製オブジェクトを見つけて復元できる可能性があります。
+
+
+CAUTION: この手順に関するサポートについては、テクニカル サポートにお問い合わせください。
+
+.手順
+. 管理ノードから、監査ログでオブジェクトの可能性のある場所を検索します。
++
+.. グリッド ノードにログインします。
++
+... 次のコマンドを入力します。 `ssh admin@grid_node_IP`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+... ルートに切り替えるには、次のコマンドを入力します。 `su -`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。ルートとしてログインすると、プロンプトは `$`に `#`。
+
+
+.. [[substep-1b]]監査ログが保存されているディレクトリに変更します。
++
+--
+監査ログ ディレクトリと適用可能なノードは、監査の宛先設定によって異なります。
+
+[cols="1a,2a"]
+|===
+| オプション | デスティネーション 
+
+
+ a| 
+ローカルノード（デフォルト）
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+管理ノード/ローカルノード
+ a| 
+*** 管理ノード (プライマリおよび非プライマリ): `/var/local/audit/export/audit.log`
+*** すべてのノード: `/var/local/log/localaudit.log`このモードでは通常、ファイルは空であるか、存在しません。
+
+
+
+
+ a| 
+外部 syslog サーバー
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+監査先の設定に応じて、次のように入力します。 `cd /var/local/log`または `/var/local/audit/export/`
+
+詳細については、link:../monitor/configure-audit-messages.html#select-audit-information-destinations["監査情報の送信先を選択する"] 。
+
+--
+.. grepを使用して抽出しますlink:../audit/object-ingest-transactions.html["失われた可能性のあるオブジェクトに関連付けられた監査メッセージ"]出力ファイルに送信します。入力： `grep uuid-value audit_file_name > output_file_name`
++
+例えば：
+
++
+[listing]
+----
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_lost_object.txt
+----
+.. grep を使用して、この出力ファイルから Location Lost (LLST) 監査メッセージを抽出します。入力： `grep LLST output_file_name`
++
+例えば：
+
++
+[listing]
+----
+Admin: # grep LLST /var/local/tmp/messages_about_lost_objects.txt
+----
++
+LLST 監査メッセージは、このサンプル メッセージのようになります。
+
++
+[listing]
+----
+[AUDT:[NOID(UI32):12448208][CBIL(UI64):0x38186FE53E3C49A5]
+[UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"][LTYP(FC32):CLDI]
+[PCLD(CSTR):"/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA#3tN6"]
+[TSRC(FC32):SYST][RSLT(FC32):NONE][AVER(UI32):10][ATIM(UI64):1581535134379225]
+[ATYP(FC32):LLST][ANID(UI32):12448208][AMID(FC32):CLSM][ATID(UI64):7086871083190743409]]
+----
+.. LLST メッセージ内の PCLD フィールドと NOID フィールドを見つけます。
++
+存在する場合、PCLD の値は、不足している複製されたオブジェクトのコピーへのディスク上の完全なパスです。  NOID の値は、オブジェクトのコピーが存在する可能性がある LDR のノード ID です。
+
++
+オブジェクトの場所が見つかった場合は、オブジェクトを復元できる可能性があります。
+
+.. この LDR ノード ID に関連付けられているストレージ ノードを検索します。グリッド マネージャーで、*サポート* > *ツール* > *グリッド トポロジ* を選択します。次に、*_データセンター_* > *_ストレージノード_* > *LDR* を選択します。
++
+LDR サービスのノード ID は、ノード情報テーブルにあります。この LDR をホストしているストレージ ノードが見つかるまで、各ストレージ ノードの情報を確認します。
+
+
+
+. 監査メッセージに示されているストレージ ノードにオブジェクトが存在するかどうかを確認します。
++
+.. グリッド ノードにログインします。
++
+... 次のコマンドを入力します。 `ssh admin@grid_node_IP`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+... ルートに切り替えるには、次のコマンドを入力します。 `su -`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。
++
+ルートとしてログインすると、プロンプトは `$`に `#`。
+
+
+
+.. オブジェクトのファイル パスが存在するかどうかを判断します。
++
+オブジェクトのファイル パスには、LLST 監査メッセージの PCLD の値を使用します。
+
++
+たとえば、次のように入力します。
+
++
+[listing]
+----
+ls '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+----
++
+
+NOTE: 特殊文字をエスケープするには、コマンド内のオブジェクト ファイル パスを常に一重引用符で囲みます。
+
++
+*** オブジェクト パスが見つからない場合、オブジェクトは失われ、この手順を使用して復元することはできません。テクニカル サポートにお問い合わせください。
+*** オブジェクト パスが見つかった場合は、次の手順に進みます。見つかったオブジェクトをStorageGRIDに復元することができます。
+
+
+
+
+. オブジェクト パスが見つかった場合は、オブジェクトをStorageGRIDに復元します。
++
+.. 同じストレージノードから、オブジェクト ファイルの所有権を変更して、 StorageGRIDで管理できるようにします。入力： `chown ldr-user:bycast 'file_path_of_object'`
+.. LDR コンソールにアクセスするには、localhost 1402 に Telnet します。入力： `telnet 0 1402`
+.. 入力： `cd /proc/STOR`
+.. 入力： `Object_Found 'file_path_of_object'`
++
+たとえば、次のように入力します。
+
++
+[listing]
+----
+Object_Found '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+----
++
+発行 `Object_Found`コマンドは、オブジェクトの位置をグリッドに通知します。また、アクティブな ILM ポリシーをトリガーし、各ポリシーで指定されたとおりに追加のコピーを作成します。
+
++
+
+NOTE: オブジェクトが見つかったストレージ ノードがオフラインの場合、オンラインの任意のストレージ ノードにオブジェクトをコピーできます。オブジェクトをオンライン ストレージ ノードの任意の /var/local/rangedb ディレクトリに配置します。次に、 `Object_Found`オブジェクトへのファイル パスを使用してコマンドを実行します。
+
++
+*** オブジェクトを復元できない場合は、 `Object_Found`コマンドは失敗します。テクニカル サポートにお問い合わせください。
+*** オブジェクトがStorageGRIDに正常に復元された場合は、成功メッセージが表示されます。例えば：
++
+[listing]
+----
+ade 12448208: /proc/STOR > Object_Found '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+
+ade 12448208: /proc/STOR > Object found succeeded.
+First packet of file was valid. Extracted key: 38186FE53E3C49A5
+Renamed '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6' to '/var/local/rangedb/1/p/17/11/00rH0%DkRt78Ila#3udu'
+----
++
+次の手順に進みます。
+
+
+
+
+
+. オブジェクトがStorageGRIDに正常に復元された場合は、新しい場所が作成されたことを確認します。
++
+.. グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+.. *ILM* > *オブジェクト メタデータ検索* を選択します。
+.. UUIDを入力し、「検索」を選択します。
+.. メタデータを確認し、新しい場所を確認します。
+
+
+. 管理ノードから、このオブジェクトの ORLM 監査メッセージの監査ログを検索し、情報ライフサイクル管理 (ILM) によって必要に応じてコピーが配置されていることを確認します。
++
+.. グリッド ノードにログインします。
++
+... 次のコマンドを入力します。 `ssh admin@grid_node_IP`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+... ルートに切り替えるには、次のコマンドを入力します。 `su -`
+... 記載されているパスワードを入力してください `Passwords.txt`ファイル。ルートとしてログインすると、プロンプトは `$`に `#`。
+
+
+.. 監査ログが保存されているディレクトリに変更します。参照<<substep-1b,サブステップ1.b>>。
+.. grep を使用して、オブジェクトに関連付けられた監査メッセージを出力ファイルに抽出します。入力： `grep uuid-value audit_file_name > output_file_name`
++
+例えば：
+
++
+[listing]
+----
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_restored_object.txt
+----
+.. grep を使用して、この出力ファイルから Object Rules Met (ORLM) 監査メッセージを抽出します。入力： `grep ORLM output_file_name`
++
+例えば：
+
++
+[listing]
+----
+Admin: # grep ORLM /var/local/tmp/messages_about_restored_object.txt
+----
++
+ORLM 監査メッセージは、このサンプル メッセージのようになります。
+
++
+[listing]
+----
+[AUDT:[CBID(UI64):0x38186FE53E3C49A5][RULE(CSTR):"Make 2 Copies"]
+[STAT(FC32):DONE][CSIZ(UI64):0][UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"]
+[LOCS(CSTR):"**CLDI 12828634 2148730112**, CLDI 12745543 2147552014"]
+[RSLT(FC32):SUCS][AVER(UI32):10][ATYP(FC32):ORLM][ATIM(UI64):1563398230669]
+[ATID(UI64):15494889725796157557][ANID(UI32):13100453][AMID(FC32):BCMS]]
+----
+.. 監査メッセージ内の LOCS フィールドを見つけます。
++
+存在する場合、LOCS 内の CLDI の値は、オブジェクト コピーが作成されたノード ID とボリューム ID です。このメッセージは、ILM が適用され、グリッド内の 2 つの場所に 2 つのオブジェクト コピーが作成されたことを示します。
+
+
+
+. link:resetting-lost-and-missing-object-counts.html["紛失した物や行方不明の物の数をリセットする"]グリッド マネージャーで。
+

@@ -1,0 +1,29 @@
+---
+permalink: admin/identifying-primary-admin-node.html 
+sidebar: sidebar 
+keywords: primary admin node, configuration management node 
+summary: プライマリ管理ノードは、非プライマリ管理ノードよりも多くの機能を提供します。たとえば、一部のメンテナンス手順はプライマリ管理ノードを使用して実行する必要があります。 
+---
+= プライマリ管理ノードを特定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プライマリ管理ノードは、非プライマリ管理ノードよりも多くの機能を提供します。たとえば、一部のメンテナンス手順はプライマリ管理ノードを使用して実行する必要があります。
+
+管理ノードの詳細については、以下を参照してください。link:../primer/what-admin-node-is.html["管理ノードとは"] 。
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたが持っているlink:admin-group-permissions.html["特定のアクセス権限"]。
+
+
+.手順
+. 「NODES」を選択します。
+. 検索ボックスに「*primary*」と入力します。
++
+検索結果で、タイプ列に「プライマリ管理ノード」が表示されているノードを特定します。  1 つのプライマリ管理ノードがリストされる必要があります。
+
+

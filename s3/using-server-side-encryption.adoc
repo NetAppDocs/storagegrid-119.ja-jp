@@ -1,0 +1,113 @@
+---
+permalink: s3/using-server-side-encryption.html 
+sidebar: sidebar 
+keywords: server side encryption, encryption, operations on objects, objects 
+summary: サーバー側の暗号化により、保存中のオブジェクト データを保護できます。  StorageGRID はオブジェクトを書き込むときにデータを暗号化し、オブジェクトにアクセスするときにデータを復号化します。 
+---
+= サーバー側の暗号化を使用する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+サーバー側の暗号化により、保存中のオブジェクト データを保護できます。  StorageGRID はオブジェクトを書き込むときにデータを暗号化し、オブジェクトにアクセスするときにデータを復号化します。
+
+サーバー側の暗号化を使用する場合は、暗号化キーの管理方法に基づいて、相互に排他的な 2 つのオプションのいずれかを選択できます。
+
+* *SSE ( StorageGRID管理キーによるサーバー側暗号化)*: オブジェクトを保存するための S3 リクエストを発行すると、 StorageGRID は一意のキーを使用してオブジェクトを暗号化します。オブジェクトを取得するために S3 リクエストを発行すると、 StorageGRID は保存されたキーを使用してオブジェクトを復号化します。
+* *SSE-C (顧客提供のキーを使用したサーバー側暗号化)*: オブジェクトを保存するための S3 リクエストを発行するときに、独自の暗号化キーを提供します。オブジェクトを取得するときは、リクエストの一部として同じ暗号化キーを提供します。  2 つの暗号化キーが一致する場合、オブジェクトは復号化され、オブジェクト データが返されます。
++
+StorageGRID はすべてのオブジェクトの暗号化および復号化操作を管理しますが、提供する暗号化キーはユーザーが管理する必要があります。
+
++
+
+CAUTION: 提供された暗号化キーは保存されません。暗号化キーを紛失すると、対応するオブジェクトも失われます。
+
++
+
+NOTE: オブジェクトが SSE または SSE-C で暗号化されている場合、バケット レベルまたはグリッド レベルの暗号化設定はすべて無視されます。
+
+
+
+
+
+== SSE を使用
+
+StorageGRIDによって管理される一意のキーを使用してオブジェクトを暗号化するには、次のリクエスト ヘッダーを使用します。
+
+`x-amz-server-side-encryption`
+
+SSE 要求ヘッダーは、次のオブジェクト操作でサポートされます。
+
+* link:put-object.html["PutObject"]
+* link:put-object-copy.html["CopyObject"]
+* link:initiate-multipart-upload.html["CreateMultipartUpload"]
+
+
+
+
+== SSE-Cを使用する
+
+管理する一意のキーを使用してオブジェクトを暗号化するには、次の 3 つのリクエスト ヘッダーを使用します。
+
+[cols="1a,2a"]
+|===
+| リクエストヘッダー | 説明 
+
+
+ a| 
+`x-amz-server-side​-encryption​-customer-algorithm`
+ a| 
+暗号化アルゴリズムを指定します。ヘッダー値は `AES256`。
+
+
+
+ a| 
+`x-amz-server-side​-encryption​-customer-key`
+ a| 
+オブジェクトの暗号化または復号化に使用する暗号化キーを指定します。キーの値は 256 ビット、base64 でエンコードされている必要があります。
+
+
+
+ a| 
+`x-amz-server-side​-encryption​-customer-key-MD5`
+ a| 
+RFC 1321 に従って暗号化キーの MD5 ダイジェストを指定します。これは、暗号化キーがエラーなく送信されたことを確認するために使用されます。  MD5 ダイジェストの値は、base64 でエンコードされた 128 ビットである必要があります。
+
+|===
+SSE-C 要求ヘッダーは、次のオブジェクト操作でサポートされます。
+
+* link:get-object.html["GetObject"]
+* link:head-object.html["HeadObject"]
+* link:put-object.html["PutObject"]
+* link:put-object-copy.html["CopyObject"]
+* link:initiate-multipart-upload.html["CreateMultipartUpload"]
+* link:upload-part.html["UploadPart"]
+* link:upload-part-copy.html["UploadPartCopy"]
+
+
+
+
+== 顧客提供キーによるサーバー側暗号化 (SSE-C) の使用に関する考慮事項
+
+SSE-C を使用する前に、次の点に注意してください。
+
+* https を使用する必要があります。
++
+
+CAUTION: StorageGRIDは、SSE-Cを使用する場合、HTTP経由のすべてのリクエストを拒否します。セキュリティ上の考慮事項として、HTTP経由で誤って送信したキーは侵害される可能性があります。キーを破棄し、必要に応じてローテーションします。
+
+* 応答内の ETag はオブジェクト データの MD5 ではありません。
+* 暗号化キーとオブジェクトのマッピングを管理する必要があります。 StorageGRID は暗号化キーを保存しません。各オブジェクトに提供した暗号化キーを追跡するのはユーザーの責任です。
+* バケットでバージョン管理が有効になっている場合は、各オブジェクト バージョンに独自の暗号化キーが必要です。各オブジェクト バージョンに使用される暗号化キーを追跡するのはユーザーの責任です。
+* 暗号化キーはクライアント側で管理するため、キーのローテーションなどの追加の安全対策もクライアント側で管理する必要があります。
++
+
+CAUTION: 提供された暗号化キーは保存されません。暗号化キーを紛失すると、対応するオブジェクトも失われます。
+
+* バケットにクロスグリッド レプリケーションまたは CloudMirror レプリケーションが設定されている場合、SSE-C オブジェクトを取り込むことはできません。取り込み操作は失敗します。
+
+
+.関連情報
+https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html["Amazon S3 ユーザーガイド: 顧客提供キーによるサーバー側暗号化 (SSE-C) の使用"^]

@@ -1,0 +1,114 @@
+---
+section: s3
+title: S3 REST APIを使用する
+entries:
+- title: サポートされているバージョンとアップデート
+  pdf-filename: StorageGRIDでS3を使用する
+  url: "/s3/index.html"
+- title: クイックリファレンス
+  url: "/s3/quick-reference-support-for-aws-apis.html"
+- title: S3 REST API接続をテストする
+  url: "/s3/configuring-tenant-accounts-and-connections.html"
+- title: StorageGRIDがS3 REST APIを実装する方法
+  entries:
+  - title: 競合するクライアント要求
+    url: "/s3/conflicting-client-requests.html"
+  - title: 一貫性の値
+    url: "/s3/consistency-controls.html"
+  - title: オブジェクトのバージョン管理
+    url: "/s3/object-versioning.html"
+  - title: S3 REST API を使用して S3 オブジェクトロックを設定する
+    url: "/s3/use-s3-api-for-s3-object-lock.html"
+  - title: S3ライフサイクル設定を作成する
+    url: "/s3/create-s3-lifecycle-configuration.html"
+  - title: S3 REST API 実装に関する推奨事項
+    url: "/s3/recommendations-for-implementing-s3-rest-api.html"
+- title: Amazon S3 REST APIのサポート
+  entries:
+  - title: 実装の詳細
+    url: "/s3/s3-rest-api-supported-operations-and-limitations.html"
+  - title: リクエストを認証する
+    url: "/s3/authenticating-requests.html"
+  - title: サービス上の操作
+    url: "/s3/operations-on-the-service.html"
+  - title: バケットの操作
+    url: "/s3/operations-on-buckets.html"
+  - title: オブジェクトに対する操作
+    entries:
+    - title: S3 オブジェクト操作
+      url: "/s3/operations-on-objects.html"
+    - title: S3 Selectを使用する
+      url: "/s3/use-s3-select.html"
+    - title: サーバー側の暗号化を使用する
+      url: "/s3/using-server-side-encryption.html"
+    - title: CopyObject
+      url: "/s3/put-object-copy.html"
+    - title: GetObject
+      url: "/s3/get-object.html"
+    - title: HeadObject
+      url: "/s3/head-object.html"
+    - title: PutObject
+      url: "/s3/put-object.html"
+    - title: オブジェクトの復元
+      url: "/s3/post-object-restore.html"
+    - title: オブジェクトコンテンツの選択
+      url: "/s3/select-object-content.html"
+  - title: マルチパートアップロードの操作
+    entries:
+    - title: マルチパートアップロード
+      pdf-filename: マルチパートアップロードの操作
+      url: "/s3/operations-for-multipart-uploads.html"
+    - title: CompleteMultipartUpload
+      url: "/s3/complete-multipart-upload.html"
+    - title: CreateMultipartUpload
+      url: "/s3/initiate-multipart-upload.html"
+    - title: リストマルチパートアップロード
+      url: "/s3/list-multipart-uploads.html"
+    - title: UploadPart
+      url: "/s3/upload-part.html"
+    - title: UploadPartCopy
+      url: "/s3/upload-part-copy.html"
+  - title: エラー応答
+    url: "/s3/error-responses.html"
+- title: StorageGRIDカスタム操作
+  entries:
+  - title: カスタム操作リスト
+    pdf-filename: StorageGRIDカスタム操作
+    url: "/s3/custom-operations-on-buckets.html"
+  - title: GETバケットの一貫性
+    url: "/s3/get-bucket-consistency-request.html"
+  - title: PUT バケットの一貫性
+    url: "/s3/put-bucket-consistency-request.html"
+  - title: GET バケットの最終アクセス時刻
+    url: "/s3/get-bucket-last-access-time-request.html"
+  - title: バケットの最終アクセス時刻をPUTする
+    url: "/s3/put-bucket-last-access-time-request.html"
+  - title: バケットメタデータ通知設定の削除
+    url: "/s3/delete-bucket-metadata-notification-configuration-request.html"
+  - title: バケットメタデータ通知設定の取得
+    url: "/s3/get-bucket-metadata-notification-configuration-request.html"
+  - title: PUT バケットメタデータ通知設定
+    url: "/s3/put-bucket-metadata-notification-configuration-request.html"
+  - title: ストレージ使用量の取得
+    url: "/s3/get-storage-usage-request.html"
+  - title: 従来のコンプライアンスに対するバケット リクエストのサポート終了
+    entries:
+    - title: 廃止された機能とリクエスト
+      pdf-filename: 従来のコンプライアンスに対するバケット リクエストのサポート終了
+      url: "/s3/deprecated-bucket-requests-for-legacy-compliance.html"
+    - title: 非推奨 - コンプライアンスのための CreateBucket リクエストの変更
+      url: "/s3/deprecated-put-bucket-request-modifications-for-compliance.html"
+    - title: 非推奨 - GET バケットコンプライアンスリクエスト
+      url: "/s3/deprecated-get-bucket-compliance-request.html"
+    - title: 非推奨 - PUT バケットコンプライアンスリクエスト
+      url: "/s3/deprecated-put-bucket-compliance-request.html"
+- title: バケットとグループのアクセスポリシー
+  entries:
+  - title: バケットとグループのアクセスポリシーを使用する
+    url: "/s3/bucket-and-group-access-policies.html"
+  - title: バケットポリシーの例
+    url: "/s3/example-bucket-policies.html"
+  - title: グループポリシーの例
+    url: "/s3/example-group-policies.html"
+- title: 監査ログで追跡される S3 操作
+  url: "/s3/s3-operations-tracked-in-audit-logs.html"

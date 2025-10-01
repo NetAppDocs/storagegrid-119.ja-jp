@@ -1,0 +1,35 @@
+---
+permalink: maintain/replacing-failed-node-with-services-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace failed node, services appliance 
+summary: サービス アプライアンスを使用すると、VMware、Linux ホスト、またはサービス アプライアンスでホストされていた、障害が発生したゲートウェイ ノード、障害が発生した非プライマリ管理ノード、または障害が発生したプライマリ管理ノードを回復できます。この手順は、グリッド ノード回復手順の 1 つのステップです。 
+---
+= 障害が発生したノードをサービスアプライアンスに置き換える
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+サービス アプライアンスを使用すると、VMware、Linux ホスト、またはサービス アプライアンスでホストされていた、障害が発生したゲートウェイ ノード、障害が発生した非プライマリ管理ノード、または障害が発生したプライマリ管理ノードを回復できます。この手順は、グリッド ノード回復手順の 1 つのステップです。
+
+.開始する前に
+* 次のいずれかの状況が当てはまると判断しました。
++
+** ノードをホストしている仮想マシンを復元できません。
+** グリッド ノードの物理または仮想 Linux ホストに障害が発生したため、交換する必要があります。
+** グリッド ノードをホストするサービス アプライアンスを交換する必要があります。
+
+
+* サービス アプライアンス上のStorageGRID Appliance Installer のバージョンが、 StorageGRIDシステムのソフトウェア バージョンと一致していることを確認しました。見る https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["StorageGRIDアプライアンスインストーラのバージョンを確認してアップグレードする"^]。
+
+
+
+NOTE: 同じサイトに SG110 と SG1100 サービス アプライアンスの両方、または SG100 と SG1000 サービス アプライアンスの両方を展開しないでください。パフォーマンスが予測不能になる可能性があります。
+
+.タスク概要
+次の場合には、サービス アプライアンスを使用して、障害が発生したグリッド ノードを回復できます。
+
+* 障害が発生したノードは VMware または Linux (link:installing-services-appliance-platform-change-only.html["プラットフォームの変更"] ）
+* 障害が発生したノードはサービスアプライアンス（link:preparing-appliance-for-reinstallation-platform-replacement-only.html["プラットフォームの置き換え"] ）
+

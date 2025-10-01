@@ -1,0 +1,30 @@
+---
+permalink: ilm/removing-storage-pool.html 
+sidebar: sidebar 
+keywords: remove storage pool 
+summary: 使用されていないストレージ プールを削除できます。 
+---
+= ストレージプールを削除する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用されていないストレージ プールを削除できます。
+
+.開始する前に
+* グリッドマネージャにサインインするには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+* あなたはlink:../admin/admin-group-permissions.html["必要なアクセス権限"]。
+
+
+.手順
+. *ILM* > *ストレージ プール* を選択します。
+. ストレージ プールを削除できるかどうかを確認するには、表の ILM 使用状況列を確認します。
++
+ILM ルールまたは消去コーディング プロファイルで使用されているストレージ プールを削除することはできません。必要に応じて、*_ストレージ プール名_* > *ILM 使用状況* を選択して、ストレージ プールが使用される場所を決定します。
+
+. 削除するストレージ プールが使用されていない場合は、チェックボックスをオンにします。
+. *削除*を選択します。
+. 「OK」を選択します。
+

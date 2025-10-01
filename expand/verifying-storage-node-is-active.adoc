@@ -1,0 +1,21 @@
+---
+permalink: expand/verifying-storage-node-is-active.html 
+sidebar: sidebar 
+keywords: expand, expansion, add storage nodes, verify node is active 
+summary: 新しいストレージ ノードを追加する拡張操作が完了すると、 StorageGRIDシステムは自動的に新しいストレージ ノードの使用を開始します。新しいストレージ ノードがアクティブであることを確認するには、 StorageGRIDシステムを使用する必要があります。 
+---
+= ストレージノードがアクティブであることを確認する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいストレージ ノードを追加する拡張操作が完了すると、 StorageGRIDシステムは自動的に新しいストレージ ノードの使用を開始します。新しいストレージ ノードがアクティブであることを確認するには、 StorageGRIDシステムを使用する必要があります。
+
+.手順
+. グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。
+. *NODES* > *_Expansion Storage Node_* > *Storage* を選択します。
+. *使用済みストレージ - オブジェクト データ* グラフの上にカーソルを置くと、*使用済み* の値が表示されます。これは、オブジェクト データに使用されている合計使用可能スペースの量です。
+. グラフ上でカーソルを右に移動すると、「*Used*」の値が増加することを確認します。
+

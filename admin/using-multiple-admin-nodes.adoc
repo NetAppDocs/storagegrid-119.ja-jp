@@ -1,0 +1,30 @@
+---
+permalink: admin/using-multiple-admin-nodes.html 
+sidebar: sidebar 
+keywords: admin nodes, more than one admin node, multiple admin nodes 
+summary: StorageGRIDシステムには複数の管理ノードを含めることができ、1 つの管理ノードに障害が発生した場合でも、 StorageGRIDシステムを継続的に監視および構成できます。 
+---
+= 複数の管理ノードを使用する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムには複数の管理ノードを含めることができ、1 つの管理ノードに障害が発生した場合でも、 StorageGRIDシステムを継続的に監視および構成できます。
+
+管理ノードが使用できなくなった場合でも、属性処理は続行され、アラートは引き続きトリガーされ、電子メール通知とAutoSupportパッケージは引き続き送信されます。ただし、複数の管理ノードがあっても、通知とAutoSupportパッケージを除いてフェイルオーバー保護は提供されません。
+
+image::../media/admin_node_redundancy.png[管理ノードの冗長性図]
+
+管理ノードに障害が発生した場合でも、 StorageGRIDシステムの表示と構成を続行するには、次の 2 つのオプションがあります。
+
+* Web クライアントは、他の利用可能な管理ノードに再接続できます。
+* システム管理者が管理ノードの高可用性グループを構成している場合、Web クライアントは HA グループの仮想 IP アドレスを使用して、グリッド マネージャまたはテナント マネージャに引き続きアクセスできます。見るlink:managing-high-availability-groups.html["高可用性グループの管理"] 。
++
+
+NOTE: HA グループを使用する場合、アクティブな管理ノードに障害が発生するとアクセスが中断されます。  HA グループの仮想 IP アドレスがグループ内の別の管理ノードにフェールオーバーした後、ユーザーは再度サインインする必要があります。
+
+
+
+一部のメンテナンス タスクは、プライマリ管理ノードを使用してのみ実行できます。プライマリ管理ノードに障害が発生した場合、 StorageGRIDシステムが再び完全に機能する前に、プライマリ管理ノードを回復する必要があります。

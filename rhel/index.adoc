@@ -1,0 +1,59 @@
+---
+permalink: rhel/index.html 
+sidebar: sidebar 
+keywords: red hat enterprise linux, rhel, quick start 
+summary: 'Red Hat Enterprise Linux (RHEL) Linux StorageGRIDノードをインストールするには、次の大まかな手順に従います。' 
+---
+= Red Hat Enterprise Linux にStorageGRIDをインストールするためのクイックスタート
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Red Hat Enterprise Linux (RHEL) Linux StorageGRIDノードをインストールするには、次の大まかな手順に従います。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"]準備
+[role="quick-margin-list"]
+* 学ぶlink:../primer/storagegrid-architecture-and-network-topology.html["StorageGRIDアーキテクチャとネットワークトポロジ"]。
+* 詳細について学ぶlink:../network/index.html["StorageGRIDネットワーク"]。
+* 集めて準備するlink:required-materials.html["必要な情報と資料"]。
+* 必要なものを準備するlink:cpu-and-ram-requirements.html["CPUおよびRAM"]。
+* 提供するlink:storage-and-performance-requirements.html["ストレージとパフォーマンスの要件"]。
+* link:how-host-wide-settings-change.html["Linuxサーバーを準備する"]StorageGRIDノードをホストします。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2"]展開
+[role="quick-margin-para"]
+グリッド ノードを展開します。グリッド ノードを展開すると、グリッド ノードはStorageGRIDシステムの一部として作成され、1 つ以上のネットワークに接続されます。
+
+[role="quick-margin-list"]
+* ステップ1で準備したホストにソフトウェアベースのグリッドノードを展開するには、Linuxコマンドラインを使用してlink:creating-node-configuration-files.html["ノード構成ファイル"]。
+* StorageGRIDアプライアンスノードを展開するには、 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["ハードウェアインストールのクイックスタート"^] 。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三つ"]構成
+[role="quick-margin-para"]
+すべてのノードがデプロイされたら、グリッドマネージャを使用してlink:navigating-to-grid-manager.html["グリッドを構成してインストールを完了する"]。
+
+
+
+== インストールを自動化する
+
+時間を節約し、一貫性を保つために、 StorageGRIDホスト サービスのインストールとグリッド ノードの構成を自動化できます。
+
+* Ansible、Puppet、Chef などの標準オーケストレーション フレームワークを使用して、次の作業を自動化します。
++
+** RHELのインストール
+** ネットワークとストレージの構成
+** コンテナエンジンとStorageGRIDホストサービスのインストール
+** 仮想グリッドノードの展開
+
+
++
+見るlink:automating-installation.html#automate-the-installation-and-configuration-of-the-storagegrid-host-service["StorageGRIDホストサービスのインストールと構成を自動化する"] 。
+
+* グリッドノードを展開した後、link:automating-installation.html#automate-the-configuration-of-storagegrid["StorageGRIDシステムの構成を自動化する"]インストール アーカイブに提供されている Python 構成スクリプトを使用します。
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["アプライアンス グリッド ノードのインストールと構成を自動化します"^]
+* StorageGRIDデプロイメントの上級開発者であれば、link:overview-of-installation-rest-api.html["インストールREST API"] 。
+

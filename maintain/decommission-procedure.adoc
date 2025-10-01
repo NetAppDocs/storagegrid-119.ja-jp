@@ -1,0 +1,24 @@
+---
+permalink: maintain/decommission-procedure.html 
+sidebar: sidebar 
+keywords: how to decommission 
+summary: 廃止手順を実行して、グリッド ノードまたはサイト全体をStorageGRIDシステムから完全に削除できます。 
+---
+= ノードまたはサイトの廃止
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+廃止手順を実行して、グリッド ノードまたはサイト全体をStorageGRIDシステムから完全に削除できます。
+
+グリッド ノードまたはサイトを削除するには、次のいずれかの廃止手順を実行します。
+
+* 実行するlink:grid-node-decommissioning.html["グリッドノードの廃止"]1 つ以上のサイトにある 1 つ以上のノードを削除します。削除するノードは、オンラインでStorageGRIDシステムに接続されている場合もあれば、オフラインで切断されている場合もあります。
+* 実行するlink:considerations-for-removing-site.html["サイトの廃止"]サイトを削除します。すべてのノードがStorageGRIDに接続されている場合は、*接続されたサイトの廃止*を実行します。すべてのノードがStorageGRIDから切断されている場合は、*切断されたサイトの廃止*を実行します。サイトに接続されたノードと切断されたノードが混在している場合は、すべてのオフライン ノードをオンラインに戻す必要があります。
++
+
+CAUTION: 切断されたサイトの廃止を実行する前に、 NetAppアカウント担当者に問い合わせてください。 NetApp は、サイトの廃止ウィザードのすべての手順を有効にする前に、お客様の要件を確認します。サイトを回復したり、サイトからオブジェクト データを回復したりできる可能性があると思われる場合は、切断されたサイトの廃止を試みないでください。
+
+

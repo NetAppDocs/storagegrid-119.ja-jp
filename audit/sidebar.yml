@@ -1,0 +1,156 @@
+---
+section: audit
+title: 監査ログを確認する
+entries:
+- title: 監査メッセージとログ
+  pdf-filename: StorageGRID監査ログを確認する
+  url: "/audit/index.html"
+- title: 監査メッセージフローと保持
+  url: "/audit/audit-message-flow-and-retention.html"
+- title: アクセス監査ログファイル
+  url: "/audit/accessing-audit-log-file.html"
+- title: 監査ログファイルのローテーション
+  url: "/audit/audit-log-file-rotation.html"
+- title: 監査ログファイルの形式
+  entries:
+  - title: 監査ログ形式の例
+    pdf-filename: 監査ログファイルの形式
+    url: "/audit/audit-log-file-format.html"
+  - title: 監査説明ツールを使用する
+    url: "/audit/using-audit-explain-tool.html"
+  - title: 監査合計ツールを使用する
+    url: "/audit/using-audit-sum-tool.html"
+- title: 監査メッセージの形式
+  entries:
+  - title: 監査メッセージの例
+    pdf-filename: 監査メッセージの形式
+    url: "/audit/audit-message-format.html"
+  - title: データ型
+    url: "/audit/data-types.html"
+  - title: イベント固有のデータ
+    url: "/audit/event-specific-data.html"
+  - title: 監査メッセージの共通要素
+    url: "/audit/common-elements-in-audit-messages.html"
+  - title: 監査メッセージの例
+    url: "/audit/audit-message-examples.html"
+- title: 監査メッセージとオブジェクトのライフサイクル
+  entries:
+  - title: 監査メッセージはいつ生成されますか?
+    url: "/audit/audit-messages-and-object-lifecycle.html"
+  - title: オブジェクト取り込みトランザクション
+    url: "/audit/object-ingest-transactions.html"
+  - title: オブジェクト削除トランザクション
+    url: "/audit/object-delete-transactions.html"
+  - title: オブジェクト取得トランザクション
+    url: "/audit/object-retrieve-transactions.html"
+  - title: メタデータ更新メッセージ
+    url: "/audit/metadata-update-messages.html"
+- title: 監査メッセージ
+  entries:
+  - title: メッセージの説明
+    pdf-filename: 監査メッセージ
+    url: "/audit/audit-messages-main.html"
+  - title: 監査メッセージのカテゴリ
+    entries:
+    - title: システム監査メッセージ
+      url: "/audit/system-audit-messages.html"
+    - title: オブジェクトストレージ監査メッセージ
+      url: "/audit/object-storage-audit-messages.html"
+    - title: クライアント読み取り監査メッセージ
+      url: "/audit/client-read-audit-messages.html"
+    - title: クライアント書き込み監査メッセージ
+      url: "/audit/client-write-audit-messages.html"
+    - title: 経営監査メッセージ
+      url: "/audit/management-audit-message.html"
+    - title: ILM監査メッセージ
+      url: "/audit/ilm-audit-messages.html"
+  - title: 監査メッセージの参照
+    entries:
+    - title: 'BROR: バケット読み取り専用リクエスト'
+      url: "/audit/bror-bucket-read-only-request.html"
+    - title: 'CBRB: オブジェクト受信開始'
+      url: "/audit/cbrb-object-receive-begin.html"
+    - title: 'CBRE: オブジェクト受信終了'
+      url: "/audit/cbre-object-receive-end.html"
+    - title: 'CBSB: オブジェクト送信開始'
+      url: "/audit/cbsb-object-send-begin.html"
+    - title: 'CBSE: オブジェクト送信終了'
+      url: "/audit/cbse-object-send-end.html"
+    - title: 'CGRR: クロスグリッドレプリケーション要求'
+      url: "/audit/cgrr-cross-grid-replication-request.html"
+    - title: 'EBDL: 空のバケットの削除'
+      url: "/audit/ebdl-empty-bucket-delete.html"
+    - title: 'EBKR: 空のバケットリクエスト'
+      url: "/audit/ebkr-empty-bucket-request.html"
+    - title: 'ECMC: 消失符号化データフラグメントの欠落'
+      url: "/audit/ecmc-missing-erasure-coded-data-fragment.html"
+    - title: 'ECOC: 破損した消去符号化データフラグメント'
+      url: "/audit/ecoc-corrupt-erasure-coded-data-fragment.html"
+    - title: 'ETAF: セキュリティ認証に失敗しました'
+      url: "/audit/etaf-security-authentication-failed.html"
+    - title: 'GNRG: GNDS登録'
+      url: "/audit/gnrg-gnds-registration.html"
+    - title: 'GNUR: GNDS 登録解除'
+      url: "/audit/gnur-gnds-unregistration.html"
+    - title: 'GTED: グリッドタスクが終了しました'
+      url: "/audit/gted-grid-task-ended.html"
+    - title: 'GTST: グリッドタスクが開始されました'
+      url: "/audit/gtst-grid-task-started.html"
+    - title: 'GTSU: グリッドタスクが送信されました'
+      url: "/audit/gtsu-grid-task-submitted.html"
+    - title: 'IDEL: ILM による削除開始'
+      url: "/audit/idel-ilm-initiated-delete.html"
+    - title: 'LKCU: 上書きされたオブジェクトのクリーンアップ'
+      url: "/audit/lkcu-overwritten-object-cleanup.html"
+    - title: 'LKDM: リークされたオブジェクトのクリーンアップ'
+      url: "/audit/lkdm-leaked-object-cleanup.html"
+    - title: 'LLST: 位置情報が失われました'
+      url: "/audit/llst-location-lost.html"
+    - title: 'MGAU: 経営監査メッセージ'
+      url: "/audit/mgau-management-audit-message.html"
+    - title: 'OLST: システムが紛失物体を検出しました'
+      url: "/audit/olst-system-detected-lost-object.html"
+    - title: 'ORLM: オブジェクトルールが満たされました'
+      url: "/audit/orlm-object-rules-met.html"
+    - title: 'OVWR: オブジェクトの上書き'
+      url: "/audit/ovwr-object-overwrite.html"
+    - title: 'S3SL: S3 選択リクエスト'
+      url: "/audit/s3-select-request.html"
+    - title: 'SADD: セキュリティ監査の無効化'
+      url: "/audit/sadd-security-audit-disable.html"
+    - title: 'SADE: セキュリティ監査の有効化'
+      url: "/audit/sade-security-audit-enable.html"
+    - title: 'SCMT: オブジェクトストアコミット'
+      url: "/audit/scmt-object-store-commit.html"
+    - title: 'SDEL: S3 削除'
+      url: "/audit/sdel-s3-delete.html"
+    - title: 'SGET: S3 ゲット'
+      url: "/audit/sget-s3-get.html"
+    - title: シア：S3ヘッド
+      url: "/audit/shea-s3-head.html"
+    - title: 'SPOS: S3 ポスト'
+      url: "/audit/spos-s3-post.html"
+    - title: 'スプット: S3 プット'
+      url: "/audit/sput-s3-put.html"
+    - title: 'SREM: オブジェクトストアの削除'
+      url: "/audit/srem-object-store-remove.html"
+    - title: 'SUPD: S3 メタデータが更新されました'
+      url: "/audit/supd-s3-metadata-updated.html"
+    - title: 'SVRF: オブジェクトストア検証失敗'
+      url: "/audit/svrf-object-store-verify-fail.html"
+    - title: 'SVRU: オブジェクトストアの検証が不明です'
+      url: "/audit/svru-object-store-verify-unknown.html"
+    - title: 'SYSD: ノード停止'
+      url: "/audit/sysd-node-stop.html"
+    - title: 'SYST: ノード停止'
+      url: "/audit/syst-node-stopping.html"
+    - title: 'SYSU: ノード開始'
+      url: "/audit/sysu-node-start.html"
+    - title: 'WDEL: 迅速な削除'
+      url: "/audit/wdel-swift-delete.html"
+    - title: 'WGET: Swift GET'
+      url: "/audit/wget-swift-get.html"
+    - title: 'WHEA: Swift HEAD'
+      url: "/audit/whea-swift-head.html"
+    - title: 'WPUT: Swift PUT'
+      url: "/audit/wput-swift-put.html"

@@ -1,0 +1,62 @@
+---
+permalink: network/index.html 
+sidebar: sidebar 
+keywords: storagegrid, network, networking, ethernet, subnet, routing 
+summary: これらのガイドラインを使用して、 StorageGRIDアーキテクチャとネットワーク トポロジについて学習し、ネットワーク構成とプロビジョニングの要件を学習します。 
+---
+= ネットワークガイドライン
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+これらのガイドラインを使用して、 StorageGRIDアーキテクチャとネットワーク トポロジについて学習し、ネットワーク構成とプロビジョニングの要件を学習します。
+
+
+
+== これらの指示について
+
+これらのガイドラインは、 StorageGRIDノードを展開および構成する前に、 StorageGRIDネットワーク インフラストラクチャを作成するために使用できる情報を提供します。これらのガイドラインを使用すると、グリッド内のすべてのノード間、およびグリッドと外部のクライアントやサービス間で通信が確実に行われるようになります。
+
+外部クライアントと外部サービスは、次のような機能を実行するためにStorageGRIDネットワークに接続する必要があります。
+
+* オブジェクトデータの保存と取得
+* メール通知を受け取る
+* StorageGRID管理インターフェース（グリッドマネージャとテナントマネージャ）にアクセスします
+* 監査共有にアクセスする（オプション）
+* 次のようなサービスを提供します:
++
+** ネットワーク タイム プロトコル（NTP）
+** ドメインネームシステム（DNS）
+** キー管理サーバー (KMS)
+
+
+
+
+これらの機能などのトラフィックを処理するには、 StorageGRIDネットワークを適切に構成する必要があります。
+
+
+
+== 開始する前に
+
+StorageGRIDシステムのネットワークを構成するには、イーサネット スイッチング、TCP/IP ネットワーク、サブネット、ネットワーク ルーティング、ファイアウォールに関する高度な経験が必要です。
+
+ネットワークを構成する前に、 StorageGRIDアーキテクチャについて理解しておいてください。link:../primer/index.html["StorageGRIDについて学ぶ"] 。
+
+使用するStorageGRIDネットワークとそれらのネットワークの構成方法を決定したら、適切な手順に従ってStorageGRIDノードをインストールおよび構成できます。
+
+.アプライアンスノードをインストールする
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["アプライアンスのハードウェアをインストールする"^]
+
+
+.ソフトウェアベースのノードをインストールする
+* link:../rhel/index.html["Red Hat Enterprise LinuxにStorageGRIDをインストールする"]
+* link:../ubuntu/index.html["UbuntuまたはDebianにStorageGRIDをインストールする"]
+* link:../vmware/index.html["VMwareにStorageGRIDをインストールする"]
+
+
+.StorageGRIDソフトウェアの構成と管理
+* link:../admin/index.html["StorageGRIDの管理"]
+* link:../release-notes/index.html["リリース ノート"]
+

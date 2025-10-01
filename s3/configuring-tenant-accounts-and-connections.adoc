@@ -1,0 +1,84 @@
+---
+permalink: s3/configuring-tenant-accounts-and-connections.html 
+sidebar: sidebar 
+keywords: aws cli, test s3 client connection 
+summary: 'Amazon Web Services コマンドラインインターフェイス (AWS CLI) を使用して、システムへの接続をテストし、オブジェクトの読み取りと書き込みができることを確認できます。' 
+---
+= S3 REST API 構成のテスト
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Amazon Web Services コマンドラインインターフェイス (AWS CLI) を使用して、システムへの接続をテストし、オブジェクトの読み取りと書き込みができることを確認できます。
+
+.開始する前に
+* AWS CLIをダウンロードしてインストールしました。 https://aws.amazon.com/cli["aws.amazon.com/cli"^] 。
+* オプションとして、link:../admin/configuring-load-balancer-endpoints.html["ロードバランサエンドポイントを作成した"] 。それ以外の場合は、接続するストレージ ノードの IP アドレスと使用するポート番号がわかっています。見るlink:../admin/summary-ip-addresses-and-ports-for-client-connections.html["クライアント接続用のIPアドレスとポート"] 。
+* あなたが持っているlink:../admin/creating-tenant-account.html["S3テナントアカウントを作成しました"]。
+* テナントにサインインし、link:../tenant/creating-your-own-s3-access-keys.html["アクセスキーを作成しました"] 。
+
+
+これらの手順の詳細については、link:../admin/configuring-client-connections.html["クライアント接続を構成する"] 。
+
+.手順
+. StorageGRIDシステムで作成したアカウントを使用するように AWS CLI 設定を構成します。
++
+.. 設定モードに入ります: `aws configure`
+.. 作成したアカウントのアクセス キー ID を入力します。
+.. 作成したアカウントのシークレットアクセスキーを入力します。
+.. 使用するデフォルトのリージョンを入力します。例：  `us-east-1` 。
+.. 使用するデフォルトの出力形式を入力するか、*Enter* キーを押して JSON を選択します。
+
+
+. バケットを作成
++
+この例では、IP アドレス 10.96.101.17 とポート 10443 を使用するようにロード バランサー エンドポイントを構成していることを前提としています。
+
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443
+--no-verify-ssl create-bucket --bucket testbucket
+----
++
+バケットが正常に作成されると、次の例に示すように、バケットの場所が返されます。
+
++
+[listing]
+----
+"Location": "/testbucket"
+----
+. オブジェクトをアップロードします。
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+put-object --bucket testbucket --key s3.pdf --body C:\s3-test\upload\s3.pdf
+----
++
+オブジェクトが正常にアップロードされると、オブジェクト データのハッシュである Etag が返されます。
+
+. バケットの内容を一覧表示して、オブジェクトがアップロードされたことを確認します。
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+list-objects --bucket testbucket
+----
+. オブジェクトを削除します。
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-object --bucket testbucket --key s3.pdf
+----
+. バケットを削除します。
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-bucket --bucket testbucket
+----
+

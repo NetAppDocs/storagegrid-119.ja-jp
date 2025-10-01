@@ -1,0 +1,17 @@
+---
+permalink: swift/index.html 
+sidebar: sidebar 
+keywords: openstack swift api support, swift rest api 
+summary: Swift API のサポートは終了しており、将来のリリースでは削除されます。 
+---
+= Swift REST APIを使用する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Swift API のサポートは終了しており、将来のリリースでは削除されます。
+
+
+TIP: このバージョンのドキュメント サイトから Swift の詳細は削除されました。見る https://docs.netapp.com/us-en/storagegrid-118/swift/index.html["StorageGRID 11.8: Swift REST API を使用する"^]。

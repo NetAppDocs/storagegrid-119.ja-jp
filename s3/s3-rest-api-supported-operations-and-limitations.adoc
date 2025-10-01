@@ -1,0 +1,71 @@
+---
+permalink: s3/s3-rest-api-supported-operations-and-limitations.html 
+sidebar: sidebar 
+keywords: s3 rest api supported operations, s3 rest api limitations 
+summary: 'StorageGRIDシステムは、ほとんどの操作をサポートする Simple Storage Service API (API バージョン 2006-03-01) を実装していますが、いくつかの制限があります。  S3 REST API クライアント アプリケーションを統合する場合は、実装の詳細を理解する必要があります。' 
+---
+= S3 REST API実装の詳細
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDシステムは、ほとんどの操作をサポートする Simple Storage Service API (API バージョン 2006-03-01) を実装していますが、いくつかの制限があります。  S3 REST API クライアント アプリケーションを統合する場合は、実装の詳細を理解する必要があります。
+
+StorageGRIDシステムは、仮想ホスト スタイルのリクエストとパス スタイルのリクエストの両方をサポートします。
+
+
+
+== 日付処理
+
+S3 REST API のStorageGRID実装では、有効な HTTP 日付形式のみがサポートされます。
+
+StorageGRIDシステムは、日付値を受け入れるヘッダーに対して有効な HTTP 日付形式のみをサポートします。日付の時間部分は、グリニッジ標準時 (GMT) 形式、またはタイムゾーン オフセットなしの世界協定時刻 (UTC) 形式で指定できます (+0000 を指定する必要があります)。含めると `x-amz-date`リクエストのヘッダーに Date を指定すると、Date リクエスト ヘッダーに指定された値が上書きされます。  AWS署名バージョン4を使用する場合、 `x-amz-date`日付ヘッダーはサポートされていないため、署名されたリクエストには日付ヘッダーが存在する必要があります。
+
+
+
+== 一般的なリクエストヘッダー
+
+StorageGRIDシステムは、以下で定義された共通リクエストヘッダーをサポートしています。 https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Amazon Simple Storage Service API リファレンス: 共通リクエストヘッダー"^]ただし、1 つの例外があります。
+
+[cols="1a,2a"]
+|===
+| リクエストヘッダー | 導入 
+
+
+ a| 
+承認
+ a| 
+AWS 署名バージョン 2 の完全サポート
+
+AWS 署名バージョン 4 のサポート (ただし、次の例外があります)。
+
+* 実際のペイロードチェックサム値を `x-amz-content-sha256`、値は検証なしで受け入れられ、値が `UNSIGNED-PAYLOAD`ヘッダーに提供されていました。あなたが `x-amz-content-sha256`ヘッダー値の意味 `aws-chunked`ストリーミング (たとえば、STREAMING-AWS4-HMAC-SHA256-PAYLOAD) の場合、チャンク署名はチャンク データに対して検証されません。
+
+
+
+
+ a| 
+x-amz-セキュリティトークン
+ a| 
+実装されていません。返品 `XNotImplemented`。
+
+|===
+
+
+== 一般的なレスポンスヘッダー
+
+StorageGRIDシステムは、1 つの例外を除き、「Simple Storage Service API リファレンス」で定義されているすべての共通応答ヘッダーをサポートします。
+
+[cols="1a,2a"]
+|===
+| レスポンスヘッダー | 導入 
+
+
+ a| 
+x-amz-id-2
+ a| 
+未使用
+
+|===

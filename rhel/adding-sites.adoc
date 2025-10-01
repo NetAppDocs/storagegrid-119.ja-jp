@@ -1,0 +1,26 @@
+---
+permalink: rhel/adding-sites.html 
+sidebar: sidebar 
+keywords: how to add a site 
+summary: StorageGRIDをインストールするときは、少なくとも 1 つのサイトを作成する必要があります。追加のサイトを作成して、 StorageGRIDシステムの信頼性とストレージ容量を向上させることができます。 
+---
+= サイトを追加
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRIDをインストールするときは、少なくとも 1 つのサイトを作成する必要があります。追加のサイトを作成して、 StorageGRIDシステムの信頼性とストレージ容量を向上させることができます。
+
+.手順
+. 「サイト」ページで、「*サイト名*」を入力します。
+. さらにサイトを追加するには、最後のサイト エントリの横にあるプラス記号をクリックし、新しい *サイト名* テキスト ボックスに名前を入力します。
++
+グリッド トポロジに必要な数だけサイトを追加します。最大 16 個のサイトを追加できます。
+
++
+image::../media/3_gmi_installer_sites_page.gif[この図には説明が付随しています。]
+
+. *次へ*をクリックします。
+

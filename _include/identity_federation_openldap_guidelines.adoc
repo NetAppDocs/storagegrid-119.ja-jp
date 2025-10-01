@@ -1,0 +1,30 @@
+= Memberof と refint オーバーレイ
+:allow-uri-read: 
+
+
+ID フェデレーションに OpenLDAP サーバーを使用する場合は、OpenLDAP サーバーで特定の設定を構成する必要があります。
+
+
+CAUTION: ActiveDirectory または Azure 以外の ID ソースの場合、 StorageGRID は外部的に無効になっているユーザーへの S3 アクセスを自動的にブロックしません。S3 アクセスをブロックするには、ユーザーの S3 キーを削除するか、すべてのグループからユーザーを削除します。
+
+
+
+=== Memberof と refint オーバーレイ
+
+memberof および refint オーバーレイを有効にする必要があります。詳細については、http://www.openldap.org/doc/admin24/index.html["OpenLDAP ドキュメント: バージョン 2.4 管理者ガイド"^] 。
+
+
+
+=== インデックス作成
+
+指定されたインデックス キーワードを使用して、次の OpenLDAP 属性を設定する必要があります。
+
+* `olcDbIndex: objectClass eq`
+* `olcDbIndex: uid eq,pres,sub`
+* `olcDbIndex: cn eq,pres,sub`
+* `olcDbIndex: entryUUID eq`
+
+
+さらに、最適なパフォーマンスを得るために、ユーザー名のヘルプに記載されているフィールドがインデックス化されていることを確認してください。
+
+逆グループメンバーシップ維持に関する情報は、http://www.openldap.org/doc/admin24/index.html["OpenLDAP ドキュメント: バージョン 2.4 管理者ガイド"^] 。

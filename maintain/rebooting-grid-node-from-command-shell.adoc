@@ -1,0 +1,37 @@
+---
+permalink: maintain/rebooting-grid-node-from-command-shell.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, reboot node, command shell reboot 
+summary: 再起動操作をより詳しく監視する必要がある場合、またはグリッド マネージャにアクセスできない場合は、グリッド ノードにログインし、コマンド シェルから Server Manager の再起動コマンドを実行できます。 
+---
+= コマンドシェルからグリッドノードを再起動する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+再起動操作をより詳しく監視する必要がある場合、またはグリッド マネージャにアクセスできない場合は、グリッド ノードにログインし、コマンド シェルから Server Manager の再起動コマンドを実行できます。
+
+.開始する前に
+あなたは `Passwords.txt`ファイル。
+
+.手順
+. グリッド ノードにログインします。
++
+.. 次のコマンドを入力します。 `ssh admin@_grid_node_IP_`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+.. ルートに切り替えるには、次のコマンドを入力します。 `su -`
+.. 記載されているパスワードを入力してください `Passwords.txt`ファイル。
+
+
++
+ルートとしてログインすると、プロンプトは `$`に `#`。
+
+. 必要に応じて、サービスを停止します。 `service servermanager stop`
++
+サービスの停止はオプションですが、推奨される手順です。サービスのシャットダウンには最大 15 分かかる場合があり、次の手順でノードを再起動する前に、システムにリモートでログインしてシャットダウン プロセスを監視することをお勧めします。
+
+. グリッド ノードを再起動します。 `reboot`
+. コマンド シェルからログアウトします。 `exit`
+

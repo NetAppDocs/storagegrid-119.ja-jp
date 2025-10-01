@@ -1,0 +1,55 @@
+---
+permalink: audit/ebkr-empty-bucket-request.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, EBKR, Empty Bucket Request 
+summary: このメッセージは、ユーザーが空のバケットをオンまたはオフにする（つまり、バケット オブジェクトを削除するか、オブジェクトの削除を停止する）要求を送信したことを示します。 
+---
+= EBKR: 空のバケットリクエスト
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このメッセージは、ユーザーが空のバケットをオンまたはオフにする（つまり、バケット オブジェクトを削除するか、オブジェクトの削除を停止する）要求を送信したことを示します。
+
+[cols="1a,1a,4a"]
+|===
+| コード | フィールド | 説明 
+
+
+ a| 
+ビルド
+ a| 
+バケットUUID
+ a| 
+バケット ID。
+
+
+
+ a| 
+EBJS
+ a| 
+空のバケットのJSON構成
+ a| 
+現在の空のバケット構成を表す JSON が含まれます。
+
+
+
+ a| 
+S3AI
+ a| 
+S3テナントアカウントID
+ a| 
+リクエストを送信したユーザーのテナント アカウント ID。空の値は匿名アクセスを示します。
+
+
+
+ a| 
+S3BK
+ a| 
+S3 バケット
+ a| 
+S3 バケット名。
+
+|===
