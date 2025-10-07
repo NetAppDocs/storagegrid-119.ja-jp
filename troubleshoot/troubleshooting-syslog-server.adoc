@@ -13,6 +13,10 @@ summary: 次の表では、外部 Syslog サーバーの使用に関連する可
 [role="lead"]
 次の表では、外部 Syslog サーバーの使用に関連する可能性のあるエラー メッセージについて説明し、修正アクションを示します。
 
+外部 Syslog サーバーが正しく構成されていることを確認するためのテスト メッセージの送信で問題が発生した場合、外部 Syslog サーバーの構成ウィザードによってこれらのエラーが表示されます。
+
+実行時に問題が発生する場合は、link:../monitor/alerts-reference.html#audit-and-syslog-alerts["外部 syslog サーバ転送エラー"]警告。このアラートを受け取った場合は、アラートの指示に従ってテスト メッセージを再送信し、詳細なエラー メッセージを取得してください。
+
 監査情報を外部 Syslog サーバーに送信する方法の詳細については、以下を参照してください。
 
 * link:../monitor/considerations-for-external-syslog-server.html["外部Syslogサーバーの使用に関する考慮事項"]

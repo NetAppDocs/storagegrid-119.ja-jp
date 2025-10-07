@@ -380,8 +380,8 @@ sidebar:
       url: "/maintain/how-site-recovery-is-performed-by-technical-support.html"
   - title: StorageGRIDを有効にする
     url: "/storagegrid-enable.html"
-  - title: StorageGRIDとBlueXP
-    url: "/storagegrid-bluexp.html"
+  - title: StorageGRIDとNetAppコンソール
+    url: "/storagegrid-console.html"
   - title: 法律上の表示
     url: "/legal-notices.html"
 product-family:
