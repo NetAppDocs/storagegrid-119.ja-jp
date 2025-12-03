@@ -22096,4 +22096,6 @@
   <block id="84356a318e373152abb8356cb6571110" category="paragraph">へ移動<block ref="7a14d844a19b1e8c58704b344e72aa26" category="inline-link-rx"></block>Grid Manager を使用してNetAppコンソールからStorageGRIDシステムを管理する方法と、バックアップ、データ階層化などにNetAppコンソールのデータ サービスを使用する方法を学習します。</block>
   <block id="2195baefa590a61e53973f0a7802c6a6" category="paragraph">管理ノードとゲートウェイ ノードに仮想 LAN (VLAN) インターフェイスを作成し、HA グループとロード バランサ エンドポイントで使用してトラフィックを分離および分割し、セキュリティ、柔軟性、パフォーマンスを向上させることができます。HA グループ内の選択されたノードは、VLAN インターフェイスを使用して最大 10 個の仮想 IP アドレスを共有できるため、1 つのノードがダウンしても、別のノードが仮想 IP アドレスとの間のトラフィックを引き継ぎます。</block>
   <block id="98e1d466d5f37e58e2ae4e3c58299a51" category="paragraph">*注*: このポートの構成はオプションです。</block>
+  <block id="399e9e69e1b1799310140b5328eed180" category="summary">オブジェクトの紛失アラートがトリガーされた場合は、すぐに調査する必要があります。影響を受けるオブジェクトに関する情報を収集し、テクニカル サポートに連絡してください。</block>
+  <block id="f2c4673c5ae939756c3d43f049c774fc" category="summary">低オブジェクト データ ストレージ アラートは、各ストレージ ノードでオブジェクト データを格納するために使用できるスペースの量を監視します。</block>
 </blocks>
