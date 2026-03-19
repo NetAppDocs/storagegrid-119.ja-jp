@@ -101,6 +101,14 @@ StorageGRID は、ユーザー定義メタデータのキー名または値に�
 * `Content-Encoding`
 * `Content-Language`
 * `Expires`
+* `If-Match`
++
+ `If-Match header`は受け入れられるが、機能しない。
+
+* `If-None-Match`
++
+ `If-None-Match header`は受け入れられるが、機能しない。
+
 * `x-amz-checksum-algorithm`
 +
 オブジェクトをコピーするときに、ソース オブジェクトにチェックサムがある場合、 StorageGRID はそのチェックサム値を新しいオブジェクトにコピーしません。この動作は、使用しようとしたかどうかに関係なく適用されます。 `x-amz-checksum-algorithm`オブジェクト要求内。
