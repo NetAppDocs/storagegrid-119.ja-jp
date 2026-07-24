@@ -15,6 +15,7 @@ summary: インストール中に作成されたデフォルトの証明書を�
 
 
 
+[[hardening-guidelines-for-certificates]]
 == 証明書の強化ガイドライン
 
 インストール中に作成されたデフォルトの証明書を、独自のカスタム証明書に置き換える必要があります。
@@ -44,6 +45,7 @@ NOTE: StorageGRID は、ロード バランサのエンドポイントに使用�
 
 
 
+[[hardening-guidelines-for-tls-and-ssh-policy]]
 == TLS および SSH ポリシーの強化ガイドライン
 
 セキュリティ ポリシーを選択して、クライアント アプリケーションとの安全な TLS 接続と内部StorageGRIDサービスへの安全な SSH 接続を確立するために使用されるプロトコルと暗号を決定できます。

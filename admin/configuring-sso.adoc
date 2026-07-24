@@ -15,6 +15,7 @@ summary: 'シングル サインオン (SSO) が有効になっている場合�
 
 
 
+[[how-single-sign-on-works]]
 == シングルサインオンの仕組み
 
 StorageGRIDシステムは、Security Assertion Markup Language 2.0 (SAML 2.0) 標準を使用したシングル サインオン (SSO) をサポートしています。
@@ -23,6 +24,7 @@ StorageGRIDシステムは、Security Assertion Markup Language 2.0 (SAML 2.0) �
 
 
 
+[[sign-in-when-sso-is-enabled]]
 === SSO が有効になっているときにSign in
 
 SSO が有効になっているときにStorageGRIDにサインインすると、資格情報を検証するために組織の SSO ページにリダイレクトされます。
@@ -82,6 +84,7 @@ SSO 資格情報を再入力する必要はありません。
 
 
 
+[[sign-out-when-sso-is-enabled]]
 === SSO が有効になっているときにサインアウトする
 
 StorageGRIDで SSO が有効になっている場合、サインアウト時に何が起こるかは、何にサインインしているか、どこからサインアウトしているかによって異なります。

@@ -20,12 +20,14 @@ NOTE: StorageGRID 11.9 では管理 API の廃止バージョンを引き続き�
 
 
 
+[[review-compliance-settings-after-enabling-global-s3-object-lock]]
 == グローバル S3 オブジェクトロックを有効にした後、コンプライアンス設定を確認します。
 
 グローバル S3 オブジェクトロック設定を有効にした後、既存のテナントのコンプライアンス設定を確認します。この設定を有効にすると、テナントごとの S3 オブジェクト ロック設定は、テナントが作成された時点のStorageGRIDリリースによって異なります。
 
 
 
+[[legacy-mgmt-api-requests-removed]]
 == レガシー mgmt-api リクエストが削除されました
 
 以下のレガシー リクエストは削除されました:
@@ -36,6 +38,7 @@ NOTE: StorageGRID 11.9 では管理 API の廃止バージョンを引き続き�
 
 
 
+[[changes-to-get-privatestorage-usage-api]]
 == 変更点 `GET /private/storage-usage`API
 
 * 新しい物件、 `usageCacheDuration`がレスポンス本文に追加されました。このプロパティは、使用状況検索キャッシュの有効期間 (秒単位) を指定します。この値は、テナント ストレージ クォータとバケット容量制限に対する使用状況をチェックするときに適用されます。
@@ -45,6 +48,7 @@ NOTE: StorageGRID 11.9 では管理 API の廃止バージョンを引き続き�
 
 
 
+[[changes-to-get-cross-grid-replication-api]]
 == 変更点 `GET cross-grid-replication`API
 
 */org/containers/:name/cross-grid-replication* GET APIはルートアクセスを必要としなくなりました(`rootAccess`）権限が必要ですが、すべてのバケットの管理権限を持つユーザーグループに属している必要があります。(`manageAllContainers` ）またはすべてのバケットを表示(`viewAllContainers`） 許可。

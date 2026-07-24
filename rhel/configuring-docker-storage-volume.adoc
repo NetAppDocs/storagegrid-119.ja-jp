@@ -55,6 +55,7 @@ sudo mount container-storage-volume-device /var/lib/containers
 
 
 
+[[install-docker]]
 == Dockerをインストールする
 
 StorageGRIDシステムは、コンテナのコレクションとして Red Hat Enterprise Linux 上で実行されます。Docker コンテナ エンジンを使用することを選択した場合は、次の手順に従って Docker をインストールします。さもないと、<<Podmanをインストールする,Podmanをインストールする>> 。
@@ -89,6 +90,7 @@ sudo docker version
 
 
 
+[[install-podman]]
 == Podmanをインストールする
 
 StorageGRIDシステムは、コンテナのコレクションとして Red Hat Enterprise Linux 上で実行されます。Podman コンテナ エンジンを使用することを選択した場合は、次の手順に従って Podman をインストールします。さもないと、<<Dockerをインストールする,Dockerをインストールする>> 。

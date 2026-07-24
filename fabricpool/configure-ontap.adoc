@@ -20,6 +20,7 @@ summary: 必要なStorageGRID情報を取得したら、 ONTAPに移動してSto
 
 
 
+[[access-ontap-system-manager]]
 == ONTAPシステムマネージャにアクセスする
 
 これらの手順では、 ONTAP System Manager を使用してStorageGRID をクラウド層として追加する方法について説明します。 ONTAP CLI を使用して同じ設定を完了できます。手順については、 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPoolのONTAPドキュメント"^] 。
@@ -33,6 +34,7 @@ summary: 必要なStorageGRID情報を取得したら、 ONTAPに移動してSto
 
 
 
+[[enter-storagegrid-values]]
 == StorageGRIDの値を入力してください
 
 見る https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPoolのONTAPドキュメント"^]詳細についてはこちらをご覧ください。

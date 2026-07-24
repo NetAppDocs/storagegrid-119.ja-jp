@@ -69,6 +69,7 @@ S3クライアントアクセスlink:../admin/manage-s3-select-for-tenant-accoun
 |===
 
 
+[[limitations-of-using-ha-groups-with-grid-manager-or-tenant-manager]]
 == グリッド マネージャーまたはテナント マネージャーで HA グループを使用する際の制限
 
 Grid Manager または Tenant Manager サービスに障害が発生した場合、HA グループのフェイルオーバーはトリガーされません。

@@ -71,6 +71,7 @@ LDR
 |===
 
 
+[[example-urls]]
 == URLの例
 
 クライアント アプリケーションをゲートウェイ ノードの HA グループのロード バランサ エンドポイントに接続するには、次に示すような構造の URL を使用します。
@@ -83,6 +84,7 @@ LDR
 
 
 
+[[where-to-find-ip-addresses]]
 == IPアドレスを見つける場所
 
 . グリッドマネージャーにSign inには、link:../admin/web-browser-requirements.html["サポートされているウェブブラウザ"] 。

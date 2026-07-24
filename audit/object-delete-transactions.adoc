@@ -17,6 +17,7 @@ S3 API 固有の監査メッセージを見つけることで、監査ログ内�
 
 
 
+[[s3-delete-audit-messages]]
 == S3 監査メッセージ削除
 
 [cols="1a,1a,2a,1a,2a"]
@@ -38,6 +39,7 @@ link:sdel-s3-delete.html["SDEL: S3 削除"]
 |===
 
 
+[[swift-delete-audit-messages]]
 == 監査メッセージを迅速に削除
 
 [cols="1a,1a,2a,1a,2a"]
@@ -59,6 +61,7 @@ link:wdel-swift-delete.html["WDEL: 迅速な削除"]
 |===
 
 
+[[example-s3-object-deletion]]
 == 例: S3 オブジェクトの削除
 
 S3 クライアントがストレージ ノード (LDR サービス) からオブジェクトを削除すると、監査メッセージが生成され、監査ログに保存されます。
@@ -68,6 +71,7 @@ NOTE: 削除トランザクション中に生成されるすべての監査メ�
 
 
 
+[[sdel-s3-delete]]
 === SDEL: S3 削除
 
 オブジェクトの削除は、クライアントが LDR サービスに DeleteObject 要求を送信すると開始されます。メッセージには、オブジェクトを削除するバケットと、オブジェクトを識別するために使用されるオブジェクトの S3 キーが含まれています。

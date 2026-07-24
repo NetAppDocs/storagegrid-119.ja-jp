@@ -17,6 +17,7 @@ summary: たとえば、データ センターを移動する場合は、 Storag
 
 
 
+[[stop-services-and-shut-down-grid-nodes]]
 == サービスを停止し、グリッドノードをシャットダウンする
 
 StorageGRIDシステムの電源をオフにする前に、各グリッド ノードで実行されているすべてのサービスを停止し、すべての VMware 仮想マシン、コンテナ エンジン、およびStorageGRIDアプライアンスをシャットダウンする必要があります。
@@ -145,6 +146,7 @@ StorageGRIDグリッドはシャットダウンされました。
 
 
 
+[[start-up-grid-nodes]]
 == グリッドノードを起動する
 
 

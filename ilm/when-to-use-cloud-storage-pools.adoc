@@ -15,6 +15,7 @@ Cloud Storage Pools を使用すると、データを外部の場所にバック
 
 
 
+[[back-up-storagegrid-data-to-external-location]]
 == StorageGRIDデータを外部の場所にバックアップする
 
 Cloud Storage Pool を使用して、 StorageGRIDオブジェクトを外部の場所にバックアップできます。
@@ -32,6 +33,7 @@ StorageGRID内のコピーにアクセスできない場合は、クラウド �
 
 
 
+[[tier-data-from-storagegrid-to-external-location]]
 == StorageGRIDから外部の場所への階層化データ
 
 Cloud Storage Pool を使用して、 StorageGRIDシステムの外部にオブジェクトを保存できます。たとえば、保持する必要があるオブジェクトが多数あるが、それらのオブジェクトにアクセスする機会はほとんどない、あるいはまったくないとします。  Cloud Storage Pool を使用すると、オブジェクトを低コストのストレージに階層化し、 StorageGRIDのスペースを解放できます。
@@ -45,6 +47,7 @@ Cloud Storage Pool を使用して、 StorageGRIDシステムの外部にオブ�
 
 
 
+[[maintain-multiple-cloud-endpoints]]
 == 複数のクラウドエンドポイントを維持する
 
 オブジェクト データを複数のクラウドに階層化またはバックアップする場合は、複数の Cloud Storage Pool エンドポイントを構成できます。 ILM ルールのフィルターを使用すると、各クラウド ストレージ プールに保存されるオブジェクトを指定できます。たとえば、一部のテナントまたはバケットのオブジェクトを Amazon S3 Glacier に保存し、他のテナントまたはバケットのオブジェクトを Azure Blob ストレージに保存したい場合があります。あるいは、Amazon S3 Glacier と Azure Blob ストレージ間でデータを移動する必要がある場合もあります。

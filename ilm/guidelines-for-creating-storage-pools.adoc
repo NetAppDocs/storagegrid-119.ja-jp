@@ -17,6 +17,7 @@ summary: ストレージ プールを構成して使用し、複数のサイト�
 
 
 
+[[guidelines-for-all-storage-pools]]
 == すべてのストレージプールのガイドライン
 
 * ストレージ プールの構成はできる限りシンプルに保ちます。必要以上にストレージ プールを作成しないでください。
@@ -27,6 +28,7 @@ summary: ストレージ プールを構成して使用し、複数のサイト�
 
 
 
+[[guidelines-for-storage-pools-used-for-replicated-copies]]
 == 複製コピーに使用するストレージプールのガイドライン
 
 * サイト損失保護を使用するにはlink:what-replication-is.html["複製"]、1つまたは複数のサイト固有のストレージプールを指定します。link:create-ilm-rule-define-placements.html["各ILMルールの配置手順"] 。
@@ -43,6 +45,7 @@ StorageGRID のインストール中に、サイトごとに 1 つのストレ�
 
 
 
+[[guidelines-for-storage-pools-used-for-erasure-coded-copies]]
 == 消失訂正コードコピーに使用されるストレージプールのガイドライン
 
 * サイト損失保護を使用するにはlink:what-erasure-coding-is.html["消失訂正符号"]少なくとも 3 つのサイトで構成されるストレージ プールを作成します。ストレージ プールに 2 つのサイトのみが含まれている場合、そのストレージ プールを消去コーディングに使用することはできません。  2 つのサイトを持つストレージ プールでは、消去コーディング スキームは使用できません。

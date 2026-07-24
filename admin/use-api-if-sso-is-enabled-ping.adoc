@@ -15,6 +15,7 @@ summary: 'シングル サインオン (SSO) を構成して有効にし、PingF
 
 
 
+[[sign-in-to-the-api-if-single-sign-on-is-enabled]]
 == シングル サインオンが有効になっている場合は、API にSign in。
 
 これらの手順は、PingFederateをSSO IDプロバイダーとして使用している場合に適用されます。
@@ -204,6 +205,7 @@ export MYTOKEN="56eb07bf-21f6-40b7-af0b-5c6cacfb25e7"
 
 
 
+[[sign-out-of-the-api-if-single-sign-on-is-enabled]]
 == シングル サインオンが有効になっている場合は、API からサインアウトします。
 
 シングル サインオン (SSO) が有効になっている場合は、グリッド管理 API またはテナント管理 API からサインアウトするための一連の API 要求を発行する必要があります。これらの手順は、PingFederateをSSO IDプロバイダーとして使用している場合に適用されます。

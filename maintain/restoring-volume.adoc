@@ -82,6 +82,7 @@ NOTE: ボリュームの復元は、オブジェクトのコピーが保存さ�
 
 
 
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
 == [[enable-auto-restore-mode]]自動復元モードを有効にする
 
 自動復元モードを有効にすると、ボリュームの復元の準備ができたときにボリュームの復元が自動的に開始されます。
@@ -108,6 +109,7 @@ NOTE: ボリュームの復元は、オブジェクトのコピーが保存さ�
 
 
 
+[[manually-restoremanually-restore-failed-volume-or-node]]
 == [[manually-restore]]障害が発生したボリュームまたはノードを手動で復元します
 
 障害が発生したボリュームまたはノードを復元するには、次の手順に従います。
@@ -137,6 +139,7 @@ NOTE: ボリュームの復元は、オブジェクトのコピーが保存さ�
 
 
 
+[[view-restoration-progressview-restoration-progress]]
 == [[view-restoration-progress]]復元の進行状況を表示
 
 *復元の進行状況*タブには、ボリューム復元プロセスのステータスと、復元中のノードのボリュームに関する情報が表示されます。
@@ -166,6 +169,7 @@ NOTE: 複製されたデータの復元は、複製されたコピーが保存�
 
 
 
+[[view-restoration-historyview-restoration-history]]
 == [[view-restoration-history]]復元履歴を表示
 
 *復元履歴*タブには、正常に完了したすべてのボリュームの復元に関する情報が表示されます。

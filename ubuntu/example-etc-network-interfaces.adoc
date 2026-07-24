@@ -15,6 +15,7 @@ summary: /etc/network/interfaces ファイルには、物理​​インター�
 
 
 
+[[physical-interfaces]]
 == 物理インターフェース
 
 リンクのもう一方の端にあるスイッチも、4 つのポートを単一の LACP トランクまたはポート チャネルとして扱い、参照されている少なくとも 3 つの VLAN をタグ付きで渡す必要があることに注意してください。
@@ -48,6 +49,7 @@ iface ens256 inet manual
 ----
 
 
+[[bond-interface]]
 == 結合インターフェース
 
 [listing]
@@ -61,6 +63,7 @@ iface bond0 inet manual
 ----
 
 
+[[vlan-interfaces]]
 == VLANインターフェイス
 
 [listing]

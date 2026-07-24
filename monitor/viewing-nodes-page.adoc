@@ -28,6 +28,8 @@ image::../media/nodes_table.png[ノードメニュー]
 
 
 
+[[connection-state-icons]]
+[[connection-state]]
 == 接続状態アイコン
 
 ノードがグリッドから切断されている場合、ノード名の横に次のいずれかのアイコンが表示されます。
@@ -74,6 +76,7 @@ image:../media/icon_alarm_gray_administratively_down.png["灰色の疑問符ア�
 
 
 
+[[alert-icons]]
 == アラートアイコン
 
 ノードにアクティブなアラートがある場合は、ノード名の横に次のいずれかのアイコンが表示されます。
@@ -86,6 +89,7 @@ image:../media/icon_alert_yellow_minor.png["アイコンアラート 黄色 マ�
 
 
 
+[[view-details-for-a-system-site-or-node]]
 == システム、サイト、またはノードの詳細を表示する
 
 ノード テーブルに表示される情報をフィルターするには、[*検索*] フィールドに検索文字列を入力します。システム名、表示名、またはタイプで検索できます (たとえば、すべてのゲートウェイ ノードをすばやく見つけるには、*gat* と入力します)。

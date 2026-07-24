@@ -17,6 +17,7 @@ summary: '取り込み時にデータを保護するための 3 つのオプシ�
 
 
 
+[[advantages-of-the-balanced-and-strict-options]]
 == バランス型と厳密型のオプションの利点
 
 取り込み中に中間コピーを作成するデュアルコミットと比較すると、2 つの同期配置オプションには次の利点があります。
@@ -29,6 +30,7 @@ summary: '取り込み時にデータを保護するための 3 つのオプシ�
 
 
 
+[[disadvantages-of-the-balanced-and-strict-options]]
 == バランス型と厳密型のオプションの欠点
 
 デュアルコミットと比較すると、バランスおよび厳密なオプションにはいくつかの欠点があります。
@@ -46,6 +48,7 @@ summary: '取り込み時にデータを保護するための 3 つのオプシ�
 
 
 
+[[limitations-on-object-placements-with-the-balanced-and-strict-options]]
 == バランスと厳密オプションによるオブジェクト配置の制限
 
 バランスまたは厳密なオプションは、次の配置指示を含む ILM ルールには使用できません。
@@ -58,6 +61,7 @@ summary: '取り込み時にデータを保護するための 3 つのオプシ�
 
 
 
+[[how-ilm-rules-and-consistency-interact-to-affect-data-protection]]
 == ILM ルールと一貫性がどのように相互作用してデータ保護に影響を与えるか
 
 ILM ルールと一貫性の選択はどちらも、オブジェクトが保護される方法に影響します。これらの設定は相互作用する可能性があります。
@@ -78,6 +82,7 @@ NOTE: 一貫性値を選択する前に、link:../s3/consistency-controls.html["
 
 
 
+[[example-of-how-consistency-and-ilm-rules-can-interact]]
 == 一貫性とILMルールの相互作用の例
 
 次の ILM ルールと次の一貫性を持つ 2 つのサイト グリッドがあるとします。

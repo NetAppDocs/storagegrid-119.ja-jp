@@ -15,6 +15,7 @@ summary: サイト廃止手順を使用してサイトを削除する前に、�
 
 
 
+[[what-happens-when-you-decommission-a-site]]
 == サイトを廃止すると何が起こるか
 
 サイトを廃止すると、 StorageGRID はサイト上のすべてのノードとサイト自体をStorageGRIDシステムから永久に削除します。
@@ -27,6 +28,7 @@ summary: サイト廃止手順を使用してサイトを削除する前に、�
 
 
 
+[[differences-between-connected-site-and-disconnected-site-decommission-procedures]]
 == 接続サイトと切断サイトの廃止手順の違い
 
 サイトの廃止手順を使用すると、すべてのノードがStorageGRIDに接続されているサイトを削除したり (接続サイトの廃止と呼ばれます)、すべてのノードがStorageGRIDから切断されているサイトを削除したり (切断サイトの廃止と呼ばれます) できます。始める前に、これらの手順の違いを理解しておく必要があります。
@@ -48,6 +50,7 @@ CAUTION: 切断されたサイトの廃止手順を実行する前に、 NetApp�
 
 
 
+[[general-requirements-for-removing-a-connected-or-a-disconnected-site]]
 == 接続されたサイトまたは切断されたサイトを削除するための一般的な要件
 
 接続済みまたは切断されたサイトを削除する前に、次の要件を認識しておく必要があります。
@@ -74,6 +77,7 @@ NOTE: 接続されたサイトの廃止中に別のメンテナンス手順を�
 
 
 
+[[requirements-for-information-lifecycle-management-ilm]]
 == 情報ライフサイクル管理（ILM）の要件
 
 サイトの削除の一環として、ILM 構成を更新する必要があります。サイトの廃止ウィザードでは、次の事項を確実に実行するためのいくつかの前提条件手順を案内します。
@@ -89,6 +93,7 @@ CAUTION: サイトを削除する前に、新しい ILM ルールを作成し、
 
 
 
+[[considerations-for-the-object-data-at-a-connected-site]]
 == 接続されたサイトのオブジェクトデータに関する考慮事項
 
 接続されたサイトの廃止を実行する場合は、新しい ILM ルールと新しい ILM ポリシーを作成するときに、サイトの既存のオブジェクト データをどのように処理するかを決定する必要があります。次のいずれかまたは両方を行うことができます。
@@ -113,6 +118,7 @@ CAUTION: サイトの削除に対応するために、単一コピーの ILM ル
 
 
 
+[[additional-requirements-for-a-connected-site-decommission]]
 == 接続サイトの廃止に関する追加要件
 
 StorageGRID が接続されたサイトを削除する前に、次の点を確認する必要があります。
@@ -136,6 +142,7 @@ NOTE: サイトからオブジェクト データを移動または削除する�
 
 
 
+[[additional-requirements-for-a-disconnected-site-decommission]]
 == 切断されたサイトの廃止に関する追加要件
 
 StorageGRIDが切断されたサイトを削除する前に、次の点を確認する必要があります。
@@ -162,6 +169,7 @@ NOTE: ILM ルールとポリシーが単一サイトの損失から保護する�
 
 
 
+[[considerations-for-consistency-when-you-remove-a-site]]
 == サイトを削除する際の一貫性に関する考慮事項
 
 S3 バケットの一貫性により、オブジェクトの取り込みが成功したことをクライアントに通知する前に、 StorageGRID がオブジェクトのメタデータをすべてのノードとサイトに完全に複製するかどうかが決まります。一貫性は、オブジェクトの可用性と、異なるストレージ ノードおよびサイト間でのオブジェクトの一貫性との間のバランスを提供します。

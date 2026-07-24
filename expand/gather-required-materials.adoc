@@ -79,6 +79,7 @@ StorageGRIDドキュメント
 |===
 
 
+[[download-and-extract-the-storagegrid-installation-files]]
 == StorageGRIDインストールファイルをダウンロードして解凍します。
 
 .[[インストールファイルをダウンロードして解凍]]
@@ -413,6 +414,7 @@ NOTE: アプライアンスのインストールでは、ネットワーク ト�
 
 
 
+[[verify-hardware-and-networking]]
 == ハードウェアとネットワークを確認する
 
 StorageGRIDシステムの拡張を開始する前に、次の点を確認してください。

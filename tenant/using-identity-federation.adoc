@@ -15,6 +15,7 @@ summary: アイデンティティ フェデレーションを使用すると、�
 
 
 
+[[configure-identity-federation-for-tenant-manager]]
 == テナント マネージャーの ID フェデレーションを構成する
 
 テナント グループとユーザーを Active Directory、Azure Active Directory (Azure AD)、OpenLDAP、Oracle Directory Server などの別のシステムで管理する場合は、テナント マネージャーの ID フェデレーションを構成できます。
@@ -38,6 +39,7 @@ image::../media/tenant_shares_identity_federation.png[テナント共有アイ�
 
 
 
+[[enter-configuration]]
 === 設定を入力
 
 ID フェデレーションを構成するときは、 StorageGRID がLDAP サービスに接続するために必要な値を指定します。
@@ -141,6 +143,7 @@ NOTE: Active Directory サーバーが LDAP 署名を強制している場合、
 
 
 
+[[test-the-connection-and-save-the-configuration]]
 === 接続をテストし、設定を保存します
 
 すべての値を入力した後、構成を保存する前に接続をテストする必要があります。  StorageGRID は、LDAP サーバーの接続設定と、指定された場合はバインド ユーザー名の形式を検証します。
@@ -169,6 +172,7 @@ image::../media/identity_federation_test_connection.png[バインドユーザー
 
 
 
+[[force-synchronization-with-identity-source]]
 == アイデンティティソースとの強制同期
 
 StorageGRIDシステムは、フェデレーション グループとユーザーを ID ソースから定期的に同期します。できるだけ早くユーザー権限を有効化または制限したい場合は、同期を強制的に開始できます。
@@ -187,6 +191,7 @@ NOTE: アイデンティティ ソースからのフェデレーション グル
 
 
 
+[[disable-identity-federation]]
 == ID連携を無効にする
 
 グループおよびユーザーの ID フェデレーションを一時的または永続的に無効にすることができます。アイデンティティ フェデレーションが無効になっている場合、 StorageGRIDとアイデンティティ ソース間の通信は行われません。ただし、構成した設定はすべて保持されるため、将来、簡単に ID フェデレーションを再度有効にすることができます。
@@ -207,6 +212,7 @@ ID フェデレーションを無効にする前に、次の点に注意して�
 
 
 
+[[guidelines-for-configuring-openldap-server]]
 == OpenLDAPサーバーの設定ガイドライン
 
 ID フェデレーションに OpenLDAP サーバーを使用する場合は、OpenLDAP サーバーで特定の設定を構成する必要があります。
@@ -216,12 +222,14 @@ CAUTION: ActiveDirectory または Azure 以外の ID ソースの場合、 Stor
 
 
 
+[[memberof-and-refint-overlays]]
 === Memberof と refint オーバーレイ
 
 memberof および refint オーバーレイを有効にする必要があります。詳細については、http://www.openldap.org/doc/admin24/index.html["OpenLDAP ドキュメント: バージョン 2.4 管理者ガイド"^] 。
 
 
 
+[[indexing]]
 === インデックス作成
 
 指定されたインデックス キーワードを使用して、次の OpenLDAP 属性を設定する必要があります。

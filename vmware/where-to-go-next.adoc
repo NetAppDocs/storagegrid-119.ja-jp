@@ -15,6 +15,7 @@ summary: インストールが完了したら、必要な統合および構成�
 
 
 
+[[required-tasks]]
 == 必要なタスク
 
 * VMware vSphere Hypervisor を自動再起動用に設定します。
@@ -42,6 +43,7 @@ summary: インストールが完了したら、必要な統合および構成�
 
 
 
+[[optional-tasks]]
 == オプションタスク
 
 * link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["グリッドノードのIPアドレスを更新する"]展開を計画して回復パッケージを生成してから変更があった場合。

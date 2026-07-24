@@ -17,22 +17,26 @@ S3 Select は、検索を可能にするためにデータベースや関連リ�
 
 
 
+[[what-is-s3-select]]
 == S3 Select とは何ですか?
 
 S3 Select を使用すると、S3 クライアントは SelectObjectContent リクエストを使用して、オブジェクトから必要なデータのみをフィルタリングして取得できます。  S3 Select のStorageGRID実装には、S3 Select コマンドと機能のサブセットが含まれています。
 
 
 
+[[considerations-and-requirements-for-using-s3-select]]
 == S3 Select の使用に関する考慮事項と要件
 
 
 
+[[grid-administration-requirements]]
 === グリッド管理要件
 
 グリッド管理者はテナントに S3 Select 機能を付与する必要があります。  *S3選択を許可する*を選択する場合link:creating-tenant-account.html["テナントの作成"]またはlink:editing-tenant-account.html["テナントの編集"]。
 
 
 
+[[object-format-requirements]]
 === オブジェクト形式の要件
 
 クエリするオブジェクトは、次のいずれかの形式である必要があります。
@@ -51,6 +55,7 @@ S3 Select を使用すると、S3 クライアントは SelectObjectContent リ�
 
 
 
+[[endpoint-requirements]]
 === エンドポイント要件
 
 SelectObjectContentリクエストは、link:configuring-load-balancer-endpoints.html["StorageGRIDロードバランサエンドポイント"] 。
@@ -64,6 +69,7 @@ SelectObjectContentリクエストは、link:configuring-load-balancer-endpoints
 
 
 
+[[general-considerations]]
 === 一般的な考慮事項
 
 クエリをストレージ ノードに直接送信することはできません。

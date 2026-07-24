@@ -28,12 +28,14 @@ PingFederate を使用して、システム内の各管理ノードのサービ�
 
 
 
+[[complete-prerequisites-in-pingfederate]]
 == PingFederateの前提条件を完了する
 
 StorageGRIDに使用するSP接続を作成する前に、PingFederate で前提条件となるタスクを完了する必要があります。  SP接続を構成するときは、これらの前提条件の情報を使用します。
 
 
 
+[[create-data-storedata-store]]
 === データストアを作成する[[data-store]]
 
 まだ作成していない場合は、PingFederate を AD FS LDAP サーバーに接続するためのデータ ストアを作成します。使用した値を使用してくださいlink:../admin/using-identity-federation.html["アイデンティティ連携の設定"]StorageGRIDで。
@@ -45,6 +47,7 @@ StorageGRIDに使用するSP接続を作成する前に、PingFederate で前提
 
 
 
+[[create-password-credential-validatorpassword-validator]]
 === パスワード認証情報検証ツールを作成する[[password-validator]]
 
 まだ作成していない場合は、パスワード資格情報検証を作成してください。
@@ -58,6 +61,7 @@ StorageGRIDに使用するSP接続を作成する前に、PingFederate で前提
 
 
 
+[[create-idp-adapter-instanceadapter-instance]]
 === IdPアダプタインスタンスを作成する[[adapter-instance]]
 
 まだ作成していない場合は、IdP アダプター インスタンスを作成します。
@@ -74,6 +78,7 @@ StorageGRIDに使用するSP接続を作成する前に、PingFederate で前提
 
 
 
+[[create-or-import-signing-certificatesigning-certificate]]
 === 署名証明書を作成またはインポートする[[signing-certificate]]
 
 署名証明書をまだ作成またはインポートしていない場合は、作成またはインポートします。
@@ -85,6 +90,7 @@ StorageGRIDに使用するSP接続を作成する前に、PingFederate で前提
 
 
 
+[[create-an-sp-connection-in-pingfederate]]
 == PingFederateでSP接続を作成する
 
 PingFederate でSP接続を作成するときは、管理ノードのStorageGRIDからダウンロードした SAML メタデータをインポートします。メタデータ ファイルには、必要な特定の値が多数含まれています。
@@ -94,6 +100,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[choose-sp-connection-type]]
 === SP接続タイプを選択
 
 .手順
@@ -105,6 +112,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[import-sp-metadata]]
 === SPメタデータをインポートする
 
 .手順
@@ -119,6 +127,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[configure-idp-browser-sso]]
 === IdPブラウザSSOを構成する
 
 .手順
@@ -137,6 +146,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[map-adapter-instance]]
 === マップアダプタインスタンス
 
 .手順
@@ -163,6 +173,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[configure-protocol-settings]]
 === プロトコル設定を構成する
 
 .手順
@@ -178,6 +189,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[configure-credentials]]
 === クレデンシャルを設定
 
 .手順
@@ -195,6 +207,7 @@ TIP: ユーザーがどのノードにも安全にサインインおよびサイ
 
 
 
+[[create-additional-sp-connections]]
 === 追加のSP接続を作成する
 
 最初のSP接続をコピーして、グリッド内の各管理ノードに必要なSP接続を作成できます。コピーごとに新しいメタデータをアップロードします。

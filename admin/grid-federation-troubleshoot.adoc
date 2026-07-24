@@ -15,6 +15,7 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[grid-federation-errorsgrid-federation-connection-alerts-and-errors]]
 == [[grid-federation-errors]]グリッドフェデレーション接続のアラートとエラー
 
 グリッド フェデレーション接続でアラートが表示されたり、エラーが発生したりする可能性があります。
@@ -23,6 +24,7 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[grid-federation-connection-failure-alert]]
 === グリッドフェデレーション接続失敗アラート
 
 .問題
@@ -40,6 +42,7 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[expiration-of-grid-federation-certificate-alert]]
 === グリッドフェデレーション証明書の有効期限切れアラート
 
 .問題
@@ -53,6 +56,7 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[error-editing-a-grid-federation-connection]]
 === グリッド フェデレーション接続の編集中にエラーが発生しました
 
 .問題
@@ -69,10 +73,12 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[account-clone-errors]]
 == アカウント複製エラー
 
 
 
+[[cant-sign-in-to-a-cloned-tenant-account]]
 === 複製されたテナント アカウントにサインインできない
 
 .問題
@@ -88,6 +94,7 @@ summary: グリッド フェデレーション接続、アカウント クロー
 
 
 
+[[tenant-created-without-a-clone]]
 === クローンなしで作成されたテナント
 
 .問題
@@ -113,10 +120,12 @@ image::../media/grid-federation-retry-account-clone.png[エラーメッセージ
 
 
 
+[[cross-grid-replication-alerts-and-errors]]
 == クロスグリッドレプリケーションのアラートとエラー
 
 
 
+[[last-error-shown-for-connection-or-tenant]]
 === 接続またはテナントに表示された最後のエラー
 
 .問題
@@ -157,6 +166,7 @@ TIP: エラーをクリアした後、同じくエラーが発生している別
 
 
 
+[[cross-grid-replication-permanent-failure-alert]]
 === クロスグリッドレプリケーションの永続的な障害アラート
 
 .問題
@@ -206,6 +216,7 @@ NOTE: アラートが解決されてから消えるまでに最大 1 日かか�
 
 
 
+[[cross-grid-replication-resource-unavailable-alert]]
 === クロスグリッドレプリケーションリソース利用不可アラート
 
 .問題

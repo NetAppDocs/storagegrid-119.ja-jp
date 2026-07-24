@@ -15,6 +15,7 @@ summary: サンプル ファイルを使用すると、4 つの Linux 物理イ�
 
 
 
+[[physical-interfaces]]
 == 物理インターフェース
 
 リンクのもう一方の端にあるスイッチも、4 つのポートを単一の LACP トランクまたはポート チャネルとして扱い、参照されている少なくとも 3 つの VLAN をタグ付きで渡す必要があることに注意してください。
@@ -69,6 +70,7 @@ SLAVE=yes
 ----
 
 
+[[bond-interface]]
 == 結合インターフェース
 
 `*/etc/sysconfig/network-scripts/ifcfg-bond0*`
@@ -84,6 +86,7 @@ BONDING_OPTS=mode=802.3ad
 ----
 
 
+[[vlan-interfaces]]
 == VLANインターフェイス
 
 `*/etc/sysconfig/network-scripts/ifcfg-bond0.1001*`

@@ -24,6 +24,7 @@ NOTE: ソフトウェアのみのデプロイメント用のコンテナ エン�
 
 
 
+[[python-versions-tested]]
 == テストされたPythonのバージョン
 
 * 3.5.2-2
@@ -41,6 +42,7 @@ NOTE: ソフトウェアのみのデプロイメント用のコンテナ エン�
 
 
 
+[[podman-versions-tested]]
 == テストされたPodmanのバージョン
 
 * 3.2.3-0
@@ -54,6 +56,7 @@ NOTE: ソフトウェアのみのデプロイメント用のコンテナ エン�
 
 
 
+[[docker-versions-tested]]
 == テスト済みのDockerバージョン
 
 

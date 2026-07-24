@@ -25,6 +25,7 @@ NOTE: 一部のStorageGRIDサービスは、これらのポリシーの暗号を
 
 
 
+[[select-a-security-policy]]
 == セキュリティポリシーを選択する
 
 .手順
@@ -87,6 +88,7 @@ Common Criteria 認定が必要であり、ロード バランサ エンドポ�
 
 
 
+[[create-a-custom-security-policy]]
 == カスタムセキュリティポリシーを作成する
 
 独自の暗号を適用する必要がある場合は、カスタム ポリシーを作成できます。
@@ -108,6 +110,8 @@ image::../media/securitysettings-custom-security-policy-copy.png[既存のポリ
 
 
 
+[[temporarily-revert-to-the-default-security-policy]]
+[[temporarily-revert-to-default-security-policy]]
 == 一時的にデフォルトのセキュリティポリシーに戻す
 
 カスタムセキュリティポリシーを設定した場合、設定されたTLSポリシーがlink:global-certificate-types.html["構成されたサーバー証明書"]。

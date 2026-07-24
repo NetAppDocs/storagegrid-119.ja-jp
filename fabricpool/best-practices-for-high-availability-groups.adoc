@@ -15,6 +15,7 @@ StorageGRID をFabricPoolクラウド層として接続する前に、 StorageGR
 
 
 
+[[what-is-an-ha-group]]
 == HA グループとは何ですか?
 
 高可用性 (HA) グループは、複数のStorageGRIDゲートウェイ ノード、管理ノード、またはその両方のインターフェイスの集合です。  HA グループは、クライアント データ接続の可用性を維持するのに役立ちます。  HA グループ内のアクティブ インターフェイスに障害が発生した場合、バックアップ インターフェイスはFabricPool操作にほとんど影響を与えずにワークロードを管理できます。
@@ -25,6 +26,7 @@ StorageGRID をFabricPoolクラウド層として接続する前に、 StorageGR
 
 
 
+[[using-ha-groups]]
 == HAグループの使用
 
 FabricPool用のStorageGRID HA グループを作成するためのベスト プラクティスは、ワークロードによって異なります。

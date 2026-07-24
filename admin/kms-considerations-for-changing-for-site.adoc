@@ -34,6 +34,7 @@ image::../media/kms_copied_key.png[KMSコピーキー]
 
 
 
+[[use-cases-for-changing-which-kms-is-used-for-a-site]]
 == サイトで使用する KMS を変更するユースケース
 
 次の表は、サイトの KMS を変更する最も一般的なケースに必要な手順をまとめたものです。

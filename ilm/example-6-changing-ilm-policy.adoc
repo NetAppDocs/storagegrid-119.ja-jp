@@ -22,6 +22,7 @@ CAUTION: 次の ILM ルールとポリシーは例にすぎません。 ILM ル�
 
 
 
+[[how-changing-an-ilm-policy-affects-performance]]
 == ILMポリシーの変更がパフォーマンスに与える影響
 
 新しい ILM ポリシーをアクティブ化すると、特に新しいポリシーの配置指示により多数の既存オブジェクトを新しい場所に移動する必要がある場合は、 StorageGRIDシステムのパフォーマンスが一時的に影響を受ける可能性があります。
@@ -43,6 +44,7 @@ NOTE: StorageGRID は、各消去コーディング プロファイルを一意�
 
 
 
+[[active-ilm-policy-for-example-6-data-protection-at-two-sites]]
 == 例6のアクティブILMポリシー: 2つのサイトでのデータ保護
 
 この例では、アクティブな ILM ポリシーは当初 2 サイトのStorageGRIDシステム用に設計されており、2 つの ILM ルールを使用しています。
@@ -53,6 +55,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 
 
 
+[[rule-1-one-site-erasure-coding-for-tenant-a]]
 === ルール1: テナントAのワンサイト消去符号化
 
 [cols="1a,2a"]
@@ -89,6 +92,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 |===
 
 
+[[rule-2-two-site-replication-for-other-tenants]]
 === ルール2: 他のテナントのための2サイトレプリケーション
 
 [cols="1a,2a"]
@@ -125,6 +129,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 |===
 
 
+[[ilm-policy-for-example-6-data-protection-at-three-sites]]
 == ILMポリシー例6: 3つのサイトでのデータ保護
 
 この例では、ILM ポリシーが 3 サイトのStorageGRIDシステムの新しいポリシーに置き換えられています。
@@ -135,6 +140,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 
 
 
+[[rule-1-three-site-erasure-coding-for-tenant-a]]
 === ルール1: テナントAの3サイト消去符号化
 
 [cols="1a,2a"]
@@ -171,6 +177,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 |===
 
 
+[[rule-2-three-site-replication-for-other-tenants]]
 === ルール2: 他のテナントのための3サイトレプリケーション
 
 [cols="1a,2a"]
@@ -207,6 +214,7 @@ image::../media/policy_6_active_policy.png[ILMポリシーの例6アクティブ
 |===
 
 
+[[activating-the-ilm-policy-for-example-6]]
 == 例6のILMポリシーの有効化
 
 新しい ILM ポリシーをアクティブ化すると、新しいルールまたは更新されたルールの配置指示に基づいて、既存のオブジェクトが新しい場所に移動されたり、既存のオブジェクトの新しいオブジェクト コピーが作成されたりする場合があります。
@@ -219,6 +227,7 @@ CAUTION: 新しい ILM ポリシーをアクティブ化すると、 StorageGRID
 
 
 
+[[what-happens-when-erasure-coding-instructions-change]]
 === 消去符号化命令が変更されると何が起こるか
 
 この例の現在アクティブな ILM ポリシーでは、テナント A に属するオブジェクトは、サイト 1 で 2+1 消去コーディングを使用して保護されています。新しい ILM ポリシーでは、テナント A に属するオブジェクトは、サイト 1、2、3 で 2+1 消去コーディングを使用して保護されます。
@@ -235,6 +244,7 @@ NOTE: サイト 1 の既存の 2+1 フラグメントは再利用されません
 
 
 
+[[what-happens-when-replication-instructions-change]]
 === 複製指示が変更されると何が起こるか
 
 この例の現在アクティブな ILM ポリシーでは、他のテナントに属するオブジェクトは、サイト 1 と 2 のストレージ プール内の 2 つの複製されたコピーを使用して保護されます。新しい ILM ポリシーでは、サイト 1、2、3 のストレージ プール内の 3 つの複製されたコピーを使用して、他のテナントに属するオブジェクトが保護されます。
@@ -247,6 +257,7 @@ NOTE: サイト 1 の既存の 2+1 フラグメントは再利用されません
 
 
 
+[[performance-impact-of-activating-this-policy]]
 === このポリシーを有効にした場合のパフォーマンスへの影響
 
 この例の ILM ポリシーがアクティブ化されると、このStorageGRIDシステムの全体的なパフォーマンスが一時的に影響を受けます。テナント A の既存のオブジェクトに対して新しい消去コード化フラグメントを作成し、他のテナントの既存のオブジェクトに対してサイト 3 に新しい複製コピーを作成するには、通常よりも高いレベルのグリッド リソースが必要になります。

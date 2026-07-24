@@ -15,6 +15,7 @@ summary: 新しいサイトを追加することで、 StorageGRIDシステム�
 
 
 
+[[guidelines-for-adding-a-site]]
 == サイトを追加するためのガイドライン
 
 サイトを追加する前に、次の要件と制限を確認してください。

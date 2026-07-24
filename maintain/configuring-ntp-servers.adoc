@@ -22,6 +22,7 @@ StorageGRIDシステム内のグリッド ノード間でデータが正確に�
 
 
 
+[[how-storagegrid-uses-ntp]]
 == StorageGRIDがNTPを使用する方法
 
 StorageGRIDシステムは、ネットワーク タイム プロトコル (NTP) を使用して、グリッド内のすべてのグリッド ノード間の時間を同期します。
@@ -32,6 +33,7 @@ StorageGRIDシステムは、ネットワーク タイム プロトコル (NTP) 
 
 
 
+[[ntp-server-guidelines]]
 == NTPサーバーのガイドライン
 
 タイミングの問題を防ぐには、次のガイドラインに従ってください。
@@ -46,6 +48,7 @@ NOTE: 運用レベルのStorageGRIDインストールに外部 NTP ソースを�
 
 
 
+[[configure-ntp-servers]]
 == NTPサーバーを構成する
 
 NTP サーバーを追加、更新、または削除するには、次の手順に従います。
@@ -68,6 +71,7 @@ NOTE: 新しい NTP サーバーを保存した後、すべての NTP サーバ�
 
 
 
+[[resolve-ntp-server-issues]]
 == NTPサーバーの問題を解決する
 
 インストール時に最初に指定した NTP サーバーの安定性または可用性に問題が発生した場合、サーバーを追加するか、既存のサーバーを更新または削除することで、 StorageGRIDシステムが使用する外部 NTP ソースのリストを更新できます。

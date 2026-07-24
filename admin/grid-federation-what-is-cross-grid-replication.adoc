@@ -15,6 +15,7 @@ summary: クロスグリッド レプリケーションは、グリッド フェ
 
 
 
+[[workflow-for-cross-grid-replication]]
 == クロスグリッドレプリケーションのワークフロー
 
 ワークフロー図は、2 つのグリッド上のバケット間のクロスグリッド レプリケーションを構成する手順をまとめたものです。
@@ -23,6 +24,7 @@ image::../media/grid-federation-cgr-workflow.png[クロスグリッドレプリ�
 
 
 
+[[requirements-for-cross-grid-replication]]
 == クロスグリッドレプリケーションの要件
 
 テナントアカウントに*グリッドフェデレーション接続を使用する*権限があり、1つ以上のlink:grid-federation-overview.html["グリッドフェデレーション接続"]ルートアクセス権限を持つテナント ユーザーは、各グリッドの対応するテナント アカウントに同一のバケットを作成できます。これらのバケット:
@@ -40,12 +42,14 @@ link:../tenant/grid-federation-manage-cross-grid-replication.html["クロスグ�
 
 
 
+[[how-cross-grid-replication-works]]
 == クロスグリッドレプリケーションの仕組み
 
 クロスグリッド レプリケーションは、一方向または双方向で実行されるように構成できます。
 
 
 
+[[replication-in-one-direction]]
 === 一方向の複製
 
 1 つのグリッドのみのバケットに対してグリッド間レプリケーションを有効にすると、そのバケット (ソース バケット) に追加されたオブジェクトは、他のグリッドの対応するバケット (宛先バケット) に複製されます。ただし、宛先バケットに追加されたオブジェクトはソースに複製されません。図では、クロスグリッドレプリケーションが有効になっています。 `my-bucket`グリッド 1 からグリッド 2 への方向は有効になっていますが、逆方向は有効になっていません。
@@ -54,6 +58,7 @@ image::../media/grid-federation-cross-grid-replication-one-direction.png[一方�
 
 
 
+[[replication-in-both-directions]]
 === 双方向の複製
 
 両方のグリッドで同じバケットのクロスグリッド レプリケーションを有効にすると、いずれかのバケットに追加されたオブジェクトが他のグリッドに複製されます。図では、クロスグリッドレプリケーションが有効になっています。 `my-bucket`両方向に。
@@ -62,6 +67,7 @@ image::../media/grid-federation-cross-grid-replication.png[一方向の複製と
 
 
 
+[[what-happens-when-objects-are-ingested]]
 === オブジェクトが摂取されると何が起こりますか?
 
 S3 クライアントが、クロスグリッド レプリケーションが有効になっているバケットにオブジェクトを追加すると、次のことが起こります。
@@ -101,6 +107,7 @@ NOTE: StorageGRIDはサポートしていません `x-amz-replication-status`ヘ
 
 
 
+[[what-happens-when-objects-are-deleted]]
 === オブジェクトが削除されると何が起こりますか?
 
 記載の通りlink:../primer/delete-data-flow.html["データフローを削除"]StorageGRID は、次のいずれかの理由でオブジェクトを削除することがあります。
@@ -144,6 +151,7 @@ NOTE: グリッド間でオブジェクトの削除を同期させたい場合�
 
 
 
+[[how-encrypted-objects-are-replicated]]
 === 暗号化されたオブジェクトが複製される仕組み
 
 クロスグリッド レプリケーションを使用してグリッド間でオブジェクトをレプリケートする場合、個々のオブジェクトを暗号化したり、デフォルトのバケット暗号化を使用したり、グリッド全体の暗号化を構成したりすることができます。バケットのクロスグリッド レプリケーションを有効にする前でも後でも、デフォルトのバケットまたはグリッド全体の暗号化設定を追加、変更、または削除できます。
@@ -178,6 +186,7 @@ NOTE: SSEはAES-128をサポートしません。*AES-128* オプションを使
 
 
 
+[[putobjecttagging-and-deleteobjecttagging-arent-supported]]
 === PutObjectTaggingとDeleteObjectTaggingはサポートされていません
 
 PutObjectTagging および DeleteObjectTagging リクエストは、クロスグリッド レプリケーションが有効になっているバケット内のオブジェクトではサポートされません。
@@ -186,6 +195,7 @@ S3クライアントがPutObjectTaggingまたはDeleteObjectTaggingリクエス�
 
 
 
+[[how-segmented-objects-are-replicated]]
 === セグメント化されたオブジェクトがどのように複製されるか
 
 ソース グリッドの最大セグメント サイズは、宛先グリッドに複製されるオブジェクトに適用されます。オブジェクトが別のグリッドに複製されると、ソース グリッドの *最大セグメント サイズ* 設定 (*[構成] > *システム* > *ストレージ オプション*) が両方のグリッドで使用されます。たとえば、ソース グリッドの最大セグメント サイズが 1 GB で、宛先グリッドの最大セグメント サイズが 50 MB であるとします。ソース グリッドに 2 GB のオブジェクトを取り込むと、そのオブジェクトは 2 つの 1 GB セグメントとして保存されます。また、グリッドの最大セグメント サイズが 50 MB であるにもかかわらず、2 つの 1 GB セグメントとして宛先グリッドに複製されます。

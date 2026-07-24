@@ -15,12 +15,14 @@ S3 CopyObject リクエストを使用して、S3 にすでに保存されてい
 
 
 
+[[resolve-conflicts]]
 == 紛争を解決する
 
 2 つのクライアントが同じキーに書き込むなど、競合するクライアント要求は、「最新のものを優先」して解決されます。  「最新のもの優先」評価のタイミングは、S3 クライアントが操作を開始した時点ではなく、 StorageGRIDシステムが特定のリクエストを完了した時点に基づきます。
 
 
 
+[[object-size]]
 == オブジェクトのサイズ
 
 1 回の PutObject 操作の最大 _推奨_ サイズは 5 GiB (5,368,709,120 バイト) です。  5GiBを超えるオブジェクトがある場合は、link:operations-for-multipart-uploads.html["マルチパートアップロード"]その代わり。
@@ -32,6 +34,7 @@ NOTE: StorageGRID 11.6 以前からアップグレードした場合、5 GiB を
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == ユーザーメタデータの UTF-8 文字
 
 リクエストに、キー名またはユーザー定義メタデータの値に (エスケープされていない) UTF-8 値が含まれている場合、 StorageGRID の動作は未定義になります。
@@ -44,6 +47,7 @@ StorageGRID は、ユーザー定義メタデータのキー名または値に�
 
 
 
+[[supported-request-headers]]
 == サポートされているリクエストヘッダー
 
 次のリクエスト ヘッダーがサポートされています。
@@ -92,6 +96,7 @@ StorageGRID は、ユーザー定義メタデータのキー名または値に�
 
 
 
+[[unsupported-request-headers]]
 == サポートされていないリクエストヘッダー
 
 次のリクエスト ヘッダーはサポートされていません。
@@ -118,6 +123,7 @@ StorageGRID は、ユーザー定義メタデータのキー名または値に�
 
 
 
+[[storage-class-options]]
 == ストレージクラスのオプション
 
 その `x-amz-storage-class`リクエストヘッダーがサポートされており、一致するILMルールがデュアルコミットまたはバランスコミットを使用している場合にStorageGRIDが作成するオブジェクトコピーの数に影響します。link:../ilm/data-protection-options-for-ingest.html["取り込みオプション"] 。
@@ -138,6 +144,7 @@ NOTE: S3オブジェクトロックが有効になっているバケットにオ
 
 
 
+[[using-x-amz-copy-source-in-copyobject]]
 == CopyObject で x-amz-copy-source を使用する
 
 ソースバケットとキーが `x-amz-copy-source`ヘッダー、値、およびキーが宛先バケットとキーと異なる場合、ソース オブジェクト データのコピーが宛先に書き込まれます。
@@ -153,6 +160,7 @@ NOTE: S3オブジェクトロックが有効になっているバケットにオ
 
 
 
+[[request-headers-for-server-side-encryption]]
 == サーバー側暗号化のリクエストヘッダー
 
 もしあなたがlink:using-server-side-encryption.html["サーバー側の暗号化を使用する"]指定するリクエスト ヘッダーは、ソース オブジェクトが暗号化されているかどうか、およびターゲット オブジェクトを暗号化する予定があるかどうかによって異なります。
@@ -188,6 +196,7 @@ NOTE: その `server-side-encryption`オブジェクトの値を更新できま�
 
 
 
+[[versioning]]
 == バージョン管理
 
 ソースバケットがバージョン管理されている場合は、 `x-amz-copy-source`オブジェクトの最新バージョンをコピーするためのヘッダー。オブジェクトの特定のバージョンをコピーするには、 `versionId`サブリソース。宛先バケットがバージョン管理されている場合、生成されたバージョンは `x-amz-version-id`レスポンス ヘッダー。ターゲットバケットのバージョン管理が停止されている場合は、 `x-amz-version-id` 「null」値を返します。

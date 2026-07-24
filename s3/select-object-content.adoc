@@ -38,6 +38,7 @@ S3 SelectObjectContent リクエストを使用すると、単純な SQL ステ�
 
 
 
+[[csv-request-syntax-example]]
 == CSVリクエスト構文の例
 
 [source, asciidoc]
@@ -81,6 +82,7 @@ x-amz-expected-bucket-owner: ExpectedBucketOwner
 ----
 
 
+[[parquet-request-syntax-example]]
 == Parquetリクエスト構文の例
 
 [source, asciidoc]
@@ -117,6 +119,7 @@ x-amz-expected-bucket-owner: ExpectedBucketOwner
 ----
 
 
+[[sql-query-example]]
 == SQLクエリの例
 
 このクエリは、米国国勢調査データから州名、2010 年の人口、2015 年の推定人口、および変化率を取得します。ファイル内の状態ではないレコードは無視されます。
@@ -144,6 +147,7 @@ POPESTIMATE2020
 ----
 
 
+[[aws-cli-usage-example-csv]]
 == AWS-CLI の使用例 (CSV)
 
 [listing]
@@ -163,6 +167,7 @@ Colorado,5029196,5454328,8.4532796097030221132761578590295546246
 ----
 
 
+[[aws-cli-usage-example-parquet]]
 == AWS-CLI の使用例 (Parquet)
 
 [listing]

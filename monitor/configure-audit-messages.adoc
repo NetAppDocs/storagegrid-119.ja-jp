@@ -26,6 +26,7 @@ summary: 監査メッセージに関連するさまざまな設定を構成で�
 
 
 
+[[change-audit-message-levels]]
 == 監査メッセージのレベルの変更
 
 監査ログ内の次のメッセージ カテゴリごとに異なる監査レベルを設定できます。
@@ -154,6 +155,7 @@ NOTE: S3 アプリケーションのクライアント読み取り操作の詳�
 
 
 
+[[define-http-request-headers]]
 == HTTPリクエストヘッダーを定義する
 
 オプションで、クライアントの読み取りおよび書き込み監査メッセージに含める HTTP 要求ヘッダーを定義できます。これらのプロトコル ヘッダーは S3 リクエストにのみ適用されます。
@@ -179,6 +181,7 @@ NOTE: 監査プロトコル要求ヘッダーは、*クライアント読み取�
 
 
 
+[[use-external-syslog-serveruse-an-external-syslog-server]]
 == [[use-external-syslog-server]]外部syslogサーバーを使用する
 
 オプションで、監査ログ、アプリケーション ログ、セキュリティ イベント ログをグリッド外部の場所に保存するように外部 Syslog サーバーを構成することもできます。
@@ -191,6 +194,7 @@ TIP: この手順で利用できる設定オプションが要件を満たすほ
 
 
 
+[[enter-syslog-information]]
 === Syslog情報を入力する
 
 外部 Syslog サーバーの構成ウィザードにアクセスし、 StorageGRID が外部 Syslog サーバーにアクセスするために必要な情報を提供します。
@@ -229,6 +233,7 @@ NOTE: 信頼性の高いイベント ログ プロトコル (RELP) は、syslog 
 
 
 
+[[manage-syslog-content]]
 === Syslogコンテンツの管理
 
 外部 syslog サーバーに送信する情報を選択できます。
@@ -542,6 +547,7 @@ logalert（ログアラート）
 
 
 
+[[send-test-messages]]
 === テストメッセージを送信する
 
 外部 Syslog サーバーの使用を開始する前に、グリッド内のすべてのノードが外部 Syslog サーバーにテスト メッセージを送信するように要求する必要があります。外部 syslog サーバーにデータを送信する前に、これらのテスト メッセージを使用して、ログ収集インフラストラクチャ全体を検証する必要があります。
@@ -580,6 +586,7 @@ NOTE: 外部 Syslog サーバを含む宛先を選択するまで、 StorageGRID
 
 
 
+[[select-audit-information-destinations]]
 == 監査情報の送信先を選択する
 
 監査ログ、セキュリティイベントログ、link:../monitor/storagegrid-software-logs.html["StorageGRIDソフトウェアログ"]送信されます。

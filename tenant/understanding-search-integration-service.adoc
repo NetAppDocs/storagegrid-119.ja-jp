@@ -24,6 +24,7 @@ NOTE: 検索統合サービスによりオブジェクト メタデータが宛�
 
 
 
+[[search-integration-and-s3-buckets]]
 == 検索統合とS3バケット
 
 バージョン管理されているバケットまたはバージョン管理されていないバケットに対して検索統合サービスを有効にできます。検索統合は、メタデータ通知構成 XML を、操作対象のオブジェクトとオブジェクト メタデータの宛先を指定するバケットに関連付けることによって構成されます。
@@ -35,6 +36,7 @@ NOTE: タグとユーザー メタデータの場合、 StorageGRID は日付と
 
 
 
+[[search-notifications]]
 == 検索通知
 
 メタデータ通知は次の場合に生成され、配信キューに追加されます。
@@ -52,6 +54,7 @@ NOTE: タグとユーザー メタデータの場合、 StorageGRID は日付と
 
 
 
+[[search-integration-service-and-elasticsearch]]
 == 検索統合サービスとElasticsearch
 
 StorageGRID検索統合サービスは、Elasticsearch クラスターを宛先としてサポートします。他のプラットフォーム サービスと同様に、宛先は、サービスの構成 XML で URN が使用されるエンドポイントで指定されます。使用 https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool"^]サポートされている Elasticsearch のバージョンを確認します。

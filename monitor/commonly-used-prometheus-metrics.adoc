@@ -19,12 +19,14 @@ Prometheusクエリの構文の詳細については、以下を参照してく�
 
 
 
+[[what-are-prometheus-metrics]]
 == Prometheus メトリックとは何ですか?
 
 Prometheus メトリックは時系列測定です。管理ノード上の Prometheus サービスは、すべてのノード上のサービスからこれらのメトリックを収集します。メトリックは、Prometheus データ用に予約されたスペースがいっぱいになるまで各管理ノードに保存されます。いつ `/var/local/mysql_ibdata/`ボリュームが容量に達すると、最も古いメトリックが最初に削除されます。
 
 
 
+[[where-are-prometheus-metrics-used]]
 == Prometheus メトリックはどこで使用されますか?
 
 Prometheus によって収集されたメトリックは、Grid Manager のいくつかの場所で使用されます。
@@ -48,6 +50,7 @@ NOTE: 「メトリクス」ページ内の一部の機能とメニュー項目�
 
 
 
+[[list-of-most-common-metrics]]
 == 最も一般的な指標のリスト
 
 次のリストには、最も一般的に使用される Prometheus メトリックが含まれています。
@@ -147,6 +150,7 @@ link:../troubleshoot/troubleshooting-lost-and-missing-object-data.html["失わ�
 
 
 
+[[get-a-list-of-all-metrics]]
 == すべての指標のリストを取得する
 
 [[obtain-all-metrics]]メトリックの完全なリストを取得するには、Grid Management API を使用します。

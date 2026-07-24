@@ -15,6 +15,7 @@ summary: 'テナント アカウントを使用すると、Simple Storage Servic
 
 
 
+[[what-is-a-tenant-account]]
 == テナントアカウントとは何ですか?
 
 各テナント アカウントには、独自のフェデレーション グループまたはローカル グループ、ユーザー、S3 バケットまたは Swift コンテナ、およびオブジェクトがあります。
@@ -31,6 +32,7 @@ NOTE: S3 クライアント プロトコルを使用する場合は、S3 バケ�
 
 
 
+[[how-to-create-a-tenant-account]]
 == テナントアカウントを作成する方法
 
 テナントアカウントは、link:../admin/managing-tenants.html["グリッド マネージャを使用するStorageGRIDグリッド管理者"] 。テナント アカウントを作成するときに、グリッド管理者は次のことを指定します。
@@ -44,6 +46,7 @@ NOTE: S3 クライアント プロトコルを使用する場合は、S3 バケ�
 
 
 
+[[configure-s3-tenants]]
 === S3テナントを構成する
 
 その後link:../admin/creating-tenant-account.html["S3テナントアカウントが作成される"]、テナント マネージャーにアクセスして、次のようなタスクを実行できます。

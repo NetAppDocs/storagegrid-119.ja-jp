@@ -15,6 +15,7 @@ StorageGRIDシステムを構成および管理するには、次の手順に従
 
 
 
+[[about-these-instructions]]
 == これらの指示について
 
 StorageGRID を構成および管理するための主なタスクでは、次のことが可能になります。
@@ -28,6 +29,7 @@ StorageGRID を構成および管理するための主なタスクでは、次�
 
 
 
+[[before-you-begin]]
 == 開始する前に
 
 * StorageGRIDシステムに関する一般的な知識があること。

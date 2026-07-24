@@ -25,6 +25,7 @@ S3 バケットとそのバケット内のオブジェクトを他のドメイ�
 
 
 
+[[enable-cors-for-a-bucket]]
 == バケットのCORSを有効にする
 
 .手順
@@ -70,6 +71,7 @@ CORS構成XMLの詳細については、以下を参照してください。 htt
 
 
 
+[[modify-cors-setting]]
 == CORS設定を変更する
 
 .手順
@@ -79,6 +81,7 @@ CORS構成XMLの詳細については、以下を参照してください。 htt
 
 
 
+[[disable-cors-setting]]
 == CORS設定を無効にする
 
 .手順

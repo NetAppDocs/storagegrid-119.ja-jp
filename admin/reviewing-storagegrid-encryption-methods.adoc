@@ -15,6 +15,7 @@ StorageGRID は、データを暗号化するためのいくつかのオプシ�
 
 この表は、 StorageGRIDで使用できる暗号化方法の概要を示しています。
 
+[[bucket-encryption-table]]
 [cols="1a,1a,1a"]
 |===
 | 暗号化オプション | 仕組み | 適用対象 
@@ -135,6 +136,7 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html["
 |===
 
 
+[[use-multiple-encryption-methods]]
 == 複数の暗号化方式を使用する
 
 要件に応じて、一度に複数の暗号化方法を使用できます。例えば：

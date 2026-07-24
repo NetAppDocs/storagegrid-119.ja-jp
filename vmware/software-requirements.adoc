@@ -15,6 +15,7 @@ summary: 仮想マシンを使用して、あらゆるタイプのStorageGRIDノ
 
 
 
+[[vmware-vsphere-hypervisor]]
 == VMware vSphere ハイパーバイザー
 
 準備された物理サーバーに VMware vSphere Hypervisor をインストールする必要があります。  VMware ソフトウェアをインストールする前に、ハードウェア (ファームウェア バージョンと BIOS 設定を含む) を正しく構成する必要があります。
@@ -29,6 +30,7 @@ link:../network/index.html["ネットワークガイドライン"]
 
 
 
+[[esx-host-configuration-requirements]]
 == ESXホストの構成要件
 
 
@@ -36,6 +38,7 @@ CAUTION: 各 ESX ホストでネットワーク タイム プロトコル (NTP) 
 
 
 
+[[vmware-configuration-requirements]]
 == VMware の構成要件
 
 StorageGRIDノードを展開する前に、VMware vSphere と vCenter をインストールして構成する必要があります。

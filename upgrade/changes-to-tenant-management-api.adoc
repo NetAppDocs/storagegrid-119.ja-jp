@@ -20,6 +20,7 @@ NOTE: StorageGRID 11.9 では、テナント管理 API の廃止バージョン�
 
 
 
+[[new-api-for-bucket-capacity-limit]]
 == バケット容量制限のための新しい API
 
 使用することができます `/org/containers/{bucketName}/quota-object-bytes`バケットのストレージ容量制限を取得および設定するための GET/PUT 操作を備えた API。

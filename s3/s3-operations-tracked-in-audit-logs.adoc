@@ -15,6 +15,7 @@ summary: 監査メッセージはStorageGRIDサービスによって生成され
 
 
 
+[[bucket-operations-tracked-in-the-audit-logs]]
 == 監査ログで追跡されるバケット操作
 
 * CreateBucket
@@ -32,6 +33,7 @@ summary: 監査メッセージはStorageGRIDサービスによって生成され
 
 
 
+[[object-operations-tracked-in-the-audit-logs]]
 == 監査ログで追跡されるオブジェクト操作
 
 * CompleteMultipartUpload

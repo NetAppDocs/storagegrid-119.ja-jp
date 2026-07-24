@@ -15,6 +15,7 @@ FabricPoolで使用するためにStorageGRIDシステムを構成する場合�
 
 
 
+[[audit-message-and-log-destinations]]
 == 監査メッセージとログの送信先
 
 FabricPoolワークロードでは読み取り操作の頻度が高くなることが多く、大量の監査メッセージが生成される可能性があります。
@@ -25,24 +26,28 @@ FabricPoolワークロードでは読み取り操作の頻度が高くなるこ�
 
 
 
+[[object-encryption]]
 == オブジェクトの暗号化
 
 StorageGRIDを構成する際に、オプションでlink:../admin/changing-network-options-object-encryption.html["保存されたオブジェクトの暗号化のグローバルオプション"]他のStorageGRIDクライアントにデータ暗号化が必要な場合。 FabricPoolからStorageGRIDに階層化されるデータは既に暗号化されているため、 StorageGRID設定を有効にする必要はありません。クライアント側の暗号化キーはONTAPが所有します。
 
 
 
+[[object-compression]]
 == オブジェクトの圧縮
 
 StorageGRIDを構成するときは、link:../admin/configuring-stored-object-compression.html["保存されたオブジェクトを圧縮するグローバルオプション"] 。  FabricPoolからStorageGRIDに階層化されているデータは既に圧縮されています。  StorageGRIDオプションを使用しても、オブジェクトのサイズはさらに縮小されません。
 
 
 
+[[bucket-consistency]]
 == バケットの一貫性
 
 FabricPoolバケットの場合、推奨されるバケットの一貫性は *Read-after-new-write* です。これは、新しいバケットのデフォルトの一貫性です。  *Available* または *Strong-site* を使用するようにFabricPoolバケットを編集しないでください。
 
 
 
+[[fabricpool-tiering]]
 == FabricPool の階層化
 
 StorageGRIDノードがNetApp ONTAPシステムから割り当てられたストレージを使用する場合は、ボリュームでFabricPool階層化ポリシーが有効になっていないことを確認してください。たとえば、 StorageGRIDノードが VMware ホスト上で実行されている場合は、 StorageGRIDノードのデータストアをバックアップするボリュームでFabricPool階層化ポリシーが有効になっていないことを確認します。StorageGRIDノードで使用するボリュームでFabricPoolによる階層化を無効にすることで、トラブルシューティングとストレージの処理がシンプルになります。

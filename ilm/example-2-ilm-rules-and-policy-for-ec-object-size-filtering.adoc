@@ -18,6 +18,7 @@ CAUTION: 次の ILM ルールとポリシーは例にすぎません。 ILM ル�
 
 
 
+[[ilm-rule-1-for-example-2-use-ec-for-objects-greater-than-1-mb]]
 == 例2のILMルール1: 1 MBを超えるオブジェクトにはECを使用する
 
 この例の ILM ルールは、1 MB を超えるオブジェクトを消去コードします。
@@ -61,6 +62,7 @@ image::../media/policy_2_rule_1_ec_objects_adv_filtering.png[例2のILMルール
 
 
 
+[[ilm-rule-2-for-example-2-two-replicated-copies]]
 == 例2のILMルール2: 複製された2つのコピー
 
 この例の ILM ルールは、複製されたコピーを 2 つ作成し、オブジェクト サイズでフィルター処理しません。このルールはポリシーのデフォルト ルールです。最初のルールは 1 MB を超えるすべてのオブジェクトを除外するため、このルールは 1 MB 以下のオブジェクトにのみ適用されます。
@@ -99,6 +101,7 @@ image::../media/policy_2_rule_1_ec_objects_adv_filtering.png[例2のILMルール
 |===
 
 
+[[ilm-policy-for-example-2-use-ec-for-objects-greater-than-1-mb]]
 == ILMポリシー例2: 1 MBを超えるオブジェクトにはECを使用する
 
 この例の ILM ポリシーには、次の 2 つの ILM ルールが含まれています。

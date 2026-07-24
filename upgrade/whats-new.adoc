@@ -15,20 +15,24 @@ StorageGRIDのこのリリースでは、次の機能と機能変更が導入さ
 
 
 
+[[scalability]]
 == 拡張性
 
 
 
+[[data-only-storage-nodes]]
 === データ専用ストレージノード
 
 よりきめ細かなスケーリングを可能にするために、以下をインストールできるようになりました。link:../primer/what-storage-node-is.html#types-of-storage-nodes["データ専用ストレージノード"] 。メタデータ処理が重要でない場合は、コスト効率よくインフラストラクチャを最適化できます。この柔軟性により、さまざまなワークロードと成長パターンに対応できるようになります。
 
 
 
+[[cloud-storage-pool-enhancements]]
 == クラウド ストレージ プールの機能強化
 
 
 
+[[iam-roles-anywhere]]
 === IAMロールをどこでも
 
 StorageGRIDは、以下の短期認証情報をサポートするようになりました。link:../ilm/creating-cloud-storage-pool.html["クラウド ストレージ プール用の Amazon S3 のあらゆる場所での IAM ロール"] 。
@@ -37,22 +41,26 @@ StorageGRIDは、以下の短期認証情報をサポートするようになり
 
 
 
+[[s3-object-lock-buckets]]
 === S3 オブジェクトロックバケット
 
 これでlink:../ilm/creating-cloud-storage-pool.html["Amazon S3エンドポイントを使用してクラウドストレージプールを構成する"]。  S3 オブジェクト ロックは、オブジェクトの偶発的または悪意のある削除を防ぐのに役立ちます。  StorageGRIDから Amazon S3 にデータを階層化する場合、両方のシステムでオブジェクト ロックを有効にすると、データのライフサイクル全体にわたってデータ保護が強化されます。
 
 
 
+[[multi-tenancy]]
 == マルチテナンシー
 
 
 
+[[bucket-limits]]
 === バケットの制限
 
 によるlink:../tenant/creating-s3-bucket.html["S3バケットの制限を設定する"]テナントによる容量の独占を防ぐことができます。さらに、制御されない成長は予期しないコストをもたらす可能性があります。制限を定義することで、テナントの保管費用をより正確に見積もることができます。
 
 
 
+[[5000-buckets-per-tenant]]
 === テナントあたり5,000バケット
 
 拡張性を高めるために、 StorageGRIDは最大link:../s3/operations-on-buckets.html["テナントあたり 5,000 個の S3 バケット"]。各グリッドには最大 100,000 個のバケットを含めることができます。
@@ -61,6 +69,7 @@ StorageGRIDは、以下の短期認証情報をサポートするようになり
 
 
 
+[[s3-object-lock-improvements]]
 == S3 オブジェクトロックの改善
 
 テナントごとの構成機能により、柔軟性とデータ セキュリティの適切なバランスが実現します。テナントごとの保持設定を次のように構成できるようになりました。
@@ -78,10 +87,12 @@ StorageGRIDは、以下の短期認証情報をサポートするようになり
 
 
 
+[[s3-compatibility]]
 == S3互換性
 
 
 
+[[x-amz-checksum-sha256-checksum]]
 === x-amz-checksum-sha256 チェックサム
 
 * S3 REST API は、link:../s3/operations-on-objects.html のサポートを提供するようになりました。[`x-amz-checksum-sha256` [チェックサム]。
@@ -90,6 +101,7 @@ StorageGRIDは、以下の短期認証情報をサポートするようになり
 
 
 
+[[changes-to-s3-protocol-support]]
 === S3プロトコルサポートの変更
 
 * Amazon S3 のマウントポイントのサポートが追加されました。これにより、アプリケーションはローカル ファイル システムであるかのように S3 バケットに直接接続できるようになります。より多くのアプリケーションとユースケースでStorageGRID を使用できるようになりました。
@@ -98,22 +110,26 @@ StorageGRIDは、以下の短期認証情報をサポートするようになり
 
 
 
+[[maintenance-and-supportability]]
 == メンテナンスとサポート
 
 
 
+[[autosupport]]
 === AutoSupport
 
 link:../admin/what-is-autosupport.html["AutoSupport"]レガシーアプライアンスのハードウェア障害ケースを自動的に作成できるようになりました。
 
 
 
+[[expanded-node-clone-operations]]
 === 拡張ノードクローン操作
 
 ノード クローンの使いやすさが拡張され、より大きなストレージ ノードをサポートするようになりました。
 
 
 
+[[improved-ilm-handling-of-expired-delete-markers]]
 === 期限切れの削除マーカーのILM処理の改善
 
 期間が日数の ILM 取り込み時間ルールでは、期限切れのオブジェクト削除マーカーも削除されるようになりました。削除マーカーは、日数の期間が経過し、現在の削除マーカーの有効期限が切れた場合にのみ削除されます (現在のバージョン以外のバージョンはありません)。
@@ -122,18 +138,21 @@ link:../admin/what-is-autosupport.html["AutoSupport"]レガシーアプライア
 
 
 
+[[improved-node-decommissioning]]
 === ノードの廃止の改善
 
 StorageGRID次世代ハードウェアへのスムーズで効率的な移行を実現するために、link:../maintain/grid-node-decommissioning.html["ノードの廃止"]改善されました。
 
 
 
+[[syslog-for-load-balancer-endpoints]]
 === ロードバランサエンドポイントの Syslog
 
 ロード バランサーのエンドポイント アクセス ログには、HTTP ステータス コードなどのトラブルシューティング情報が含まれています。 StorageGRIDがサポートするようになりましたlink:../monitor/configure-audit-messages.html["これらのログを外部のsyslogサーバーにエクスポートする"]。この機能強化により、より効率的なログ管理と、既存の監視およびアラート システムとの統合が可能になります。
 
 
 
+[[additional-enhancements-for-maintenance-and-supportability]]
 === メンテナンスとサポート性をさらに強化
 
 * メトリクスUIの更新
@@ -143,32 +162,38 @@ StorageGRID次世代ハードウェアへのスムーズで効率的な移行を
 
 
 
+[[security]]
 == セキュリティ
 
 
 
+[[ssh-access-keys-rotation]]
 === SSHアクセスキーのローテーション
 
 グリッド管理者は、link:../admin/change-ssh-access-passwords.html["SSHキーの更新とローテーション"] 。  SSH キーをローテーションする機能は、セキュリティのベストプラクティスであり、予防的な防御メカニズムです。
 
 
 
+[[alerts-for-root-logins]]
 === ルートログインのアラート
 
 不明なエンティティがグリッドマネージャにルートとしてサインインすると、link:../monitor/alerts-reference.html["アラートが発動される"] 。ルート SSH ログインを監視することは、インフラストラクチャを保護するための積極的なステップです。
 
 
 
+[[grid-manager-enhancements]]
 == グリッドマネージャーの機能強化
 
 
 
+[[erasure-coding-profiles-page-moved]]
 === 消去コーディングプロファイルページが移動しました
 
 イレージャー コーディング プロファイル ページは、*CONFIGURATION* > *System* > *Erasure coding* に移動されました。以前は ILM メニューにありました。
 
 
 
+[[search-enhancements]]
 === 検索機能の強化
 
 そのlink:../primer/exploring-grid-manager.html#search-field["グリッドマネージャーの検索フィールド"]より優れたマッチング ロジックが組み込まれ、一般的な略語やページ内の特定の設定の名前を検索してページを見つけることができるようになりました。ノード、ユーザー、テナント アカウントなど、さらに多くの種類の項目を検索することもできます。

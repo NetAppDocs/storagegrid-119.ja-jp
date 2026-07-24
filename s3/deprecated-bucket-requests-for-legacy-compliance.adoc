@@ -15,6 +15,7 @@ summary: 従来のコンプライアンス機能を使用して作成された�
 
 
 
+[[compliance-feature-deprecated]]
 == コンプライアンス機能は廃止されました
 
 以前のStorageGRIDバージョンで利用可能だったStorageGRIDコンプライアンス機能は廃止され、S3 オブジェクト ロックに置き換えられました。

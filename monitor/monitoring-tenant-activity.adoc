@@ -20,6 +20,7 @@ summary: すべての S3 クライアント アクティビティは、 StorageG
 
 
 
+[[view-all-tenants]]
 == すべてのテナントを表示
 
 「テナント」ページには、現在のすべてのテナント アカウントの基本情報が表示されます。
@@ -60,6 +61,7 @@ image::../media/tenant_accounts_example_csv.png[テナントアカウントの�
 
 
 
+[[view-a-specific-tenant]]
 == 特定のテナントを表示する
 
 特定のテナントの詳細を表示できます。
@@ -124,6 +126,7 @@ image::../media/tenant_bucket_details_csv.png[テナントバケットの詳細 
 
 
 
+[[view-network-traffic]]
 == ネットワークトラフィックを表示する
 
 テナントにトラフィック分類ポリシーが設定されている場合は、そのテナントのネットワーク トラフィックを確認します。
@@ -142,6 +145,7 @@ image::../media/tenant_bucket_details_csv.png[テナントバケットの詳細 
 
 
 
+[[use-the-audit-log]]
 == 監査ログを使用する
 
 オプションで、監査ログを使用して、テナントのアクティビティをより詳細に監視できます。
@@ -160,6 +164,7 @@ image::../media/tenant_bucket_details_csv.png[テナントバケットの詳細 
 
 
 
+[[use-prometheus-metrics]]
 == Prometheusメトリクスを使用する
 
 必要に応じて、Prometheus メトリックを使用してテナントのアクティビティをレポートします。

@@ -15,12 +15,14 @@ summary: グリッド フェデレーションを使用すると、テナント�
 
 
 
+[[what-is-a-grid-federation-connection]]
 == グリッド フェデレーション接続とは何ですか?
 
 グリッド フェデレーション接続は、2 つのStorageGRIDシステム内の管理ノードとゲートウェイ ノード間の双方向の信頼できる安全な接続です。
 
 
 
+[[workflow-for-grid-federation]]
 == グリッドフェデレーションのワークフロー
 
 ワークフロー図は、2 つのグリッド間のグリッド フェデレーション接続を構成する手順をまとめたものです。
@@ -29,6 +31,7 @@ image::../media/grid-federation-workflow.png[グリッドフェデレーショ�
 
 
 
+[[considerations-and-requirements-for-grid-federation-connections]]
 == グリッドフェデレーション接続に関する考慮事項と要件
 
 * グリッド フェデレーションに使用するグリッドでは、同一のStorageGRIDバージョンが実行されているか、メジャー バージョンの違いが 1 つ以下である必要があります。
@@ -42,6 +45,7 @@ image::../media/grid-federation-workflow.png[グリッドフェデレーショ�
 
 
 
+[[networking-and-ip-address-requirements]]
 === ネットワークとIPアドレスの要件
 
 * グリッド フェデレーション接続は、グリッド ネットワーク、管理ネットワーク、またはクライアント ネットワークで発生します。
@@ -53,6 +57,7 @@ image::../media/grid-federation-workflow.png[グリッドフェデレーショ�
 
 
 
+[[use-fqdns-to-load-balance-the-connection]]
 === FQDNを使用して接続の負荷を分散する
 
 運用環境では、完全修飾ドメイン名 (FQDN) を使用して接続内の各グリッドを識別します。次に、次のように適切な DNS エントリを作成します。
@@ -69,6 +74,7 @@ image::../media/grid-federation-workflow.png[グリッドフェデレーショ�
 
 
 
+[[port-requirements]]
 === ポート要件
 
 グリッド フェデレーション接続を作成するときに、23000 から 23999 までの未使用のポート番号を指定できます。この接続の両方のグリッドは同じポートを使用します。
@@ -77,6 +83,7 @@ image::../media/grid-federation-workflow.png[グリッドフェデレーショ�
 
 
 
+[[certificate-requirements]]
 === 証明書の要件
 
 グリッド フェデレーション接続を構成すると、 StorageGRIDによって次の 4 つの SSL 証明書が自動的に生成されます。

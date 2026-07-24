@@ -17,6 +17,7 @@ StorageGRIDシステムは、仮想ホスト スタイルのリクエストと�
 
 
 
+[[date-handling]]
 == 日付処理
 
 S3 REST API のStorageGRID実装では、有効な HTTP 日付形式のみがサポートされます。
@@ -25,6 +26,7 @@ StorageGRIDシステムは、日付値を受け入れるヘッダーに対して
 
 
 
+[[common-request-headers]]
 == 一般的なリクエストヘッダー
 
 StorageGRIDシステムは、以下で定義された共通リクエストヘッダーをサポートしています。 https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Amazon Simple Storage Service API リファレンス: 共通リクエストヘッダー"^]ただし、1 つの例外があります。
@@ -54,6 +56,7 @@ x-amz-セキュリティトークン
 |===
 
 
+[[common-response-headers]]
 == 一般的なレスポンスヘッダー
 
 StorageGRIDシステムは、1 つの例外を除き、「Simple Storage Service API リファレンス」で定義されているすべての共通応答ヘッダーをサポートします。

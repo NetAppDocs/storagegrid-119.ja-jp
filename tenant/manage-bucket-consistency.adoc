@@ -20,12 +20,14 @@ summary: 一貫性値を使用すると、バケット設定の変更の可用�
 
 
 
+[[bucket-consistency-guidelines]]
 == バケットの一貫性ガイドライン
 
 バケットの一貫性は、その S3 バケット内のオブジェクトに影響を与えるクライアント アプリケーションの一貫性を決定するために使用されます。一般に、バケットには *新規書き込み後の読み取り* の一貫性を使用する必要があります。
 
 
 
+[[change-bucket-consistencychange-bucket-consistency]]
 == [[change-bucket-consistency]]バケットの一貫性を変更する
 
 *Read-after-new-write* の整合性がクライアントアプリケーションの要件を満たしていない場合は、バケットの整合性を設定するか、 `Consistency-Control`ヘッダ。その `Consistency-Control`ヘッダーはバケットの一貫性を上書きします。
@@ -54,6 +56,7 @@ NOTE: バケットの一貫性を変更すると、変更後に取り込まれ�
 
 
 
+[[what-happens-when-you-change-bucket-settings]]
 == バケット設定を変更すると何が起こるか
 
 バケットには、バケットとバケット内のオブジェクトの動作に影響する複数の設定があります。

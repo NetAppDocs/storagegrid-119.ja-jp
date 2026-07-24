@@ -17,6 +17,7 @@ summary: アカウント クローンとは、グリッド フェデレーショ
 
 
 
+[[workflow-for-account-clone]]
 == アカウントクローンのワークフロー
 
 ワークフロー図は、グリッド管理者と許可されたテナントがアカウントクローンを設定するために実行する手順を示しています。これらの手順は、link:grid-federation-create-connection.html["グリッドフェデレーション接続が構成されている"] 。
@@ -25,12 +26,14 @@ image::../media/grid-federation-account-clone-workflow.png[アカウントクロ
 
 
 
+[[grid-admin-workflow]]
 == グリッド管理ワークフロー
 
 グリッド管理者が実行する手順は、グリッド内のStorageGRIDシステムがlink:grid-federation-overview.html["グリッドフェデレーション接続"]シングル サインオン (SSO) または ID フェデレーションを使用します。
 
 
 
+[[account-clone-ssoconfigure-sso-for-account-clone-optional]]
 === [[account-clone-sso]]アカウントクローンのSSOを設定する（オプション）
 
 グリッド フェデレーション接続内のいずれかのStorageGRIDシステムが SSO を使用する場合は、両方のグリッドで SSO を使用する必要があります。グリッド フェデレーション用のテナント アカウントを作成する前に、テナントのソース グリッドと宛先グリッドのグリッド管理者は次の手順を実行する必要があります。
@@ -50,6 +53,7 @@ NOTE: テナントを作成する前にこの管理グループが両方のグ�
 
 
 
+[[account-clone-identity-federationconfigure-grid-level-identity-federation-for-account-clone-optional]]
 === [[account-clone-identity-federation]]アカウントクローンのグリッドレベルのアイデンティティフェデレーションを構成する（オプション）
 
 いずれかのStorageGRIDシステムが SSO なしで ID フェデレーションを使用する場合、両方のグリッドで ID フェデレーションを使用する必要があります。グリッド フェデレーション用のテナント アカウントを作成する前に、テナントのソース グリッドと宛先グリッドのグリッド管理者は次の手順を実行する必要があります。
@@ -66,6 +70,7 @@ NOTE: 両方のグリッドに存在しないフェデレーション グルー�
 
 
 
+[[create-permitted-s3-tenant-account]]
 === 許可されたS3テナントアカウントを作成する
 
 オプションで SSO または ID フェデレーションを構成した後、グリッド管理者は次の手順を実行して、どのテナントがバケット オブジェクトを他のStorageGRIDシステムに複製できるかを決定します。
@@ -98,6 +103,7 @@ NOTE: 両方のグリッドに存在しないフェデレーション グルー�
 
 
 
+[[permitted-tenant-account-workflow]]
 == 許可されたテナントアカウントワークフロー
 
 *グリッド フェデレーション接続の使用* 権限を持つテナントが宛先グリッドに複製された後、許可されたテナント アカウントはこれらの手順を実行して、テナント グループ、ユーザー、および S3 アクセス キーを複製できます。

@@ -15,6 +15,7 @@ summary: ノード構成ファイルは、 StorageGRIDホスト サービスが�
 
 
 
+[[location-for-node-configuration-files]]
 == ノード構成ファイルの場所
 
 各StorageGRIDノードの設定ファイルを `/etc/storagegrid/nodes`ノードが実行されるホスト上のディレクトリ。たとえば、HostAで管理ノード1台、ゲートウェイノード1台、ストレージノード1台を実行する場合は、3つのノード構成ファイルを `/etc/storagegrid/nodes`HostA 上。
@@ -23,6 +24,7 @@ vim や nano などのテキスト エディターを使用して各ホスト上
 
 
 
+[[naming-of-node-configuration-files]]
 == ノード構成ファイルの命名
 
 構成ファイルの名前は重要です。フォーマットは `node-name.conf`、 どこ `node-name`ノードに割り当てる名前です。この名前はStorageGRIDインストーラに表示され、ノードの移行などのノードのメンテナンス操作に使用されます。
@@ -47,6 +49,7 @@ vim や nano などのテキスト エディターを使用して各ホスト上
 
 
 
+[[contents-of-a-node-configuration-file]]
 == ノード構成ファイルの内容
 
 構成ファイルには、1 行につき 1 つのキーと 1 つの値のキー/値のペアが含まれます。各キー/値のペアについては、次の規則に従います。
@@ -66,6 +69,7 @@ vim や nano などのテキスト エディターを使用して各ホスト上
 
 
 
+[[admin-network-keys]]
 === 管理者ネットワークキー
 
 
@@ -318,6 +322,7 @@ NODE_TYPE = VM_Admin_Node の場合に必須
 |===
 
 
+[[block-device-keys]]
 === ブロックデバイスキー
 
 
@@ -454,6 +459,7 @@ NODE_TYPE = VM_Admin_Node のノードに必須です。他のノード タイ�
 |===
 
 
+[[client-network-keys]]
 === クライアントネットワークキー
 
 
@@ -661,6 +667,7 @@ MAC クローニングの詳細については、以下を参照してくださ�
 |===
 
 
+[[grid-network-keys]]
 === グリッドネットワークキー
 
 
@@ -856,6 +863,7 @@ MAC クローニングの詳細については、以下を参照してくださ�
 |===
 
 
+[[installation-password-key-temporary]]
 === インストールパスワードキー（一時）
 
 
@@ -885,6 +893,7 @@ MAC クローニングの詳細については、以下を参照してくださ�
 |===
 
 
+[[interfaces-key]]
 === インターフェースキー
 
 
@@ -912,6 +921,7 @@ _nnnn_ には、追加する各 INTERFACE_TARGET エントリに一意の番号�
 |===
 
 
+[[maximum-ram-key]]
 === 最大RAMキー
 
 
@@ -943,6 +953,7 @@ _nnnn_ には、追加する各 INTERFACE_TARGET エントリに一意の番号�
 |===
 
 
+[[node-type-keys]]
 === ノードタイプキー
 
 
@@ -990,6 +1001,7 @@ _nnnn_ には、追加する各 INTERFACE_TARGET エントリに一意の番号�
 |===
 
 
+[[port-remap-keys]]
 === ポート再マップキー
 
 

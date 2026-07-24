@@ -15,6 +15,7 @@ summary: 'シングル サインオン (SSO) を構成して有効にし、Azure
 
 
 
+[[sign-in-to-the-api-if-azure-single-sign-on-is-enabled]]
 == Azure シングル サインオンが有効になっている場合は、API にSign in。
 
 これらの手順は、Azure を SSO ID プロバイダーとして使用している場合に適用されます。

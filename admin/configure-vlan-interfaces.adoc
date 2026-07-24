@@ -15,6 +15,7 @@ summary: '管理ノードとゲートウェイ ノードに仮想 LAN (VLAN) イ
 
 
 
+[[considerations-for-vlan-interfaces]]
 == VLANインターフェースに関する考慮事項
 
 * VLAN ID を入力し、1 つ以上のノード上の親インターフェイスを選択して、VLAN インターフェイスを作成します。
@@ -35,6 +36,7 @@ summary: '管理ノードとゲートウェイ ノードに仮想 LAN (VLAN) イ
 
 
 
+[[create-a-vlan-interface]]
 == VLANインターフェースを作成する
 
 .開始する前に
@@ -51,6 +53,7 @@ Grid Manager を使用すると、クライアントが特定の VLAN 上のStor
 
 
 
+[[access-the-wizard]]
 === ウィザードにアクセスする
 
 .手順
@@ -60,6 +63,7 @@ Grid Manager を使用すると、クライアントが特定の VLAN 上のStor
 
 
 
+[[enter-details-for-the-vlan-interfaces]]
 === VLANインターフェースの詳細を入力します
 
 .手順
@@ -73,6 +77,7 @@ VLAN ID は一意である必要はありません。たとえば、あるサイ
 
 
 
+[[choose-parent-interfaces]]
 === 親インターフェースを選択
 
 この表には、グリッド内の各サイトにあるすべての管理ノードとゲートウェイ ノードで使用可能なインターフェイスがリストされています。管理ネットワーク (eth1) インターフェースは親インターフェースとして使用できず、表示されません。
@@ -90,6 +95,7 @@ image::../media/vlan-create-parent-interfaces.png[VLAN作成ウィザード親�
 
 
 
+[[confirm-the-settings]]
 === 設定を確認する
 
 .手順
@@ -106,6 +112,7 @@ image::../media/vlan-create-parent-interfaces.png[VLAN作成ウィザード親�
 
 
 
+[[edit-a-vlan-interface]]
 == VLANインターフェースを編集する
 
 VLAN インターフェイスを編集する場合、次の種類の変更を行うことができます。
@@ -139,6 +146,7 @@ VLAN が HA グループで使用されている場合、VLAN ID を更新する
 
 
 
+[[remove-a-vlan-interface]]
 == VLANインターフェースを削除する
 
 1 つ以上の VLAN インターフェースを削除できます。

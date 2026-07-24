@@ -20,6 +20,7 @@ StorageGRIDシステム間のグリッド フェデレーション接続の管�
 
 
 
+[[editgridfedconnectionedit-a-grid-federation-connection]]
 == [[edit_grid_fed_connection]]グリッドフェデレーション接続を編集する
 
 接続内のいずれかのグリッドのプライマリ管理ノードにサインインすることで、グリッド フェデレーション接続を編集できます。最初のグリッドに変更を加えた後、新しい検証ファイルをダウンロードして、他のグリッドにアップロードする必要があります。
@@ -29,6 +30,7 @@ NOTE: 接続の編集中、アカウントのクローンまたはグリッド�
 
 
 
+[[start-editing-the-connection]]
 === 接続の編集を開始する
 
 .手順
@@ -85,6 +87,7 @@ NOTE: 接続の編集を開始したときに接続ステータスが *接続済
 
 
 
+[[finish-editing-the-connection]]
 === 接続の編集を完了する
 
 他のグリッドに検証ファイルをアップロードして、接続の編集を完了します。
@@ -107,6 +110,7 @@ NOTE: 接続の編集を開始したときに接続ステータスが *接続済
 
 
 
+[[testgridfedconnectiontest-a-grid-federation-connection]]
 == [[test_grid_fed_connection]]グリッドフェデレーション接続をテストする
 
 .手順
@@ -177,6 +181,7 @@ NOTE: 接続の編集を開始したときに接続ステータスが *接続済
 
 
 
+[[rotategridfedcertificatesrotate-connection-certificates]]
 == [[rotate_grid_fed_certificates]]接続証明書のローテーション
 
 各グリッド フェデレーション接続では、接続を保護するために、自動的に生成された 4 つの SSL 証明書が使用されます。各グリッドの 2 つの証明書の有効期限が近づくと、「グリッド フェデレーション証明書の有効期限」アラートが表示され、証明書をローテーションするように通知されます。
@@ -201,6 +206,7 @@ CAUTION: 接続のいずれかの端の証明書の有効期限が切れると�
 
 
 
+[[removegridfedconnectionremove-a-grid-federation-connection]]
 == [[remove_grid_fed_connection]]グリッドフェデレーション接続を削除する
 
 接続内のいずれかのグリッドからグリッド フェデレーション接続を削除できます。図に示すように、両方のグリッドで前提条件の手順を実行し、どちらのグリッドのどのテナントでも接続が使用されていないことを確認する必要があります。
@@ -215,6 +221,7 @@ image::../media/grid-federation-remove-connection.png[グリッドフェデレ�
 
 
 
+[[disable-replication-for-all-tenant-buckets]]
 === すべてのテナントバケットのレプリケーションを無効にする
 
 .手順
@@ -231,6 +238,7 @@ TIP: いずれかのテナント バケットでクロス グリッド レプリ
 
 
 
+[[remove-permission-for-each-tenant]]
 === 各テナントの権限を削除する
 
 すべてのテナント バケットに対してグリッド間レプリケーションが無効になった後、両方のグリッドのすべてのテナントから *グリッド フェデレーションの使用権限* を削除します。
@@ -244,6 +252,7 @@ TIP: いずれかのテナント バケットでクロス グリッド レプリ
 
 
 
+[[remove-connection]]
 === 接続を削除
 
 .手順
@@ -263,6 +272,7 @@ TIP: いずれかのテナント バケットでクロス グリッド レプリ
 
 
 
+[[force-removegridfedconnectionremove-a-grid-federation-connection-by-force]]
 == [[force-remove_grid_fed_connection]]グリッドフェデレーション接続を強制的に削除する
 
 必要に応じて、「接続済み」ステータスになっていない接続を強制的に削除できます。

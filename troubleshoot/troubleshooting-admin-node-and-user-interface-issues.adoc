@@ -15,6 +15,7 @@ summary: 管理ノードおよびStorageGRIDユーザー インターフェイ�
 
 
 
+[[admin-node-sign-in-errors]]
 == 管理ノードのサインインエラー
 
 StorageGRID管理ノードにサインインする際にエラーが発生した場合は、システムに問題がある可能性があります。link:../troubleshoot/troubleshooting-network-hardware-and-platform-issues.html["ネットワーク"]または https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/troubleshooting-hardware-installation-sg100-and-sg1000.html["ハードウェア"^]問題、問題link:../primer/what-admin-node-is.html["管理ノードサービス"]、またはlink:../maintain/recovering-failed-storage-volumes-and-rebuilding-cassandra-database.html["Cassandraデータベースの問題"]接続されたストレージノード上。
@@ -165,6 +166,7 @@ idnt、acct、nginx、cassandra サービスがすべて実行されているこ
 
 
 
+[[user-interface-issues]]
 == ユーザ インターフェイスに関する問題
 
 StorageGRIDソフトウェアをアップグレードすると、Grid Manager または Tenant Manager のユーザー インターフェイスが期待どおりに応答しない場合があります。

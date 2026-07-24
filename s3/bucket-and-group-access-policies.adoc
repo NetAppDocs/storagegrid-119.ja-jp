@@ -15,6 +15,7 @@ StorageGRID は、Amazon Web Services (AWS) ポリシー言語を使用して、
 
 
 
+[[access-policy-overview]]
 == アクセスポリシーの概要
 
 StorageGRIDでサポートされているアクセス ポリシーには 2 種類あります。
@@ -136,6 +137,7 @@ Principal 要素では、すべてのユーザーに権限を付与する匿名�
 
 
 
+[[consistency-for-policies]]
 == 政策の一貫性
 
 デフォルトでは、グループ ポリシーに加えた更新はすべて最終的に一貫性を持ちます。グループ ポリシーが整合すると、ポリシーのキャッシュにより、変更が有効になるまでにさらに 15 分かかることがあります。デフォルトでは、バケット ポリシーに加えた更新はすべて強力な整合性を持ちます。
@@ -149,6 +151,7 @@ NOTE: 一時的な状況を回避するために一貫性を別の値に設定�
 
 
 
+[[use-arn-in-policy-statements]]
 == ポリシーステートメントで ARN を使用する
 
 ポリシーステートメントでは、ARN は Principal 要素と Resource 要素で使用されます。
@@ -186,6 +189,7 @@ PutBucketPolicy 操作の HTTP リクエスト本体は、charset=UTF-8 でエ�
 
 
 
+[[specify-resources-in-a-policy]]
 == ポリシーでリソースを指定する
 
 ポリシー ステートメントでは、Resource 要素を使用して、権限を許可または拒否するバケットまたはオブジェクトを指定できます。
@@ -208,6 +212,7 @@ PutBucketPolicy 操作の HTTP リクエスト本体は、charset=UTF-8 でエ�
 
 
 
+[[specify-principals-in-a-policy]]
 == ポリシーでプリンシパルを指定する
 
 Principal 要素を使用して、ポリシー ステートメントによってリソースへのアクセスが許可/拒否されるユーザー、グループ、またはテナント アカウントを識別します。
@@ -265,6 +270,7 @@ arn:aws:iam::27233906934684427525:user-uuid/de305d54-75b4-431b-adb2-eb6b9e546013
 
 
 
+[[specify-permissions-in-a-policy]]
 == ポリシーで権限を指定する
 
 ポリシーでは、アクション要素はリソースへのアクセス許可を許可/拒否するために使用されます。ポリシーで指定できる一連の権限があり、これらは要素「Action」で示され、除外の場合は「NotAction」で示されます。これらの各要素は、特定の S3 REST API 操作にマッピングされます。
@@ -279,6 +285,7 @@ NOTE: 既存の値を上書きするために put が使用されると、削除
 
 
 
+[[permissions-that-apply-to-buckets]]
 === バケットに適用される権限
 
 [cols="2a,2a,1a"]
@@ -617,6 +624,7 @@ PutBucketレプリケーション
 |===
 
 
+[[permissions-that-apply-to-objects]]
 === オブジェクトに適用される権限
 
 [cols="2a,2a,1a"]
@@ -818,6 +826,7 @@ s3:オブジェクトの復元
 |===
 
 
+[[use-putoverwriteobject-permission]]
 == PutOverwriteObject権限を使用する
 
 s3:PutOverwriteObject 権限は、オブジェクトを作成または更新する操作に適用されるカスタムStorageGRID権限です。この権限の設定により、クライアントがオブジェクトのデータ、ユーザー定義のメタデータ、または S3 オブジェクトのタグ付けを上書きできるかどうかが決まります。
@@ -845,6 +854,7 @@ NOTE: 現在の S3 ポリシーで上書きが許可されていて、PutOverwri
 
 
 
+[[specify-conditions-in-a-policy]]
 == ポリシーで条件を指定する
 
 条件は、ポリシーがいつ有効になるかを定義します。条件は演算子とキーと値のペアで構成されます。
@@ -870,6 +880,7 @@ Condition: {
 ----
 
 
+[[supported-condition-operators]]
 === サポートされている条件演算子
 
 条件演算子は次のように分類されます。
@@ -999,6 +1010,7 @@ Null
 |===
 
 
+[[supported-condition-keys]]
 === サポートされている条件キー
 
 [cols="1a,1a,2a"]
@@ -1129,6 +1141,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[specify-variables-in-a-policy]]
 == ポリシーで変数を指定する
 
 利用可能な場合にポリシー情報を入力するには、ポリシー内の変数を使用できます。ポリシー変数は、 `Resource`要素と文字列の比較では `Condition`要素。
@@ -1205,6 +1218,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[create-policies-requiring-special-handling]]
 == 特別な処理を必要とするポリシーを作成する
 
 場合によっては、ポリシーによって、アカウントのルート ユーザーをロックアウトするなど、セキュリティ上危険な権限や継続的な操作にとって危険な権限が付与されることがあります。  StorageGRID S3 REST API 実装は、ポリシー検証時には Amazon よりも制限が少なくなりますが、ポリシー評価時には同様に厳格になります。
@@ -1325,6 +1339,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[write-once-read-many-worm-protection]]
 == 一度書き込み、何度も読み取り可能な（WORM）保護
 
 データ、ユーザー定義のオブジェクト メタデータ、および S3 オブジェクトのタグ付けを保護するために、Write Once Read Many (WORM) バケットを作成できます。 WORM バケットを構成して、新しいオブジェクトの作成を許可し、既存のコンテンツの上書きや削除を防止します。ここで説明するいずれかのアプローチを使用します。

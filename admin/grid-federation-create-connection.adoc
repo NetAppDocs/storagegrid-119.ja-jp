@@ -26,6 +26,7 @@ image::../media/grid-federation-create-connection.png[2つのグリッドに接�
 
 
 
+[[add-connection]]
 == 接続を追加
 
 2 つのStorageGRIDシステムのいずれかでこれらの手順を実行します。
@@ -113,6 +114,7 @@ CAUTION: このファイルには秘密情報（ `***` ) やその他の機密�
 
 
 
+[[complete-connection]]
 == 完全な接続
 
 接続先のStorageGRIDシステム (他のグリッド) で次の手順を実行します。

@@ -18,6 +18,7 @@ NOTE: ログを外部のSyslogサーバーに送信したり、監査情報の�
 
 
 
+[[general-storagegrid-logs]]
 == 一般的なStorageGRIDログ
 
 [cols="3a,3a,2a"]
@@ -49,6 +50,7 @@ NOTE: ログを外部のSyslogサーバーに送信したり、監査情報の�
 |===
 
 
+[[cipher-related-logs]]
 == 暗号関連のログ
 
 [cols="3a,3a,2a"]
@@ -85,6 +87,7 @@ TLS および SSH ポリシーの構成に関連するログが含まれます�
 |===
 
 
+[[grid-federation-logs]]
 == グリッドフェデレーションログ
 
 [cols="3a,3a,2a"]
@@ -100,6 +103,7 @@ TLS および SSH ポリシーの構成に関連するログが含まれます�
 |===
 
 
+[[nms-logs]]
 == NMSログ
 
 [cols="3a,3a,2a"]
@@ -136,6 +140,7 @@ MySQL データベースのアップグレードに関連するエラー メッ�
 |===
 
 
+[[server-manager-logs]]
 == サーバーマネージャーのログ
 
 [cols="3a,3a,2a"]
@@ -165,6 +170,7 @@ Server Manager GUI バックエンド アプリケーションのログ ファ�
 |===
 
 
+[[storagegrid-services-logs]]
 == StorageGRIDサービスログ
 
 [cols="3a,3a,2a"]

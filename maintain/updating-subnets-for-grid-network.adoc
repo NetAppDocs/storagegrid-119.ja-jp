@@ -45,6 +45,7 @@ StorageGRID は、グリッド ネットワーク (eth0) 上のグリッド ノ�
 ====
 
 
+[[add-a-subnet]]
 == サブネットを追加する
 
 .手順
@@ -70,6 +71,7 @@ CAUTION: リカバリ パッケージ ファイルには、 StorageGRIDシステ
 
 
 
+[[edit-a-subnet]]
 == サブネットを編集する
 
 .手順
@@ -87,6 +89,7 @@ CAUTION: リカバリ パッケージ ファイルには、 StorageGRIDシステ
 
 
 
+[[delete-a-subnet]]
 == サブネットの削除
 
 .手順

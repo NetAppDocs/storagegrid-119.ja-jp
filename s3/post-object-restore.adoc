@@ -15,18 +15,21 @@ S3 RestoreObject リクエストを使用して、クラウド ストレージ �
 
 
 
+[[supported-request-type]]
 == サポートされているリクエストタイプ
 
 StorageGRID は、オブジェクトを復元するための RestoreObject 要求のみをサポートします。サポートされていません `SELECT`修復の種類。選択したリクエストの戻り `XNotImplemented`。
 
 
 
+[[versioning]]
 == バージョン管理
 
 オプションで指定 `versionId`バージョン管理されたバケット内のオブジェクトの特定のバージョンを復元します。指定しない場合 `versionId`オブジェクトの最新バージョンが復元されます
 
 
 
+[[behavior-of-restoreobject-on-cloud-storage-pool-objects]]
 == Cloud Storage Pool オブジェクトにおける RestoreObject の動作
 
 オブジェクトがlink:../ilm/what-cloud-storage-pool-is.html["クラウド ストレージ プール"]RestoreObject 要求は、オブジェクトの状態に基づいて次の動作をします。見るlink:head-object.html["HeadObject"]詳細についてはこちらをご覧ください。

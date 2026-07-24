@@ -15,6 +15,7 @@ StorageGRIDシステムは、適用されるすべての標準 S3 REST API エ�
 
 
 
+[[supported-s3-api-error-codes]]
 == サポートされているS3 APIエラーコード
 
 [cols="1a,1a"]
@@ -289,6 +290,7 @@ NoSuchBucketPolicy
 |===
 
 
+[[storagegrid-custom-error-codes]]
 == StorageGRIDカスタムエラーコード
 
 [cols="2a,2a,1a"]

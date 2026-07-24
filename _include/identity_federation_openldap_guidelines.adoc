@@ -9,12 +9,14 @@ CAUTION: ActiveDirectory または Azure 以外の ID ソースの場合、 Stor
 
 
 
+[[memberof-and-refint-overlays]]
 === Memberof と refint オーバーレイ
 
 memberof および refint オーバーレイを有効にする必要があります。詳細については、http://www.openldap.org/doc/admin24/index.html["OpenLDAP ドキュメント: バージョン 2.4 管理者ガイド"^] 。
 
 
 
+[[indexing]]
 === インデックス作成
 
 指定されたインデックス キーワードを使用して、次の OpenLDAP 属性を設定する必要があります。

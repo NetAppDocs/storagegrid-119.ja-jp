@@ -55,6 +55,7 @@ StorageGRID (サービス プロバイダー) と SSO ID プロバイダーが�
 
 
 
+[[access-sandbox-mode]]
 == サンドボックスモードにアクセスする
 
 .手順
@@ -77,6 +78,7 @@ NOTE: SSO ステータス オプションが表示されない場合は、ID プ
 
 
 
+[[enter-identity-provider-details]]
 == IDプロバイダーの詳細を入力してください
 
 .手順
@@ -223,6 +225,7 @@ image::../media/save_button_green_checkmark.gif[緑のチェックマークが�
 
 
 
+[[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
 == 証明書利用者信頼、エンタープライズ アプリケーション、またはSP接続を構成する
 
 設定が保存されると、サンドボックス モードの確認通知が表示されます。この通知は、サンドボックス モードが有効になったことを確認し、概要の手順を示します。
@@ -285,6 +288,7 @@ StorageGRID は、必要な限りサンドボックス モードのままにす�
 ====
 
 
+[[test-sso-connections]]
 == SSO接続をテストする
 
 StorageGRIDシステム全体にシングル サインオンの使用を強制する前に、各管理ノードに対してシングル サインオンとシングル ログアウトが正しく設定されていることを確認する必要があります。
@@ -366,6 +370,7 @@ image::../media/sso_sandbox_mode_sign_in_success.gif[SSO認証とログアウト
 ====
 
 
+[[enable-single-sign-on]]
 == シングルサインオンを有効にする
 
 SSO を使用して各管理ノードにサインインできることを確認したら、 StorageGRIDシステム全体に対して SSO を有効にできます。

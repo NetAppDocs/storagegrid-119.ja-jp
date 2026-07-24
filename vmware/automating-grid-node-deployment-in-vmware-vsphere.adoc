@@ -15,6 +15,7 @@ VMware OVF ツールを使用して、グリッド ノードの展開を自動�
 
 
 
+[[automate-grid-node-deployment]]
 == グリッドノードの展開を自動化
 
 VMware OVF ツールを使用して、グリッド ノードの展開を自動化します。
@@ -81,6 +82,7 @@ NOTE: vApp にデプロイする場合、仮想マシンは初回は自動的に
 |===
 
 
+[[define-the-configuration-file-for-your-deployment]]
 === デプロイメント用の構成ファイルを定義する
 
 StorageGRIDの仮想グリッドノードを展開するために必要な情報を構成ファイルに指定します。この情報は `deploy-vsphere-ovftool.sh`Bash スクリプト。サンプル構成ファイルを変更することで、ファイルを最初から作成する必要がなくなります。
@@ -97,6 +99,7 @@ StorageGRIDの仮想グリッドノードを展開するために必要な情報
 
 
 
+[[configuration-file-settings]]
 === 設定ファイルの設定
 
 その `deploy-vsphere-ovftool.ini`構成ファイルには、仮想グリッド ノードを展開するために必要な設定が含まれています。
@@ -514,6 +517,7 @@ NOTE: 管理ノードの場合、INSTANCES は常に 2 に等しくなければ�
 
 
 
+[[run-the-bash-script]]
 == Bashスクリプトを実行する
 
 使用することができます `deploy-vsphere-ovftool.sh`VMware vSphere でのStorageGRIDノードのデプロイメントを自動化するために変更した Bash スクリプトと deploy-vsphere-ovftool.ini 構成ファイル。
@@ -581,6 +585,7 @@ Deployment Summary
 ----
 
 
+[[automate-the-configuration-of-storagegrid]]
 == StorageGRIDの構成を自動化する
 
 グリッド ノードを展開した後、 StorageGRIDシステムの構成を自動化できます。

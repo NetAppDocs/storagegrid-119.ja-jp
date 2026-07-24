@@ -24,6 +24,7 @@ NOTE: StorageGRIDシステムでシングル サインオン (SSO) が有効に�
 
 
 
+[[create-usercreate-a-local-user]]
 == [[create-user]]ローカルユーザーを作成する
 
 ローカル ユーザーを作成し、そのユーザーを 1 つ以上のローカル グループに割り当てて、アクセス権限を制御できます。
@@ -34,6 +35,7 @@ NOTE: StorageGRIDシステムでシングル サインオン (SSO) が有効に�
 
 
 
+[[access-the-create-user-wizard]]
 === ユーザー作成ウィザードにアクセスする
 
 .手順
@@ -49,6 +51,7 @@ image::../media/grid-federation-tenant-user-banner.png[これがテナント ソ
 
 
 
+[[enter-credentials]]
 === 資格情報を入力してください
 
 .手順
@@ -95,6 +98,7 @@ image::../media/grid-federation-tenant-user-banner.png[これがテナント ソ
 
 
 
+[[assign-to-groups]]
 === グループに割り当てる
 
 .手順
@@ -114,6 +118,7 @@ image::../media/grid-federation-tenant-user-banner.png[これがテナント ソ
 
 
 
+[[view-or-edit-local-user]]
 == ローカルユーザーの表示または編集
 
 .手順
@@ -174,6 +179,7 @@ image::../media/grid-federation-tenant-user-banner.png[これがテナント ソ
 
 
 
+[[duplicate-local-user]]
 == 重複したローカルユーザー
 
 ローカル ユーザーを複製して、新しいユーザーをより迅速に作成できます。
@@ -191,6 +197,7 @@ NOTE: テナント アカウントに *グリッド フェデレーション接�
 
 
 
+[[clone-usersretry-user-clone]]
 == [[clone-users]]ユーザーのクローンを再試行する
 
 失敗したクローンを再試行するには:
@@ -204,6 +211,7 @@ NOTE: テナント アカウントに *グリッド フェデレーション接�
 
 
 
+[[delete-one-or-more-local-users]]
 == 1人以上のローカルユーザーを削除する
 
 StorageGRIDテナント アカウントにアクセスする必要がなくなった 1 人以上のローカル ユーザーを完全に削除できます。

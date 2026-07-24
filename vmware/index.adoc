@@ -38,6 +38,7 @@ VMware StorageGRIDノードをインストールするには、次の大まか�
 
 
 
+[[automate-the-installation]]
 == インストールを自動化する
 
 時間を節約し、一貫性を確保するために、グリッド ノードの展開と構成、およびStorageGRIDシステムの構成を自動化できます。

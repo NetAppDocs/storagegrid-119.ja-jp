@@ -20,6 +20,7 @@ summary: すべてのグリッド フェデレーション接続に関する基�
 
 
 
+[[view-all-connections]]
 == すべての接続を表示
 
 グリッド フェデレーション ページには、すべてのグリッド フェデレーション接続と、グリッド フェデレーション接続の使用が許可されているすべてのテナント アカウントに関する基本情報が表示されます。
@@ -59,6 +60,7 @@ image::../media/grid-federation-permitted-tenants-tab.png[グリッドフェデ�
 
 
 
+[[view-specific-connectionview-a-specific-connection]]
 == [[view-specific-connection]]特定の接続を表示する
 
 特定のグリッド フェデレーション接続の詳細を表示できます。
@@ -102,6 +104,7 @@ image::../media/grid-federation-certificates-tab.png[グリッドフェデレー
 
 
 
+[[review-cross-grid-replication-metrics]]
 == クロスグリッドレプリケーションメトリックを確認する
 
 Grafana のクロスグリッド レプリケーション ダッシュボードを使用して、グリッド上のクロスグリッド レプリケーション操作に関する Prometheus メトリックを表示できます。

@@ -15,6 +15,7 @@ summary: 仮想マシンによってホストされるStorageGRIDノードのス
 
 
 
+[[performance-requirements]]
 == パフォーマンス要件
 
 OS ボリュームと最初のストレージ ボリュームのパフォーマンスは、システム全体のパフォーマンスに大きな影響を与えます。これらが、レイテンシ、1 秒あたりの入出力操作 (IOPS)、およびスループットに関して適切なディスク パフォーマンスを提供することを確認します。
@@ -23,6 +24,7 @@ OS ボリュームと最初のストレージ ボリュームのパフォーマ�
 
 
 
+[[requirements-for-virtual-machines-that-use-netapp-ontap-storage]]
 == NetApp ONTAPストレージを使用する仮想マシンの要件
 
 NetApp ONTAPシステムからストレージが割り当てられた仮想マシンとしてStorageGRIDノードを展開する場合は、ボリュームにFabricPool階層化ポリシーが有効になっていないことを確認します。たとえば、 StorageGRIDノードが VMware ホスト上で仮想マシンとして実行されている場合は、ノードのデータストアをバックアップするボリュームでFabricPool階層化ポリシーが有効になっていないことを確認します。StorageGRIDノードで使用するボリュームでFabricPoolによる階層化を無効にすることで、トラブルシューティングとストレージの処理がシンプルになります。
@@ -32,12 +34,14 @@ NOTE: FabricPoolを使用してStorageGRIDに関連するデータをStorageGRID
 
 
 
+[[number-of-virtual-machines-required]]
 == 必要な仮想マシンの数
 
 各StorageGRIDサイトには、少なくとも 3 つのストレージ ノードが必要です。
 
 
 
+[[storage-requirements-by-node-type]]
 == ノードタイプ別のストレージ要件
 
 実稼働環境では、 StorageGRIDノードの仮想マシンは、ノードの種類に応じて異なる要件を満たす必要があります。
@@ -102,6 +106,7 @@ NOTE: 設定されている監査レベル、S3 オブジェクトキー名な�
 
 
 
+[[storage-requirements-for-storage-nodes]]
 == ストレージノードのストレージ要件
 
 ソフトウェア ベースのストレージ ノードには 1 ～ 16 個のストレージ ボリュームを設定できますが、3 個以上のストレージ ボリュームが推奨されます。各ストレージ ボリュームは 4 TB 以上である必要があります。

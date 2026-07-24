@@ -4,6 +4,7 @@
 
 
 
+[[which-procedure-should-i-use]]
 == どのような手順を使用すればよいですか?
 
 可能な場合は、グリッド マネージャーの *ボリューム復元* ページを使用してオブジェクト データを復元します。
@@ -20,6 +21,7 @@ NOTE: repair-data スクリプトは非推奨であり、将来のリリース�
 
 
 
+[[use-the-repair-data-script-to-restore-object-data]]
 == 使用 `repair-data`オブジェクトデータを復元するスクリプト
 
 .開始する前に
@@ -37,6 +39,7 @@ NOTE: repair-data スクリプトは非推奨であり、将来のリリース�
 
 
 
+[[about-the-repair-data-script]]
 == について `repair-data`スクリプト
 
 オブジェクトデータを復元するには、 `repair-data`スクリプト。このスクリプトは、オブジェクト データの復元プロセスを開始し、ILM スキャンと連携して ILM ルールが満たされていることを確認します。

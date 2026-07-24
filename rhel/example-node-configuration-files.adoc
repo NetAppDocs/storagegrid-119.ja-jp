@@ -20,6 +20,7 @@ NOTE: 例では、クライアント ネットワークはデフォルトで無�
 
 
 
+[[example-for-primary-admin-node]]
 == プライマリ管理ノードの例
 
 *ファイル名の例*: `/etc/storagegrid/nodes/dc1-adm1.conf`
@@ -51,6 +52,7 @@ ADMIN_NETWORK_ESL = 192.168.100.0/21,172.16.0.0/21,172.17.0.0/21
 ----
 
 
+[[example-for-storage-node]]
 == ストレージノードの例
 
 *ファイル名の例:* `/etc/storagegrid/nodes/dc1-sn1.conf`
@@ -76,6 +78,7 @@ GRID_NETWORK_GATEWAY = 10.1.0.1
 ----
 
 
+[[example-for-gateway-node]]
 == ゲートウェイノードの例
 
 *ファイル名の例:* `/etc/storagegrid/nodes/dc1-gw1.conf`
@@ -96,6 +99,7 @@ GRID_NETWORK_GATEWAY = 10.1.0.1
 ----
 
 
+[[example-for-a-non-primary-admin-node]]
 == 非プライマリ管理ノードの例
 
 *ファイル名の例:* `/etc/storagegrid/nodes/dc1-adm2.conf`

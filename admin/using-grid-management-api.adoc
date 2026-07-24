@@ -15,6 +15,7 @@ Grid Manager ユーザー インターフェイスの代わりに Grid Managemen
 
 
 
+[[top-level-resources]]
 == トップレベルのリソース
 
 グリッド管理 API は、次の最上位リソースを提供します。
@@ -26,6 +27,7 @@ Grid Manager ユーザー インターフェイスの代わりに Grid Managemen
 
 
 
+[[issue-api-requests]]
 == APIリクエストを発行する
 
 グリッド管理 API は、Swagger オープン ソース API プラットフォームを使用します。  Swagger は、開発者と非開発者が API を使用してStorageGRIDでリアルタイム操作を実行できる直感的なユーザー インターフェイスを提供します。

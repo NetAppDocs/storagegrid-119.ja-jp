@@ -17,6 +17,7 @@ summary: 高可用性グループ、ロードバランサエンドポイント�
 
 
 
+[[dns-entries-for-storagegrid-server-name]]
 == StorageGRIDサーバー名の DNS エントリ
 
 DNS エントリを追加して、使用する各StorageGRID IP アドレスにStorageGRIDサーバー名 (完全修飾ドメイン名) を関連付けます。  DNS に入力する IP アドレスは、負荷分散ノードの HA グループを使用しているかどうかによって異なります。
@@ -28,6 +29,7 @@ DNS エントリを追加して、使用する各StorageGRID IP アドレスにS
 
 
 
+[[dns-entries-for-virtual-hosted-style-requests]]
 == 仮想ホスト形式のリクエストのDNSエントリ
 
 定義した場合link:../admin/configuring-s3-api-endpoint-domain-names.html["S3エンドポイントのドメイン名"]仮想ホスト形式のリクエストを使用する場合は、ワイルドカード名を含むすべての必要な S3 エンドポイント ドメイン名の DNS エントリを追加します。

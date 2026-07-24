@@ -17,6 +17,7 @@ S3 テナント アカウントに対してプラットフォーム サービス
 
 
 
+[[cloudmirror-replication]]
 == CloudMirrorレプリケーション
 
 StorageGRID CloudMirror レプリケーション サービスは、 StorageGRIDバケットから指定された外部宛先に特定のオブジェクトをミラーリングするために使用されます。
@@ -31,6 +32,7 @@ NOTE: ソースバケットで S3 オブジェクトロックが有効になっ�
 
 
 
+[[notifications]]
 == 通知
 
 バケットごとのイベント通知は、オブジェクトに対して実行された特定のアクションに関する通知を、指定された外部 Kafka クラスターまたは Amazon Simple Notification Service に送信するために使用されます。
@@ -42,6 +44,7 @@ NOTE: S3 オブジェクト ロックが有効になっているバケットで�
 
 
 
+[[search-integration-service]]
 == 検索統合サービス
 
 検索統合サービスは、S3 オブジェクト メタデータを指定された Elasticsearch インデックスに送信するために使用され、そこでメタデータは外部サービスを使用して検索または分析できます。
@@ -55,6 +58,7 @@ NOTE: S3 オブジェクト ロックが有効になっているバケットで 
 
 
 
+[[recommendations-for-using-platform-services]]
 == プラットフォームサービスの利用に関する推奨事項
 
 プラットフォーム サービスを使用する前に、次の推奨事項に注意してください。

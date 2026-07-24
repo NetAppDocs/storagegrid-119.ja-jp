@@ -38,6 +38,7 @@ Red Hat Enterprise Linux (RHEL) Linux StorageGRIDノードをインストール�
 
 
 
+[[automate-the-installation]]
 == インストールを自動化する
 
 時間を節約し、一貫性を保つために、 StorageGRIDホスト サービスのインストールとグリッド ノードの構成を自動化できます。

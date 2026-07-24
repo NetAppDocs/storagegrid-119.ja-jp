@@ -22,6 +22,7 @@ image::../media/grid_manager_dashboard.png[グリッドマネージャーダッ�
 
 
 
+[[view-the-dashboard]]
 == ダッシュボードを見る
 
 ダッシュボードは、 StorageGRIDシステムに関する特定の情報が含まれるタブで構成されています。各タブには、カードに表示される情報のカテゴリが含まれています。
@@ -73,6 +74,7 @@ ILM
 
 
 
+[[manage-dashboards]]
 == ダッシュボードを管理する
 
 ルートアクセス権がある場合（link:../admin/admin-group-permissions.html["管理者グループの権限"] ) では、ダッシュボードに対して次の管理タスクを実行できます。
@@ -95,6 +97,7 @@ image::../media/dashboard_manage.png[ダッシュボードを管理する]
 
 
 
+[[configure-dashboards]]
 == ダッシュボードを構成する
 
 アクティブなダッシュボードを複製して新しいダッシュボードを作成するには、[*アクション*] > [アクティブなダッシュボードの複製*] を選択します。

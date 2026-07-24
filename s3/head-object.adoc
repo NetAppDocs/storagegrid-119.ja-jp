@@ -15,6 +15,7 @@ S3 HeadObject リクエストを使用すると、オブジェクト自体を返
 
 
 
+[[headobject-and-multipart-objects]]
 == HeadObjectとマルチパートオブジェクト
 
 使用することができます `partNumber`マルチパートまたはセグメント化されたオブジェクトの特定の部分のメタデータを取得するためのリクエスト パラメータ。その `x-amz-mp-parts-count`レスポンス要素は、オブジェクトに含まれるパーツの数を示します。
@@ -23,12 +24,14 @@ S3 HeadObject リクエストを使用すると、オブジェクト自体を返
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == ユーザーメタデータの UTF-8 文字
 
 StorageGRID は、ユーザー定義のメタデータ内のエスケープされた UTF-8 文字を解析または解釈しません。ユーザー定義のメタデータにエスケープされたUTF-8文字を含むオブジェクトに対するHEADリクエストは、 `x-amz-missing-meta`キー名または値に印刷できない文字が含まれている場合は、ヘッダーを作成します。
 
 
 
+[[supported-request-header]]
 == サポートされているリクエストヘッダー
 
 次のリクエスト ヘッダーがサポートされています。
@@ -41,6 +44,7 @@ StorageGRID は、ユーザー定義のメタデータ内のエスケープさ�
 
 
 
+[[unsupported-request-header]]
 == サポートされていないリクエストヘッダー
 
 次のリクエストヘッダーはサポートされていないため、 `XNotImplemented` :
@@ -50,12 +54,14 @@ StorageGRID は、ユーザー定義のメタデータ内のエスケープさ�
 
 
 
+[[versioning]]
 == バージョン管理
 
 もし `versionId`サブリソースが指定されていない場合、この操作ではバージョン管理されたバケット内のオブジェクトの最新バージョンが取得されます。オブジェクトの現在のバージョンが削除マーカーである場合、「見つかりません」ステータスが返されます。 `x-amz-delete-marker`レスポンスヘッダーを `true`。
 
 
 
+[[request-headers-for-server-side-encryption-with-customer-provided-encryption-keys-sse-c]]
 == 顧客提供の暗号化キーを使用したサーバー側暗号化のリクエスト ヘッダー (SSE-C)
 
 オブジェクトが指定した一意のキーで暗号化されている場合は、これら 3 つのヘッダーをすべて使用します。
@@ -70,6 +76,7 @@ CAUTION: 提供された暗号化キーは保存されません。暗号化キ�
 
 
 
+[[headobject-responses-for-cloud-storage-pool-objects]]
 == Cloud Storage Pool オブジェクトの HeadObject 応答
 
 オブジェクトがlink:../ilm/what-cloud-storage-pool-is.html["クラウド ストレージ プール"]、次の応答ヘッダーが返されます。
@@ -154,12 +161,14 @@ Cloud Storage Pool 内のオブジェクトですが、まだ取得不可の状�
 |===
 
 
+[[multipart-or-segmented-objects-in-cloud-storage-pool]]
 === クラウド ストレージ プール内のマルチパートまたはセグメント化されたオブジェクト
 
 マルチパート オブジェクトをアップロードした場合、またはStorageGRID が大きなオブジェクトをセグメントに分割した場合、 StorageGRID はオブジェクトのパートまたはセグメントのサブセットをサンプリングして、オブジェクトが Cloud Storage Pool で使用可能かどうかを判断します。場合によっては、HeadObjectリクエストが誤って返されることがあります。 `x-amz-restore: ongoing-request="false"`オブジェクトの一部がすでに回復不可能な状態に移行している場合、またはオブジェクトの一部がまだ復元されていない場合。
 
 
 
+[[headobject-and-cross-grid-replication]]
 == HeadObjectとクロスグリッドレプリケーション
 
 使用している場合link:../admin/grid-federation-overview.html["グリッドフェデレーション"]そしてlink:../tenant/grid-federation-manage-cross-grid-replication.html["クロスグリッドレプリケーション"]バケットに対して有効になっている場合、S3 クライアントは HeadObject リクエストを発行してオブジェクトのレプリケーション ステータスを確認できます。応答にはStorageGRID固有の `x-ntap-sg-cgr-replication-status`レスポンス ヘッダーは次のいずれかの値を持ちます。

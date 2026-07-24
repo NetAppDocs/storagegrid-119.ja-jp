@@ -15,12 +15,14 @@ ID フェデレーションに OpenLDAP サーバーを使用する場合は、O
 
 
 
+[[memberof-and-refint-overlays]]
 == Memberof と refint オーバーレイ
 
 memberof および refint オーバーレイを有効にする必要があります。詳細については、『OpenLDAP ソフトウェア管理者ガイド』の逆グループ メンバーシップのメンテナンスの手順を参照してください。
 
 
 
+[[indexing]]
 == インデックス作成
 
 指定されたインデックス キーワードを使用して、次の OpenLDAP 属性を設定する必要があります。

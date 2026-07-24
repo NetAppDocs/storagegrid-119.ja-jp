@@ -19,6 +19,7 @@ summary: 'ファイル /var/local/log/bycast.log は、 StorageGRIDソフトウ�
 
 
 
+[[file-rotation-for-bycast-log]]
 == bycast.log のファイルローテーション
 
 いつ `bycast.log`ファイルが 1 GB に達すると、既存のファイルが保存され、新しいログ ファイルが開始されます。
@@ -39,6 +40,7 @@ link:collecting-log-files-and-system-data.html["ログファイルとシステ�
 
 
 
+[[messages-in-bycast-log]]
 == bycast.log 内のメッセージ
 
 メッセージ `bycast.log`ADE (非同期分散環境) によって記述されます。  ADE は、各グリッド ノードのサービスによって使用されるランタイム環境です。
@@ -99,6 +101,7 @@ UTCシステム時間
 |===
 
 
+[[message-severities-in-bycast-log]]
 == bycast.log のメッセージの重大度
 
 メッセージは `bycast.log`重大度レベルが割り当てられます。
@@ -113,6 +116,7 @@ UTCシステム時間
 
 
 
+[[error-codes-in-bycast-log]]
 == エラーコード `bycast.log`
 
 ほとんどのエラーメッセージは `bycast.log`エラーコードが含まれています。

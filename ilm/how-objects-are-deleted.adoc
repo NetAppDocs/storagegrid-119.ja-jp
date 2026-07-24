@@ -66,6 +66,7 @@ S3 クライアントが削除リクエストを行うと、 StorageGRID は削�
 
 
 
+[[time-required-to-delete-objects]]
 == オブジェクトの削除に必要な時間
 
 StorageGRID がオブジェクトを削除する方法は、システムのパフォーマンスに影響を与える可能性があります。
@@ -84,6 +85,8 @@ StorageGRID がオブジェクトを削除する方法は、システムのパ�
 
 
 
+[[how-s3-versioned-objects-are-deleted]]
+[[delete-s3-versioned-objects]]
 == S3 バージョン管理オブジェクトの削除方法
 
 S3 バケットのバージョン管理が有効になっている場合、 StorageGRIDは、削除リクエストが S3 クライアントからのものか、S3 バケットのライフサイクルの有効期限が切れたものか、ILM ポリシーの要件かに関係なく、削除リクエストに応答するときに Amazon S3 の動作に従います。

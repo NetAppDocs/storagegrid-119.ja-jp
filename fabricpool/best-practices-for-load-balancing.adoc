@@ -17,12 +17,14 @@ StorageGRIDロードバランサとロードバランサ証明書に関する一
 
 
 
+[[best-practices-for-tenant-access-to-the-load-balancer-endpoint-used-for-fabricpool]]
 == FabricPoolに使用されるロードバランサエンドポイントへのテナントアクセスに関するベストプラクティス
 
 特定のロードバランサエンドポイントを使用してバケットにアクセスできるテナントを制御できます。すべてのテナントを許可したり、一部のテナントを許可したり、一部のテナントをブロックしたりできます。  FabricPool用の負荷分散エンドポイントを作成するときは、*すべてのテナントを許可* を選択します。  ONTAP はStorageGRIDバケットに配置されるデータを暗号化するため、この追加のセキュリティ レイヤーによって提供される追加のセキュリティはほとんどありません。
 
 
 
+[[best-practices-for-the-security-certificate]]
 == セキュリティ証明書のベストプラクティス
 
 FabricPool で使用するためにStorageGRIDロード バランサ エンドポイントを作成するときは、 ONTAP がStorageGRIDで認証できるようにするセキュリティ証明書を提供します。
@@ -38,12 +40,14 @@ FabricPool で使用するためにStorageGRIDロード バランサ エンド�
 
 
 
+[[add-certificate-to-ontap]]
 === ONTAPに証明書を追加する
 
 StorageGRID をFabricPoolクラウド層として追加する場合は、ルート証明書と下位の証明機関 (CA) 証明書を含め、同じ証明書をONTAPクラスタにインストールする必要があります。
 
 
 
+[[manage-certificate-expiration]]
 === 証明書の有効期限を管理する
 
 

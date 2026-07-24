@@ -25,6 +25,7 @@ StorageGRIDホスト サービスはパッケージによってインストー�
 
 
 
+[[automate-the-installation-and-configuration-of-the-storagegrid-host-service]]
 == StorageGRIDホストサービスのインストールと構成を自動化する
 
 Ansible、Puppet、Chef、Fabric、SaltStack などの標準オーケストレーション フレームワークを使用して、 StorageGRIDホスト サービスのインストールを自動化できます。
@@ -46,12 +47,14 @@ StorageGRIDホスト サービスは DEB にパッケージ化されており、
 
 
 
+[[example-ansible-role-and-playbook]]
 === Ansible ロールとプレイブックの例
 
 Ansibleのロールとプレイブックの例は、インストールアーカイブに含まれています。 `/extras`フォルダ。 Ansibleプレイブックでは、 `storagegrid`役割はホストを準備し、 StorageGRID をターゲット サーバーにインストールします。必要に応じてロールまたはプレイブックをカスタマイズできます。
 
 
 
+[[automate-the-configuration-of-storagegrid]]
 == StorageGRIDの構成を自動化する
 
 グリッド ノードを展開した後、 StorageGRIDシステムの構成を自動化できます。

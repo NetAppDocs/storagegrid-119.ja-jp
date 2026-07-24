@@ -33,6 +33,7 @@ NOTE: グリッド全体の一貫性の変更は、設定の変更後に作成�
 
 
 
+[[consistency-values]]
 == 一貫性の値
 
 一貫性は、 StorageGRID がオブジェクトを追跡するために使用するメタデータがノード間でどのように分散されるかに影響し、したがってクライアント要求に対するオブジェクトの可用性に影響します。
@@ -48,6 +49,7 @@ NOTE: グリッド全体の一貫性の変更は、設定の変更後に作成�
 
 
 
+[[use-read-after-new-write-and-available-consistency]]
 == 「新規書き込み後の読み取り」と「利用可能」の一貫性を使用する
 
 HEAD または GET 操作で「Read-after-new-write」一貫性を使用する場合、 StorageGRID は次のように複数のステップで検索を実行します。
@@ -62,6 +64,7 @@ Amazon S3 と同様の一貫性の保証が必要ない場合は、一貫性を�
 
 
 
+[[api-operation-consistency-controlspecify-consistency-for-api-operation]]
 == [[api-operation-consistency-control]]API操作の一貫性を指定する
 
 個々の API 操作の一貫性を設定するには、その操作に対して一貫性の値がサポートされている必要があり、リクエスト ヘッダーで一貫性を指定する必要があります。この例では、GetObject 操作の一貫性を「Strong-site」に設定します。
@@ -79,6 +82,7 @@ NOTE: PutObject 操作と GetObject 操作の両方に同じ一貫性を使用�
 
 
 
+[[bucket-consistency-controlspecify-consistency-for-bucket]]
 == [[bucket-consistency-control]]バケットの一貫性を指定する
 
 バケットの一貫性を設定するには、 StorageGRIDを使用します。link:put-bucket-consistency-request.html["PUT バケットの一貫性"]リクエスト。あるいはlink:../tenant/manage-bucket-consistency.html#change-bucket-consistency["バケットの一貫性を変更する"]テナントマネージャーより。
@@ -92,6 +96,7 @@ NOTE: PutObject 操作と GetObject 操作の両方に同じ一貫性を使用�
 
 
 
+[[how-consistency-controls-and-ilm-rules-interacthow-consistency-and-ilm-rules-interact-to-affect-data-protection]]
 == [[一貫性コントロールとILMルールの相互作用]]一貫性とILMルールがどのように相互作用してデータ保護に影響を与えるか
 
 一貫性の選択と ILM ルールの両方が、オブジェクトの保護方法に影響します。これらの設定は相互作用する可能性があります。
@@ -107,6 +112,7 @@ Dual commit:: StorageGRID は直ちにオブジェクトの中間コピーを作
 
 
 
+[[example-of-how-the-consistency-and-ilm-rule-can-interact]]
 == 一貫性とILMルールがどのように相互作用するかの例
 
 次の ILM ルールと次の一貫性を持つ 2 つのサイト グリッドがあるとします。

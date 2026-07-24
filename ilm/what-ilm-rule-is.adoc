@@ -20,6 +20,7 @@ NOTE: オブジェクト メタデータは ILM ルールによって管理さ�
 
 
 
+[[elements-of-an-ilm-rule]]
 == ILMルールの要素
 
 ILM ルールには 3 つの要素があります。
@@ -31,6 +32,7 @@ ILM ルールには 3 つの要素があります。
 
 
 
+[[ilm-rule-filtering]]
 == ILMルールフィルタリング
 
 ILM ルールを作成するときは、ルールが適用されるオブジェクトを識別するためのフィルターを指定します。
@@ -60,6 +62,7 @@ ILM ルールを作成するときは、ルールが適用されるオブジェ�
 
 
 
+[[ilm-rule-placement-instructions]]
 == ILMルールの配置手順
 
 配置命令は、オブジェクト データが保存される場所、時期、方法を決定します。 ILM ルールには、1 つ以上の配置指示を含めることができます。各配置指示は単一の期間に適用されます。
@@ -95,6 +98,7 @@ image::../media/ilm_rule_multiple_placements_in_single_time_period.png[グリッ
 
 
 
+[[ilm-rule-ingest-behavior]]
 == ILMルール取り込み動作
 
 取り込み動作は、オブジェクトのコピーをルールの指示に従ってすぐに配置するか、中間コピーを作成して配置指示を後で適用するかを制御します。  ILM ルールでは次の取り込み動作を使用できます。
@@ -112,6 +116,7 @@ image::../media/ilm_rule_multiple_placements_in_single_time_period.png[グリッ
 
 
 
+[[example-ilm-rule]]
 == ILMルールの例
 
 たとえば、ILM ルールでは次のように指定できます。

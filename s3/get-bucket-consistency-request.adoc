@@ -19,6 +19,7 @@ GET Bucket 整合性リクエストを使用すると、特定のバケットに
 
 
 
+[[request-example]]
 == リクエスト例
 
 [listing, subs="specialcharacters,quotes"]
@@ -30,6 +31,7 @@ Host: _host_
 ----
 
 
+[[response]]
 == 応答
 
 レスポンスXMLでは、 `<Consistency>`次のいずれかの値を返します。
@@ -75,6 +77,7 @@ strong-site
 |===
 
 
+[[response-example]]
 == 応答例
 
 [listing]

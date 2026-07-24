@@ -17,6 +17,7 @@ MIB ファイルには、グリッド内のノードの管理対象リソース�
 
 
 
+[[access-mib-files]]
 == MIBファイルにアクセスする
 
 MIB ファイルにアクセスするには、次の手順に従います。
@@ -59,6 +60,7 @@ TIP: その `snmptranslate`コマンドには、MIB の調査に役立つ多く�
 
 
 
+[[mib-file-contents]]
 == MIBファイルの内容
 
 すべてのオブジェクトはStorageGRID OID の下にあります。
@@ -74,6 +76,7 @@ NetApp StorageGRIDエンティティの MIB モジュール。
 |===
 
 
+[[mib-objects]]
 == MIBオブジェクト
 
 [cols="1a,1a,2a"]
@@ -117,6 +120,7 @@ StorageGRID内のアクティブなアラートの表。
 |===
 
 
+[[notification-types-traps]]
 == 通知の種類（トラップ）
 
 すべての通知には、varbind として次の変数が含まれます。

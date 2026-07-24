@@ -19,6 +19,7 @@ ILM ポリシーに、消去コード化されたコピーを作成するルー�
 
 
 
+[[general-recommendation-for-adding-storage-capacity-for-erasure-coded-objects]]
 == 消失訂正符号化オブジェクト用のストレージ容量を追加するための一般的な推奨事項
 
 詳細な計算を避けたい場合は、既存のストレージ ノードの容量が 70% に達したときに、サイトごとに 2 つのストレージ ノードを追加できます。

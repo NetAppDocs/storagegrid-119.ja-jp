@@ -15,6 +15,7 @@ StorageGRIDで使用するために S3 REST API を実装する場合は、次�
 
 
 
+[[recommendations-for-heads-to-non-existent-objects]]
 == 存在しないオブジェクトへのHEADの推奨事項
 
 アプリケーションが、実際には存在しないと思われるパスにオブジェクトが存在するかどうかを定期的に確認する場合は、「使用可能」を使用する必要があります。link:consistency-controls.html["一貫性"] 。たとえば、アプリケーションが PUT を実行する前に場所を HEAD する場合は、「Available」一貫性を使用する必要があります。
@@ -25,6 +26,7 @@ StorageGRIDで使用するために S3 REST API を実装する場合は、次�
 
 
 
+[[recommendations-for-object-keys]]
 == オブジェクトキーに関する推奨事項
 
 バケットが最初に作成された時期に基づいて、オブジェクト キー名に関する次の推奨事項に従ってください。
@@ -51,6 +53,7 @@ TIP: 例外は、短時間ですべてのオブジェクトを継続的に削除
 
 
 
+[[recommendations-for-range-reads]]
 == 「レンジリード」の推奨事項
 
 もしlink:../admin/configuring-stored-object-compression.html["保存されたオブジェクトを圧縮するグローバルオプション"]が有効になっている場合、S3 クライアント アプリケーションは、返されるバイトの範囲を指定する GetObject 操作の実行を避ける必要があります。これらの「範囲読み取り」操作は、 StorageGRID が要求されたバイトにアクセスするためにオブジェクトを効果的に解凍する必要があるため、非効率的です。非常に大きなオブジェクトから小さな範囲のバイトを要求する GetObject 操作は特に非効率的です。たとえば、50 GB の圧縮されたオブジェクトから 10 MB の範囲を読み取るのは非効率的です。

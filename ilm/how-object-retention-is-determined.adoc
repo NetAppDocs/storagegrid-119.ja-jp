@@ -15,6 +15,7 @@ StorageGRID は、グリッド管理者と個々のテナント ユーザーの�
 
 
 
+[[how-tenant-users-control-object-retention]]
 == テナントユーザーがオブジェクトの保持を制御する方法
 
 テナント ユーザーは、次の方法を使用して、オブジェクトがStorageGRIDに保存される期間を制御できます。
@@ -33,6 +34,7 @@ StorageGRID は、グリッド管理者と個々のテナント ユーザーの�
 
 
 
+[[how-grid-administrators-control-object-retention]]
 == グリッド管理者がオブジェクトの保持を制御する方法
 
 グリッド管理者は、次の方法を使用してオブジェクトの保持を制御できます。
@@ -44,18 +46,21 @@ StorageGRID は、グリッド管理者と個々のテナント ユーザーの�
 
 
 
+[[how-s3-bucket-lifecycle-and-ilm-interact]]
 == S3 バケットのライフサイクルと ILM の相互作用
 
 S3 バケットのライフサイクルが設定されている場合、ライフサイクル フィルターに一致するオブジェクトの ILM ポリシーは、ライフサイクル有効期限アクションによって上書きされます。その結果、オブジェクトを配置するための ILM 指示が失効した後でも、オブジェクトがグリッド上に保持される可能性があります。
 
 
 
+[[examples-for-object-retention]]
 == 物体保持の例
 
 S3 オブジェクトロック、バケットライフサイクル設定、クライアント削除リクエスト、ILM 間の相互作用をよりよく理解するには、次の例を検討してください。
 
 
 
+[[example-1-s3-bucket-lifecycle-keeps-objects-longer-than-ilm]]
 === 例 1: S3 バケットのライフサイクルでは、ILM よりも長くオブジェクトが保持されます。
 
 ILM:: 2部を1年間（365日間）保管する
@@ -68,6 +73,7 @@ NOTE: バケットのライフサイクルで、オブジェクトを ILM で指
 
 
 
+[[example-2-s3-bucket-lifecycle-expires-objects-before-ilm]]
 === 例 2: S3 バケットのライフサイクルにより、ILM の前にオブジェクトが期限切れになる
 
 ILM:: 2部を2年間（730日間）保管する
@@ -77,6 +83,7 @@ ILM:: 2部を2年間（730日間）保管する
 
 
 
+[[example-3-client-delete-overrides-bucket-lifecycle-and-ilm]]
 === 例3: クライアントの削除によりバケットのライフサイクルとILMが上書きされる
 
 ILM:: ストレージノードに2つのコピーを「永久に」保存する
@@ -87,6 +94,7 @@ ILM:: ストレージノードに2つのコピーを「永久に」保存する
 
 
 
+[[example-4-s3-object-lock-overrides-client-delete-request]]
 === 例4: S3オブジェクトロックがクライアントの削除リクエストを上書きする
 
 S3 オブジェクトロック:: オブジェクト バージョンの保持期限は 2026-03-31 です。法的保留は有効ではありません。

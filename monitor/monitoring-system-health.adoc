@@ -56,6 +56,7 @@ image::../media/health_status_card.png[健康状態カード - ダッシュボ�
 |===
 
 
+[[monitor-node-connection-states]]
 == ノード接続状態を監視する
 
 1 つ以上のノードがグリッドから切断されると、重要なStorageGRID操作に影響が出る可能性があります。ノードの接続状態を監視し、問題があればすぐに対処します。
@@ -111,6 +112,7 @@ image:../media/icon_alert_green_checkmark.png["アイコンアラート緑のチ
 |===
 
 
+[[view-current-and-resolved-alerts]]
 == 現在のアラートと解決済みのアラートを表示する
 
 *現在のアラート*: アラートがトリガーされると、ダッシュボードにアラート アイコンが表示されます。ノード ページのノードに対してアラート アイコンも表示されます。もしlink:email-alert-notifications.html["アラートメール通知が設定されている"]アラートが消音されていない限り、電子メール通知も送信されます。

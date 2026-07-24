@@ -17,6 +17,7 @@ StorageGRIDネットワークの詳細については、link:../network/storageg
 
 
 
+[[guidelines-for-grid-network]]
 == グリッドネットワークのガイドライン
 
 すべての内部StorageGRIDトラフィックに対してグリッド ネットワークを構成する必要があります。すべてのグリッド ノードはグリッド ネットワーク上に存在し、他のすべてのノードと通信できる必要があります。
@@ -31,6 +32,7 @@ StorageGRIDネットワークの詳細については、link:../network/storageg
 
 
 
+[[guidelines-for-admin-network]]
 == 管理者ネットワークのガイドライン
 
 管理ネットワークは通常、管理タスク (グリッド マネージャーまたは SSH を使用する信頼できる従業員) や、LDAP、DNS、NTP、KMS (または KMIP サーバー) などの他の信頼できるサービスとの通信に使用されます。ただし、 StorageGRID は内部的にこの使用法を強制しません。
@@ -43,6 +45,7 @@ StorageGRIDネットワークの詳細については、link:../network/storageg
 
 
 
+[[guidelines-for-client-network]]
 == クライアントネットワークのガイドライン
 
 クライアント ネットワークは通常、テナント用、および CloudMirror レプリケーション サービスや他のプラットフォーム サービスなどの外部サービスとの通信に使用されます。ただし、 StorageGRID は内部的にこの使用法を強制しません。

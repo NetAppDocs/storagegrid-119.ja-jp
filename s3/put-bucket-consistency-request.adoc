@@ -20,6 +20,7 @@ PUT Bucket 整合性リクエストを使用すると、バケットに対して
 
 
 
+[[request]]
 == 要求
 
 その `x-ntap-sg-consistency`パラメータには次のいずれかの値が含まれている必要があります。
@@ -67,6 +68,7 @@ strong-site
 
 
 
+[[request-example]]
 == リクエスト例
 
 [listing, subs="specialcharacters,quotes"]

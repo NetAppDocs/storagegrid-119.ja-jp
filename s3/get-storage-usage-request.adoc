@@ -21,6 +21,7 @@ GET ストレージ使用量リクエストは、アカウントで使用され�
 
 
 
+[[request-example]]
 == リクエスト例
 
 [listing, subs="specialcharacters,quotes"]
@@ -32,6 +33,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 応答例
 
 この例では、2 つのバケットに 4 つのオブジェクトと 12 バイトのデータがあるアカウントを示しています。各バケットには 2 つのオブジェクトと 6 バイトのデータが含まれます。
@@ -67,6 +69,7 @@ Content-Type: application/xml
 ----
 
 
+[[versioning]]
 == バージョン管理
 
 保存されたすべてのオブジェクトバージョンは、 `ObjectCount`そして `DataBytes`応答内の値。削除マーカーは追加されません `ObjectCount`合計。
