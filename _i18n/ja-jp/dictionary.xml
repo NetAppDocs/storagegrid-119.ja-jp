@@ -2130,7 +2130,6 @@
   <block id="85321652781c4865437b1177afe5e5fd" category="list-text">必要に応じて、コマンド シェルからログアウトします。<block ref="f24f62eeb789199b9b2e467df3b1876b" prefix=" " category="inline-code"></block></block>
   <block id="242fd5d3e3d0f23fb72421cb6681c574" category="paragraph">StorageGRIDグリッドはシャットダウンされました。</block>
   <block id="a14d43653ae3e8fd1a70a5e24979abf5" category="section-title">グリッドノードを起動する</block>
-  <block id="a02c2203cdb9b4fbfede8d5f7c6f0260" category="admonition">グリッド全体が 15 日以上シャットダウンされている場合は、グリッド ノードを起動する前にテクニカル サポートに連絡する必要があります。 Cassandra データを再構築する回復手順を実行しないでください。データが失われることがあります。</block>
   <block id="ffe12ec7a5bf3d7374916aa9d83bc015" category="paragraph">可能であれば、次の順序でグリッド ノードの電源をオンにします。</block>
   <block id="8b986e045967a32444eb3c10822b65cf" category="list-text">まず管理ノードに電源を供給します。</block>
   <block id="d2eecd9251fc52187744ebe135762511" category="list-text">最後にゲートウェイ ノードに電源を供給します。</block>
@@ -7709,7 +7708,6 @@
   <block id="b86d659161b20616144f0039c1424b4e" category="list-text">CPUコア数: ノードあたり8個</block>
   <block id="45f4c38ce1a63d1d358cc2bec8789aa1" category="list-text">RAM: 利用可能なRAMの合計容量とシステム上で実行されているStorageGRID以外のソフトウェアの量によって異なります。</block>
   <block id="df1f6ab1a0b09cb6d49788a9b9064924" category="list-text">通常、ノードあたり少なくとも24 GB、システム全体のRAMより2～16 GB少ない</block>
-  <block id="e6964a3fc0e96b5235523f7e1dea30f4" category="list-text">約5,000個のバケットを持つテナントごとに最低64 GB</block>
   <block id="b99211e689eb30a0f585e81b64ad800d" category="paragraph">ソフトウェア ベースのメタデータのみのノード リソースは、既存のストレージ ノード リソースと一致する必要があります。例えば：</block>
   <block id="d3ec908281cc94f5014ae8af540770e3" category="paragraph">各物理ホストまたは仮想ホストで実行する予定のStorageGRIDノードの数が、使用可能な CPU コア数または物理 RAM を超えないようにしてください。ホストがStorageGRID の実行専用でない場合は (非推奨)、他のアプリケーションのリソース要件を考慮してください。</block>
   <block id="5298a657a3477e152f5382255aade085" category="inline-link-macro">管理する</block>
@@ -17905,7 +17903,6 @@
   <block id="089dd85c11aa3893945f45e88f134e15" category="inline-link">Amazon Simple Storage Service ユーザーガイド: バケットのクォータ、制限、制約事項</block>
   <block id="f00b5bc4d8d149e054687d090cdda367" category="list-text"><block ref="f00b5bc4d8d149e054687d090cdda367" category="inline-link-rx"></block></block>
   <block id="fd519c4d03f493ec5604d15d62b7d12f" category="paragraph">ListObjects (GET Bucket) および ListObjectVersions (GET Bucket object versions) オペレーションはStorageGRIDをサポートします<block ref="dd6aa6ad3f40642d026c9d910e2a6213" category="inline-link-macro-rx"></block>。</block>
-  <block id="a46f31210315a47a2c5f07c4d876ef5a" category="paragraph">個々のバケットに対して最終アクセス時刻の更新が有効になっているか無効になっているかを確認できます。見る<block ref="dcc85cafd1adb4db5f3bf68d48f423d2" category="inline-link-macro-rx"></block> 。</block>
   <block id="95912013f7f2096e0ed8fa7176719a67" category="paragraph">次の表は、 StorageGRID がS3 REST API バケット操作を実装する方法を示しています。これらの操作を実行するには、アカウントに必要なアクセス資格情報を提供する必要があります。</block>
   <block id="6a72d80838e86f3a28494fa7a71d7be5" category="paragraph">新しいバケットを作成します。バケットを作成すると、バケットの所有者になります。</block>
   <block id="a891e34730121099ca8b6711599d03ca" category="list-text">バケット名は次の規則に従う必要があります。</block>
@@ -17917,36 +17914,30 @@
   <block id="54866248d1c9d3b909e7e8d595ccde2d" category="list-text">仮想ホスト形式のリクエストではピリオドを使用しないでください。ピリオドを使用すると、サーバーのワイルドカード証明書の検証で問題が発生します。</block>
   <block id="19c22519dbbf02db4cc7fb69f420db89" category="list-text">デフォルトでは、バケットは<block ref="c800b6d9163b0db7d28f86c1470a9542" prefix=" " category="inline-code"></block>地域;ただし、<block ref="629c0730a42cc5a39f173be946b73847" prefix=" " category="inline-code"></block>別のリージョンを指定するには、リクエスト本文にリクエスト要素を追加します。使用する際は<block ref="629c0730a42cc5a39f173be946b73847" prefix=" " category="inline-code"></block>要素を使用する場合は、グリッド マネージャーまたはグリッド管理 API を使用して定義されたリージョンの正確な名前を指定する必要があります。使用すべき地域名がわからない場合は、システム管理者に問い合わせてください。</block>
   <block id="64530364bc7a24303ce8121e492420c3" category="paragraph">*注意*: CreateBucket リクエストでStorageGRIDで定義されていないリージョンを使用すると、エラーが発生します。</block>
-  <block id="9f1a4fa131f398ce48eb3936843026f4" category="list-text">以下のものを含めることができます<block ref="289c5faa6802e638231e7e6ff257d3a4" prefix=" " category="inline-code"></block>S3 オブジェクト ロックが有効になっているバケットを作成するためのリクエスト ヘッダー。見る<block ref="68c667f0ce4a6f376dfff8a750bd7d7d" category="inline-link-macro-rx"></block> 。</block>
   <block id="e145a6ea2ee73b80827aa3fb6a1c1a46" category="paragraph">バケットを作成するときに、S3 オブジェクトロックを有効にする必要があります。バケットの作成後に S3 オブジェクトロックを追加または無効にすることはできません。  S3 オブジェクトロックにはバケットのバージョン管理が必要です。これはバケットを作成すると自動的に有効になります。</block>
   <block id="71c1ace3698313ad784d26ba0272e181" category="paragraph">バケットを削除します。</block>
   <block id="b5ef044f36f2f270aafbe292662370d0" category="paragraph">バケットCorsの削除</block>
   <block id="1686f05337a73f0d14bd5015146d1bf3" category="paragraph">バケットの CORS 構成を削除します。</block>
   <block id="474edf8ea8821ec1cba31c49f123ec20" category="paragraph">バケットからデフォルトの暗号化を削除します。既存の暗号化されたオブジェクトは暗号化されたままですが、バケットに追加された新しいオブジェクトは暗号化されません。</block>
-  <block id="1705f09f559c9ea2d2f9b08fa4a80986" category="paragraph">バケットからライフサイクル構成を削除します。見る<block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block> 。</block>
   <block id="4c4f5aff111532846b63cc55bb0c4d99" category="paragraph">バケットに添付されたポリシーを削除します。</block>
   <block id="088408f3c0dcc9fa859c5a55991a5f50" category="paragraph">バケットに添付されたレプリケーション設定を削除します。</block>
   <block id="2c46233cd08c14be3fb5c38312f379a6" category="paragraph">バケットタグの削除</block>
   <block id="84e929b005c83a02afd743cf624008f2" category="paragraph">使用するのは<block ref="7083a19806d3d0e94bb134eb9cec3403" prefix=" " category="inline-code"></block>バケットからすべてのタグを削除するサブリソース。</block>
-  <block id="6764fc553c71fcb8641d4f24d3f35297" category="paragraph">*注意*: このバケットにデフォルト以外のILMポリシータグが設定されている場合は、<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>値が割り当てられたバケット タグ。 DeleteBucketTaggingリクエストを発行しないでください。<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグ。代わりに、PutBucketTaggingリクエストを発行し、<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>タグとそれに割り当てられた値を入力すると、バケットから他のすべてのタグが削除されます。変更したり削除したりしないでください<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグ。</block>
   <block id="4188d21d16199511e8458513bb9c491e" category="paragraph">肯定応答とバケット所有者の ID、DisplayName、および権限を返し、所有者がバケットへのフルアクセス権を持っていることを示します。</block>
   <block id="302f9f626524205db47e78c6bd9d8424" category="paragraph">返します<block ref="b439a4514c277ce6fccc8f28ca817183" prefix=" " category="inline-code"></block>バケットの構成。</block>
   <block id="300fa264f90c3b5ef5d5c82eb064a68a" category="paragraph">バケットのデフォルトの暗号化設定を返します。</block>
   <block id="96501f542f45104428243c88b0b2505a" category="paragraph">(以前はGET Bucketライフサイクルと呼ばれていました)</block>
-  <block id="9c3ef3503c77608a13a22d71e2f7b0c4" category="paragraph">バケットのライフサイクル構成を返します。見る<block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block> 。</block>
   <block id="0024d60037fdf7fce3e908478763cfd6" category="paragraph">設定された領域を返します。<block ref="629c0730a42cc5a39f173be946b73847" prefix=" " category="inline-code"></block> CreateBucket リクエスト内の要素。バケットのリージョンが<block ref="c800b6d9163b0db7d28f86c1470a9542" prefix=" " category="inline-code"></block>、その領域に対して空の文字列が返されます。</block>
   <block id="ef679130d6c621635ffee8f6ad77db7a" category="paragraph">(以前の名称は GET Bucket 通知)</block>
   <block id="8391707049f36b179380a7f50d3800fa" category="paragraph">バケットに添付された通知設定を返します。</block>
   <block id="e216fcf5a37757c38fa70c30fd399737" category="paragraph">バケットに添付されたポリシーを返します。</block>
   <block id="a554ed6aa4f650c4d24e98f8bdccd5e1" category="paragraph">バケットに添付されたレプリケーション設定を返します。</block>
   <block id="e71052daa7342f7fe14b8bf0409a8401" category="paragraph">使用するのは<block ref="7083a19806d3d0e94bb134eb9cec3403" prefix=" " category="inline-code"></block>バケットのすべてのタグを返すサブリソース。</block>
-  <block id="045025a75c437695d2714178dc6ff73e" category="paragraph">*注意*: このバケットにデフォルト以外のILMポリシータグが設定されている場合は、<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>値が割り当てられたバケット タグ。このタグを変更したり削除したりしないでください。</block>
   <block id="c688cf56243f664d2f2da06508f53a74" category="paragraph">この実装では、<block ref="f775fa07e143b2e671946a48af8f42ca" prefix=" " category="inline-code"></block>バケットのバージョン管理状態を返すサブリソース。</block>
   <block id="525ad44fa3fd04646bcd2cd028032e2f" category="list-text">_blank_: バージョン管理が有効になったことがありません (バケットは「バージョン管理なし」です)</block>
   <block id="5ae6f739bae0babf6ec3c2305719bf3e" category="list-text">有効: バージョン管理が有効です</block>
   <block id="e001cd096fa7cdd4effa158ceef1a1f1" category="list-text">一時停止: バージョン管理は以前は有効でしたが、一時停止されています</block>
   <block id="41547bb5e8d1ecbf64157382c92ff5f3" category="paragraph">設定されている場合は、バケットのデフォルトの保持モードとデフォルトの保持期間を返します。</block>
-  <block id="282c6dfc7e3671a8bee3a4ba60fa3562" category="paragraph">見る<block ref="68c667f0ce4a6f376dfff8a750bd7d7d" category="inline-link-macro-rx"></block> 。</block>
   <block id="e82cd3ad0f3c4dabdcdf6744d49674fa" category="paragraph">バケットが存在するかどうか、またそれにアクセスする権限があるかどうかを判断します。</block>
   <block id="290b954e17b0254e25b7b3f385d9a9a9" category="paragraph">この操作は次を返します:</block>
   <block id="990dab0df64378e7b71aaf164e207e59" category="list-text"><block ref="51fb9fefe643d6f8be476b12e5d09070" prefix="" category="inline-code"></block>: UUID 形式のバケットの UUID。</block>
@@ -17970,8 +17961,6 @@
   <block id="aa58390319df49e92dd2d4e27bc61105" category="paragraph">StorageGRID は次のアクションをサポートしていません。</block>
   <block id="fce82da56cb8ca29658f445035073a3a" category="list-text">AbortIncompleteMultipartUpload</block>
   <block id="afedf9afee367f51f98d7cf030c976a6" category="list-text">移行</block>
-  <block id="7d002d46b560bb735be81511030dd55b" category="paragraph">見る<block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block> 。バケットライフサイクルの有効期限アクションがILM配置指示とどのように相互作用するかを理解するには、以下を参照してください。<block ref="2eebcc299dfcfbe3c659686c56f8a9eb" category="inline-link-macro-rx"></block> 。</block>
-  <block id="8a5f42cbf53b3e83a9b0c88eb780e402" category="paragraph">*注意*: バケットのライフサイクル設定は、S3 オブジェクト ロックが有効になっているバケットで使用できますが、従来の準拠バケットではバケットのライフサイクル設定はサポートされていません。</block>
   <block id="34ac839a541d8fabef4176a79ddd4e54" category="paragraph">(以前の名称はPUT Bucket通知)</block>
   <block id="5905d69af3c37e03519348248aeb4ee1" category="paragraph">リクエスト本文に含まれる通知構成 XML を使用して、バケットの通知を構成します。次の実装の詳細に注意する必要があります。</block>
   <block id="52c68b232d7ea99b209122ad7094f192" category="list-text">StorageGRID は、送信先として Amazon Simple Notification Service (Amazon SNS) または Kafka トピックをサポートしています。  Simple Queue Service (SQS) または Amazon Lambda エンドポイントはサポートされていません。</block>
@@ -17988,33 +17977,26 @@
   <block id="4410f38fcc573951f69b6ca658c40208" category="list-text">*x-amz-id-2*</block>
   <block id="9d3158589897050627a06fcea9381be4" category="list-text">*アーーン*</block>
   <block id="f01c733be2ffd54c1451d3677d20b121" category="paragraph"><block ref="6e986cf3126d349a3cece9a996dcac93" prefix="" category="inline-code"></block></block>
-  <block id="4fe7241d4f604e37f120617a42e4bec7" category="paragraph">バケットに添付されたポリシーを設定します。見る<block ref="1ec5ee99691e5aa260a67a19f68f8bf5" category="inline-link-macro-rx"></block> 。</block>
   <block id="ccb4749182ee9901b8d03d43081bacb5" category="inline-link-macro">StorageGRID CloudMirror レプリケーション</block>
   <block id="5f3734c4900296d26b18798d27caddc9" category="paragraph">構成<block ref="5e7e61f123c774c65945463c9958cd85" category="inline-link-macro-rx"></block>リクエスト本文で提供されるレプリケーション構成 XML を使用してバケットに対して行います。  CloudMirror レプリケーションの場合、次の実装の詳細に注意する必要があります。</block>
   <block id="7ee64381b1afe55b854933284d3c7124" category="inline-link">Amazon Simple Storage Service ユーザーガイド: レプリケーション設定</block>
-  <block id="1caeadb95c399c1c7e53f64c17c9127b" category="list-text">StorageGRID はレプリケーション構成の V1 のみをサポートします。これは、 StorageGRIDが<block ref="d7778d0c64b6ba21494c97f77a66885a" prefix=" " category="inline-code"></block>ルールの要素であり、オブジェクト バージョンの削除については V1 規則に従います。詳細については、<block ref="83fea02fc38c978d3d1fa8e6d24e3f0a" category="inline-link-rx"></block> 。</block>
   <block id="e7b2c311ae6c2f201333bb704cde4024" category="list-text">バケットのレプリケーションは、バージョン管理されたバケットでもバージョン管理されていないバケットでも設定できます。</block>
   <block id="b8c9ab8690fa534b26e98df699f3b8ae" category="list-text">レプリケーション構成 XML の各ルールで異なる宛先バケットを指定できます。ソース バケットは複数の宛先バケットに複製できます。</block>
   <block id="7e325b4129f19b6582a079197f4b0ac0" category="inline-link-macro">CloudMirrorレプリケーションを構成する</block>
-  <block id="3f03252083053d9039285a57d4bc4ff1" category="list-text">宛先バケットは、テナント マネージャまたはテナント管理 API で指定されているStorageGRIDエンドポイントの URN として指定する必要があります。見る<block ref="78ca258c698c6e5ef6dba3f53379e735" category="inline-link-macro-rx"></block> 。</block>
   <block id="d5c9b8b845b7255c3a3b2b97c2e543d9" category="paragraph">レプリケーション構成を成功させるには、エンドポイントが存在している必要があります。エンドポイントが存在しない場合は、リクエストは失敗し、<block ref="6196dba52703776af2e6593f772ed7ce" prefix=" " category="inline-code"></block>エラーメッセージは次のようになります。<block ref="3c5d9914e90ed77cef2b0bf6abe81deb" prefix=" " category="inline-code"></block></block>
-  <block id="3e83b92885d95cc17b1d93c1e0e2377a" category="list-text">指定する必要はありません<block ref="bbbabdbe1b262f75d99d62880b953be1" prefix=" " category="inline-code"></block>構成 XML 内。この値はStorageGRIDでは使用されず、送信されても​​無視されます。</block>
   <block id="c97cdfe07b799050f540c51ba193aed4" category="list-text">設定XMLからストレージクラスを省略した場合、 StorageGRIDは<block ref="94e94133f4bdc1794c6b647b8ea134d0" prefix=" " category="inline-code"></block>デフォルトのストレージ クラス。</block>
   <block id="a31c411ee83c54063126116893f2dcd5" category="list-text">ソースバケットからオブジェクトを削除するか、ソースバケット自体を削除した場合、リージョン間のレプリケーションの動作は次のようになります。</block>
-  <block id="3f8775cb5c5a41f402c4d5463ef381c4" category="list-text">オブジェクトまたはバケットが複製される前に削除した場合、オブジェクト/バケットは複製されず、通知も行われません。</block>
   <block id="8a0afe039efd2cd58c384593e4cce642" category="list-text">オブジェクトまたはバケットをレプリケートした後に削除する場合、 StorageGRID はクロスリージョンレプリケーションの V1 の標準の Amazon S3 削除動作に従います。</block>
   <block id="d8a1f248545433c5f49671aca245c402" category="paragraph">使用するのは<block ref="7083a19806d3d0e94bb134eb9cec3403" prefix=" " category="inline-code"></block>バケットのタグのセットを追加または更新するためのサブリソース。バケット タグを追加するときは、次の制限に注意してください。</block>
   <block id="4dd983da966a27fbd685ded0269482b0" category="list-text">StorageGRIDと Amazon S3 はどちらも、バケットごとに最大 50 個のタグをサポートします。</block>
   <block id="7b82d7c03021df1db6c52454cee6e54c" category="list-text">バケットに関連付けられたタグには、一意のタグ キーが必要です。タグ キーの長さは最大 128 文字の Unicode 文字です。</block>
   <block id="ab23af86227de7dcc931b4e8919c5ba7" category="list-text">タグ値の長さは最大 256 文字の Unicode 文字です。</block>
   <block id="a1a51b9ded79fb59e901c38b202a45de" category="list-text">キーと値は大文字と小文字が区別されます。</block>
-  <block id="dc7a64e89b4b9c7c3f78c5284357cceb" category="paragraph">*注意*: このバケットにデフォルト以外のILMポリシータグが設定されている場合は、<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>値が割り当てられたバケット タグ。必ず<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケット タグは、すべての PutBucketTagging リクエストで割り当てられた値に含まれます。このタグを変更したり削除したりしないでください。</block>
   <block id="e37b4537af0ba019153bda1ad5413d7b" category="paragraph">*注意*: この操作により、バケットにすでに存在するタグが上書きされます。セットから既存のタグが省略されている場合、それらのタグはバケットから削除されます。</block>
   <block id="1110fc5a93153951bab9defba62634f7" category="paragraph">使用するのは<block ref="f775fa07e143b2e671946a48af8f42ca" prefix=" " category="inline-code"></block>既存のバケットのバージョン管理状態を設定するためのサブリソース。バージョン管理の状態は、次のいずれかの値で設定できます。</block>
   <block id="312b5950c02eecf927bce9b6cf0f3ca6" category="list-text">有効: バケット内のオブジェクトのバージョン管理を有効にします。バケットに追加されたすべてのオブジェクトには、一意のバージョン ID が付与されます。</block>
   <block id="115f32b694d13a5a455f1dd15ecbc925" category="list-text">停止: バケット内のオブジェクトのバージョン管理を無効にします。バケットに追加されたすべてのオブジェクトにはバージョンIDが付与されます<block ref="37a6259cc0c1dae299a7866489dff0bd" prefix=" " category="inline-code"></block>。</block>
   <block id="fab842315ac4b09a500a4bd34143518d" category="paragraph">バケットのデフォルトの保持モードとデフォルトの保持期間を設定または削除します。</block>
-  <block id="fadf29550eaec5b2c651404383d1a595" category="paragraph">デフォルトの保持期間が変更された場合、既存のオブジェクト バージョンの保持期限は同じままになり、新しいデフォルトの保持期間を使用して再計算されることはありません。</block>
   <block id="c4c2c36feb842c8c0bbe67509477a642" category="paragraph">見る<block ref="68c667f0ce4a6f376dfff8a750bd7d7d" category="inline-link-macro-rx"></block>詳細情報については。</block>
   <block id="815448e3a25422b616efa49187627191" category="summary">このセクションでは、 StorageGRIDシステムがオブジェクトに対して S3 REST API 操作を実装する方法について説明します。</block>
   <block id="8acefa60c32d941fa2860cd1b4985877" category="doc">オブジェクトに対する操作</block>
@@ -19032,13 +19014,11 @@
   <block id="03f28cec004396bf5c903fe684a4095d" category="inline-link-macro">バケットポリシーまたはグループポリシー</block>
   <block id="bf79c8a702e55a5568b5142624440b37" category="admonition">バケットまたはオブジェクトのS3オブジェクトロックプロパティを設定または変更する権限は、<block ref="34890c95782f3c8e1da66d1cf3ef9972" category="inline-link-macro-rx"></block> 。</block>
   <block id="599405eaa0379eb6e96ccb9eeb3b6852" category="list-text">バケットに対して S3 オブジェクト ロックを有効にする予定の場合は、グリッド管理者がStorageGRIDシステムのグローバル S3 オブジェクト ロック設定を有効にし、S3 オブジェクト ロック バケットとオブジェクトの要件を確認しておきます。</block>
-  <block id="060a506b94206fd8099f53c701a4dfa8" category="list-text">各テナントに 5,000 個のバケットがある場合、グリッド内の各ストレージ ノードには最低 64 GB の RAM があります。</block>
   <block id="e1d3e2753b576399328d6d39cc680896" category="list-text">バケットの詳細を入力します。</block>
   <block id="83a9945f9788d7c276a31069ee1bb724" category="paragraph">次のルールに準拠するバケットの名前:</block>
   <block id="e53c957114009561725fc45998abd90c" category="list-text">各ラベルは小文字または数字で始まり、終わる必要があり、小文字、数字、ハイフンのみを使用できます。</block>
   <block id="f5cca034eb538477e88e4d0de919aea0" category="list-text">仮想ホスト形式のリクエストにはピリオドを含めることはできません。ピリオドを使用すると、サーバーのワイルドカード証明書の検証で問題が発生します。</block>
   <block id="f5deb6c50c5ef38950f650cba34780bc" category="inline-link">バケット命名ルールに関する Amazon Web Services (AWS) ドキュメント</block>
-  <block id="2acdc081b87dfb5f7470a08db727a212" category="paragraph">詳細については、<block ref="c192042024a8f68be5a4c7bc34004895" category="inline-link-rx"></block> 。</block>
   <block id="8ef26b936afff4216cf143e51665f901" category="paragraph">*注意*: バケットを作成した後は、バケット名を変更することはできません。</block>
   <block id="f447ac856e7e72435904956e3b15f433" category="paragraph">リージョン</block>
   <block id="8c0e9411b59e9c5d77c8b15c167c8359" category="paragraph">バケットのリージョン。</block>
@@ -22102,4 +22082,27 @@
   <block id="cbbcf2982eaa107551967ef41b946c6f" category="list-text"><block ref="b4eaa868c5a9d3d78f9ca606a3cb09eb" prefix=" " category="inline-code"></block>および<block ref="bf6d5c936f034a1c80c1d489d85a9cfb" prefix=" " category="inline-code"></block>ヘッダーは受け入れられますが、機能しません。</block>
   <block id="7c37f16e9cbf7999830f6d447e5139cc" category="inline-link">StorageGRIDでサードパーティのロード バランシングを使用する</block>
   <block id="115da73ba09231ed44a359e7dc28a03b" category="admonition">StorageGRID ロード バランシング サービスは推奨されるロード バランシング メカニズムですが、代わりにサードパーティ製のロード バランサを統合することもできます。詳細については、NetApp アカウント担当者にお問い合わせいただくか、<block ref="07dd3eb8db144aafaae9ca336914c57b" category="inline-link-rx"></block>を参照してください。</block>
+  <block id="1cb3c9cf636ea55ccda3277942377191" category="list-text">複数のテナントがそれぞれ最大5,000個のバケットを持つ場合、ノードあたり少なくとも64 GB</block>
+  <block id="d969a1e03fcd8eeec67e80113b5eacf0" category="admonition">CPUとメモリの使用状況を定期的に監視し、これらのリソースが引き続き作業負荷に対応できることを確認してください。例えば、仮想ストレージノードのRAMとCPUの割り当てを2倍にすると、StorageGRIDアプライアンスノードに提供されるリソースと同様のリソースが提供されます。さらに、ノードあたりのメタデータ量が500 GBを超える場合は、ノードあたりのRAMを48 GB以上に増やすことを検討してください。オブジェクトメタデータストレージの管理、メタデータ予約領域設定の増加、CPUとメモリ使用量の監視に関する情報については、<block ref="d7da925960d077caca67b7da05f604eb" category="inline-link-macro-rx"></block>、<block ref="1bf03777f1f1ec6e39142eee6de42f7d" category="inline-link-macro-rx"></block>、および<block ref="0c791c7b79ff656d42eedaf87006f706" category="inline-link-macro-rx"></block> StorageGRIDの手順を参照してください。</block>
+  <block id="c4c73314bf0cdbe882b4eca33f819a07" category="paragraph">基盤となる物理ホストでハイパースレッディングが有効になっている場合、ノードごとに8つの仮想コア（4つの物理コア）を提供できます。基盤となる物理ホストでハイパースレッディングが有効になっていない場合は、ノードごとに8つの物理コアを用意する必要があります。</block>
+  <block id="2f0dd37b661522a575ecc8de6795d039" category="paragraph">複数のテナントがそれぞれ最大5,000個のバケットを持つ場合、グリッド内の各ストレージノードは最低64 GBのRAMを搭載する必要があります。</block>
+  <block id="3645f3bd0482b72744459cbe5741e4a8" category="paragraph">個々のバケットについて、最終アクセス時刻の更新が有効になっているか無効になっているかを確認できます。<block ref="dcc85cafd1adb4db5f3bf68d48f423d2" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="00b3b6be152329515868b69372f5b062" category="list-text"><block ref="289c5faa6802e638231e7e6ff257d3a4" prefix=" " category="inline-code"></block>リクエストヘッダーを含めることで、S3 Object Lock を有効にしたバケットを作成できます。<block ref="68c667f0ce4a6f376dfff8a750bd7d7d" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="e2e8b48c3e737979e8d162d74b4028e2" category="paragraph">バケットからライフサイクル設定を削除します。<block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="7a187ce0023a42cf205c67d1e80b2fa9" category="paragraph">*注意*：このバケットにデフォルト以外の ILM ポリシータグが設定されている場合、値が割り当てられた<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグが存在します。<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグが存在する場合は、DeleteBucketTaggingリクエストを発行しないでください。代わりに、<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>タグとその割り当てられた値のみを指定してPutBucketTaggingリクエストを発行し、バケットから他のすべてのタグを削除してください。<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグを変更または削除しないでください。</block>
+  <block id="476bcbaebcac49e5bd9fce2d6ba84d3b" category="paragraph">バケットのライフサイクル構成を返します。<block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="e6de078fb949dad4aeacc957f067270a" category="paragraph">*注意*：このバケットにデフォルト以外の ILM ポリシータグが設定されている場合、値が割り当てられた<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグが存在します。このタグは変更または削除しないでください。</block>
+  <block id="1f95d56749d16d1e997cf8c891df6f75" category="paragraph"><block ref="68c667f0ce4a6f376dfff8a750bd7d7d" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="0c955d0ec534d36f64c62d7fc0b6a6a8" category="paragraph"><block ref="899e48eb574f8c5912a7d048f8d748e8" category="inline-link-macro-rx"></block>を参照してください。バケットライフサイクルの有効期限アクションがILM配置指示とどのように相互作用するかを理解するには、<block ref="2eebcc299dfcfbe3c659686c56f8a9eb" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="2f2bd894acebce88a04c15f2db8a2296" category="paragraph">*注*：バケットライフサイクル設定は、S3 オブジェクトロックが有効になっているバケットで使用できますが、従来の準拠バケットではバケットライフサイクル設定はサポートされていません。</block>
+  <block id="e60e2b890ab248349b6d27b739f8bba2" category="paragraph">バケットに適用されるポリシーを設定します。<block ref="1ec5ee99691e5aa260a67a19f68f8bf5" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="0541acd545b6cb32e7b7a7ea3a1e2c47" category="list-text">StorageGRID はレプリケーション設定の V1 のみをサポートしています。つまり、StorageGRID はルールに対して<block ref="d7778d0c64b6ba21494c97f77a66885a" prefix=" " category="inline-code"></block>要素の使用をサポートしておらず、オブジェクトバージョンの削除については V1 の規約に従います。詳細については、<block ref="83fea02fc38c978d3d1fa8e6d24e3f0a" category="inline-link-rx"></block>を参照してください。</block>
+  <block id="b39a5414c4819d4f48582454a17254a2" category="list-text">宛先バケットは、Tenant Manager またはTenant Management APIで指定されているStorageGRID エンドポイントのURN として指定する必要があります。<block ref="78ca258c698c6e5ef6dba3f53379e735" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="fdbdb414c7e34a8375ef3c56596cbaa7" category="list-text">設定XMLで<block ref="bbbabdbe1b262f75d99d62880b953be1" prefix=" " category="inline-code"></block>を指定する必要はありません。この値はStorageGRIDでは使用されないため、送信されても無視されます。</block>
+  <block id="4c7c908ba9b7f1b969a48ce143672ce9" category="list-text">オブジェクトまたはバケットが複製される前に削除した場合、オブジェクト/バケットは複製されず、通知もされません。</block>
+  <block id="0f48dacf070b3b0117444b481bbdb982" category="paragraph">*注意*：このバケットにデフォルト以外の ILM ポリシータグが設定されている場合、値が割り当てられた<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグが存在します。割り当てられた値を持つ<block ref="2ce3f7d0855e7a7db3be4bffab58af5a" prefix=" " category="inline-code"></block>バケットタグが、すべての PutBucketTagging リクエストに含まれていることを確認してください。このタグは変更または削除しないでください。</block>
+  <block id="46cc856219e9aa1dcf7966418d1bd0db" category="paragraph">デフォルトの保持期間が変更された場合、既存のオブジェクトバージョンの保持期限は変更されず、新しいデフォルトの保持期間を使用して再計算されることはありません。</block>
+  <block id="ba81233e9af267a8db7dc3230f6db6a6" category="list-text">複数のテナントがそれぞれ最大5,000個のバケットを持つ場合、グリッド内の各ストレージノードには最低64 GBのRAMが必要です。</block>
+  <block id="80213df1b30c238d98f21756dede4383" category="admonition">StorageGRIDシステムは、S3テナントアカウントごとに最大5,000個のバケットをサポートします。各グリッドには最大100,000個のバケットを設定できます。</block>
+  <block id="98e500c14e3477e6ac46010a64b95e67" category="paragraph">詳細については、<block ref="c192042024a8f68be5a4c7bc34004895" category="inline-link-rx"></block>を参照してください。</block>
 </blocks>
